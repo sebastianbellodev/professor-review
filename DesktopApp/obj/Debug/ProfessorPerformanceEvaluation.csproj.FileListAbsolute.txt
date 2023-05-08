@@ -1,0 +1,15 @@
+C:\Users\majot\OneDrive\Escritorio\ProfessorPerformanceEvaluation\Desktop-App\ProfessorPerformanceEvaluation\bin\Debug\ProfessorPerformanceEvaluation.exe.config
+C:\Users\majot\OneDrive\Escritorio\ProfessorPerformanceEvaluation\Desktop-App\ProfessorPerformanceEvaluation\bin\Debug\ProfessorPerformanceEvaluation.exe
+C:\Users\majot\OneDrive\Escritorio\ProfessorPerformanceEvaluation\Desktop-App\ProfessorPerformanceEvaluation\bin\Debug\ProfessorPerformanceEvaluation.pdb
+C:\Users\majot\OneDrive\Escritorio\ProfessorPerformanceEvaluation\Desktop-App\ProfessorPerformanceEvaluation\obj\Debug\ProfessorPerformanceEvaluation.csproj.AssemblyReference.cache
+C:\Users\majot\OneDrive\Escritorio\ProfessorPerformanceEvaluation\Desktop-App\ProfessorPerformanceEvaluation\obj\Debug\ProfessorPerformanceEvaluation.csproj.SuggestedBindingRedirects.cache
+C:\Users\majot\OneDrive\Escritorio\ProfessorPerformanceEvaluation\Desktop-App\ProfessorPerformanceEvaluation\obj\Debug\LoginWindow.baml
+C:\Users\majot\OneDrive\Escritorio\ProfessorPerformanceEvaluation\Desktop-App\ProfessorPerformanceEvaluation\obj\Debug\LoginWindow.g.cs
+C:\Users\majot\OneDrive\Escritorio\ProfessorPerformanceEvaluation\Desktop-App\ProfessorPerformanceEvaluation\obj\Debug\App.g.cs
+C:\Users\majot\OneDrive\Escritorio\ProfessorPerformanceEvaluation\Desktop-App\ProfessorPerformanceEvaluation\obj\Debug\ProfessorPerformanceEvaluation_MarkupCompile.cache
+C:\Users\majot\OneDrive\Escritorio\ProfessorPerformanceEvaluation\Desktop-App\ProfessorPerformanceEvaluation\obj\Debug\ProfessorPerformanceEvaluation.g.resources
+C:\Users\majot\OneDrive\Escritorio\ProfessorPerformanceEvaluation\Desktop-App\ProfessorPerformanceEvaluation\obj\Debug\ProfessorPerformanceEvaluation.Properties.Resources.resources
+C:\Users\majot\OneDrive\Escritorio\ProfessorPerformanceEvaluation\Desktop-App\ProfessorPerformanceEvaluation\obj\Debug\ProfessorPerformanceEvaluation.csproj.GenerateResource.cache
+C:\Users\majot\OneDrive\Escritorio\ProfessorPerformanceEvaluation\Desktop-App\ProfessorPerformanceEvaluation\obj\Debug\ProfessorPerformanceEvaluation.csproj.CoreCompileInputs.cache
+C:\Users\majot\OneDrive\Escritorio\ProfessorPerformanceEvaluation\Desktop-App\ProfessorPerformanceEvaluation\obj\Debug\ProfessorPerformanceEvaluation.exe
+C:\Users\majot\OneDrive\Escritorio\ProfessorPerformanceEvaluation\Desktop-App\ProfessorPerformanceEvaluation\obj\Debug\ProfessorPerformanceEvaluation.pdb
