@@ -63,15 +63,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BussinessLogic\AcademicOffering.cs" />
-    <Compile Include="BussinessLogic\EducationalExperience.cs" />
-    <Compile Include="BussinessLogic\EducationalProgram.cs" />
-    <Compile Include="BussinessLogic\Faculty.cs" />
-    <Compile Include="BussinessLogic\Professor.cs" />
-    <Compile Include="BussinessLogic\Review.cs" />
-    <Compile Include="BussinessLogic\SchoolPeriod.cs" />
-    <Compile Include="BussinessLogic\Student.cs" />
-    <Compile Include="BussinessLogic\User.cs" />
+    <Compile Include="BusinessLogic\AcademicOffering.cs" />
+    <Compile Include="BusinessLogic\EducationalExperience.cs" />
+    <Compile Include="BusinessLogic\EducationalProgram.cs" />
+    <Compile Include="BusinessLogic\Faculty.cs" />
+    <Compile Include="BusinessLogic\Professor.cs" />
+    <Compile Include="BusinessLogic\Response.cs" />
+    <Compile Include="BusinessLogic\Review.cs" />
+    <Compile Include="BusinessLogic\SchoolPeriod.cs" />
+    <Compile Include="BusinessLogic\Student.cs" />
+    <Compile Include="BusinessLogic\User.cs" />
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
