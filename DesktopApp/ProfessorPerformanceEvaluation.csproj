@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="LoginWindow.xaml">
+    <Page Include="Views\LoginWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -63,7 +63,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LoginWindow.xaml.cs">
+    <Compile Include="BussinessLogic\AcademicOffering.cs" />
+    <Compile Include="BussinessLogic\EducationalExperience.cs" />
+    <Compile Include="BussinessLogic\EducationalProgram.cs" />
+    <Compile Include="BussinessLogic\Faculty.cs" />
+    <Compile Include="BussinessLogic\Professor.cs" />
+    <Compile Include="BussinessLogic\Review.cs" />
+    <Compile Include="BussinessLogic\SchoolPeriod.cs" />
+    <Compile Include="BussinessLogic\Student.cs" />
+    <Compile Include="BussinessLogic\User.cs" />
+    <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -93,6 +102,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
