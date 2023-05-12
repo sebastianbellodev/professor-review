@@ -1,4 +1,4 @@
-# Parlis.
+# ProfessorPerformanceEvaluation.
 
 Implementation of the management of professor performance evaluations through the use of an application programming interface (API), a desktop application and a mobile application.
 
