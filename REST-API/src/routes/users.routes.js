@@ -7,71 +7,97 @@ import {
   deleteUser,
 } from "../controllers/users.controllers.js";
 import {
-  createToken,
+  generateToken,
   validateToken,
   verifyToken,
-} from "../utilities/security/bearer.authentication.js";
+} from "../utilities/authentication/bearer.js";
+import { message, RES_CODE, RES_MESSAGE } from "../utilities/json/message.js";
 
 const router = Router();
-const user = "User";
 
 router.get("/users", validateToken, (req, res) => {
-  verifyToken(req, res, () => {
-    getUser()
-      .then(([row]) => res.status(200).json(row))
-      .catch((err) => res.status(500).send(err));
-  });
+  try {
+    verifyToken(req, res, async () => {
+      const [row] = await getUser();
+      message(res, RES_CODE.OK, null, row);
+    });
+  } catch (err) {
+    message(
+      res,
+      RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,
+      err
+    );
+  }
 });
 
 router.get("/users/:username", validateToken, (req, res) => {
-  verifyToken(req, res, () => {
-    getUserByUsername(req)
-      .then(([row]) =>
-        row.length > 0
-          ? res.status(200).json(row)
-          : res
-              .status(404)
-              .json({ message: `${user} not found. Please try again.` })
-      )
-      .catch((err) => res.status(500).send(err));
-  });
+  try {
+    verifyToken(req, res, async () => {
+      const [row] = await getUserByUsername(req);
+      row.length > 0
+        ? message(res, RES_CODE.OK, null, row)
+        : message(res, RES_CODE.NOT_FOUND, RES_MESSAGE.USER_NOT_FOUND);
+    });
+  } catch (err) {
+    message(
+      res,
+      RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,
+      err
+    );
+  }
 });
 
-router.post("/users", (req, res) => {
-  postUser(req)
-    .then(() => {
-      const token = createToken(req);
-      res.json({ token });
-    })
-    .catch((err) => res.status(500).send(err));
+router.post("/users", async (req, res) => {
+  try {
+    await postUser(req);
+    const token = generateToken(req);
+    message(res, RES_CODE.CREATED, RES_MESSAGE.USER_POST, token);
+  } catch (err) {
+    message(
+      res,
+      RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,
+      err
+    );
+  }
 });
 
 router.patch("/users/:username", validateToken, (req, res) => {
-  verifyToken(req, res, () => {
-    patchUser(req)
-      .then(([row]) =>
-        row.affectedRows > 0
-          ? res.sendStatus(201)
-          : res
-              .status(404)
-              .json({ message: `${user} not found. Please try again.` })
-      )
-      .catch((err) => res.status(500).send(err));
-  });
+  try {
+    verifyToken(req, res, async () => {
+      const [row] = await patchUser(req);
+      row.affectedRows > 0
+        ? message(res, RES_CODE.OK, RES_MESSAGE.USER_PUT)
+        : message(res, RES_CODE.NOT_FOUND, RES_MESSAGE.USER_NOT_FOUND);
+    });
+  } catch (err) {
+    message(
+      res,
+      RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,
+      err
+    );
+  }
 });
 
 router.delete("/users/:username", validateToken, (req, res) => {
-  verifyToken(req, res, () => {
-    deleteUser(req)
-      .then(([row]) =>
-        row.affectedRows > 0
-          ? res.sendStatus(204)
-          : res
-              .status(404)
-              .json({ message: `${user} not found. Please try again.` })
-      )
-      .catch((err) => res.status(500).send(err));
-  });
+  try {
+    verifyToken(req, res, async () => {
+      const [row] = await deleteUser(req);
+      row.affectedRows > 0
+        ? message(res, RES_CODE.OK, RES_MESSAGE.USER_DELETE)
+        : message(res, RES_CODE.NOT_FOUND, RES_MESSAGE.USER_NOT_FOUND);
+    });
+  } catch (err) {
+    message(
+      res,
+      RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,
+      err
+    );
+  }
 });
 
 export default router;

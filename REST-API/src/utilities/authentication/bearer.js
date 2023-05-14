@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
-import { TOKEN_KEY } from "../../configuration/config.js";
+import { TOKEN_KEY } from "./configuration/configuration.js";
 
-export const createToken = (req) => {
+export const generateToken = (req) => {
   const { username, password } = req.body;
   return jwt.sign({ username, password }, TOKEN_KEY, { expiresIn: "2h" });
 };
@@ -23,5 +23,7 @@ export const validateToken = (req, res, next) => {
     const token = bearer.split(" ")[1];
     req.token = token;
     next();
+  } else {
+    res.sendStatus(403);
   }
 };

@@ -9,65 +9,93 @@ import {
 import {
   validateToken,
   verifyToken,
-} from "../utilities/security/bearer.authentication.js";
+} from "../utilities/authentication/bearer.js";
+import { message, RES_CODE, RES_MESSAGE } from "../utilities/json/message.js";
 
 const router = Router();
-const student = "Student";
 
 router.get("/students", validateToken, (req, res) => {
-  verifyToken(req, res, () => {
-    getStudent()
-      .then(([row]) => res.status(200).json(row))
-      .catch((err) => res.status(500).send(err));
-  });
+  try {
+    verifyToken(req, res, async () => {
+      const [row] = await getStudent();
+      message(res, RES_CODE.OK, null, row);
+    });
+  } catch (err) {
+    message(
+      res,
+      RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,
+      err
+    );
+  }
 });
 
 router.get("/students/:registrationNumber", validateToken, (req, res) => {
-  verifyToken(req, res, () => {
-    getStudentByRegistrationNumber(req)
-      .then(([row]) =>
-        row.length > 0
-          ? res.status(200).json(row)
-          : res
-              .status(404)
-              .json({ message: `${student} not found. Please try again.` })
-      )
-      .catch((err) => res.status(500).send(err));
-  });
+  try {
+    verifyToken(req, res, async () => {
+      const [row] = await getStudentByRegistrationNumber(req);
+      row.length > 0
+        ? message(res, RES_CODE.OK, null, row)
+        : message(res, RES_CODE.NOT_FOUND, RES_MESSAGE.STUDENT_NOT_FOUND);
+    });
+  } catch (err) {
+    message(
+      res,
+      RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,
+      err
+    );
+  }
 });
 
-router.post("/students", (req, res) => {
-  postStudent(req)
-    .then(() => res.sendStatus(204))
-    .catch((err) => res.status(500).send(err));
+router.post("/students", async (req, res) => {
+  try {
+    await postStudent(req);
+    message(res, RES_CODE.CREATED, RES_MESSAGE.STUDENT_POST);
+  } catch (err) {
+    message(
+      res,
+      RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,
+      err
+    );
+  }
 });
 
 router.patch("/students/:registrationNumber", validateToken, (req, res) => {
-  verifyToken(req, res, () => {
-    patchStudent(req)
-      .then(([row]) =>
-        row.affectedRows > 0
-          ? res.sendStatus(201)
-          : res
-              .status(404)
-              .json({ message: `${student} not found. Please try again.` })
-      )
-      .catch((err) => res.status(500).send(err));
-  });
+  try {
+    verifyToken(req, res, async () => {
+      const [row] = await patchStudent(req);
+      row.affectedRows > 0
+        ? message(res, RES_CODE.OK, RES_MESSAGE.STUDENT_PUT)
+        : message(res, RES_CODE.NOT_FOUND, RES_MESSAGE.STUDENT_NOT_FOUND);
+    });
+  } catch (err) {
+    message(
+      res,
+      RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,
+      err
+    );
+  }
 });
 
 router.delete("/students/:registrationNumber", validateToken, (req, res) => {
-  verifyToken(req, res, () => {
-    deleteStudent(req)
-      .then(([row]) =>
-        row.affectedRows > 0
-          ? res.sendStatus(204)
-          : res
-              .status(404)
-              .json({ message: `${student} not found. Please try again.` })
-      )
-      .catch((err) => res.status(500).send(err));
-  });
+  try {
+    verifyToken(req, res, async () => {
+      const [row] = await deleteStudent(req);
+      row.affectedRows > 0
+        ? message(res, RES_CODE.OK, RES_MESSAGE.STUDENT_DELETE)
+        : message(res, RES_CODE.NOT_FOUND, RES_MESSAGE.STUDENT_NOT_FOUND);
+    });
+  } catch (err) {
+    message(
+      res,
+      RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,
+      err
+    );
+  }
 });
 
 export default router;
