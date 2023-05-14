@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { TOKEN_KEY } from "./configuration/configuration.js";
+import { message, RES_CODE, RES_MESSAGE } from "../json/message.js";
 
 export const generateToken = (req) => {
   const { username, password } = req.body;
@@ -9,7 +10,7 @@ export const generateToken = (req) => {
 export const verifyToken = (req, res, next) => {
   jwt.verify(req.token, TOKEN_KEY, (err) => {
     if (err) {
-      res.sendStatus(403);
+      message(res, RES_CODE.FORBIDDEN, RES_MESSAGE.FORBIDDEN);
     } else {
       next();
     }
@@ -24,6 +25,6 @@ export const validateToken = (req, res, next) => {
     req.token = token;
     next();
   } else {
-    res.sendStatus(403);
+    message(res, RES_CODE.FORBIDDEN, RES_MESSAGE.FORBIDDEN);
   }
 };
