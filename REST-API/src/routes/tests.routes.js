@@ -1,18 +1,21 @@
-import { Router } from "express";
+import Router from "express-promise-router";
 import { ping } from "../controllers/tests.controllers.js";
-import {
-  verifyToken,
-  validateToken,
-} from "../utilities/security/bearer.authentication.js";
+import { message, RES_CODE, RES_MESSAGE } from "../utilities/json/message.js";
 
 const router = Router();
 
-router.get("/ping", validateToken, (req, res) => {
-  verifyToken(req, res, () => {
-    ping()
-      .then((row) => res.status(200).send(row[0]))
-      .catch(() => res.status(500));
-  });
+router.get("/ping", async (req, res) => {
+  try {
+    const [row] = await ping();
+    message(res, RES_CODE.OK, null, row[0]);
+  } catch (err) {
+    message(
+      res,
+      RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,
+      err
+    );
+  }
 });
 
 export default router;
