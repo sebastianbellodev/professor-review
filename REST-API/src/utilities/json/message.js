@@ -37,5 +37,7 @@ export const RES_MESSAGE = {
   PROFESSOR_PUT: "Professor updated successfully.",
   PROFESSOR_DELETE: "Professor deleted successfully.",
 
+  UNAUTHORIZED: "User not authorized",
+  FORBIDDEN: "Forbidden resource.",
   INTERAL_SERVER_ERROR: "Something went wrong. Try again later.",
 };
