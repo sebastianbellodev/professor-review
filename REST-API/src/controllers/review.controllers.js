@@ -39,3 +39,23 @@ export const logReview = (req) => {
         )
     );
 };
+
+export const updateReview = (req) => {
+    const {
+        idReview,
+        stars,
+        comment,
+        idSchoolPeriod
+    } = req.body;
+    return Promise.resolve(
+        pool.query(
+            "", // TODO hacer la consulta
+            [
+                stars,
+                comment,
+                idSchoolPeriod,
+                idReview
+            ]
+        )
+    );
+};
