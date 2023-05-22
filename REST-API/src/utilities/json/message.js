@@ -15,6 +15,7 @@ export const RES_CODE = {
   UNAUTHORIZED: 401,
   FORBIDDEN: 403,
   NOT_FOUND: 404,
+  DATA_ALREDY: 417,
   INTERNAL_SERVER_ERROR: 500,
 };
 
@@ -36,6 +37,8 @@ export const RES_MESSAGE = {
   PROFESSOR_POST: "Professor posted successfully.",
   PROFESSOR_PUT: "Professor updated successfully.",
   PROFESSOR_DELETE: "Professor deleted successfully.",
+
+  DATA_ALREDY_LOG: "The data alredy in the sistem",
 
   UNAUTHORIZED: "User not authorized",
   FORBIDDEN: "Forbidden resource.",
