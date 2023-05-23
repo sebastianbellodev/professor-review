@@ -20,6 +20,8 @@ export const RES_CODE = {
 };
 
 export const RES_MESSAGE = {
+  DATA_POST : "The data was posted succesfully",
+
   USER_NOT_FOUND_OR_AUTHENTICATED: "User not found or authenticated.",
   USER_NOT_FOUND: "User not found.",
   USER_DUPLICATED: "User already signed up.",
