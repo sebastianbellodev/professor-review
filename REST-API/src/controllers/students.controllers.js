@@ -12,6 +12,20 @@ export const getStudentByRegistrationNumber = (req) => {
   );
 };
 
+export const getStudentByFaculty = (req) => {
+  const {
+    idFaculty
+  } = req.body;
+  return Promise.resolve(
+    pool.query(
+      "SELECT student.* FROM student JOIN educationalprogram ON student.idEducationalProgram = educationalprogram.idEducationalProgram JOIN faculty ON educationalprogram.idFaculty = faculty.idFaculty WHERE faculty.idFaculty = ?",
+      [
+        idFaculty
+      ]
+    )
+  );
+};
+
 export const postStudent = (req) => {
   const {
     registrationNumber,
@@ -51,7 +65,15 @@ export const deleteStudent = (req) => {
   const registrationNumber = req.params.registrationNumber;
   return Promise.resolve(
     pool.query("DELETE FROM student WHERE registrationNumber = ?", [
-      registrationNumber,
+      registrationNumber
     ])
+  );
+};
+
+export const statusUpdate = (req) => {
+  const ids = req.body.ids;
+  return Promise.resolve(
+    pool.query("UPDATE users SET active = CASE WHEN active = 1 THEN 0 ELSE 1 END WHERE registrationNumber IN (?)",
+    [ids])
   );
 };
