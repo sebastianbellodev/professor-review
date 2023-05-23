@@ -48,3 +48,11 @@ export const getProfessorsByEducationalExperience = (req) => {
     [idEducationalExperience])
   );
 };
+
+export const getProfessorByFaculty = (req) => {
+  const {idFaculty} = req.body;
+  return Promise.resolve(
+    pool.query("SELECT professor.* from professor JOIN directory ON professor.idProfessor = directory.idDirectory JOIN faculty ON directory.idFaculty = faculty.idFaculty WHERE faculty.idFaculty = ?",
+      [idFaculty])
+  );
+};
