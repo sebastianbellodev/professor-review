@@ -5,6 +5,8 @@ import {
   postStudent,
   patchStudent,
   deleteStudent,
+  getStudentByFaculty,
+  statusUpdate
 } from "../controllers/students.controllers.js";
 import {
   validateToken,
@@ -94,6 +96,32 @@ router.delete("/students/:registrationNumber", validateToken, (req, res) => {
       RES_CODE.INTERNAL_SERVER_ERROR,
       RES_MESSAGE.INTERAL_SERVER_ERROR,
       err
+    );
+  }
+});
+
+router.patch("/student/getByFaculty",validateToken, (req,res) => {
+  try{
+    verifyToken(req,res, async () => {
+      const [row] = await getStudentByFaculty(req);
+      message(res, RES_CODE.OK, null, row);
+    });
+  }catch(err){
+    message(res,RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,err
+    ); 
+  }
+});
+
+router.patch("/student/updateStatus",validateToken,(req,res) => {
+  try{
+    verifyToken(req,res, async () => {
+      const [row] = await statusUpdate(req);
+      message(res, RES_CODE.OK, RES_MESSAGE.DATA_POST)
+    });
+  }catch(err){
+    message(res,RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,err
     );
   }
 });
