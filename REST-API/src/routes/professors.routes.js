@@ -5,6 +5,8 @@ import {
   postProfessor,
   patchProfessor,
   deleteProfessor,
+  getProfessorsByEducationalExperience,
+  getProfessorByFaculty
 } from "../controllers/professors.controllers.js";
 import {
   validateToken,
@@ -90,6 +92,38 @@ router.delete("/professors/:idProfessor", validateToken, (req, res) => {
         : message(res, RES_CODE.NOT_FOUND, RES_MESSAGE.PROFESSOR_NOT_FOUND);
     });
   } catch (err) {
+    message(
+      res,
+      RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,
+      err
+    );
+  }
+});
+
+router.get("/professor/getByEducationalExperience", validateToken, (req,res) =>{
+  try{
+    verifyToken(req,res, async() => {
+      const [row] = await getProfessorsByEducationalExperience(req);
+      message(res,RES_CODE.OK,null, row);
+    });
+  }catch(err){
+    message(
+      res,
+      RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,
+      err
+    );
+  }
+});
+
+router.get("/professor/getByFaculty",validateToken,(req,res) => {
+  try{
+    verifyToken(req,res, async() => {
+      const [row] = await getProfessorByFaculty(req);
+      message(res,RES_CODE.OK,null, row);
+    })
+  }catch(err){
     message(
       res,
       RES_CODE.INTERNAL_SERVER_ERROR,

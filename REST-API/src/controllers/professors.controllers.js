@@ -37,3 +37,22 @@ export const deleteProfessor = (req) => {
     pool.query("DELETE FROM professor WHERE idProfessor = ?", [idProfessor])
   );
 };
+
+export const getProfessorsByEducationalExperience = (req) => {
+  const {idEducationalExperience} = req.params.idProfessor;
+  return Promise.resolve(
+    pool.query("SELECT * from professor "+
+    "JOIN academicoffering ON academicoffering.idProfessor = professor.idProfessor "+
+    "JOIN syllabus ON syllabus.idSyllabus = academicoffering.idSyllabus "+
+    "WHERE idEducationalExperience = ?",
+    [idEducationalExperience])
+  );
+};
+
+export const getProfessorByFaculty = (req) => {
+  const {idFaculty} = req.body;
+  return Promise.resolve(
+    pool.query("SELECT professor.* from professor JOIN directory ON professor.idProfessor = directory.idDirectory JOIN faculty ON directory.idFaculty = faculty.idFaculty WHERE faculty.idFaculty = ?",
+      [idFaculty])
+  );
+};
