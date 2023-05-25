@@ -10,6 +10,7 @@ namespace ProfessorPerformanceEvaluation.BusinessLogic
         public string MaternalSurname { get; set; }
         public string EmailAddress { get; set; }
         public string Biography { get; set; }
+        public string Active { get; set; }
         public EducationalProgram EducationalProgram { get; set; }
         public User User { get; set; }
         public List<Review> Reviews { get; set; }
