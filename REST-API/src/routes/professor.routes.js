@@ -7,7 +7,7 @@ import {
   deleteProfessor,
   getProfessorsByEducationalExperience,
   getProfessorByFaculty,
-} from "../controllers/professors.controllers.js";
+} from "../controllers/professor.controllers.js";
 import {
   validateToken,
   verifyToken,
@@ -15,7 +15,6 @@ import {
 import { message, RES_CODE, RES_MESSAGE } from "../utilities/json/message.js";
 
 const router = Router();
-const profesor = "Professor";
 
 router.get("/professors", validateToken, (req, res) => {
   try {
@@ -33,7 +32,7 @@ router.get("/professors", validateToken, (req, res) => {
   }
 });
 
-router.get("/professors/:idProfessor", validateToken, (req, res) => {
+router.get("/professors", validateToken, (req, res) => {
   try {
     verifyToken(req, res, async () => {
       const [row] = await getProfessorByIdProfessor(req);
@@ -67,7 +66,7 @@ router.post("/professors", validateToken, (req, res) => {
   }
 });
 
-router.patch("/professors/:idProfessor", validateToken, (req, res) => {
+router.patch("/professors", validateToken, (req, res) => {
   try {
     verifyToken(req, res, async () => {
       const [row] = await patchProfessor(req);
@@ -85,7 +84,7 @@ router.patch("/professors/:idProfessor", validateToken, (req, res) => {
   }
 });
 
-router.delete("/professors/:idProfessor", validateToken, (req, res) => {
+router.delete("/professors", validateToken, (req, res) => {
   try {
     verifyToken(req, res, async () => {
       const [row] = await deleteProfessor(req);
@@ -103,27 +102,23 @@ router.delete("/professors/:idProfessor", validateToken, (req, res) => {
   }
 });
 
-router.get(
-  "/professor/getByEducationalExperience",
-  validateToken,
-  (req, res) => {
-    try {
-      verifyToken(req, res, async () => {
-        const [row] = await getProfessorsByEducationalExperience(req);
-        message(res, RES_CODE.OK, null, row);
-      });
-    } catch (err) {
-      message(
-        res,
-        RES_CODE.INTERNAL_SERVER_ERROR,
-        RES_MESSAGE.INTERAL_SERVER_ERROR,
-        err
-      );
-    }
+router.get("/professors/educationalexperience", validateToken, (req, res) => {
+  try {
+    verifyToken(req, res, async () => {
+      const [row] = await getProfessorsByEducationalExperience(req);
+      message(res, RES_CODE.OK, null, row);
+    });
+  } catch (err) {
+    message(
+      res,
+      RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,
+      err
+    );
   }
-);
+});
 
-router.get("/professor/getByFaculty", validateToken, (req, res) => {
+router.get("/professors/faculty", validateToken, (req, res) => {
   try {
     verifyToken(req, res, async () => {
       const [row] = await getProfessorByFaculty(req);
