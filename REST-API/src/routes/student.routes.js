@@ -32,7 +32,7 @@ router.get("/students", validateToken, (req, res) => {
   }
 });
 
-router.get("/students", validateToken, (req, res) => {
+router.get("/students/registrationnumber", validateToken, (req, res) => {
   try {
     verifyToken(req, res, async () => {
       const [row] = await getStudentByRegistrationNumber(req);

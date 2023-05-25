@@ -31,7 +31,7 @@ router.get("/users", validateToken, (req, res) => {
   }
 });
 
-router.get("/users", validateToken, (req, res) => {
+router.get("/users/username", validateToken, (req, res) => {
   try {
     verifyToken(req, res, async () => {
       const [row] = await getUserByUsername(req);

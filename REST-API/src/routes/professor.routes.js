@@ -32,7 +32,7 @@ router.get("/professors", validateToken, (req, res) => {
   }
 });
 
-router.get("/professors", validateToken, (req, res) => {
+router.get("/professors/id", validateToken, (req, res) => {
   try {
     verifyToken(req, res, async () => {
       const [row] = await getProfessorByIdProfessor(req);
