@@ -20,7 +20,7 @@ export const RES_CODE = {
 };
 
 export const RES_MESSAGE = {
-  DATA_POST : "The data was posted succesfully",
+  DATA_POST: "The data was posted succesfully.",
 
   USER_NOT_FOUND_OR_AUTHENTICATED: "User not found or authenticated.",
   USER_NOT_FOUND: "User not found.",
@@ -40,9 +40,14 @@ export const RES_MESSAGE = {
   PROFESSOR_PUT: "Professor updated successfully.",
   PROFESSOR_DELETE: "Professor deleted successfully.",
 
-  DATA_ALREDY_LOG: "The data alredy in the sistem",
+  EDUCATIONAL_PROGRAM_NOT_FOUND: "Educational program not found.",
+  EDUCATIONAL_PROGRAM_POST: "Educational program posted successfully.",
+  EDUCATIONAL_PROGRAM_PUT: "Educational program updated successfully.",
+  EDUCATIONAL_PROGRAM_DELETE: "Educational program deleted successfully.",
 
-  UNAUTHORIZED: "User not authorized",
+  DATA_ALREDY_LOG: "The data alredy in the sistem.",
+
+  UNAUTHORIZED: "User not authorized.",
   FORBIDDEN: "Forbidden resource.",
   INTERAL_SERVER_ERROR: "Something went wrong. Try again later.",
 };
