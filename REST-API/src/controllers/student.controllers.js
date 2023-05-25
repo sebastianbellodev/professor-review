@@ -4,7 +4,7 @@ export const getStudent = () =>
   Promise.resolve(pool.query("SELECT * FROM student"));
 
 export const getStudentByRegistrationNumber = (req) => {
-  const registrationNumber = req.params.registrationNumber;
+  const registrationNumber = req.body.registrationNumber;
   return Promise.resolve(
     pool.query("SELECT * FROM student WHERE registrationNumber = ?", [
       registrationNumber,
@@ -13,15 +13,11 @@ export const getStudentByRegistrationNumber = (req) => {
 };
 
 export const getStudentByFaculty = (req) => {
-  const {
-    idFaculty
-  } = req.body;
+  const { idFaculty } = req.body;
   return Promise.resolve(
     pool.query(
       "SELECT student.* FROM student JOIN educationalprogram ON student.idEducationalProgram = educationalprogram.idEducationalProgram JOIN faculty ON educationalprogram.idFaculty = faculty.idFaculty WHERE faculty.idFaculty = ?",
-      [
-        idFaculty
-      ]
+      [idFaculty]
     )
   );
 };
@@ -51,8 +47,8 @@ export const postStudent = (req) => {
 };
 
 export const patchStudent = (req) => {
-  const { name, paternalSurname, maternalSurname } = req.body;
-  const registrationNumber = req.params.registrationNumber;
+  const { registrationNumber, name, paternalSurname, maternalSurname } =
+    req.body;
   return Promise.resolve(
     pool.query(
       "UPDATE student SET name = IFNULL(?, name), paternalSurname = IFNULL(?, paternalSurname), maternalSurname = IFNULL(?, maternalSurname) WHERE registrationNumber = ?",
@@ -62,10 +58,10 @@ export const patchStudent = (req) => {
 };
 
 export const deleteStudent = (req) => {
-  const registrationNumber = req.params.registrationNumber;
+  const registrationNumber = req.body.registrationNumber;
   return Promise.resolve(
     pool.query("DELETE FROM student WHERE registrationNumber = ?", [
-      registrationNumber
+      registrationNumber,
     ])
   );
 };
@@ -73,7 +69,9 @@ export const deleteStudent = (req) => {
 export const statusUpdate = (req) => {
   const ids = req.body.ids;
   return Promise.resolve(
-    pool.query("UPDATE users SET active = CASE WHEN active = 1 THEN 0 ELSE 1 END WHERE registrationNumber IN (?)",
-    [ids])
+    pool.query(
+      "UPDATE users SET active = CASE WHEN active = 1 THEN 0 ELSE 1 END WHERE registrationNumber IN (?)",
+      [ids]
+    )
   );
 };

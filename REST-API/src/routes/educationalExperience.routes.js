@@ -8,7 +8,7 @@ import { message, RES_CODE, RES_MESSAGE } from "../utilities/json/message.js";
 
 const router = Router();
 
-router.get("/educationalExperienceByFaculty", validateToken, (req, res) => {
+router.get("/educationalexperiences/faculty", validateToken, (req, res) => {
   try {
     verifyToken(req, res, async () => {
       const [row] = await getEducationalExperienceOfFaculty(req);

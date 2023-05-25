@@ -6,8 +6,8 @@ import {
   patchStudent,
   deleteStudent,
   getStudentByFaculty,
-  statusUpdate
-} from "../controllers/students.controllers.js";
+  statusUpdate,
+} from "../controllers/student.controllers.js";
 import {
   validateToken,
   verifyToken,
@@ -32,7 +32,7 @@ router.get("/students", validateToken, (req, res) => {
   }
 });
 
-router.get("/students/:registrationNumber", validateToken, (req, res) => {
+router.get("/students", validateToken, (req, res) => {
   try {
     verifyToken(req, res, async () => {
       const [row] = await getStudentByRegistrationNumber(req);
@@ -64,7 +64,7 @@ router.post("/students", async (req, res) => {
   }
 });
 
-router.patch("/students/:registrationNumber", validateToken, (req, res) => {
+router.patch("/students", validateToken, (req, res) => {
   try {
     verifyToken(req, res, async () => {
       const [row] = await patchStudent(req);
@@ -82,7 +82,7 @@ router.patch("/students/:registrationNumber", validateToken, (req, res) => {
   }
 });
 
-router.delete("/students/:registrationNumber", validateToken, (req, res) => {
+router.delete("/students", validateToken, (req, res) => {
   try {
     verifyToken(req, res, async () => {
       const [row] = await deleteStudent(req);
@@ -100,28 +100,34 @@ router.delete("/students/:registrationNumber", validateToken, (req, res) => {
   }
 });
 
-router.patch("/student/getByFaculty",validateToken, (req,res) => {
-  try{
-    verifyToken(req,res, async () => {
+router.patch("/students/faculty", validateToken, (req, res) => {
+  try {
+    verifyToken(req, res, async () => {
       const [row] = await getStudentByFaculty(req);
       message(res, RES_CODE.OK, null, row);
     });
-  }catch(err){
-    message(res,RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,err
-    ); 
+  } catch (err) {
+    message(
+      res,
+      RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,
+      err
+    );
   }
 });
 
-router.patch("/student/updateStatus",validateToken,(req,res) => {
-  try{
-    verifyToken(req,res, async () => {
+router.patch("/student/status", validateToken, (req, res) => {
+  try {
+    verifyToken(req, res, async () => {
       const [row] = await statusUpdate(req);
-      message(res, RES_CODE.OK, RES_MESSAGE.DATA_POST)
+      message(res, RES_CODE.OK, RES_MESSAGE.DATA_POST);
     });
-  }catch(err){
-    message(res,RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,err
+  } catch (err) {
+    message(
+      res,
+      RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,
+      err
     );
   }
 });

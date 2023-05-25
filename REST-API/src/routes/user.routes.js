@@ -5,7 +5,7 @@ import {
   postUser,
   patchUser,
   deleteUser,
-} from "../controllers/users.controllers.js";
+} from "../controllers/user.controllers.js";
 import {
   generateToken,
   validateToken,
@@ -31,7 +31,7 @@ router.get("/users", validateToken, (req, res) => {
   }
 });
 
-router.get("/users/:username", validateToken, (req, res) => {
+router.get("/users", validateToken, (req, res) => {
   try {
     verifyToken(req, res, async () => {
       const [row] = await getUserByUsername(req);
@@ -64,7 +64,7 @@ router.post("/users", async (req, res) => {
   }
 });
 
-router.patch("/users/:username", validateToken, (req, res) => {
+router.patch("/users", validateToken, (req, res) => {
   try {
     verifyToken(req, res, async () => {
       const [row] = await patchUser(req);
@@ -82,7 +82,7 @@ router.patch("/users/:username", validateToken, (req, res) => {
   }
 });
 
-router.delete("/users/:username", validateToken, (req, res) => {
+router.delete("/users", validateToken, (req, res) => {
   try {
     verifyToken(req, res, async () => {
       const [row] = await deleteUser(req);

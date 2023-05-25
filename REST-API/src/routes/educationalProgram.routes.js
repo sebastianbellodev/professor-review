@@ -9,7 +9,7 @@ import { message, RES_CODE, RES_MESSAGE } from "../utilities/json/message.js";
 
 const router = Router();
 
-router.post("/educationalProgram", validateToken, (req, res) => {
+router.post("/educationalprograms", validateToken, (req, res) => {
   try {
     verifyToken(req, res, async () => {
       await postEducationalProgram(req);
