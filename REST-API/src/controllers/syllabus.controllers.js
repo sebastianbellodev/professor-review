@@ -1,12 +1,15 @@
 import { pool } from "../schema/connection.js";
 
 export const deleteSyllabus = (request) => {
+  const idSyllabus = request.body.idSyllabus;
   return Promise.resolve(
     pool.query(
       "DELETE\n" +
-      "*\n" +
       "FROM\n" +
-      "syllabus"
+      "syllabus\n" +
+      "WHERE\n" +
+      "idSyllabus = ?",
+      [idSyllabus]
     )
   );
 };
