@@ -1,10 +1,13 @@
 import { pool } from "../schema/connection.js";
 
-export const postEducationalProgram = (req) => {
-  const { name, idFaculty } = req.body;
+export const postEducationalProgram = (request) => {
+  const { name, idFaculty } = request.body;
   return Promise.resolve(
     pool.query(
-      "INSERT INTO educationalprogram (name, idFaculty) VALUES (?, ?)",
+      "INSERT INTO\n" +
+      "educationalprogram\n"+
+      "(name, idFaculty)\n" +
+      "VALUES(?, ?)",
       [name, idFaculty]
     )
   );

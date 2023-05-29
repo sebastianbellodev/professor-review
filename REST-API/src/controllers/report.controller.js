@@ -1,15 +1,30 @@
 import { pool } from "../schema/connection.js";
 
-export const getReportOfProfessor = (req) => {
-  const { idProfessor } = req.body;
+export const getReportByProfessor = (request) => {
+  const { idProfessor } = request.body;
   return Promise.resolve(
     pool.query(
-      "SELECT educationalexperience.name AS nombre_materia, " +
-        "COUNT(*) AS cantidad_resenas FROM review JOIN academicoffering ON " +
-        "review.idAcademicOffering = academicoffering.idAcademicOffering " +
-        "JOIN syllabus ON academicoffering.idSyllabus = syllabus.idSyllabus " +
-        "JOIN educationalexperience ON syllabus.idEducationalExperience = educationalexperience.idEducationalExperience " +
-        "WHERE academicoffering.idProfessor = ? GROUP BY educationalexperience.name",
+      "SELECT\n" +
+      "educationalExperience.name educationalExperience\n" +
+      "COUNT(review.idReview) reviews\n" +
+      "FROM\n" +
+      "review\n" +
+      "INNER JOIN\n" +
+      "academicOffering\n" +
+      "ON\n" +
+      "review.idAcademicOffering = academicOffering.idAcademicOffering\n" +
+      "INNER JOIN\n" +
+      "syllabus\n" +
+      "ON\n" +
+      "academicOffering.idSyllabus = syllabus.idSyllabus\n" +
+      "INNER JOIN\n" +
+      "educationalExperience\n" +
+      "ON\n" +
+      "syllabus.idEducationalExperience = educationalExperience.idEducationalExperience\n" +
+      "WHERE\n" +
+      "academicOffering.idProfessor = ?\n" +
+      "GROUP BY\n" +
+      "educationalExperience.name",
       [idProfessor]
     )
   );

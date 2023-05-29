@@ -1,26 +1,22 @@
 import Router from "express-promise-router";
 import { postEducationalProgram } from "../controllers/educationalProgram.controllers.js";
-import {
-  generateToken,
-  validateToken,
-  verifyToken,
-} from "../utilities/authentication/bearer.js";
-import { message, RES_CODE, RES_MESSAGE } from "../utilities/json/message.js";
+import { validateToken, verifyToken } from "../utilities/authentication/bearer.js";
+import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../utilities/json/message.js";
 
 const router = Router();
 
-router.post("/educationalprograms", validateToken, (req, res) => {
+router.post("/educationalprograms", validateToken, (request, response) => {
   try {
-    verifyToken(req, res, async () => {
-      await postEducationalProgram(req);
-      message(res, RES_CODE.CREATED, RES_MESSAGE.EDUCATIONAL_PROGRAM_POST);
+    verifyToken(request, response, async () => {
+      await postEducationalProgram(request);
+      message(res, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.EDUCATIONAL_PROGRAM_POST);
     });
-  } catch (err) {
+  } catch (exception) {
     message(
-      res,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
     );
   }
 });

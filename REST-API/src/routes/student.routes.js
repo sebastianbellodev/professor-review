@@ -1,133 +1,113 @@
 import Router from "express-promise-router";
 import {
-  getStudent,
-  getStudentByRegistrationNumber,
-  postStudent,
-  patchStudent,
   deleteStudent,
+  getStudents,
   getStudentByFaculty,
-  statusUpdate,
-} from "../controllers/student.controllers.js";
-import {
-  validateToken,
-  verifyToken,
-} from "../utilities/authentication/bearer.js";
-import { message, RES_CODE, RES_MESSAGE } from "../utilities/json/message.js";
+  getStudentByRegistrationNumber,
+  patchStudent,
+  postStudent } from "../controllers/student.controllers.js";
+import { validateToken, verifyToken } from "../utilities/authentication/bearer.js";
+import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../utilities/json/message.js";
 
 const router = Router();
 
-router.get("/students", validateToken, (req, res) => {
+router.delete("/students", validateToken, (request, response) => {
   try {
-    verifyToken(req, res, async () => {
-      const [row] = await getStudent();
-      message(res, RES_CODE.OK, null, row);
+    verifyToken(request, response, async () => {
+      const [row] = await deleteStudent(request);
+      row.affectedRows > 0
+        ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.STUDENT_DELETE)
+        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
     });
-  } catch (err) {
+  } catch (exception) {
     message(
-      res,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
     );
   }
 });
 
-router.get("/students/registrationnumber", validateToken, (req, res) => {
+router.get("/students", validateToken, (request, response) => {
   try {
-    verifyToken(req, res, async () => {
-      const [row] = await getStudentByRegistrationNumber(req);
+    verifyToken(request, response, async () => {
+      const [row] = await getStudents();
+      message(response, RESPONSE_CODE.OK, null, row);
+    });
+  } catch (exception) {
+    message(
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
+    );
+  }
+});
+
+
+router.get("/students/faculty", validateToken, (request, response) => {
+  try {
+    verifyToken(request, response, async () => {
+      const [row] = await getStudentByFaculty(request);
+      message(response, RESPONSE_CODE.OK, null, row);
+    });
+  } catch (exception) {
+    message(
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
+    );
+  }
+});
+
+router.get("/students/registrationnumber", validateToken, (request, response) => {
+  try {
+    verifyToken(request, response, async () => {
+      const [row] = await getStudentByRegistrationNumber(request);
       row.length > 0
-        ? message(res, RES_CODE.OK, null, row)
-        : message(res, RES_CODE.NOT_FOUND, RES_MESSAGE.STUDENT_NOT_FOUND);
+        ? message(response, RESPONSE_CODE.OK, null, row)
+        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
     });
-  } catch (err) {
+  } catch (exception) {
     message(
-      res,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
     );
   }
 });
 
-router.post("/students", async (req, res) => {
+router.patch("/students", validateToken, (request, response) => {
   try {
-    await postStudent(req);
-    message(res, RES_CODE.CREATED, RES_MESSAGE.STUDENT_POST);
-  } catch (err) {
-    message(
-      res,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
-    );
-  }
-});
-
-router.patch("/students", validateToken, (req, res) => {
-  try {
-    verifyToken(req, res, async () => {
-      const [row] = await patchStudent(req);
+    verifyToken(request, response, async () => {
+      const [row] = await patchStudent(request);
       row.affectedRows > 0
-        ? message(res, RES_CODE.OK, RES_MESSAGE.STUDENT_PUT)
-        : message(res, RES_CODE.NOT_FOUND, RES_MESSAGE.STUDENT_NOT_FOUND);
+        ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.STUDENT_PUT)
+        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
     });
-  } catch (err) {
+  } catch (exception) {
     message(
-      res,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
     );
   }
 });
 
-router.delete("/students", validateToken, (req, res) => {
+router.post("/students", async (request, response) => {
   try {
-    verifyToken(req, res, async () => {
-      const [row] = await deleteStudent(req);
-      row.affectedRows > 0
-        ? message(res, RES_CODE.OK, RES_MESSAGE.STUDENT_DELETE)
-        : message(res, RES_CODE.NOT_FOUND, RES_MESSAGE.STUDENT_NOT_FOUND);
-    });
-  } catch (err) {
+    await postStudent(request);
+    message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.STUDENT_POST);
+  } catch (exception) {
     message(
-      res,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
-    );
-  }
-});
-
-router.patch("/students/faculty", validateToken, (req, res) => {
-  try {
-    verifyToken(req, res, async () => {
-      const [row] = await getStudentByFaculty(req);
-      message(res, RES_CODE.OK, null, row);
-    });
-  } catch (err) {
-    message(
-      res,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
-    );
-  }
-});
-
-router.patch("/student/status", validateToken, (req, res) => {
-  try {
-    verifyToken(req, res, async () => {
-      const [row] = await statusUpdate(req);
-      message(res, RES_CODE.OK, RES_MESSAGE.DATA_POST);
-    });
-  } catch (err) {
-    message(
-      res,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
     );
   }
 });

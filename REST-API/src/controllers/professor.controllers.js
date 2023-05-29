@@ -1,50 +1,81 @@
 import { pool } from "../schema/connection.js";
 
-export const getProfessor = () =>
-  Promise.resolve(pool.query("SELECT * FROM professor"));
-
-export const getProfessorByIdProfessor = (req) => {
-  const idProfessor = req.body.idProfessor;
-  return Promise.resolve(
-    pool.query("SELECT * FROM professor WHERE idProfessor = ?", [idProfessor])
-  );
-};
-
-export const postProfessor = (req) => {
-  const { name, paternalSurname, maternalSurname } = req.body;
+export const deleteProfessor = (request) => {
+  const idProfessor = request.body;
   return Promise.resolve(
     pool.query(
-      "INSERT INTO professor (name, paternalSurname, maternalSurname) VALUES (?, ?, ?)",
-      [name, paternalSurname, maternalSurname]
+      "DELETE FROM\n" +
+      "professor\n" +
+      "WHERE\n" +
+      "idProfessor = ?",
+      [idProfessor]
     )
   );
 };
 
-export const patchProfessor = (req) => {
-  const { idProfessor, name, paternalSurname, maternalSurname } = req.body;
+export const patchProfessor = (request) => {
+  const { idProfessor,
+    name,
+    paternalSurname,
+    maternalSurname } = request.body;
   return Promise.resolve(
     pool.query(
-      "UPDATE professor SET name = IFNULL(?, name), paternalSurname = IFNULL(?, paternalSurname), maternalSurname = IFNULL(?, maternalSurname) WHERE idProfessor = ?",
+      "UPDATE\n" +
+      "professor\n" +
+      "SET\n" + 
+      "name = IFNULL(?, name),\n" +
+      "paternalSurname = IFNULL(?, paternalSurname),\n" +
+      "maternalSurname = IFNULL(?, maternalSurname)\n" +
+      "WHERE\n" +
+      "\nidProfessor = ?",
       [name, paternalSurname, maternalSurname, idProfessor]
     )
   );
 };
 
-export const deleteProfessor = (req) => {
-  const idProfessor = req.body.idProfessor;
+export const getProfessor = () => {
   return Promise.resolve(
-    pool.query("DELETE FROM professor WHERE idProfessor = ?", [idProfessor])
+    pool.query(
+      "SELECT\n" +
+      "*\n" +
+      "FROM\n" +
+      "professor"
+    )
   );
 };
 
-export const getProfessorsByEducationalExperience = (req) => {
-  const idEducationalExperience = req.body.idProfessor;
+export const postProfessor = (request) => {
+  const { name, paternalSurname, maternalSurname } = request.body;
   return Promise.resolve(
     pool.query(
-      "SELECT * from professor " +
-        "JOIN academicoffering ON academicoffering.idProfessor = professor.idProfessor " +
-        "JOIN syllabus ON syllabus.idSyllabus = academicoffering.idSyllabus " +
-        "WHERE idEducationalExperience = ?",
+      "INSERT INTO\n" +
+      "professor\n" +
+      "(name, paternalSurname, maternalSurname)\n" +
+      "VALUES\n" +
+      "(?, ?, ?)",
+      [name, paternalSurname, maternalSurname]
+    )
+  );
+};
+
+export const getProfessorsByEducationalExperience = (request) => {
+  const idEducationalExperience = request.body;
+  return Promise.resolve(
+    pool.query(
+      "SELECT\n" +
+      "*\n" +
+      "FROM\n" +
+      "professor\n" +
+      "INNER JOIN\n" +
+      "academicoffering\n" +
+      "ON\n" +
+      "academicOffering.idProfessor = professor.idProfessor\n" +
+      "INNER JOIN\n" +
+      "syllabus\n" +
+      "ON\n" +
+      "syllabus.idSyllabus = academicOffering.idSyllabus\n" +
+      "WHERE\n" +
+      "idEducationalExperience = ?",
       [idEducationalExperience]
     )
   );
@@ -54,8 +85,36 @@ export const getProfessorByFaculty = (req) => {
   const idFaculty = req.body.idFaculty;
   return Promise.resolve(
     pool.query(
-      "SELECT professor.* from professor JOIN directory ON professor.idProfessor = directory.idDirectory JOIN faculty ON directory.idFaculty = faculty.idFaculty WHERE faculty.idFaculty = ?",
+      "SELECT\n" +
+      "professor.*\n" +
+      "from\n" + 
+      "professor\n" +
+      "INNER JOIN\n" +
+      "directory\n" +
+      "ON\n" +
+      "professor.idProfessor = directory.idProfessor\n" +
+      "INNER JOIN\n" +
+      "faculty\n" +
+      "ON\n" +
+      "directory.idFaculty = faculty.idFaculty\n" +
+      "WHERE\n" +
+      "faculty.idFaculty = ?",
       [idFaculty]
+    )
+  );
+};
+
+export const getProfessorById = (request) => {
+  const idProfessor = request.body;
+  return Promise.resolve(
+    pool.query(
+      "SELECT\n" +
+      "*\n" +
+      "FROM\n" +
+      "professor\n" +
+      "WHERE\n" +
+      "idProfessor = ?",
+      [idProfessor]
     )
   );
 };

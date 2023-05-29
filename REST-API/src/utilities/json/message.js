@@ -1,53 +1,70 @@
-export function message(res, code, message, content = null) {
+export function message(response, code, message, content = null) {
   if (content === null) {
-    return res.status(code).json({ message });
+    return response.status(code).json({ message });
   } else if (message === null) {
-    return res.status(code).json(content);
+    return response.status(code).json(content);
   } else {
-    return res.status(code).json({ message, content });
+    return response.status(code).json({ message, content });
   }
 }
 
-export const RES_CODE = {
+export const RESPONSE_CODE = {
   OK: 200,
   CREATED: 201,
   BAD_REQUEST: 400,
   UNAUTHORIZED: 401,
   FORBIDDEN: 403,
   NOT_FOUND: 404,
-  DATA_ALREDY: 417,
   INTERNAL_SERVER_ERROR: 500,
 };
 
-export const RES_MESSAGE = {
-  DATA_POST: "The data was posted succesfully.",
+export const RESPONSE_MESSAGE = {
 
-  USER_NOT_FOUND_OR_AUTHENTICATED: "User not found or authenticated.",
-  USER_NOT_FOUND: "User not found.",
-  USER_DUPLICATED: "User already signed up.",
-  USER_POST: "User posted successfully.",
-  USER_PUT: "User updated successfully.",
-  USER_DELETE: "User deleted successfully.",
-  USER_LOGED_IN: "Welcome back!",
+  UNAUTHORIZED: "User not authorized.",
+  FORBIDDEN: "Forbidden resource.",
+  INTERNAL_SERVER_ERROR: "There is no connection to the database.",
 
-  STUDENT_NOT_FOUND: "Student not found.",
-  STUDENT_POST: "Student posted successfully.",
-  STUDENT_PUT: "Student updated successfully.",
-  STUDENT_DELETE: "Student deleted successfully.",
+  EDUCATIONAL_EXPERIENCE_ALREADY_REGISTERED: "Educational experience already registered in the system.",
+  EDUCATIONAL_EXPERIENCE_NOT_FOUND: "Educational experience not found.",
+  EDUCATIONAL_EXPERIENCE_POST: "Educational experience posted successfully.",
+  EDUCATIONAL_EXPERIENCE_PUT: "Educational experience updated successfully.",
+  EDUCATIONAL_EXPERIENCE_DELETE: "Educational experience deleted successfully.",
 
-  PROFESSOR_NOT_FOUND: "Professor not found.",
-  PROFESSOR_POST: "Professor posted successfully.",
-  PROFESSOR_PUT: "Professor updated successfully.",
-  PROFESSOR_DELETE: "Professor deleted successfully.",
-
+  EDUCATIONAL_PROGRAM_ALREADY_REGISTERED: "Educational program already registered in the system.",
   EDUCATIONAL_PROGRAM_NOT_FOUND: "Educational program not found.",
   EDUCATIONAL_PROGRAM_POST: "Educational program posted successfully.",
   EDUCATIONAL_PROGRAM_PUT: "Educational program updated successfully.",
   EDUCATIONAL_PROGRAM_DELETE: "Educational program deleted successfully.",
 
-  DATA_ALREDY_LOG: "The data alredy in the sistem.",
+  FACULTY__ALREADY_REGISTERED: "Faculty already registered in the system.",
+  FACULTY_NOT_FOUND: "Faculty not found.",
+  FACULTY_POST: "Faculty posted successfully.",
+  FACULTY_PUT: "Faculty updated successfully.",
+  FACULTY_DELETE: "Faculty deleted successfully.",
 
-  UNAUTHORIZED: "User not authorized.",
-  FORBIDDEN: "Forbidden resource.",
-  INTERAL_SERVER_ERROR: "Something went wrong. Try again later.",
+  SCHOOL_PERIOD_NOT_FOUND: "School period not found.",
+  
+  REVIEW_ALREADY_REGISTERED: "Review already registered in the system.",
+  REVIEW_NOT_FOUND: "Review not found.",
+  REVIEW_POST: "Review posted successfully.",
+  REVIEW_PUT: "Review updated successfully.",
+  REVIEW_DELETE: "Review deleted successfully.",
+
+  STUDENT_ALREADY_REGISTERED: "Student already registered in the system.",
+  STUDENT_NOT_FOUND: "Student not found.",
+  STUDENT_POST: "Student posted successfully.",
+  STUDENT_PUT: "Student updated successfully.",
+  STUDENT_DELETE: "Student deleted successfully.",
+
+  PROFESSOR_ALREADY_REGISTERED: "Professor already registered in the system.",
+  PROFESSOR_NOT_FOUND: "Professor not found.",
+  PROFESSOR_POST: "Professor posted successfully.",
+  PROFESSOR_PUT: "Professor updated successfully.",
+  PROFESSOR_DELETE: "Professor deleted successfully.",
+
+  USER_ALREADY_REGISTERED: "User already registered in the system.",
+  USER_NOT_FOUND: "User not found.",
+  USER_POST: "User posted successfully.",
+  USER_PUT: "User updated successfully.",
+  USER_DELETE: "User deleted successfully.",
 };

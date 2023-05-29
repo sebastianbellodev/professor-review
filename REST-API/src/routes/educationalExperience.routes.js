@@ -1,25 +1,22 @@
 import Router from "express-promise-router";
-import {
-  validateToken,
-  verifyToken,
-} from "../utilities/authentication/bearer.js";
-import { getEducationalExperienceOfFaculty } from "../controllers/educationalExperience.controllers.js";
-import { message, RES_CODE, RES_MESSAGE } from "../utilities/json/message.js";
+import { getEducationalExperienceByFaculty } from "../controllers/educationalExperience.controllers.js";
+import { validateToken, verifyToken } from "../utilities/authentication/bearer.js";
+import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../utilities/json/message.js";
 
 const router = Router();
 
-router.get("/educationalexperiences/faculty", validateToken, (req, res) => {
+router.get("/educationalexperiences/faculty", validateToken, (request, response) => {
   try {
-    verifyToken(req, res, async () => {
-      const [row] = await getEducationalExperienceOfFaculty(req);
-      message(res, RES_CODE.OK, null, row);
+    verifyToken(request, response, async () => {
+      const [row] = await getEducationalExperienceByFaculty(request);
+      message(response, RESPONSE_CODE.OK, null, row);
     });
-  } catch (err) {
+  } catch (exception) {
     message(
-      res,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
     );
   }
 });

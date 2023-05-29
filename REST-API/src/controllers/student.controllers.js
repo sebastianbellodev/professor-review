@@ -1,28 +1,89 @@
 import { pool } from "../schema/connection.js";
 
-export const getStudent = () =>
-  Promise.resolve(pool.query("SELECT * FROM student"));
-
-export const getStudentByRegistrationNumber = (req) => {
+export const deleteStudent = (req) => {
   const registrationNumber = req.body.registrationNumber;
   return Promise.resolve(
-    pool.query("SELECT * FROM student WHERE registrationNumber = ?", [
-      registrationNumber,
-    ])
+    pool.query(
+      "DELETE\n" +
+      "FROM\n" +
+      "student\n" +
+      "WHERE\n" +
+      "registrationNumber = ?",
+       [registrationNumber]
+    )
   );
 };
 
-export const getStudentByFaculty = (req) => {
-  const { idFaculty } = req.body;
+export const getStudentByRegistrationNumber = (request) => {
+  const registrationNumber = request.body;
   return Promise.resolve(
     pool.query(
-      "SELECT student.* FROM student JOIN educationalprogram ON student.idEducationalProgram = educationalprogram.idEducationalProgram JOIN faculty ON educationalprogram.idFaculty = faculty.idFaculty WHERE faculty.idFaculty = ?",
+      "SELECT\n" +
+      "*\n" +
+      "FROM\n" +
+      "student\n" +
+      "WHERE\n" +
+      "registrationNumber = ?",
+      [registrationNumber]
+    )
+  );
+};
+
+export const getStudentByFaculty = (request) => {
+  const idFaculty = request.body;
+  return Promise.resolve(
+    pool.query(
+      "SELECT\n" + 
+      "student.*\n" +
+      "FROM\n" +
+      "student\n" +
+      "INNER JOIN\n" +
+      "educationalProgram\n" +
+      "ON\n" +
+      "student.idEducationalProgram = educationalProgram.idEducationalProgram\n" +
+      "INNER JOIN\n" +
+      "faculty\n" +
+      "ON\n" +
+      "educationalProgram.idFaculty = faculty.idFaculty\n" +
+      "WHERE\n" +
+      "faculty.idFaculty = ?",
       [idFaculty]
     )
   );
 };
 
-export const postStudent = (req) => {
+export const getStudents = () => {
+  return Promise.resolve(
+    pool.query(
+      "SELECT\n" +
+      "*\n" +
+      "FROM\n" +
+      "schoolPeriod"
+    )
+  );
+};
+
+export const patchStudent = (request) => {
+  const { registrationNumber,
+    name,
+    paternalSurname,
+    maternalSurname } = request.body;
+  return Promise.resolve(
+    pool.query(
+      "UPDATE\n" +
+      "student\n" +
+      "SET\n" + 
+      "name = IFNULL(?, name),\n" + 
+      "paternalSurname = IFNULL(?, paternalSurname),\n" + 
+      "maternalSurname = IFNULL(?, maternalSurname),\n" +
+      "WHERE\n" +
+      "registrationNumber = ?",
+      [name, paternalSurname, maternalSurname, registrationNumber]
+    )
+  );
+};
+
+export const postStudent = (request) => {
   const {
     registrationNumber,
     name,
@@ -30,48 +91,22 @@ export const postStudent = (req) => {
     maternalSurname,
     emailAddress,
     idEducationalProgram,
-  } = req.body;
+  } = request.body;
   return Promise.resolve(
     pool.query(
-      "INSERT INTO student (registrationNumber, name, paternalSurname, maternalSurname, emailAddress, idEducationalProgram) VALUES (?, ?, ?, ?, ?, ?)",
+      "INSERT INTO\n" +
+      "student\n" +
+      "(registrationNumber, name, paternalSurname, maternalSurname, emailAddress, idEducationalProgram)\n" +
+      "VALUES\n" +
+      "(?, ?, ?, ?, ?, ?)",
       [
         registrationNumber,
         name,
         paternalSurname,
         maternalSurname,
         emailAddress,
-        idEducationalProgram,
+        idEducationalProgram
       ]
-    )
-  );
-};
-
-export const patchStudent = (req) => {
-  const { registrationNumber, name, paternalSurname, maternalSurname } =
-    req.body;
-  return Promise.resolve(
-    pool.query(
-      "UPDATE student SET name = IFNULL(?, name), paternalSurname = IFNULL(?, paternalSurname), maternalSurname = IFNULL(?, maternalSurname) WHERE registrationNumber = ?",
-      [name, paternalSurname, maternalSurname, registrationNumber]
-    )
-  );
-};
-
-export const deleteStudent = (req) => {
-  const registrationNumber = req.body.registrationNumber;
-  return Promise.resolve(
-    pool.query("DELETE FROM student WHERE registrationNumber = ?", [
-      registrationNumber,
-    ])
-  );
-};
-
-export const statusUpdate = (req) => {
-  const ids = req.body.ids;
-  return Promise.resolve(
-    pool.query(
-      "UPDATE users SET active = CASE WHEN active = 1 THEN 0 ELSE 1 END WHERE registrationNumber IN (?)",
-      [ids]
     )
   );
 };

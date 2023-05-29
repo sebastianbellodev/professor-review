@@ -3,7 +3,7 @@ import {SENDGRID_API_KEY, FROM_EMAIL} from "./configuration/configuration.js";
 
 sendgridMail.setApiKey(SENDGRID_API_KEY);
 
-export const createEmail = (to,subject,body) => {
+export const createEmail = (to, subject, body) => {
     var message = {
         to:to,
         from: FROM_EMAIL,
@@ -18,8 +18,8 @@ export const sendEmail = (message) => {
         sendgridMail.send(message)
 )};
 
-export const sendOTP = (req) => {
-    const {email, otp} = req.body;
+export const sendOTP = (request) => {
+    const {email, otp} = request.body;
     return Promise.resolve(
         sendgridMail.send({
             to:email,

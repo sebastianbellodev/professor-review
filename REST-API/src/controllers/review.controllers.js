@@ -1,37 +1,53 @@
 import { pool } from "../schema/connection";
 
-export const checkReview = (req) => {
-  const { idSchoolPeriod, idAcademicOffering, registrationNumber } = req.body;
+export const getReview = (request) => {
+  const { idSchoolPeriod, idAcademicOffering, registrationNumber } = request.body;
   return Promise.resolve(
     pool.query(
-      "SELECT * FROM review WHERE review.idSchoolPeriod = ? AND review.idAcademicOffering = ? AND review.registrationNumber = ?",
+      "SELECT\n" +
+      "FROM\n" +
+      "review\n" +
+      "WHERE\n" +
+      "review.idSchoolPeriod = ?\n" +
+      "AND\n" +
+      "review.idAcademicOffering = ?\n" +
+      "AND\n" +
+      "review.registrationNumber = ?",
       [idSchoolPeriod, idAcademicOffering, registrationNumber]
     )
   );
 };
 
-export const logReview = (req) => {
+
+export const patchReview = (request) => {
+  const { idReview,
+    stars,
+    comment,
+    idSchoolPeriod,} = request.body;
+  return Promise.resolve(
+    pool.query(
+      "",
+      [stars, comment, idSchoolPeriod, idReview]
+    )
+  );
+};
+
+export const postReview = (request) => {
   const {
     stars,
     comment,
     idSchoolPeriod,
     idAcademicOffering,
     registrationNumber,
-  } = req.body;
+  } = request.body;
   return Promise.resolve(
     pool.query(
-      "INSERT INTO review (stars, comment, idSchoolPeriod, idAcademicOffering, registrationNumber) VALUES (?, ?, ?, ?, ?)",
+      "INSERT INTO\n" +
+      "review\n" +
+      "(stars, comment, idSchoolPeriod, idAcademicOffering, registrationNumber)\n" +
+      "VALUES\n" +
+      "(?, ?, ?, ?, ?)",
       [stars, comment, idSchoolPeriod, idAcademicOffering, registrationNumber]
-    )
-  );
-};
-
-export const updateReview = (req) => {
-  const { idReview, stars, comment, idSchoolPeriod } = req.body;
-  return Promise.resolve(
-    pool.query(
-      "", // TODO hacer la consulta
-      [stars, comment, idSchoolPeriod, idReview]
     )
   );
 };

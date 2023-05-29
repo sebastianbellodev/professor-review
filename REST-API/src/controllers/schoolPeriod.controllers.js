@@ -1,5 +1,12 @@
 import { pool } from "../schema/connection.js";
 
-export const getAllSchoolPeriods = () => {
-  return Promise.resolve(pool.query("SELECT * FROM schoolperiod"));
+export const getSchoolPeriods = () => {
+  return Promise.resolve(
+    pool.query(
+      "SELECT\n" +
+      "*\n" +
+      "FROM\n" +
+      "schoolPeriod"
+    )
+  );
 };

@@ -1,19 +1,19 @@
 import Router from "express-promise-router";
 import { ping } from "../controllers/test.controllers.js";
-import { message, RES_CODE, RES_MESSAGE } from "../utilities/json/message.js";
+import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../utilities/json/message.js";
 
 const router = Router();
 
-router.get("/pings", async (req, res) => {
+router.get("/pings", async (response) => {
   try {
     const [row] = await ping();
-    message(res, RES_CODE.OK, null, row[0]);
-  } catch (err) {
+    message(response, RESPONSE_CODE.OK, null, row[0]);
+  } catch (exception) {
     message(
-      res,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
     );
   }
 });
