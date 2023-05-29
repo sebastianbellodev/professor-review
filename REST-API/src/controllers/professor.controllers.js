@@ -68,7 +68,7 @@ export const getProfessorsByFaculty = (request) => {
     pool.query(
       "SELECT\n" +
       "professor.*\n" +
-      "from\n" + 
+      "from\n" +
       "professor\n" +
       "INNER JOIN\n" +
       "directory\n" +
@@ -86,7 +86,8 @@ export const getProfessorsByFaculty = (request) => {
 };
 
 export const patchProfessor = (request) => {
-  const { idProfessor,
+  const {
+    idProfessor,
     name,
     paternalSurname,
     maternalSurname } = request.body;
@@ -94,19 +95,27 @@ export const patchProfessor = (request) => {
     pool.query(
       "UPDATE\n" +
       "professor\n" +
-      "SET\n" + 
+      "SET\n" +
       "name = IFNULL(?, name),\n" +
       "paternalSurname = IFNULL(?, paternalSurname),\n" +
       "maternalSurname = IFNULL(?, maternalSurname)\n" +
       "WHERE\n" +
       "\nidProfessor = ?",
-      [name, paternalSurname, maternalSurname, idProfessor]
+      [
+        name,
+        paternalSurname,
+        maternalSurname,
+        idProfessor
+      ]
     )
   );
 };
 
 export const postProfessor = (request) => {
-  const { name, paternalSurname, maternalSurname } = request.body;
+  const {
+    name,
+    paternalSurname,
+    maternalSurname } = request.body;
   return Promise.resolve(
     pool.query(
       "INSERT INTO\n" +
@@ -114,7 +123,11 @@ export const postProfessor = (request) => {
       "(name, paternalSurname, maternalSurname)\n" +
       "VALUES\n" +
       "(?, ?, ?)",
-      [name, paternalSurname, maternalSurname]
+      [
+        name,
+        paternalSurname,
+        maternalSurname
+      ]
     )
   );
 };

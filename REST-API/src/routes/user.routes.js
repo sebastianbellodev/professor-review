@@ -7,8 +7,20 @@ import {
   patchUser,
   postUser
 } from "../controllers/user.controllers.js";
-import { generateToken, validateToken, verifyToken } from "../utilities/authentication/bearer.js";
-import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../utilities/json/message.js";
+import {
+  validateCredentials,
+  verifyCredentials
+} from "../utilities/authentication/basic.js";
+import {
+  generateToken,
+  validateToken,
+  verifyToken
+} from "../utilities/authentication/bearer.js";
+import {
+  message,
+  RESPONSE_CODE,
+  RESPONSE_MESSAGE
+} from "../utilities/json/message.js";
 
 const router = Router();
 
@@ -30,9 +42,9 @@ router.delete("/users", validateToken, (request, response) => {
   }
 });
 
-router.get("/users/login", validateToken, (request, response) => {
+router.get("/users/login", validateCredentials, (request, response) => {
   try {
-    verifyToken(request, response, async () => {
+    verifyCredentials(request, response, async () => {
       const [row] = await login(request);
       row.length > 0
         ? () => {
@@ -40,6 +52,22 @@ router.get("/users/login", validateToken, (request, response) => {
           message(response, RESPONSE_CODE.OK, token);
         }
         : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+    });
+  } catch (exception) {
+    message(
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
+    );
+  }
+});
+
+router.get("/users/signup", validateCredentials, (request, response) => {
+  try {
+    verifyCredentials(request, response, async () => {
+      const token = generateToken(request);
+      message(response, RESPONSE_CODE.OK, token);
     });
   } catch (exception) {
     message(

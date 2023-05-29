@@ -1,6 +1,10 @@
 import Router from "express-promise-router";
 import { ping } from "../controllers/test.controllers.js";
-import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../utilities/json/message.js";
+import {
+  message,
+  RESPONSE_CODE,
+  RESPONSE_MESSAGE
+} from "../utilities/json/message.js";
 
 const router = Router();
 
