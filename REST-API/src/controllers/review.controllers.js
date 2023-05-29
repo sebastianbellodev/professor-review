@@ -5,6 +5,7 @@ export const getReview = (request) => {
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
+      "review.*\n" +
       "FROM\n" +
       "review\n" +
       "WHERE\n" +
@@ -18,12 +19,34 @@ export const getReview = (request) => {
   );
 };
 
+export const getReviewsByEducationalExperience = (request) => {
+  const idEducationalExperience = request.body.idEducationalExperience;
+  return Promise.resolve(
+    pool.query(
+      "SELECT\n" +
+      "review.*\n" +
+      "FROM\n" +
+      "review\n" +
+      "INNER JOIN\n" +
+      "academicOffering\n" +
+      "ON\n" +
+      "review.idAcademicOffering = academicOffering.idAcademicOffering\n" +
+      "INNER JOIN\n" +
+      "syllabus\n" +
+      "ON\n" +
+      "academicOffering.idSyllabus = syllabus.idSyllabus\n" +
+      "WHERE\n" +
+      "syllabus.idEducationalExperience = ?"
+      [idEducationalExperience]
+    )
+  );
+};
 
 export const patchReview = (request) => {
   const { idReview,
     stars,
     comment,
-    idSchoolPeriod,} = request.body;
+    idSchoolPeriod } = request.body;
   return Promise.resolve(
     pool.query(
       "",
@@ -38,8 +61,7 @@ export const postReview = (request) => {
     comment,
     idSchoolPeriod,
     idAcademicOffering,
-    registrationNumber,
-  } = request.body;
+    registrationNumber } = request.body;
   return Promise.resolve(
     pool.query(
       "INSERT INTO\n" +

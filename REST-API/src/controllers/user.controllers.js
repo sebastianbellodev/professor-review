@@ -1,21 +1,21 @@
 import { pool } from "../schema/connection.js";
 
 export const deleteUser = (request) => {
-  const username = request.body;
+  const username = request.body.username;
   return Promise.resolve(
     pool.query(
       "DELETE\n" +
-      "FROM\n" + 
+      "FROM\n" +
       "user\n" +
       "WHERE\n" +
       "username = ?",
-       [username]
+      [username]
     )
   );
 };
 
 export const getUserByUsername = (request) => {
-  const username = request.body;
+  const username = request.body.username;
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
@@ -36,6 +36,23 @@ export const getUsers = () => {
       "username, registrationNumber\n" +
       "FROM\n" +
       "user"
+    )
+  );
+};
+
+export const login = (request) => {
+  const { username, password } = request.body;
+  return Promise.resolve(
+    pool.query(
+      "SELECT\n" +
+      "*\n" +
+      "FROM\n" +
+      "user\n" +
+      "WHERE\n" +
+      "username = ?\n" +
+      "AND\n" +
+      "password = ?",
+      [username, password]
     )
   );
 };

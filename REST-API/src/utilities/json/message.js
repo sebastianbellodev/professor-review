@@ -56,6 +56,12 @@ export const RESPONSE_MESSAGE = {
   STUDENT_PUT: "Student updated successfully.",
   STUDENT_DELETE: "Student deleted successfully.",
 
+  SYLLABUS_ALREADY_REGISTERED: "Syllabus already registered in the system.",
+  SYLLABUS_NOT_FOUND: "Syllabus not found.",
+  SYLLABUS_POST: "Syllabus posted successfully.",
+  SYLLABUS_PUT: "Syllabus updated successfully.",
+  SYLLABUS_DELETE: "Syllabus deleted successfully.",
+
   PROFESSOR_ALREADY_REGISTERED: "Professor already registered in the system.",
   PROFESSOR_NOT_FOUND: "Professor not found.",
   PROFESSOR_POST: "Professor posted successfully.",

@@ -1,15 +1,13 @@
 import Router from "express-promise-router";
 import {
   deleteUser,
-  getUsers,
+  login,
   getUserByUsername,
+  getUsers,
   patchUser,
-  postUser } from "../controllers/user.controllers.js";
-import {
-  generateToken,
-  validateToken,
-  verifyToken,
-} from "../utilities/authentication/bearer.js";
+  postUser
+} from "../controllers/user.controllers.js";
+import { generateToken, validateToken, verifyToken } from "../utilities/authentication/bearer.js";
 import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../utilities/json/message.js";
 
 const router = Router();
@@ -32,11 +30,16 @@ router.delete("/users", validateToken, (request, response) => {
   }
 });
 
-router.get("/users", validateToken, (request, response) => {
+router.get("/users/login", validateToken, (request, response) => {
   try {
     verifyToken(request, response, async () => {
-      const [row] = await getUsers();
-      message(response, RESPONSE_CODE.OK, null, row);
+      const [row] = await login(request);
+      row.length > 0
+        ? () => {
+          const token = generateToken(request);
+          message(response, RESPONSE_CODE.OK, token);
+        }
+        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
     });
   } catch (exception) {
     message(
@@ -54,7 +57,23 @@ router.get("/users/username", validateToken, (request, response) => {
       const [row] = await getUserByUsername(request);
       row.length > 0
         ? message(response, RESPONSE_CODE.OK, null, row)
-        : message(res, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+    });
+  } catch (exception) {
+    message(
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
+    );
+  }
+});
+
+router.get("/users", validateToken, (request, response) => {
+  try {
+    verifyToken(request, response, async () => {
+      const [row] = await getUsers();
+      message(response, RESPONSE_CODE.OK, null, row);
     });
   } catch (exception) {
     message(
