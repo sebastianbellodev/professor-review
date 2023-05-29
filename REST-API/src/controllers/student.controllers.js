@@ -1,7 +1,7 @@
 import { pool } from "../schema/connection.js";
 
-export const deleteStudent = (req) => {
-  const registrationNumber = req.body.registrationNumber;
+export const deleteStudent = (request) => {
+  const registrationNumber = request.body.registrationNumber;
   return Promise.resolve(
     pool.query(
       "DELETE\n" +
@@ -15,7 +15,7 @@ export const deleteStudent = (req) => {
 };
 
 export const getStudentByRegistrationNumber = (request) => {
-  const registrationNumber = request.body;
+  const registrationNumber = request.body.registrationNumber;
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
@@ -29,8 +29,8 @@ export const getStudentByRegistrationNumber = (request) => {
   );
 };
 
-export const getStudentByFaculty = (request) => {
-  const idFaculty = request.body;
+export const getStudentsByFaculty = (request) => {
+  const idFaculty = request.body.idFaculty;
   return Promise.resolve(
     pool.query(
       "SELECT\n" + 
@@ -90,8 +90,7 @@ export const postStudent = (request) => {
     paternalSurname,
     maternalSurname,
     emailAddress,
-    idEducationalProgram,
-  } = request.body;
+    idEducationalProgram } = request.body;
   return Promise.resolve(
     pool.query(
       "INSERT INTO\n" +

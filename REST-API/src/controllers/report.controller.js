@@ -1,7 +1,7 @@
 import { pool } from "../schema/connection.js";
 
 export const getReportByProfessor = (request) => {
-  const { idProfessor } = request.body;
+  const idProfessor = request.body.idProfessor;
   return Promise.resolve(
     pool.query(
       "SELECT\n" +

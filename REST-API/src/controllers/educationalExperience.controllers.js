@@ -1,10 +1,36 @@
 import { pool } from "../schema/connection";
 
-export const getEducationalExperienceByFaculty = (request) => {
-  const { idFaculty } = request.body;
+export const getEducationalExperienceById = (request) => {
+  const idEducationalExperience = request.body.idEducationalExperience;
   return Promise.resolve(
     pool.query(
-      "SELECT\n"+
+      "SELECT\n" +
+      "*\n" +
+      "FROM\n" +
+      "educationalExperience\n" +
+      "WHERE\n" +
+      "educationalExperience.idEducationalExperience = ?",
+      [idEducationalExperience]
+    )
+  );
+};
+
+export const getEducationalExperiences = () => {
+  return Promise.resolve(
+    pool.query(
+      "SELECT\n" +
+      "*\n" +
+      "FROM\n" +
+      "educationalExperience"
+    )
+  );
+};
+
+export const getEducationalExperiencesByFaculty = (request) => {
+  const idFaculty = request.body.idFaculty;
+  return Promise.resolve(
+    pool.query(
+      "SELECT\n" +
       "*\n" +
       "FROM\n" +
       "educationalExperience\n" +
