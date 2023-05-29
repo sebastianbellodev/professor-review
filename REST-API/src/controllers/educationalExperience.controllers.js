@@ -1,13 +1,27 @@
 import { pool } from "../schema/connection";
 
-export const getEducationalExperienceOfFaculty = (req) => {
-  const { idFaculty } = req.body;
+export const getEducationalExperienceByFaculty = (request) => {
+  const { idFaculty } = request.body;
   return Promise.resolve(
     pool.query(
-      "SELECT * FROM educationalexperience JOIN syllabus ON " +
-        "educationalexperience.idEducationalExperience = syllabus.idEducationalExperience " +
-        "JOIN educationalprogram ON syllabus.idEducationalProgram = educationalprogram.idEducationalProgram " +
-        "JOIN faculty ON faculty.idFaculty = educationalprogram.idFaculty WHERE faculty.idFaculty = ?",
+      "SELECT\n"+
+      "*\n" +
+      "FROM\n" +
+      "educationalExperience\n" +
+      "INNER JOIN\n" +
+      "syllabus\n" +
+      "ON\n" +
+      "educationalExperience.idEducationalExperience = syllabus.idEducationalExperience\n" +
+      "INNER JOIN\n" +
+      "educationalProgram\n" +
+      "ON\n" +
+      "syllabus.idEducationalProgram = educationalProgram.idEducationalProgram\n" +
+      "INNER JOIN\n" +
+      "faculty\n" +
+      "ON\n" +
+      "faculty.idFaculty = educationalProgram.idFaculty\n" +
+      "WHERE\n" +
+      "faculty.idFaculty = ?",
       [idFaculty]
     )
   );

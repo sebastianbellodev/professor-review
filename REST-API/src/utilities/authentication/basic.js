@@ -1,26 +1,25 @@
 import basicAuth from "basic-auth";
-import { credential } from "./credential.js";
-import { message, RES_CODE, RES_MESSAGE } from "../json/message.js";
+import { credentials } from "./credentials.js";
+import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../json/message.js";
 
-export const validateCredential = (req, res, next) => {
-  const authentication = basicAuth(req);
-
+export const validateCredentials = (request, response, next) => {
+  const authentication = basicAuth(request);
   if (!authentication) {
-    res.set("WWW-Authenticate", 'Basic realm ="Secure"');
-    message(res, RES_CODE.UNAUTHORIZED, RES_MESSAGE.UNAUTHORIZED);
+    response.set("WWW-Authenticate", 'Basic realm ="Secure"');
+    message(response, RESPONSE_CODE.UNAUTHORIZED, RESPONSE_MESSAGE.UNAUTHORIZED);
   } else {
-    if (!verifyCredential(authentication.name, authentication.pass)) {
-      res.set("WWW-Authenticate", 'Basic realm ="Secure"');
-      message(res, RES_CODE.UNAUTHORIZED, RES_MESSAGE.UNAUTHORIZED);
+    if (!verifyCredentials(authentication.name, authentication.pass)) {
+      response.set("WWW-Authenticate", 'Basic realm ="Secure"');
+      message(response, RESPONSE_CODE.UNAUTHORIZED, RESPONSE_MESSAGE.UNAUTHORIZED);
     } else {
       next();
     }
   }
 };
 
-function verifyCredential(name, pass) {
-  var flag = true;
-  credential.user == name && credential.password == pass
+function verifyCredentials(username, password) {
+  var flag;
+  credentials.username == username && credentials.password == password
     ? (flag = true)
     : (flag = false);
   return flag;

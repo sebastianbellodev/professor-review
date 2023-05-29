@@ -1,55 +1,48 @@
 import Router from "express-promise-router";
-import {
-  validateToken,
-  verifyToken,
-} from "../utilities/authentication/bearer.js";
-import { message, RES_CODE, RES_MESSAGE } from "../utilities/json/message.js";
-import {
-  checkReview,
-  logReview,
-  updateReview,
-} from "../controllers/review.controllers.js";
+import { getReview, patchReview, postReview } from "../controllers/review.controllers.js";
+import { validateToken, verifyToken } from "../utilities/authentication/bearer.js";
+import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../utilities/json/message.js";
 
 const router = Router();
 
-router.post("/reviews", validateToken, (req, res) => {
+router.patch("/reviews", validateToken, (request, response) => {
   try {
-    verifyToken(req, res, async () => {
-      const [row] = await checkReview(req);
+    verifyToken(request, response, async () => {
+      const [row] = await getReview(request);
       row.length > 0
-        ? message(res, RES_CODE.DATA_ALREDY, RES_MESSAGE.DATA_ALREDY_LOG)
+        ? message(response, RESPONSE_CODE.BAD_REQUEST, RESPONSE_MESSAGE.REVIEW_ALREADY_REGISTERED)
         : async () => {
-            await logReview(req);
-            message(res, RES_CODE.OK, RES_MESSAGE.DATA_POST);
+            await patchReview(request);
+            message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.REVIEW_PUT);
           };
     });
-  } catch (err) {
+  } catch (exception) {
     message(
-      res,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
     );
   }
 });
 
-router.patch("/reviews", validateToken, (req, res) => {
+router.post("/reviews", validateToken, (request, response) => {
   try {
-    verifyToken(req, res, async () => {
-      const [row] = await checkReview(req);
+    verifyToken(request, response, async () => {
+      const [row] = await getReview(request);
       row.length > 0
-        ? message(res, RES_CODE.DATA_ALREDY, RES_MESSAGE.DATA_ALREDY_LOG)
+        ? message(response, RES_CODE.BAD_REQUEST, RES_MESSAGE.REVIEW_ALREADY_REGISTERED)
         : async () => {
-            await updateReview(req);
-            message(res, RES_CODE.OK, RES_MESSAGE.DATA_POST);
+            await postReview(request);
+            message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.REVIEW_POST);
           };
     });
-  } catch (err) {
+  } catch (exception) {
     message(
-      res,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
     );
   }
 });

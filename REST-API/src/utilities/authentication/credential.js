@@ -1,3 +1,3 @@
-import { USER, PASSWORD } from "./configuration/configuration.js";
+import { USERNAME, PASSWORD } from "./configuration/configuration.js";
 
-export const credential = { user: USER, password: PASSWORD };
+export const credentials = { username: USERNAME, password: PASSWORD };

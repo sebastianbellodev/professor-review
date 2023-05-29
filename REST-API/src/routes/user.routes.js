@@ -1,101 +1,101 @@
 import Router from "express-promise-router";
 import {
-  getUser,
-  getUserByUsername,
-  postUser,
-  patchUser,
   deleteUser,
-} from "../controllers/user.controllers.js";
+  getUsers,
+  getUserByUsername,
+  patchUser,
+  postUser } from "../controllers/user.controllers.js";
 import {
   generateToken,
   validateToken,
   verifyToken,
 } from "../utilities/authentication/bearer.js";
-import { message, RES_CODE, RES_MESSAGE } from "../utilities/json/message.js";
+import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../utilities/json/message.js";
 
 const router = Router();
 
-router.get("/users", validateToken, (req, res) => {
+router.delete("/users", validateToken, (request, response) => {
   try {
-    verifyToken(req, res, async () => {
-      const [row] = await getUser();
-      message(res, RES_CODE.OK, null, row);
+    verifyToken(request, response, async () => {
+      const [row] = await deleteUser(request);
+      row.affectedRows > 0
+        ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.USER_DELETE)
+        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
     });
-  } catch (err) {
+  } catch (exception) {
     message(
-      res,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
     );
   }
 });
 
-router.get("/users/username", validateToken, (req, res) => {
+router.get("/users", validateToken, (request, response) => {
   try {
-    verifyToken(req, res, async () => {
-      const [row] = await getUserByUsername(req);
+    verifyToken(request, response, async () => {
+      const [row] = await getUsers();
+      message(response, RESPONSE_CODE.OK, null, row);
+    });
+  } catch (exception) {
+    message(
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
+    );
+  }
+});
+
+router.get("/users/username", validateToken, (request, response) => {
+  try {
+    verifyToken(request, response, async () => {
+      const [row] = await getUserByUsername(request);
       row.length > 0
-        ? message(res, RES_CODE.OK, null, row)
-        : message(res, RES_CODE.NOT_FOUND, RES_MESSAGE.USER_NOT_FOUND);
+        ? message(response, RESPONSE_CODE.OK, null, row)
+        : message(res, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
     });
-  } catch (err) {
+  } catch (exception) {
     message(
-      res,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
     );
   }
 });
 
-router.post("/users", async (req, res) => {
+router.patch("/users", validateToken, (request, response) => {
   try {
-    await postUser(req);
-    const token = generateToken(req);
-    message(res, RES_CODE.CREATED, RES_MESSAGE.USER_POST, token);
-  } catch (err) {
-    message(
-      res,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
-    );
-  }
-});
-
-router.patch("/users", validateToken, (req, res) => {
-  try {
-    verifyToken(req, res, async () => {
-      const [row] = await patchUser(req);
+    verifyToken(request, response, async () => {
+      const [row] = await patchUser(request);
       row.affectedRows > 0
-        ? message(res, RES_CODE.OK, RES_MESSAGE.USER_PUT)
-        : message(res, RES_CODE.NOT_FOUND, RES_MESSAGE.USER_NOT_FOUND);
+        ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.USER_PUT)
+        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
     });
-  } catch (err) {
+  } catch (exception) {
     message(
-      res,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
     );
   }
 });
 
-router.delete("/users", validateToken, (req, res) => {
+router.post("/users", async (request, response) => {
   try {
-    verifyToken(req, res, async () => {
-      const [row] = await deleteUser(req);
-      row.affectedRows > 0
-        ? message(res, RES_CODE.OK, RES_MESSAGE.USER_DELETE)
-        : message(res, RES_CODE.NOT_FOUND, RES_MESSAGE.USER_NOT_FOUND);
+    verifyToken(request, response, async () => {
+      await postUser(request);
+      message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.USER_POST);
     });
-  } catch (err) {
+  } catch (exception) {
     message(
-      res,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
     );
   }
 });
