@@ -6,9 +6,17 @@ import {
   getProfessors,
   getProfessorsByEducationalExperience,
   getProfessorsByFaculty,
-  getProfessorById } from "../controllers/professor.controllers.js";
-import { validateToken, verifyToken } from "../utilities/authentication/bearer.js";
-import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../utilities/json/message.js";
+  getProfessorById
+} from "../controllers/professor.controllers.js";
+import {
+  validateToken,
+  verifyToken
+} from "../utilities/authentication/bearer.js";
+import {
+  message,
+  RESPONSE_CODE,
+  RESPONSE_MESSAGE
+} from "../utilities/json/message.js";
 
 const router = Router();
 
@@ -18,7 +26,7 @@ router.delete("/professors", validateToken, (request, response) => {
       const [row] = await deleteProfessor(request);
       row.affectedRows > 0
         ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.PROFESSOR_DELETE)
-        : message(res, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.PROFESSOR_NOT_FOUND);
+        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.PROFESSOR_NOT_FOUND);
     });
   } catch (exception) {
     message(
@@ -68,7 +76,7 @@ router.get("/professors/educationalexperience", validateToken, (request, respons
   try {
     verifyToken(request, response, async () => {
       const [row] = await getProfessorsByEducationalExperience(request);
-      message(request, RESPONSE_CODE.OK, null, row);
+      message(response, RESPONSE_CODE.OK, null, row);
     });
   } catch (exception) {
     message(
@@ -118,7 +126,7 @@ router.post("/professors", validateToken, (request, response) => {
   try {
     verifyToken(request, response, async () => {
       await postProfessor(request);
-      message(res, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.PROFESSOR_POST);
+      message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.PROFESSOR_POST);
     });
   } catch (exception) {
     message(

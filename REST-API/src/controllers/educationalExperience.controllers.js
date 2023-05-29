@@ -15,6 +15,21 @@ export const getEducationalExperienceById = (request) => {
   );
 };
 
+export const getEducationalExperienceByName = (request) => {
+  const name = request.body.name;
+  return Promise.resolve(
+    pool.query(
+      "SELECT\n" +
+      "*\n" +
+      "FROM\n" +
+      "educationalExperience\n" +
+      "WHERE\n" +
+      "name = ?",
+      [name]
+    )
+  );
+};
+
 export const getEducationalExperiences = () => {
   return Promise.resolve(
     pool.query(
@@ -49,6 +64,40 @@ export const getEducationalExperiencesByFaculty = (request) => {
       "WHERE\n" +
       "faculty.idFaculty = ?",
       [idFaculty]
+    )
+  );
+};
+
+export const patchEducationalExperience = (request) => {
+  const {
+    idEducationalExperience,
+    name } = request.body;
+  return Promise.resolve(
+    pool.query(
+      "UPDATE\n" +
+      "educationalExperience\n" +
+      "SET\n" +
+      "name = IFNULL(?, name)\n" +
+      "WHERE\n" +
+      "idEducationalExperience = ?",
+      [
+        name,
+        idEducationalExperience
+      ]
+    )
+  );
+};
+
+export const postEducationalExperience = (request) => {
+  const name = request.body.name;
+  return Promise.resolve(
+    pool.query(
+      "INSERT INTO\n" +
+      "educationalExperience\n" +
+      "(name)\n" +
+      "VALUES\n" +
+      "(?)",
+      [name]
     )
   );
 };

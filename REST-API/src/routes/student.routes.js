@@ -1,14 +1,23 @@
 import Router from "express-promise-router";
 import {
   deleteStudent,
+  getStudentByEmailAddress,
+  getStudentByPhoneNumber,
+  getStudentByRegistrationNumber,
   getStudents,
   getStudentsByFaculty,
-  getStudentByRegistrationNumber,
   patchStudent,
   postStudent
 } from "../controllers/student.controllers.js";
-import { validateToken, verifyToken } from "../utilities/authentication/bearer.js";
-import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../utilities/json/message.js";
+import {
+  validateToken,
+  verifyToken
+} from "../utilities/authentication/bearer.js";
+import {
+  message,
+  RESPONSE_CODE,
+  RESPONSE_MESSAGE
+} from "../utilities/json/message.js";
 
 const router = Router();
 
