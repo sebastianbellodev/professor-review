@@ -1,0 +1,32 @@
+version: "3.8"
+
+services: 
+  db:
+    container_name: seed-mysql
+    image: sebastianbello/seed-mysql:1.0.0
+    restart: always
+    env_file: ./.env
+    environment:
+      DB_PASSWORD: $DB_PASSWORD
+      DB_NAME: $DB_NAME
+    ports:
+      - $LOCAL_DB_PORT:$DB_PORT
+    volumes:
+      - db:/var/lib/mysql
+  api:
+    depends_on:
+      - db
+    container_name: seed-rest
+    image: sebastianbello/seed-rest:1.0.0
+    restart: always
+    env_file: ./.env
+    environment:
+      DB_HOST: db
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
+      DB_NAME: $DB_NAME
+      DB_PORT: $DB_PORT
+    ports:
+      - $LOCAL_PORT:$PORT
+volumes:
+  db:
