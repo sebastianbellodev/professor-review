@@ -2,3 +2,6 @@
 */obj/
 */packages/
 */.vs/
+REST-API/.env
+.env
+REST-API/node_modules
