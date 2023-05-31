@@ -42,9 +42,8 @@ router.delete("/users", validateToken, (request, response) => {
   }
 });
 
-router.get("/users/login", validateCredentials, (request, response) => {
+router.get("/users/login", validateCredentials, async (request, response) => {
   try {
-    verifyCredentials(request, response, async () => {
       const [row] = await login(request);
       row.length > 0
         ? () => {
@@ -52,7 +51,6 @@ router.get("/users/login", validateCredentials, (request, response) => {
           message(response, RESPONSE_CODE.OK, token);
         }
         : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
-    });
   } catch (exception) {
     message(
       response,
@@ -65,10 +63,8 @@ router.get("/users/login", validateCredentials, (request, response) => {
 
 router.get("/users/signup", validateCredentials, (request, response) => {
   try {
-    verifyCredentials(request, response, async () => {
       const token = generateToken(request);
       message(response, RESPONSE_CODE.OK, token);
-    });
   } catch (exception) {
     message(
       response,
