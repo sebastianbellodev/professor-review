@@ -1,10 +1,19 @@
 import jwt from "jsonwebtoken";
-import { TOKEN_KEY } from "./configuration/configuration.js";
-import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../json/message.js";
+import { TOKEN_KEY } from "../../configuration/configuration.js";
+import {
+  message,
+  RESPONSE_CODE,
+  RESPONSE_MESSAGE
+} from "../json/message.js";
 
 export const generateToken = (request) => {
-  const { username, password } = request.body;
-  return jwt.sign({ username, password }, TOKEN_KEY, { expiresIn: "2h" });
+  const { username,
+    password } = request.body;
+  return jwt.sign(
+    { username, password },
+    TOKEN_KEY,
+    { expiresIn: "2h" }
+  );
 };
 
 export const verifyToken = (request, response, next) => {
