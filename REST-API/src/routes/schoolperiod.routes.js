@@ -15,14 +15,12 @@ import {
 
 const router = Router();
 
-router.get("/schoolperiods/id", validateToken, (request, response) => {
+router.get("/schoolperiods/id", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getSchoolPeriodById(request);
       row.length > 0
         ? message(response, RESPONSE_CODE.OK, null, row)
         : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.SCHOOL_PERIOD_NOT_FOUND);
-    });
   } catch (exception) {
     message(
       response,
@@ -33,12 +31,10 @@ router.get("/schoolperiods/id", validateToken, (request, response) => {
   }
 });
 
-router.get("/schoolperiods", validateToken, (request, response) => {
+router.get("/schoolperiods", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getSchoolPeriods();
       message(response, RESPONSE_CODE.OK, null, row);
-    });
   } catch (exception) {
     message(
       response,

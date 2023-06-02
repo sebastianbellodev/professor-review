@@ -12,12 +12,10 @@ import {
 
 const router = Router();
 
-router.get("/reports/professor", validateToken, (request, response) => {
+router.get("/reports/professor", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getReportByProfessor(request);
       message(response, RESPONSE_CODE.OK, null, row);
-    });
   } catch (exception) {
     message(
       response,

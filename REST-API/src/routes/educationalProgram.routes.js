@@ -18,12 +18,10 @@ import {
 
 const router = Router();
 
-router.get("/educationalprograms", validateToken, (request, response) => {
+router.get("/educationalprograms", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getEducationalPrograms();
       message(response, RESPONSE_CODE.OK, null, row);
-    });
   } catch (exception) {
     message(
       response,
@@ -34,12 +32,10 @@ router.get("/educationalprograms", validateToken, (request, response) => {
   }
 });
 
-router.get("/educationalprograms/educationalexperience", validateToken, (request, response) => {
+router.get("/educationalprograms/educationalexperience", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getEducationalProgramsByEducationalExperience(request);
       message(response, RESPONSE_CODE.OK, null, row);
-    });
   } catch (exception) {
     message(
       response,
@@ -50,9 +46,8 @@ router.get("/educationalprograms/educationalexperience", validateToken, (request
   }
 });
 
-router.patch("/educationalprograms", validateToken, (request, response) => {
+router.patch("/educationalprograms", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getEducationalProgramByName(request);
       row.length > 0
         ? message(response, RESPONSE_CODE.BAD_REQUEST, RESPONSE_MESSAGE.EDUCATIONAL_PROGRAM_ALREADY_REGISTERED)
@@ -60,7 +55,6 @@ router.patch("/educationalprograms", validateToken, (request, response) => {
           await patchEducationalProgram(request);
           message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.EDUCATIONAL_PROGRAM_PUT);
         };
-    });
   } catch (exception) {
     message(
       response,
@@ -71,9 +65,8 @@ router.patch("/educationalprograms", validateToken, (request, response) => {
   }
 });
 
-router.post("/educationalprograms", validateToken, (request, response) => {
+router.post("/educationalprograms", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getEducationalProgramByName(request);
       row.length > 0
         ? message(response, RESPONSE_CODE.BAD_REQUEST, RESPONSE_MESSAGE.EDUCATIONAL_PROGRAM_ALREADY_REGISTERED)
@@ -81,7 +74,6 @@ router.post("/educationalprograms", validateToken, (request, response) => {
           await postEducationalProgram(request);
           message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.EDUCATIONAL_PROGRAM_POST);
         };
-    });
   } catch (exception) {
     message(
       response,

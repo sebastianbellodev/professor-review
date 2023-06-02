@@ -20,14 +20,12 @@ import {
 
 const router = Router();
 
-router.delete("/professors", validateToken, (request, response) => {
+router.delete("/professors", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await deleteProfessor(request);
       row.affectedRows > 0
         ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.PROFESSOR_DELETE)
         : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.PROFESSOR_NOT_FOUND);
-    });
   } catch (exception) {
     message(
       response,
@@ -38,14 +36,12 @@ router.delete("/professors", validateToken, (request, response) => {
   }
 });
 
-router.get("/professors/id", validateToken, (request, response) => {
+router.get("/professors/id", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getProfessorById(request);
       row.length > 0
         ? message(response, RESPONSE_CODE.OK, null, row)
         : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.PROFESSOR_NOT_FOUND);
-    });
   } catch (exception) {
     message(
       response,
@@ -56,12 +52,10 @@ router.get("/professors/id", validateToken, (request, response) => {
   }
 });
 
-router.get("/professors", validateToken, (request, response) => {
+router.get("/professors", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getProfessors();
       message(response, RESPONSE_CODE.OK, null, row);
-    });
   } catch (exception) {
     message(
       response,
@@ -72,12 +66,10 @@ router.get("/professors", validateToken, (request, response) => {
   }
 });
 
-router.get("/professors/educationalexperience", validateToken, (request, response) => {
+router.get("/professors/educationalexperience", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getProfessorsByEducationalExperience(request);
       message(response, RESPONSE_CODE.OK, null, row);
-    });
   } catch (exception) {
     message(
       response,
@@ -88,12 +80,10 @@ router.get("/professors/educationalexperience", validateToken, (request, respons
   }
 });
 
-router.get("/professors/faculty", validateToken, (request, response) => {
+router.get("/professors/faculty", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getProfessorsByFaculty(request);
       message(response, RESPONSE_CODE.OK, null, row);
-    });
   } catch (exception) {
     message(
       response,
@@ -104,14 +94,12 @@ router.get("/professors/faculty", validateToken, (request, response) => {
   }
 });
 
-router.patch("/professors", validateToken, (request, response) => {
+router.patch("/professors", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await patchProfessor(request);
       row.affectedRows > 0
         ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.PROFESSOR_PUT)
         : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.PROFESSOR_NOT_FOUND);
-    });
   } catch (exception) {
     message(
       response,
@@ -122,12 +110,10 @@ router.patch("/professors", validateToken, (request, response) => {
   }
 });
 
-router.post("/professors", validateToken, (request, response) => {
+router.post("/professors", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       await postProfessor(request);
       message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.PROFESSOR_POST);
-    });
   } catch (exception) {
     message(
       response,

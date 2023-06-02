@@ -24,14 +24,12 @@ import {
 
 const router = Router();
 
-router.delete("/users", validateToken, (request, response) => {
+router.delete("/users", validateToken, async(request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await deleteUser(request);
       row.affectedRows > 0
         ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.USER_DELETE)
         : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
-    });
   } catch (exception) {
     message(
       response,
@@ -75,14 +73,12 @@ router.get("/users/signup", validateCredentials, (request, response) => {
   }
 });
 
-router.get("/users/username", validateToken, (request, response) => {
+router.get("/users/username", validateToken, async(request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getUserByUsername(request);
       row.length > 0
         ? message(response, RESPONSE_CODE.OK, null, row)
         : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
-    });
   } catch (exception) {
     message(
       response,
@@ -93,12 +89,10 @@ router.get("/users/username", validateToken, (request, response) => {
   }
 });
 
-router.get("/users", validateToken, (request, response) => {
+router.get("/users", validateToken, async(request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getUsers();
       message(response, RESPONSE_CODE.OK, null, row);
-    });
   } catch (exception) {
     message(
       response,
@@ -109,14 +103,12 @@ router.get("/users", validateToken, (request, response) => {
   }
 });
 
-router.patch("/users", validateToken, (request, response) => {
+router.patch("/users", validateToken, async(request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await patchUser(request);
       row.affectedRows > 0
         ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.USER_PUT)
         : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
-    });
   } catch (exception) {
     message(
       response,

@@ -21,14 +21,12 @@ import {
 
 const router = Router();
 
-router.delete("/students", validateToken, (request, response) => {
+router.delete("/students", validateToken, async(request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await deleteStudent(request);
       row.affectedRows > 0
         ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.STUDENT_DELETE)
         : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
-    });
   } catch (exception) {
     message(
       response,
@@ -39,14 +37,12 @@ router.delete("/students", validateToken, (request, response) => {
   }
 });
 
-router.get("/students/registrationnumber", validateToken, (request, response) => {
+router.get("/students/registrationnumber", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getStudentByRegistrationNumber(request);
       row.length > 0
         ? message(response, RESPONSE_CODE.OK, null, row)
         : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
-    });
   } catch (exception) {
     message(
       response,
@@ -57,12 +53,10 @@ router.get("/students/registrationnumber", validateToken, (request, response) =>
   }
 });
 
-router.get("/students", validateToken, (request, response) => {
+router.get("/students", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getStudents();
       message(response, RESPONSE_CODE.OK, null, row);
-    });
   } catch (exception) {
     message(
       response,
@@ -73,12 +67,10 @@ router.get("/students", validateToken, (request, response) => {
   }
 });
 
-router.get("/students/faculty", validateToken, (request, response) => {
+router.get("/students/faculty", validateToken, async(request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getStudentsByFaculty(request);
       message(response, RESPONSE_CODE.OK, null, row);
-    });
   } catch (exception) {
     message(
       response,
@@ -89,14 +81,12 @@ router.get("/students/faculty", validateToken, (request, response) => {
   }
 });
 
-router.patch("/students", validateToken, (request, response) => {
+router.patch("/students", validateToken, async(request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await patchStudent(request);
       row.affectedRows > 0
         ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.STUDENT_PUT)
         : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
-    });
   } catch (exception) {
     message(
       response,

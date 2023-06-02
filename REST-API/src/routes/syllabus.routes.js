@@ -16,14 +16,12 @@ import {
 
 const router = Router();
 
-router.delete("/syllabus", validateToken, (request, response) => {
+router.delete("/syllabus", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await deleteSyllabus(request);
       row.affectedRows > 0
         ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.SYLLABUS_DELETE)
         : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.SYLLABUS_NOT_FOUND);
-    });
   } catch (exception) {
     message(
       response,
@@ -34,14 +32,12 @@ router.delete("/syllabus", validateToken, (request, response) => {
   }
 });
 
-router.get("/syllabus/id", validateToken, (request, response) => {
+router.get("/syllabus/id", validateToken, async(request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getSyllabusById(request);
       row.length > 0
         ? message(response, RESPONSE_CODE.OK, null, row)
         : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.SYLLABUS_NOT_FOUND);
-    });
   } catch (exception) {
     message(
       response,
@@ -52,12 +48,10 @@ router.get("/syllabus/id", validateToken, (request, response) => {
   }
 });
 
-router.post("/syllabus", validateToken, (request, response) => {
+router.post("/syllabus", validateToken, async(request, response) => {
   try {
-    verifyToken(request, response, async () => {
       await postSyllabus(request);
       message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.SYLLABUS_POST);
-    });
   } catch (exception) {
     message(
       response,
