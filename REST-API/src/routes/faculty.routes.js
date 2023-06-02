@@ -12,12 +12,10 @@ import {
 
 const router = Router();
 
-router.get("/faculties", validateToken, (request, response) => {
+router.get("/faculties", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getFaculties();
       message(response, RESPONSE_CODE.OK, null, row);
-    });
   } catch (exception) {
     message(
       response,

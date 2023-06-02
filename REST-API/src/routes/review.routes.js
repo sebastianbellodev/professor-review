@@ -17,12 +17,10 @@ import {
 
 const router = Router();
 
-router.get("/reviews/educationalexperience", validateToken, (request, response) => {
+router.get("/reviews/educationalexperience", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getReviewsByEducationalExperience(request);
       message(response, RESPONSE_CODE.OK, null, row);
-    });
   } catch (exception) {
     message(
       response,
@@ -33,9 +31,8 @@ router.get("/reviews/educationalexperience", validateToken, (request, response) 
   }
 });
 
-router.patch("/reviews", validateToken, (request, response) => {
+router.patch("/reviews", validateToken, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getReview(request);
       row.length > 0
         ? message(response, RESPONSE_CODE.BAD_REQUEST, RESPONSE_MESSAGE.REVIEW_ALREADY_REGISTERED)
@@ -43,7 +40,6 @@ router.patch("/reviews", validateToken, (request, response) => {
           await patchReview(request);
           message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.REVIEW_PUT);
         };
-    });
   } catch (exception) {
     message(
       response,
@@ -54,9 +50,8 @@ router.patch("/reviews", validateToken, (request, response) => {
   }
 });
 
-router.post("/reviews", validateToken, (request, response) => {
+router.post("/reviews", validateToken,async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
       const [row] = await getReview(request);
       row.length > 0
         ? message(response, RESPONSE_CODE.BAD_REQUEST, RESPONSE_MESSAGE.REVIEW_ALREADY_REGISTERED)
@@ -64,7 +59,6 @@ router.post("/reviews", validateToken, (request, response) => {
           await postReview(request);
           message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.REVIEW_POST);
         };
-    });
   } catch (exception) {
     message(
       response,
