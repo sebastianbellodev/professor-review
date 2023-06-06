@@ -45,6 +45,14 @@ export const RES_MESSAGE = {
   EDUCATIONAL_PROGRAM_PUT: "Educational program updated successfully.",
   EDUCATIONAL_PROGRAM_DELETE: "Educational program deleted successfully.",
 
+  REVIEW_NOT_FOUND: "Review not found.",
+  REVIEW_DELETE: "Review deleted successfully.",
+
+  FACULTY_POST: "Faculty posted successfully",
+  FACULTY_PUT: "Faculty updated successfully",
+  FACULTY_DELETED: "Faculty deleted successfuly",
+  FACULTY_NOT_FOUND: "Faculty not found",
+
   DATA_ALREDY_LOG: "The data alredy in the sistem.",
 
   UNAUTHORIZED: "User not authorized.",

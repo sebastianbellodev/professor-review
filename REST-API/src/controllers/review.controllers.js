@@ -59,3 +59,13 @@ export const updateReview = (req) => {
         )
     );
 };
+
+export const deleteReview = (req) => {
+    const idReview = req.params.idReview
+    return Promise.resolve(
+        pool.query(
+            "DELETE FROM review  WHERE idReview = ?",[idReview]
+        )
+    );
+
+};

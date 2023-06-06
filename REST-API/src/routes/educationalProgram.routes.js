@@ -1,5 +1,5 @@
 import Router from "express-promise-router";
-import { postEducationalProgram } from "../controllers/educationalProgram.controllers.js";
+import { getEducationalProgramOfFaculty, postEducationalProgram } from "../controllers/educationalProgram.controllers.js";
 import {
   generateToken,
   validateToken,
@@ -12,10 +12,27 @@ const router = Router();
 router.post("/educationalProgram", validateToken, (req, res) => {
   try {
     verifyToken(req, res, async () => {
-      await postEducationalProgram(req);
+      const [row] = await postEducationalProgram(req);
       message(res, RES_CODE.CREATED, RES_MESSAGE.EDUCATIONAL_PROGRAM_POST);
     });
   } catch (err) {
+    message(
+      res,
+      RES_CODE.INTERNAL_SERVER_ERROR,
+      RES_MESSAGE.INTERAL_SERVER_ERROR,
+      err
+    );
+  }
+});
+
+
+router.get("/educationalProgram", validateToken, (req, res) => {
+  try{
+    verifyToken(req, res, async () => {
+      await getEducationalProgramOfFaculty(req);
+      message(res, RES_CODE.OK, null, row)
+    });
+  }catch(err){
     message(
       res,
       RES_CODE.INTERNAL_SERVER_ERROR,

@@ -4,7 +4,7 @@ import {
     verifyToken,
   } from "../utilities/authentication/bearer.js";
 import { message, RES_CODE, RES_MESSAGE } from "../utilities/json/message.js";
-import { checkReview, logReview, updateReview} from "../controllers/review.controllers.js";
+import { checkReview, deleteReview, logReview, updateReview} from "../controllers/review.controllers.js";
 
 const router = Router();
 
@@ -40,6 +40,24 @@ router.patch("/review",validateToken,(req,res) => {
                 }
         });
     }catch(err){
+        message(
+            res,RES_CODE.INTERNAL_SERVER_ERROR,
+            RES_MESSAGE.INTERAL_SERVER_ERROR,
+            err
+        );
+    }
+});
+
+
+router.delete("/review/deletes", validateToken,(req, res) => {
+    try{
+        verifyToken(req, res, async() => {
+            const [row] = await deleteReview(req);
+            row.affectedRows > 0
+            ? message(res, RES_CODE.OK, RES_MESSAGE.REVIEW_DELETE)
+            : message(RES_CODE.NOT_FOUND, RES_MESSAGE.REVIEW_NOT_FOUND);
+        });
+    }catch(err){        
         message(
             res,RES_CODE.INTERNAL_SERVER_ERROR,
             RES_MESSAGE.INTERAL_SERVER_ERROR,

@@ -11,3 +11,15 @@ export const getEducationalExperienceOfFaculty = (req) => {
         )
     );
 };
+
+
+export const getEducationalExperienceOfEducationalProgram = (req) =>{
+    const {idEducationalProgram} = req.body;
+    return Promise.resolve(
+        pool.query("SELECT educationalexperience.idEducationalExperience,  educationalexperience.name FROM syllabus"+
+        "INNER JOIN educationalexperience ON syllabus.idEducationalExperience = educationalexperience.idEducationalExperience"+
+        "WHERE idEducationalProgram = ? ",
+        [idEducationalProgram]
+        )
+    )
+}

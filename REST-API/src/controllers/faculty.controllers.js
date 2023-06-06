@@ -7,3 +7,49 @@ export const getFaculties = () => {
         )
     );
 };
+
+export const logFaculty = () => {
+    const {
+        name
+    } = req.body;
+    return Promise.resolve(
+        pool.query(
+            "INSERT INTO faculty ('name') VALUES('?')",
+            [
+                name
+            ]
+        )
+    )
+}
+
+export const deleteFaculty = () => {
+    const {
+        idFaculty
+    } = req.body;
+    return Promise.resolve(
+        pool.query(
+            "DELETE FROM faculty WHERE idFaculty = ?",
+            [
+                idFaculty
+            ]
+        )
+
+    )
+}
+
+export const patchFaculty = () => {
+    const {
+        name,
+        idFaculty
+    } = req.body;
+    return Promise.resolve(
+        pool.query(
+            "UPDATE faculty SET faculty.name = ? WHERE faculty.idFaculty = ?",
+            [
+                name,
+                idFaculty
+            ]
+        )
+
+    )
+}
