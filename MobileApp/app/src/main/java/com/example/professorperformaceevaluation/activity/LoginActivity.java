@@ -1,8 +1,10 @@
-package com.example.professorperformaceevaluation;
+package com.example.professorperformaceevaluation.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.professorperformaceevaluation.R;
 
 public class LoginActivity extends AppCompatActivity {
 

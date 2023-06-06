@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -63,16 +66,28 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BusinessLogic\AcademicOffering.cs" />
-    <Compile Include="BusinessLogic\EducationalExperience.cs" />
-    <Compile Include="BusinessLogic\EducationalProgram.cs" />
-    <Compile Include="BusinessLogic\Faculty.cs" />
-    <Compile Include="BusinessLogic\Professor.cs" />
-    <Compile Include="BusinessLogic\Response.cs" />
-    <Compile Include="BusinessLogic\Review.cs" />
-    <Compile Include="BusinessLogic\SchoolPeriod.cs" />
-    <Compile Include="BusinessLogic\Student.cs" />
-    <Compile Include="BusinessLogic\User.cs" />
+    <Compile Include="Model\AcademicOffering.cs" />
+    <Compile Include="Model\Directory.cs" />
+    <Compile Include="Model\EducationalExperience.cs" />
+    <Compile Include="Model\EducationalProgram.cs" />
+    <Compile Include="Model\Faculty.cs" />
+    <Compile Include="Model\Professor.cs" />
+    <Compile Include="Model\Response.cs" />
+    <Compile Include="Model\Review.cs" />
+    <Compile Include="Model\SchoolPeriod.cs" />
+    <Compile Include="Model\Student.cs" />
+    <Compile Include="Model\Syllabus.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Service\EducationalExperienceService.cs" />
+    <Compile Include="Service\EducationalProgramService.cs" />
+    <Compile Include="Service\FacultyService.cs" />
+    <Compile Include="Service\ProfessorService.cs" />
+    <Compile Include="Service\ReportService.cs" />
+    <Compile Include="Service\ReviewService.cs" />
+    <Compile Include="Service\SchoolPeriodService.cs" />
+    <Compile Include="Service\StudentService.cs" />
+    <Compile Include="Service\SyllabusService.cs" />
+    <Compile Include="Service\UserService.cs" />
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -96,6 +111,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -104,8 +120,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
