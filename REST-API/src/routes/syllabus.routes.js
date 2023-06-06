@@ -60,3 +60,5 @@ router.post("/syllabus", validateToken, async(request, response) => {
     );
   }
 });
+
+export default router;

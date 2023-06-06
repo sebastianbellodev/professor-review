@@ -68,7 +68,7 @@ export const RESPONSE_MESSAGE = {
   PROFESSOR_PUT: "Professor updated successfully.",
   PROFESSOR_DELETE: "Professor deleted successfully.",
 
-  URL_NOT_FOUND: "URL not found",
+  URL_NOT_FOUND: "URL not found.",
 
   USER_ALREADY_REGISTERED: "User already registered in the system.",
   USER_NOT_FOUND: "User not found.",

@@ -74,8 +74,7 @@ router.post("/educationalprograms", validateToken, async (request, response) => 
           message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.EDUCATIONAL_PROGRAM_POST);
         };
   } catch (exception) {
-    message(
-      response,
+    message(response,
       RESPONSE_CODE.INTERNAL_SERVER_ERROR,
       RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
       exception

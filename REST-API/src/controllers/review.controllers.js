@@ -1,4 +1,4 @@
-import { pool } from "../schema/connection";
+import { pool } from "../schema/connection.js";
 
 export const getReview = (request) => {
   const {
