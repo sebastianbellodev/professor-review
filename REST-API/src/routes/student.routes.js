@@ -10,14 +10,13 @@ import {
   postStudent
 } from "../controllers/student.controllers.js";
 import {
-  validateToken,
-  verifyToken
-} from "../utilities/authentication/bearer.js";
+  validateToken
+} from "../utilities/authentication/bearer/bearer.js";
 import {
   message,
   RESPONSE_CODE,
   RESPONSE_MESSAGE
-} from "../utilities/json/message.js";
+} from "../tools/message.js";
 
 const router = Router();
 
@@ -26,6 +25,38 @@ router.delete("/students", validateToken, async(request, response) => {
       const [row] = await deleteStudent(request);
       row.affectedRows > 0
         ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.STUDENT_DELETE)
+        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
+  } catch (exception) {
+    message(
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
+    );
+  }
+});
+
+router.get("/students/emailaddress", validateToken, async (request, response) => {
+  try {
+      const [row] = await getStudentByEmailAddress(request);
+      row.length > 0
+        ? message(response, RESPONSE_CODE.OK, null, row)
+        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
+  } catch (exception) {
+    message(
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
+    );
+  }
+});
+
+router.get("/students/phonenumber", validateToken, async (request, response) => {
+  try {
+      const [row] = await getStudentByPhoneNumber(request);
+      row.length > 0
+        ? message(response, RESPONSE_CODE.OK, null, row)
         : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
   } catch (exception) {
     message(

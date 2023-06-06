@@ -9,14 +9,13 @@ import {
   getProfessorById
 } from "../controllers/professor.controllers.js";
 import {
-  validateToken,
-  verifyToken
-} from "../utilities/authentication/bearer.js";
+  validateToken
+} from "../utilities/authentication/bearer/bearer.js";
 import {
   message,
   RESPONSE_CODE,
   RESPONSE_MESSAGE
-} from "../utilities/json/message.js";
+} from "../tools/message.js";
 
 const router = Router();
 
