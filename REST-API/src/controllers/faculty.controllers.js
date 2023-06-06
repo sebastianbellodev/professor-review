@@ -53,3 +53,14 @@ export const patchFaculty = () => {
 
     )
 }
+
+  return Promise.resolve(
+    pool.query(
+      "SELECT\n" +
+      "*\n" +
+      "FROM\n" +
+      "faculty"
+    )
+  );
+};
+

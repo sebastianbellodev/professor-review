@@ -1,51 +1,71 @@
 import Router from "express-promise-router";
 import {
-    validateToken,
-    verifyToken,
-  } from "../utilities/authentication/bearer.js";
-import { message, RES_CODE, RES_MESSAGE } from "../utilities/json/message.js";
-import { checkReview, deleteReview, logReview, updateReview} from "../controllers/review.controllers.js";
+  getReview,
+  getReviewsByEducationalExperience,
+  patchReview,
+  postReview
+} from "../controllers/review.controllers.js";
+import {
+  validateToken
+} from "../utilities/authentication/bearer/bearer.js";
+import {
+  message,
+  RESPONSE_CODE,
+  RESPONSE_MESSAGE
+} from "../tools/message.js";
 
 const router = Router();
 
-router.post("/review",validateToken,(req,res) => {
-    try{
-        verifyToken(req,res, async () => {
-            const [row] = await checkReview(req);
-            row.length>0
-                ? message(res, RES_CODE.DATA_ALREDY,RES_MESSAGE.DATA_ALREDY_LOG)
-                : async () => {
-                    await logReview(req)
-                    message(res, RES_CODE.OK, RES_MESSAGE.DATA_POST)
-                }
-        });
-    }catch(err){
-        message(
-            res,RES_CODE.INTERNAL_SERVER_ERROR,
-            RES_MESSAGE.INTERAL_SERVER_ERROR,
-            err
-        );
-    }
+router.get("/reviews/educationalexperience", validateToken, async (request, response) => {
+  try {
+      const [row] = await getReviewsByEducationalExperience(request);
+      message(response, RESPONSE_CODE.OK, null, row);
+  } catch (exception) {
+    message(
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
+    );
+  }
 });
 
-router.patch("/review",validateToken,(req,res) => {
-    try{
-        verifyToken(req,res, async () => {
-            const [row] = await checkReview(req);
-            row.length>0
-                ? message(res, RES_CODE.DATA_ALREDY,RES_MESSAGE.DATA_ALREDY_LOG)
-                : async () => { //Esto es una función lambda se usa para en un ternario colocar mas de una acción por si gustan usarlo así
-                    await updateReview(req) 
-                    message(res, RES_CODE.OK, RES_MESSAGE.DATA_POST)
-                }
-        });
-    }catch(err){
-        message(
-            res,RES_CODE.INTERNAL_SERVER_ERROR,
-            RES_MESSAGE.INTERAL_SERVER_ERROR,
-            err
-        );
-    }
+router.patch("/reviews", validateToken, async (request, response) => {
+  try {
+      const [row] = await getReview(request);
+      row.length > 0
+        ? message(response, RESPONSE_CODE.BAD_REQUEST, RESPONSE_MESSAGE.REVIEW_ALREADY_REGISTERED)
+        : async () => {
+          await patchReview(request);
+          message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.REVIEW_PUT);
+        };
+  } catch (exception) {
+    message(
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
+    );
+  }
+});
+
+router.post("/reviews", validateToken,async (request, response) => {
+  try {
+      const [row] = await getReview(request);
+      row.length > 0
+        ? message(response, RESPONSE_CODE.BAD_REQUEST, RESPONSE_MESSAGE.REVIEW_ALREADY_REGISTERED)
+        : async () => {
+          await postReview(request);
+          message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.REVIEW_POST);
+        };
+  } catch (exception) {
+    message(
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
+    );
+  }
 });
 
 
