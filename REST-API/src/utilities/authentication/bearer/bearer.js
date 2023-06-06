@@ -4,7 +4,7 @@ import {
   message,
   RESPONSE_CODE,
   RESPONSE_MESSAGE
-} from "../../json/message.js";
+} from "../../../tools/message.js";
 
 export const generateToken = (request) => {
   const { username,
@@ -40,4 +40,3 @@ function verifyToken (token) {
   });
   return flag;
 };
-

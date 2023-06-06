@@ -1,14 +1,13 @@
 import Router from "express-promise-router";
 import { getReportByProfessor } from "../controllers/report.controller";
 import {
-  validateToken,
-  verifyToken
-} from "../utilities/authentication/bearer";
+  validateToken
+} from "../utilities/authentication/bearer/bearer.js";
 import {
   message,
   RESPONSE_CODE,
   RESPONSE_MESSAGE
-} from "../utilities/json/message";
+} from "../tools/message.js";
 
 const router = Router();
 

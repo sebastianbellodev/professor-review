@@ -4,7 +4,7 @@ import {
   message,
   RESPONSE_CODE,
   RESPONSE_MESSAGE
-} from "../utilities/json/message.js";
+} from "../tools/message.js";
 
 const router = Router();
 

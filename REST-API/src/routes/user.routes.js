@@ -8,19 +8,17 @@ import {
   postUser
 } from "../controllers/user.controllers.js";
 import {
-  validateCredentials,
-  verifyCredentials
-} from "../utilities/authentication/basic.js";
+  validateCredentials
+} from "../utilities/authentication/basic-auth/basic.js"
 import {
   generateToken,
-  validateToken,
-  verifyToken
-} from "../utilities/authentication/bearer.js";
+  validateToken
+} from "../utilities/authentication/bearer/bearer.js";
 import {
   message,
   RESPONSE_CODE,
   RESPONSE_MESSAGE
-} from "../utilities/json/message.js";
+} from "../tools/message.js";
 
 const router = Router();
 
