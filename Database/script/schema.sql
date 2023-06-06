@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `professorperformanceevaluation` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `professorperformanceevaluation`;
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
 -- Host: localhost    Database: professorperformanceevaluation
 -- ------------------------------------------------------
--- Server version	8.0.30
+-- Server version	8.0.32
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -110,7 +108,7 @@ CREATE TABLE `educationalprogram` (
   PRIMARY KEY (`idEducationalProgram`),
   KEY `FK_EducationalProgram_idx` (`idFaculty`),
   CONSTRAINT `FK_EducationalProgram_Faculty` FOREIGN KEY (`idFaculty`) REFERENCES `faculty` (`idFaculty`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +117,7 @@ CREATE TABLE `educationalprogram` (
 
 LOCK TABLES `educationalprogram` WRITE;
 /*!40000 ALTER TABLE `educationalprogram` DISABLE KEYS */;
-INSERT INTO `educationalprogram` VALUES (1,'Ingeniería de Software',1),(2,'Ingeniería en Sistemas y Tecnologías de la Información',1);
+INSERT INTO `educationalprogram` VALUES (1,'Licenciatura en Ingeniería de Software',1);
 /*!40000 ALTER TABLE `educationalprogram` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,7 +157,7 @@ CREATE TABLE `professor` (
   `name` varchar(150) NOT NULL,
   `lastName` varchar(150) NOT NULL,
   PRIMARY KEY (`idProfessor`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,16 +180,16 @@ CREATE TABLE `review` (
   `idReview` int NOT NULL AUTO_INCREMENT,
   `stars` int NOT NULL,
   `comment` text NOT NULL,
-  `idSchoolPeriod` int DEFAULT NULL,
-  `idAcademicOffering` int DEFAULT NULL,
-  `registrationNumber` varchar(10) DEFAULT NULL,
+  `idSchoolPeriod` int NOT NULL,
+  `idAcademicOffering` int NOT NULL,
+  `registrationNumber` varchar(10) NOT NULL,
   PRIMARY KEY (`idReview`),
   KEY `FK_Review_SchoolPeriod_idx` (`idSchoolPeriod`),
   KEY `FK_Review_AcademicOffering_idx` (`idAcademicOffering`),
   KEY `FK_Review_Student_idx` (`registrationNumber`),
-  CONSTRAINT `FK_Review_AcademicOffering` FOREIGN KEY (`idAcademicOffering`) REFERENCES `academicoffering` (`idAcademicOffering`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `FK_Review_SchoolPeriod` FOREIGN KEY (`idSchoolPeriod`) REFERENCES `schoolperiod` (`idSchoolPeriod`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `FK_Review_Student` FOREIGN KEY (`registrationNumber`) REFERENCES `student` (`registrationNumber`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `FK_Review_AcademicOffering` FOREIGN KEY (`idAcademicOffering`) REFERENCES `academicoffering` (`idAcademicOffering`),
+  CONSTRAINT `FK_Review_SchoolPeriod` FOREIGN KEY (`idSchoolPeriod`) REFERENCES `schoolperiod` (`idSchoolPeriod`),
+  CONSTRAINT `FK_Review_Student` FOREIGN KEY (`registrationNumber`) REFERENCES `student` (`registrationNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -240,7 +238,7 @@ CREATE TABLE `student` (
   `name` varchar(150) NOT NULL,
   `lastName` varchar(150) NOT NULL,
   `emailAddress` varchar(150) NOT NULL,
-  `phoneNumer` varchar(25) DEFAULT NULL,
+  `phoneNumber` varchar(25) DEFAULT NULL,
   `biography` text,
   `active` bit(1) DEFAULT NULL,
   `activationDate` datetime DEFAULT NULL,
@@ -326,4 +324,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-25 10:27:05
+-- Dump completed on 2023-06-06  7:59:48
