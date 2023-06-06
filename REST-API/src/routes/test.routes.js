@@ -8,7 +8,7 @@ import {
 
 const router = Router();
 
-router.get("/pings", async (response) => {
+router.get("/pings", async (request, response) => {
   try {
     const [row] = await ping();
     message(response, RESPONSE_CODE.OK, null, row[0]);

@@ -1,5 +1,5 @@
 import Router from "express-promise-router";
-import { getReportByProfessor } from "../controllers/report.controller";
+import { getReportByProfessor } from "../controllers/report.controller.js";
 import {
   validateToken
 } from "../utilities/authentication/bearer/bearer.js";
@@ -24,3 +24,5 @@ router.get("/reports/professor", validateToken, async (request, response) => {
     );
   }
 });
+
+export default router;

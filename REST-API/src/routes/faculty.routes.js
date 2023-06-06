@@ -24,3 +24,5 @@ router.get("/faculties", validateToken, async (request, response) => {
     );
   }
 });
+
+export default router;
