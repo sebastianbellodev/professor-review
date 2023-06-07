@@ -1,5 +1,7 @@
 import { config } from "dotenv";
 
-config();
+config({
+  path: "../.env",
+});
 
 export const TOKEN_KEY = process.env.TOKEN_KEY;
