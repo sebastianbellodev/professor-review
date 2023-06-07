@@ -1,11 +1,10 @@
 import basicAuth from "basic-auth";
-import { credentials } from "./configuration/credentials.js";
+import { credentials } from "./configuration/configuration.js";
 import {
   message,
   RESPONSE_CODE,
-  RESPONSE_MESSAGE
+  RESPONSE_MESSAGE,
 } from "../../../tools/message.js";
-
 
 export const validateCredentials = (request, response, next) => {
   const authentication = basicAuth(request);
@@ -15,7 +14,11 @@ export const validateCredentials = (request, response, next) => {
   } else {
     if (verifyCredentials(authentication.name, authentication.pass)) {
       response.set("WWW-Authenticate", 'Basic realm ="Secure"');
-      message(response, RESPONSE_CODE.UNAUTHORIZED, RESPONSE_MESSAGE.UNAUTHORIZED);
+      message(
+        response,
+        RESPONSE_CODE.UNAUTHORIZED,
+        RESPONSE_MESSAGE.UNAUTHORIZED
+      );
     } else {
       next();
     }
