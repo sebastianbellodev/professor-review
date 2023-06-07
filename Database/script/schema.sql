@@ -108,7 +108,7 @@ CREATE TABLE `educationalprogram` (
   PRIMARY KEY (`idEducationalProgram`),
   KEY `FK_EducationalProgram_idx` (`idFaculty`),
   CONSTRAINT `FK_EducationalProgram_Faculty` FOREIGN KEY (`idFaculty`) REFERENCES `faculty` (`idFaculty`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +117,7 @@ CREATE TABLE `educationalprogram` (
 
 LOCK TABLES `educationalprogram` WRITE;
 /*!40000 ALTER TABLE `educationalprogram` DISABLE KEYS */;
-INSERT INTO `educationalprogram` VALUES (1,'Licenciatura en Ingeniería de Software',1);
+INSERT INTO `educationalprogram` VALUES (1,'Licenciatura en Administración',13),(2,'Licenciatura en Contaduría',13),(3,'Licenciatura en Gestión y Dirección de Negocios',13),(4,'Licenciatura en Sistemas Computacionales Administrativos',13),(5,'Especialización en Administración del Comercio Exterior',13),(6,'Maestría en Auditoria',13),(7,'Maestría en Gestión de las Tecnologías de Información en las Organizaciones',13),(8,'Doctorado en Ciencias Administrativas y Gestión para el Desarrollo',13),(9,'Licenciatura en Economía',14),(10,'Licenciatura en Geografía',14),(11,'Maestría en Economía Ambiental y Ecológica',14),(12,'Doctorado en Finanzas Públicas',14),(13,'Licenciatura en Estadística',15),(14,'Licenciatura en Ingeniería en Sistemas y Tecnologías de la Información',15),(15,'Licenciatura en Ingeniería de Software',15),(16,'Licenciatura en Ingeniería de Ciberseguridad e Infraestructura de Cómputo',15),(17,'Licenciatura en Redes y Servicios de Cómputo',15),(18,'Licenciatura en Tecnologías Computacionales',15),(19,'Especialización en Métodos Estadísticos',15),(20,'Maestría en Sistemas Interactivos Centrados en el Usuario',15),(21,'Maestría en Gestión de Calidad',15),(22,'Doctorado en Ciencias de la Computación',15),(23,'Licenciatura en Administración de Negocios Internacionales ',16),(24,'Licenciatura en Ciencias Políticas y Gestión Pública',16),(25,'Licenciatura en Desarrollo del Talento Humano en las Organizaciones',16),(26,'Licenciatura en Publicidad y Relaciones Públicas',16),(27,'Maestría en Gestión de Recursos Humanos, Trabajo y Organizaciones',16);
 /*!40000 ALTER TABLE `educationalprogram` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,7 +132,7 @@ CREATE TABLE `faculty` (
   `idFaculty` int NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
   PRIMARY KEY (`idFaculty`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,7 +141,7 @@ CREATE TABLE `faculty` (
 
 LOCK TABLES `faculty` WRITE;
 /*!40000 ALTER TABLE `faculty` DISABLE KEYS */;
-INSERT INTO `faculty` VALUES (1,'Facultad de Estadística e Informática');
+INSERT INTO `faculty` VALUES (1,'Facultad de Artes Plásticas'),(2,'Facultad de Danza'),(3,'Facultad de Música'),(4,'Facultad de Teatro'),(5,'Facultad de Biología'),(6,'Facultad de Ciencias Agrícolas'),(7,'Facultad de Bioanálisis'),(8,'Facultad de Enfermería'),(9,'Facultad de Medicina'),(10,'Facultad de Nutrición'),(11,'Facultad de Odontología'),(12,'Facultad de Psicología'),(13,'Facultad de Contaduría y Administración'),(14,'Facultad de Economía'),(15,'Facultad de Estadística e Informática'),(16,'Facultad de Ciencias Administrativas y Sociales'),(17,'Facultad de Derecho'),(18,'Facultad de Sociología'),(19,'Facultad de Antropología'),(20,'Facultad de Filosofía'),(21,'Facultad de Historia'),(22,'Facultad de Idiomas'),(23,'Facultad de Letras Españolas'),(24,'Facultad de Pedagogía'),(25,'Facultad de Arquitectura'),(26,'Facultad de Física'),(27,'Facultad de Matemáticas'),(28,'Facultad de Ingeniería Civil'),(29,'Facultad de Química Farmacéutica Biológica'),(30,'Facultad de Ciencias Químicas'),(31,'Facultad de Ingeniería Mécanica y Eléctrica'),(32,'Facultad de Instrumentación Electrónica');
 /*!40000 ALTER TABLE `faculty` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +240,7 @@ CREATE TABLE `student` (
   `emailAddress` varchar(150) NOT NULL,
   `phoneNumber` varchar(25) DEFAULT NULL,
   `biography` text,
-  `active` bit(1) DEFAULT NULL,
+  `active` bit(1) DEFAULT b'0',
   `activationDate` datetime DEFAULT NULL,
   `oneTimePassword` varchar(6) DEFAULT NULL,
   `idEducationalProgram` int NOT NULL,
@@ -256,7 +256,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES ('zs19014012','María José','Igartua','zs19014012@estudiantes.uv.mx',NULL,NULL,NULL,NULL,NULL,1),('zs20015698','Armando Omar','Muñoz','zs20015698@estudiantes.uv.mx',NULL,NULL,NULL,NULL,NULL,1),('zs20015699','Saraí','Hernández','zs20015699@estudiantes.uv.mx',NULL,NULL,NULL,NULL,NULL,1),('zs20015700','Jonathan','Alarcón','zs20015700@estudiantes.uv.mx',NULL,NULL,NULL,NULL,NULL,1),('zs20015730','Sebastián','Olivares','zs20015730@estudiantes.uv.mx',NULL,NULL,NULL,NULL,NULL,1);
+INSERT INTO `student` VALUES ('zs19014012','María José','Torres','zs19014012@estudiantes.uv.mx','2281590651',NULL,_binary '\0',NULL,NULL,15),('zs20015698','Armando Omar','Obando','zs20015698@estudiantes.uv.mx',NULL,NULL,_binary '\0',NULL,NULL,15),('zs20015699','Saraí','Castillo','zs20015699@estudiantes.uv.mx',NULL,NULL,_binary '\0',NULL,NULL,15),('zs20015700','Jonatan','Alarcón','zs20015700@estudiantes.uv.mx',NULL,NULL,_binary '\0',NULL,NULL,15),('zs20015715','Óscar Iván','Olivares','zs20015715@estudiantes.uv.mx',NULL,NULL,_binary '\0',NULL,NULL,15),('zs20015730','Sebastián','Bello','zs20015730@estudiantes.uv.mx',NULL,NULL,_binary '\0',NULL,NULL,15),('zs20015760','Álvaro','Barradas','zs20015760@estudiantes.uv.mx',NULL,NULL,_binary '\0',NULL,NULL,15);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -311,7 +311,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('sebastianbello','566d4c109d5ab4a24c54f1c6f86bd55c3850cd8a81093bc071f6b80fc94a791c','zs20015730');
+INSERT INTO `user` VALUES ('majotigartua','7fcca36362319dce12bdf6eb8c36695d8843aae8a282af2044974c25df628d2a','zs19014012'),('sebastianbello','566d4c109d5ab4a24c54f1c6f86bd55c3850cd8a81093bc071f6b80fc94a791c','zs20015730');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -324,4 +324,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-06  7:59:48
+-- Dump completed on 2023-06-07  8:07:35
