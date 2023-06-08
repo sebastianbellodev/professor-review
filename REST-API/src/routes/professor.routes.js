@@ -21,10 +21,10 @@ const router = Router();
 
 router.delete("/professors", validateToken, async (request, response) => {
   try {
-      const [row] = await deleteProfessor(request);
-      row.affectedRows > 0
-        ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.PROFESSOR_DELETE)
-        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.PROFESSOR_NOT_FOUND);
+    const [row] = await deleteProfessor(request);
+    row.affectedRows > 0
+      ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.PROFESSOR_DELETE)
+      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.PROFESSOR_NOT_FOUND);
   } catch (exception) {
     message(
       response,
@@ -37,10 +37,13 @@ router.delete("/professors", validateToken, async (request, response) => {
 
 router.get("/professors/id", validateToken, async (request, response) => {
   try {
-      const [row] = await getProfessorById(request);
-      row.length > 0
-        ? message(response, RESPONSE_CODE.OK, null, row)
-        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.PROFESSOR_NOT_FOUND);
+    const [row] = await getProfessorById(request);
+    row.length > 0
+      ? () => {
+        const professor = { professor: row };
+        message(response, RESPONSE_CODE.OK, professor);
+      }
+      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
   } catch (exception) {
     message(
       response,
@@ -53,8 +56,9 @@ router.get("/professors/id", validateToken, async (request, response) => {
 
 router.get("/professors", validateToken, async (request, response) => {
   try {
-      const [row] = await getProfessors();
-      message(response, RESPONSE_CODE.OK, null, row);
+    const [row] = await getProfessors();
+    const professors = { professors: row };
+    message(response, RESPONSE_CODE.OK, null, professors);
   } catch (exception) {
     message(
       response,
@@ -67,8 +71,9 @@ router.get("/professors", validateToken, async (request, response) => {
 
 router.get("/professors/educationalexperience", validateToken, async (request, response) => {
   try {
-      const [row] = await getProfessorsByEducationalExperience(request);
-      message(response, RESPONSE_CODE.OK, null, row);
+    const [row] = await getProfessorsByEducationalExperience(request);
+    const professors = { professors: row };
+    message(response, RESPONSE_CODE.OK, null, professors);
   } catch (exception) {
     message(
       response,
@@ -81,8 +86,9 @@ router.get("/professors/educationalexperience", validateToken, async (request, r
 
 router.get("/professors/faculty", validateToken, async (request, response) => {
   try {
-      const [row] = await getProfessorsByFaculty(request);
-      message(response, RESPONSE_CODE.OK, null, row);
+    const [row] = await getProfessorsByFaculty(request);
+    const professors = { professors: row };
+    message(response, RESPONSE_CODE.OK, null, professors);
   } catch (exception) {
     message(
       response,
@@ -95,10 +101,10 @@ router.get("/professors/faculty", validateToken, async (request, response) => {
 
 router.patch("/professors", validateToken, async (request, response) => {
   try {
-      const [row] = await patchProfessor(request);
-      row.affectedRows > 0
-        ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.PROFESSOR_PUT)
-        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.PROFESSOR_NOT_FOUND);
+    const [row] = await patchProfessor(request);
+    row.affectedRows > 0
+      ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.PROFESSOR_PUT)
+      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.PROFESSOR_NOT_FOUND);
   } catch (exception) {
     message(
       response,
@@ -111,8 +117,8 @@ router.patch("/professors", validateToken, async (request, response) => {
 
 router.post("/professors", validateToken, async (request, response) => {
   try {
-      await postProfessor(request);
-      message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.PROFESSOR_POST);
+    await postProfessor(request);
+    message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.PROFESSOR_POST);
   } catch (exception) {
     message(
       response,

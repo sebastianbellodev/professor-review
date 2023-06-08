@@ -20,7 +20,8 @@ const router = Router();
 router.get("/educationalprograms", validateToken, async (request, response) => {
   try {
       const [row] = await getEducationalPrograms();
-      message(response, RESPONSE_CODE.OK, null, row);
+      const educationalPrograms = { educationalPrograms: row };
+      message(response, RESPONSE_CODE.OK, null, educationalPrograms);
   } catch (exception) {
     message(
       response,
@@ -34,7 +35,8 @@ router.get("/educationalprograms", validateToken, async (request, response) => {
 router.get("/educationalprograms/educationalexperience", validateToken, async (request, response) => {
   try {
       const [row] = await getEducationalProgramsByEducationalExperience(request);
-      message(response, RESPONSE_CODE.OK, null, row);
+      const educationalPrograms = { educationalPrograms: row };
+      message(response, RESPONSE_CODE.OK, null, educationalPrograms);
   } catch (exception) {
     message(
       response,

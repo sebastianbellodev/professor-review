@@ -5,14 +5,10 @@ namespace ProfessorPerformanceEvaluation.Model
 {
     public class Response
     {
-        [JsonProperty("code")]
-        public int Code { get; set; }
         [JsonProperty("message")]
         public string Message { get; set; }
-        [JsonProperty("academicOffering")]
-        public AcademicOffering AcademicOffering { get; set; }
-        [JsonProperty("academicOfferings")]
-        public List<AcademicOffering> AcademicOfferings { get; set; }
+        [JsonProperty("token")]
+        public string Token { get; set; }
         [JsonProperty("educationalExperience")]
         public EducationalExperience EducationalExperience { get; set; }
         [JsonProperty("educationalExperiences")]
@@ -41,6 +37,10 @@ namespace ProfessorPerformanceEvaluation.Model
         public Student Student { get; set; }
         [JsonProperty("students")]
         public List<Student> Students { get; set; }
+        [JsonProperty("syllabus")]
+        public Syllabus Syllabus { get; set; }
+        [JsonProperty("syllabuses")]
+        public List<Syllabus> Syllabuses { get; set; }
         [JsonProperty("user")]
         public User User { get; set; }
         [JsonProperty("users")]

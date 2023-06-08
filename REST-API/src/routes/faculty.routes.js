@@ -13,8 +13,9 @@ const router = Router();
 
 router.get("/faculties", validateToken, async (request, response) => {
   try {
-      const [row] = await getFaculties();
-      message(response, RESPONSE_CODE.OK, null, row);
+    const [row] = await getFaculties();
+    const faculties = { faculties: row };
+    message(response, RESPONSE_CODE.OK, null, faculties);
   } catch (exception) {
     message(
       response,

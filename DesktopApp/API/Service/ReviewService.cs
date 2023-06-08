@@ -1,6 +1,6 @@
 ﻿namespace ProfessorPerformanceEvaluation.Service
 {
-    public class EducationalExperienceService
+    public class ReviewService
     {
     }
 }
