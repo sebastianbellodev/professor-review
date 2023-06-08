@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Response {
 
-    private int code;
     private String message;
+    private String token;
     private AcademicOffering academicOffering;
     private List<AcademicOffering> academicOfferings;
     private EducationalExperience educationalExperience;
@@ -28,20 +28,20 @@ public class Response {
     public Response() {
     }
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
     public String getMessage() {
         return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public AcademicOffering getAcademicOffering() {

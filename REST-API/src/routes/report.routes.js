@@ -13,8 +13,9 @@ const router = Router();
 
 router.get("/reports/professor", validateToken, async (request, response) => {
   try {
-      const [row] = await getReportByProfessor(request);
-      message(response, RESPONSE_CODE.OK, null, row);
+    const [row] = await getReportByProfessor(request);
+    const report = { report: row };
+    message(response, RESPONSE_CODE.OK, null, report);
   } catch (exception) {
     message(
       response,

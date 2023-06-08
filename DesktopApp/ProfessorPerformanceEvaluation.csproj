@@ -82,8 +82,7 @@
     <Compile Include="Service\EducationalProgramService.cs" />
     <Compile Include="Service\FacultyService.cs" />
     <Compile Include="Service\ProfessorService.cs" />
-    <Compile Include="Service\ReportService.cs" />
-    <Compile Include="Service\ReviewService.cs" />
+    <Compile Include="Service\ReviewResponse.cs" />
     <Compile Include="Service\SchoolPeriodService.cs" />
     <Compile Include="Service\StudentService.cs" />
     <Compile Include="Service\SyllabusService.cs" />

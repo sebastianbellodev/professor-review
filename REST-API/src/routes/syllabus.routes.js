@@ -17,10 +17,10 @@ const router = Router();
 
 router.delete("/syllabus", validateToken, async (request, response) => {
   try {
-      const [row] = await deleteSyllabus(request);
-      row.affectedRows > 0
-        ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.SYLLABUS_DELETE)
-        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.SYLLABUS_NOT_FOUND);
+    const [row] = await deleteSyllabus(request);
+    row.affectedRows > 0
+      ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.SYLLABUS_DELETE)
+      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.SYLLABUS_NOT_FOUND);
   } catch (exception) {
     message(
       response,
@@ -31,12 +31,15 @@ router.delete("/syllabus", validateToken, async (request, response) => {
   }
 });
 
-router.get("/syllabus/id", validateToken, async(request, response) => {
+router.get("/syllabus/id", validateToken, async (request, response) => {
   try {
-      const [row] = await getSyllabusById(request);
-      row.length > 0
-        ? message(response, RESPONSE_CODE.OK, null, row)
-        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.SYLLABUS_NOT_FOUND);
+    const [row] = await getSyllabusById(request);
+    row.length > 0
+      ? () => {
+        const syllabus = { syllabus: row };
+        message(response, RESPONSE_CODE.OK, syllabus);
+      }
+      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.SYLLABUS_NOT_FOUND);
   } catch (exception) {
     message(
       response,
@@ -47,10 +50,10 @@ router.get("/syllabus/id", validateToken, async(request, response) => {
   }
 });
 
-router.post("/syllabus", validateToken, async(request, response) => {
+router.post("/syllabus", validateToken, async (request, response) => {
   try {
-      await postSyllabus(request);
-      message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.SYLLABUS_POST);
+    await postSyllabus(request);
+    message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.SYLLABUS_POST);
   } catch (exception) {
     message(
       response,
