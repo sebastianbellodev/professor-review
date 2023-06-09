@@ -1,44 +1,49 @@
 import { pool } from "../schema/connection.js";
+import { isNullish } from "@supercharge/goodies";
 
 export const deleteStudent = (request) => {
   const registrationNumber = request.body.registrationNumber;
   return Promise.resolve(
     pool.query(
       "DELETE\n" +
-      "FROM\n" +
-      "student\n" +
-      "WHERE\n" +
-      "registrationNumber = ?",
+        "FROM\n" +
+        "student\n" +
+        "WHERE\n" +
+        "registrationNumber = ?",
       [registrationNumber]
     )
   );
 };
 
 export const getStudentByEmailAddress = (request) => {
-  const emailAddress = request.body.emailAddress;
+  const emailAddress = isNullish(request.body.emailAddress)
+    ? request.body.emailAddress
+    : "";
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
-      "*\n" +
-      "FROM\n" +
-      "student\n" +
-      "WHERE\n" +
-      "emailAddress = ?",
+        "*\n" +
+        "FROM\n" +
+        "student\n" +
+        "WHERE\n" +
+        "emailAddress = ?",
       [emailAddress]
     )
   );
 };
 
 export const getStudentByPhoneNumber = (request) => {
-  const phoneNumber = request.body.phoneNumber;
+  const phoneNumber = isNullish(request.body.phoneNumber)
+    ? request.body.phoneNumber
+    : "";
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
-      "*\n" +
-      "FROM\n" +
-      "student\n" +
-      "WHERE\n" +
-      "phoneNumber = ?",
+        "*\n" +
+        "FROM\n" +
+        "student\n" +
+        "WHERE\n" +
+        "phoneNumber = ?",
       [phoneNumber]
     )
   );
@@ -49,11 +54,11 @@ export const getStudentByRegistrationNumber = (request) => {
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
-      "*\n" +
-      "FROM\n" +
-      "student\n" +
-      "WHERE\n" +
-      "registrationNumber = ?",
+        "*\n" +
+        "FROM\n" +
+        "student\n" +
+        "WHERE\n" +
+        "registrationNumber = ?",
       [registrationNumber]
     )
   );
@@ -64,19 +69,19 @@ export const getStudentsByFaculty = (request) => {
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
-      "student.*\n" +
-      "FROM\n" +
-      "student\n" +
-      "INNER JOIN\n" +
-      "educationalProgram\n" +
-      "ON\n" +
-      "student.idEducationalProgram = educationalProgram.idEducationalProgram\n" +
-      "INNER JOIN\n" +
-      "faculty\n" +
-      "ON\n" +
-      "educationalProgram.idFaculty = faculty.idFaculty\n" +
-      "WHERE\n" +
-      "faculty.idFaculty = ?",
+        "student.*\n" +
+        "FROM\n" +
+        "student\n" +
+        "INNER JOIN\n" +
+        "educationalProgram\n" +
+        "ON\n" +
+        "student.idEducationalProgram = educationalProgram.idEducationalProgram\n" +
+        "INNER JOIN\n" +
+        "faculty\n" +
+        "ON\n" +
+        "educationalProgram.idFaculty = faculty.idFaculty\n" +
+        "WHERE\n" +
+        "faculty.idFaculty = ?",
       [idFaculty]
     )
   );
@@ -84,37 +89,32 @@ export const getStudentsByFaculty = (request) => {
 
 export const getStudents = () => {
   return Promise.resolve(
-    pool.query(
-      "SELECT\n" +
-      "*\n" +
-      "FROM\n" +
-      "schoolPeriod"
-    )
+    pool.query("SELECT\n" + "*\n" + "FROM\n" + "schoolPeriod")
   );
 };
 
 export const patchStudent = (request) => {
-  const { 
+  const {
     registrationNumber,
     name,
-    paternalSurname,
-    maternalSurname } = request.body;
+    lastName,
+    emailAddress,
+    phoneNumber,
+    biography,
+  } = request.body;
   return Promise.resolve(
     pool.query(
       "UPDATE\n" +
-      "student\n" +
-      "SET\n" +
-      "name = IFNULL(?, name),\n" +
-      "paternalSurname = IFNULL(?, paternalSurname),\n" +
-      "maternalSurname = IFNULL(?, maternalSurname),\n" +
-      "WHERE\n" +
-      "registrationNumber = ?",
-      [
-        name,
-        paternalSurname,
-        maternalSurname,
-        registrationNumber
-      ]
+        "student\n" +
+        "SET\n" +
+        "name = IFNULL(?, name),\n" +
+        "lastName = IFNULL(?, lastName),\n" +
+        "emailAddress = IFNULL(?, emailAddress),\n" +
+        "phoneNumber = IFNULL(?, phoneNumber),\n" +
+        "biography = IFNULL(?, biography)\n" +
+        "WHERE\n" +
+        "registrationNumber = ?",
+      [name, lastName, emailAddress, phoneNumber, biography, registrationNumber]
     )
   );
 };
@@ -123,25 +123,18 @@ export const postStudent = (request) => {
   const {
     registrationNumber,
     name,
-    paternalSurname,
-    maternalSurname,
+    lastName,
     emailAddress,
-    idEducationalProgram } = request.body;
+    idEducationalProgram,
+  } = request.body;
   return Promise.resolve(
     pool.query(
       "INSERT INTO\n" +
-      "student\n" +
-      "(registrationNumber, name, paternalSurname, maternalSurname, emailAddress, idEducationalProgram)\n" +
-      "VALUES\n" +
-      "(?, ?, ?, ?, ?, ?)",
-      [
-        registrationNumber,
-        name,
-        paternalSurname,
-        maternalSurname,
-        emailAddress,
-        idEducationalProgram
-      ]
+        "student\n" +
+        "(registrationNumber, name, lastName, emailAddress, idEducationalProgram)\n" +
+        "VALUES\n" +
+        "(?, ?, ?, ?, ?)",
+      [registrationNumber, name, lastName, emailAddress, idEducationalProgram]
     )
   );
 };
