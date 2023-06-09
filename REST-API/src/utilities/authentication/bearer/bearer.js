@@ -27,11 +27,11 @@ export const validateToken = (request, response, next) => {
 };
 
 function verifyToken(token) {
-  flag = true;
   jwt.verify(token, TOKEN_KEY, (error) => {
     if (error) {
-      flag = false;
+      return false;
+    } else {
+      return true;
     }
   });
-  return flag;
 }
