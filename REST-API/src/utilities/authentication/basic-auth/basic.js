@@ -12,9 +12,16 @@ export const validateCredentials = (request, response, next) => {
     response.set("WWW-Authenticate", 'Basic realm ="Secure"');
     message(response, RESPONSE_CODE.UNAUTHORIZED, RESPONSE_MESSAGE.FORBIDDEN);
   } else {
-    verifyCredentials(authentication.name, authentication.pass)
-      ? response.set("WWW-Authenticate", 'Basic realm ="Secure"')
-      : message(response, RESPONSE_CODE.UNAUTHORIZED, RESPONSE_MESSAGE.UNAUTHORIZED)
+    if (!verifyCredentials(authentication.name, authentication.pass)) {
+      response.set("WWW-Authenticate", 'Basic realm ="Secure"');
+      message(
+        response,
+        RESPONSE_CODE.UNAUTHORIZED,
+        RESPONSE_MESSAGE.UNAUTHORIZED
+      );
+    } else {
+      next();
+    }
   }
 };
 
