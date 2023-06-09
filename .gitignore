@@ -3,4 +3,6 @@
 */packages/
 */.vs/
 .env
+DesktopApp/Utilities/Credentials.Designer.cs
+DesktopApp/Utilities/Credentials.resx
 REST-API/node_modules

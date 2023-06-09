@@ -5,6 +5,7 @@ namespace ProfessorPerformanceEvaluation.Model
 {
     public class Response
     {
+        public int Code { get; set; }
         [JsonProperty("message")]
         public string Message { get; set; }
         [JsonProperty("token")]

@@ -16,21 +16,6 @@ import {
 
 const router = Router();
 
-router.get("/reviews/educationalexperience", validateToken, async (request, response) => {
-  try {
-    const [row] = await getReviewsByEducationalExperience(request);
-    const reviews = { reviews: row };
-    message(response, RESPONSE_CODE.OK, null, reviews);
-  } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-      exception
-    );
-  }
-});
-
 router.patch("/reviews", validateToken, async (request, response) => {
   try {
     const [row] = await getReview(request);
@@ -41,12 +26,7 @@ router.patch("/reviews", validateToken, async (request, response) => {
         message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.REVIEW_PUT);
       };
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-      exception
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
   }
 });
 
@@ -60,12 +40,17 @@ router.post("/reviews", validateToken, async (request, response) => {
         message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.REVIEW_POST);
       };
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-      exception
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+  }
+});
+
+router.post("/reviews/educationalexperience", validateToken, async (request, response) => {
+  try {
+    const [row] = await getReviewsByEducationalExperience(request);
+    const reviews = { reviews: row };
+    message(response, RESPONSE_CODE.OK, null, reviews);
+  } catch (exception) {
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
   }
 });
 

@@ -22,31 +22,7 @@ router.delete("/syllabus", validateToken, async (request, response) => {
       ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.SYLLABUS_DELETE)
       : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.SYLLABUS_NOT_FOUND);
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-      exception
-    );
-  }
-});
-
-router.get("/syllabus/id", validateToken, async (request, response) => {
-  try {
-    const [row] = await getSyllabusById(request);
-    row.length > 0
-      ? () => {
-        const syllabus = { syllabus: row };
-        message(response, RESPONSE_CODE.OK, syllabus);
-      }
-      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.SYLLABUS_NOT_FOUND);
-  } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-      exception
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
   }
 });
 
@@ -55,12 +31,21 @@ router.post("/syllabus", validateToken, async (request, response) => {
     await postSyllabus(request);
     message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.SYLLABUS_POST);
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-      exception
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+  }
+});
+
+router.post("/syllabus/id", validateToken, async (request, response) => {
+  try {
+    const [row] = await getSyllabusById(request);
+    row.length > 0
+      ? () => {
+        const syllabus = { syllabus: row };
+        message(response, RESPONSE_CODE.OK, null, syllabus);
+      }
+      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.SYLLABUS_NOT_FOUND);
+  } catch (exception) {
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
   }
 });
 

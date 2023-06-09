@@ -17,12 +17,7 @@ router.get("/faculties", validateToken, async (request, response) => {
     const faculties = { faculties: row };
     message(response, RESPONSE_CODE.OK, null, faculties);
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-      exception
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
   }
 });
 
