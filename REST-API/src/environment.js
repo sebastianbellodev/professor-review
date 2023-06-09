@@ -1,1 +1,1 @@
-export const path = "../.env";
+export const path = "../.env"

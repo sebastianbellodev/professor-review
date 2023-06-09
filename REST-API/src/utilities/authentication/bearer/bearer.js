@@ -7,7 +7,8 @@ import {
 } from "../../../tools/message.js";
 
 export const generateToken = (request) => {
-  const { username, password } = request.body;
+  const { username,
+    password } = request.body;
   return jwt.sign({ username, password }, TOKEN_KEY, { expiresIn: "2h" });
 };
 

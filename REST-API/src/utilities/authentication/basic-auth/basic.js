@@ -1,5 +1,5 @@
 import basicAuth from "basic-auth";
-import { credentials } from "./configuration/configuration.js";
+import { CREDENTIALS } from "./configuration/configuration.js";
 import {
   message,
   RESPONSE_CODE,
@@ -19,5 +19,5 @@ export const validateCredentials = (request, response, next) => {
 };
 
 function verifyCredentials(username, password) {
-  return username == credentials.username && password == credentials.password;
+  return CREDENTIALS.USERNAME == username && CREDENTIALS.PASSWORD == password;
 }
