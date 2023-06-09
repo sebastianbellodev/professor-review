@@ -13,21 +13,21 @@ export const generateToken = (request) => {
 
 export const validateToken = (request, response, next) => {
   const bearer = request.headers["authorization"];
-  if (!(typeof bearer !== "undefined")) {
-    message(response, RESPONSE_CODE.FORBIDDEN, RESPONSE_MESSAGE.FORBIDDEN);
-  } else {
+  if (typeof bearer !== "undefined") {
     const token = bearer.split(" ")[1];
     request.token = token;
     if (verifyToken(token)) {
-      message(response, RESPONSE_CODE.FORBIDDEN, RESPONSE_MESSAGE.FORBIDDEN);
-    } else {
       next();
+    } else {
+      message(response, RESPONSE_CODE.FORBIDDEN, RESPONSE_MESSAGE.FORBIDDEN);
     }
+  } else {
+    message(response, RESPONSE_CODE.FORBIDDEN, RESPONSE_MESSAGE.FORBIDDEN);
   }
 };
 
 function verifyToken(token) {
-  flag = true;
+  let flag = true;
   jwt.verify(token, TOKEN_KEY, (error) => {
     if (error) {
       flag = false;

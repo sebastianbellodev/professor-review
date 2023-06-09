@@ -7,7 +7,7 @@ export function message(response, code, message, content = null) {
     return response.status(code).json(content);
   }
 
-  return response.status(code).json({ message }, content);
+  return response.status(code).json({ message, content });
 }
 
 export const RESPONSE_CODE = {
@@ -24,6 +24,7 @@ export const RESPONSE_MESSAGE = {
   UNAUTHORIZED: "User not authorized.",
   FORBIDDEN: "Forbidden resource.",
   INTERNAL_SERVER_ERROR: "There is no connection to the database.",
+  INFORMATION_PUT: "Information updated successfully.",
 
   EDUCATIONAL_EXPERIENCE_ALREADY_REGISTERED:
     "Educational experience already registered in the system.",
