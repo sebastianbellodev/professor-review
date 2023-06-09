@@ -5,20 +5,14 @@ import {
   getUserByUsername,
   getUsers,
   patchUser,
-  postUser
+  postUser,
 } from "../controllers/user.controllers.js";
-import {
-  validateCredentials
-} from "../utilities/authentication/basic-auth/basic.js"
+import { validateCredentials } from "../utilities/authentication/basic-auth/basic.js";
 import {
   generateToken,
-  validateToken
+  validateToken,
 } from "../utilities/authentication/bearer/bearer.js";
-import {
-  message,
-  RESPONSE_CODE,
-  RESPONSE_MESSAGE
-} from "../tools/message.js";
+import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../tools/message.js";
 
 const router = Router();
 
@@ -27,7 +21,11 @@ router.delete("/users", validateToken, async (request, response) => {
     const [row] = await deleteUser(request);
     row.affectedRows > 0
       ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.USER_DELETE)
-      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+      : message(
+          response,
+          RESPONSE_CODE.NOT_FOUND,
+          RESPONSE_MESSAGE.USER_NOT_FOUND
+        );
   } catch (exception) {
     message(
       response,
@@ -41,12 +39,16 @@ router.delete("/users", validateToken, async (request, response) => {
 router.get("/users/login", validateCredentials, async (request, response) => {
   try {
     const [row] = await login(request);
-    row.length > 0
-      ? () => {
-        const token = generateToken(request);
-        message(response, RESPONSE_CODE.OK, token);
-      }
-      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+    if (row.length > 0) {
+      const token = { token: generateToken(request) };
+      message(response, RESPONSE_CODE.OK, null, token);
+    } else {
+      message(
+        response,
+        RESPONSE_CODE.NOT_FOUND,
+        RESPONSE_MESSAGE.USER_NOT_FOUND
+      );
+    }
   } catch (exception) {
     message(
       response,
@@ -76,10 +78,14 @@ router.get("/users/username", validateToken, async (request, response) => {
     const [row] = await getUserByUsername(request);
     row.length > 0
       ? () => {
-        const user = { user: row };
-        message(response, RESPONSE_CODE.OK, user);
-      }
-      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.SYLLABUS_NOT_FOUND);
+          const user = { user: row };
+          message(response, RESPONSE_CODE.OK, user);
+        }
+      : message(
+          response,
+          RESPONSE_CODE.NOT_FOUND,
+          RESPONSE_MESSAGE.SYLLABUS_NOT_FOUND
+        );
   } catch (exception) {
     message(
       response,
@@ -110,7 +116,11 @@ router.patch("/users", validateToken, async (request, response) => {
     const [row] = await patchUser(request);
     row.affectedRows > 0
       ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.USER_PUT)
-      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+      : message(
+          response,
+          RESPONSE_CODE.NOT_FOUND,
+          RESPONSE_MESSAGE.USER_NOT_FOUND
+        );
   } catch (exception) {
     message(
       response,

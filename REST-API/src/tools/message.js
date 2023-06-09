@@ -1,11 +1,13 @@
 export function message(response, code, message, content = null) {
   if (content === null) {
     return response.status(code).json({ message });
-  } else if (message === null) {
-    return response.status(code).json(content);
-  } else {
-    return response.status(code).json({ message, content });
   }
+
+  if (message === null) {
+    return response.status(code).json(content);
+  }
+
+  return response.status(code).json({ message }, content);
 }
 
 export const RESPONSE_CODE = {
@@ -19,18 +21,19 @@ export const RESPONSE_CODE = {
 };
 
 export const RESPONSE_MESSAGE = {
-
   UNAUTHORIZED: "User not authorized.",
   FORBIDDEN: "Forbidden resource.",
   INTERNAL_SERVER_ERROR: "There is no connection to the database.",
 
-  EDUCATIONAL_EXPERIENCE_ALREADY_REGISTERED: "Educational experience already registered in the system.",
+  EDUCATIONAL_EXPERIENCE_ALREADY_REGISTERED:
+    "Educational experience already registered in the system.",
   EDUCATIONAL_EXPERIENCE_NOT_FOUND: "Educational experience not found.",
   EDUCATIONAL_EXPERIENCE_POST: "Educational experience posted successfully.",
   EDUCATIONAL_EXPERIENCE_PUT: "Educational experience updated successfully.",
   EDUCATIONAL_EXPERIENCE_DELETE: "Educational experience deleted successfully.",
 
-  EDUCATIONAL_PROGRAM_ALREADY_REGISTERED: "Educational program already registered in the system.",
+  EDUCATIONAL_PROGRAM_ALREADY_REGISTERED:
+    "Educational program already registered in the system.",
   EDUCATIONAL_PROGRAM_NOT_FOUND: "Educational program not found.",
   EDUCATIONAL_PROGRAM_POST: "Educational program posted successfully.",
   EDUCATIONAL_PROGRAM_PUT: "Educational program updated successfully.",
@@ -43,7 +46,7 @@ export const RESPONSE_MESSAGE = {
   FACULTY_DELETE: "Faculty deleted successfully.",
 
   SCHOOL_PERIOD_NOT_FOUND: "School period not found.",
-  
+
   REVIEW_ALREADY_REGISTERED: "Review already registered in the system.",
   REVIEW_NOT_FOUND: "Review not found.",
   REVIEW_POST: "Review posted successfully.",
