@@ -9,7 +9,11 @@ import {
 export const generateToken = (request) => {
   const { username,
     password } = request.body;
-  return jwt.sign({ username, password }, TOKEN_KEY, { expiresIn: "2h" });
+  return jwt.sign(
+    { username, password },
+    TOKEN_KEY,
+    { expiresIn: "2h" }
+  );
 };
 
 export const validateToken = (request, response, next) => {
