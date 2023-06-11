@@ -1,5 +1,5 @@
 import Router from "express-promise-router";
-import { getFaculties } from "../controllers/faculty.controllers.js";
+import { getFaculties, getFacultiesByName, patchFaculty } from "../controllers/faculty.controllers.js";
 import {
   validateToken
 } from "../utilities/authentication/bearer/bearer.js";
@@ -21,54 +21,58 @@ try {
   }
 });
 
-router.post ("/logFaculty", validateToken, (req, res) => {
+router.post ("/faculty", validateToken, async  (request, response) => {
     try{
-        verifyToken(req, res, async() => {
-            const [row] = await logFaculty();
-            message(res, RES_CODE.CREATED, RES_MESSAGE.FACULTY_POST);
-        });
-    }catch(err){
+        const [row] = await getFacultiesByName(request);
+        row.length > 0
+        ? message(response, RESPONSE_CODE.BAD_REQUEST, RESPONSE_MESSAGE.FACULTY__ALREADY_REGISTERED)
+        : async () => {
+            await logFaculty(request);
+            message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.FACULTY_POST);
+        }
+    }catch(exception){
         message(
-            res,
-            RES_CODE.INTERNAL_SERVER_ERROR,
-            RES_MESSAGE.INTERAL_SERVER_ERROR,
-            err
+            response,
+            RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+            RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+            exception
         );
     }
 });
 
-router.patch("/updateFaculty", validateToken, (req, res) => {
+router.patch("/faculty", validateToken, async (request, response) => {
     try{
-        verifyToken(req, res, async() => {
-            const [row] = await patchFaculty (req);
-            row.affectedRows > 0
-            ? message(res, RES_CODE.OK, RES_MESSAGE.FACULTY_PUT)
-            : message(res, RES_CODE.NOT_FOUND, RES_MESSAGE.FACULTY_NOT_FOUND)
-        });
-    }catch(err){
+        const [row] = await getFacultiesByName(request);
+        row.length < 0
+        ? message(response, RESPONSE_CODE.BAD_REQUEST, RESPONSE_MESSAGE.FACULTY__ALREADY_REGISTERED)
+        : async () => {
+            await patchFaculty(request);
+            message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.FACULTY_POST);
+        }
+    }catch(exception){
         message(
-            res,
+            response,
             RES_CODE.INTERNAL_SERVER_ERROR,
             RES_MESSAGE.INTERAL_SERVER_ERROR,
-            err
+            exception
         );
     }
 });
 
-router.delete("/deleteFaculty", validateToken, (req, res) =>{
+router.delete("/faculty", validateToken, (request, response) =>{
     try{
-        verifyToken(req, res, async() => {
-            const [row] = await deleteFaculty(req);
+        verifyToken(request, reresponses, async() => {
+            const [row] = await deleteFaculty(request);
             row.affectedRows > 0
-            ? message(res, RES_CODE.OK, RES_MESSAGE.FACULTY_DELETED)
-            : message(res, RES_CODE.NOT_FOUND, RES_MESSAGE.FACULTY_NOT_FOUND)
+            ? message(response, RES_CODE.OK, RES_MESSAGE.FACULTY_DELETED)
+            : message(response, RES_CODE.NOT_FOUND, RES_MESSAGE.FACULTY_NOT_FOUND)
         });
-    }catch(err){
+    }catch(exception){
         message(
-            res,
-            RES_CODE.INTERNAL_SERVER_ERROR,
-            RES_MESSAGE.INTERAL_SERVER_ERROR,
-            err
+            response,
+            RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+            RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+            exception
         );
     }
 });

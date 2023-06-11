@@ -32,15 +32,15 @@ router.get("/educationalprograms", validateToken, async (request, response) => {
   }
 });
 
-router.get("/educationalProgram", validateToken, (req, res) => {
+router.get("/educationalProgram", validateToken, (request, response) => {
   try{
-    verifyToken(req, res, async () => {
-      await getEducationalProgramOfFaculty(req);
-      message(res, RES_CODE.OK, null, row)
+    verifyToken(request, response, async () => {
+      await getEducationalProgramOfFaculty(request);
+      message(response, RES_CODE.OK, null, row)
     });
   }catch(err){
     message(
-      res,
+      response,
       RES_CODE.INTERNAL_SERVER_ERROR,
       RES_MESSAGE.INTERAL_SERVER_ERROR,
       err

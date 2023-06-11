@@ -55,17 +55,17 @@ router.post("/reviews/educationalexperience", validateToken, async (request, res
 });
 
 
-router.delete("/review/deletes", validateToken,(req, res) => {
+router.delete("/review/deletes", validateToken,(request, response) => {
     try{
-        verifyToken(req, res, async() => {
-            const [row] = await deleteReview(req);
+        verifyToken(request, response, async() => {
+            const [row] = await deleteReview(request);
             row.affectedRows > 0
-            ? message(res, RES_CODE.OK, RES_MESSAGE.REVIEW_DELETE)
+            ? message(response, RES_CODE.OK, RES_MESSAGE.REVIEW_DELETE)
             : message(RES_CODE.NOT_FOUND, RES_MESSAGE.REVIEW_NOT_FOUND);
         });
     }catch(err){        
         message(
-            res,RES_CODE.INTERNAL_SERVER_ERROR,
+          response,RES_CODE.INTERNAL_SERVER_ERROR,
             RES_MESSAGE.INTERAL_SERVER_ERROR,
             err
         );

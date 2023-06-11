@@ -1,10 +1,10 @@
 import { pool } from "../schema/connection";
 
-export const logAcademicOffering = (req) => {
+export const logAcademicOffering = (request) => {
     const {
         idSyllabus,
         idProfessor
-    } = req.body;
+    } = request.body;
     return Promise.resolve(
         pool.query(
             "INSERT INTO review ('stars', 'comment', 'idSchoolPeriod', 'idAcademicOffering', 'registrationNumber') VALUES ('?', '?', '?', '?', '?')",

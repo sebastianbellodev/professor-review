@@ -8,6 +8,16 @@ export const getFaculties = () => {
     );
 };
 
+export const getFacultiesByName = () => {
+    const name = request.body.name;
+    return Promise.resolve(
+        pool.query(
+            "Select * FROM faculty WHERE name = ?",
+            [name]
+        )
+    );
+};
+
 export const logFaculty = () => {
     const {
         name
@@ -20,7 +30,7 @@ export const logFaculty = () => {
             ]
         )
     )
-}
+};
 
 export const deleteFaculty = () => {
     const {
@@ -35,7 +45,7 @@ export const deleteFaculty = () => {
         )
 
     )
-}
+};
 
 export const patchFaculty = () => {
     const {
@@ -52,15 +62,15 @@ export const patchFaculty = () => {
         )
 
     )
-}
+};
 
-  return Promise.resolve(
+return Promise.resolve(
     pool.query(
       "SELECT\n" +
       "*\n" +
       "FROM\n" +
       "faculty"
     )
-  );
-};
+);
+
 
