@@ -3,6 +3,5 @@
 */packages/
 */.vs/
 .env
-DesktopApp/Utilities/Credentials.Designer.cs
-DesktopApp/Utilities/Credentials.resx
+MobileApp/app/src/main/res/values/credentials.xml
 REST-API/node_modules
