@@ -1,21 +1,20 @@
 import { pool } from "../schema/connection.js";
+import { isNullish } from "@supercharge/goodies";
 
 export const deleteUser = (request) => {
   const username = request.body.username;
   return Promise.resolve(
-    pool.query(
-      "DELETE\n" +
-      "FROM\n" +
-      "user\n" +
-      "WHERE\n" +
-      "username = ?",
-      [username]
-    )
+    pool.query("DELETE\n" + "FROM\n" + "user\n" + "WHERE\n" + "username = ?", [
+      username,
+    ])
   );
 };
 
 export const getUserByUsername = (request) => {
-  const username = request.body.username;
+  const username =
+    isNullish(request.body.username)
+      ? request.body.username
+      : "";
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
@@ -32,18 +31,13 @@ export const getUserByUsername = (request) => {
 export const getUsers = () => {
   return Promise.resolve(
     pool.query(
-      "SELECT\n" +
-      "username, registrationNumber\n" +
-      "FROM\n" +
-      "user"
+      "SELECT\n" + "username, registrationNumber\n" + "FROM\n" + "user"
     )
   );
 };
 
 export const login = (request) => {
-  const {
-    username,
-    password } = request.body;
+  const { username, password } = request.body;
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
@@ -54,18 +48,13 @@ export const login = (request) => {
       "username = ?\n" +
       "AND\n" +
       "password = ?",
-      [
-        username,
-        password
-      ]
+      [username, password]
     )
   );
 };
 
 export const patchUser = (request) => {
-  const {
-    username,
-    password } = request.body;
+  const { username, password } = request.body;
   return Promise.resolve(
     pool.query(
       "UPDATE\n" +
@@ -74,30 +63,20 @@ export const patchUser = (request) => {
       "password = IFNULL(?, password)\n" +
       "WHERE\n" +
       "username = ?",
-      [
-        password,
-        username
-      ]
+      [password, username]
     )
   );
 };
 
 export const postUser = (request) => {
-  const {
-    username,
-    password,
-    registrationNumber } = request.body;
+  const { username, password, registrationNumber } = request.body;
   return Promise.resolve(
     pool.query(
       "INSERT INTO\n" +
       "user\n" +
       "(username, password, registrationNumber)\n" +
       "VALUES (?, ?, ?)",
-      [
-        username,
-        password,
-        registrationNumber
-      ]
+      [username, password, registrationNumber]
     )
   );
 };

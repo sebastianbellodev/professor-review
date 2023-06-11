@@ -3,4 +3,7 @@ import { path } from "../../../../environment.js";
 
 config({ path });
 
-export const TOKEN_KEY = process.env.TOKEN_KEY;
+export const CREDENTIALS = {
+  USERNAME: process.env.NAME,
+  PASSWORD: process.env.PASSWORD,
+};

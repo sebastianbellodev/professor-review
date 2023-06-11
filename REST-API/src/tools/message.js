@@ -1,11 +1,11 @@
 export function message(response, code, message, content = null) {
   if (content === null) {
     return response.status(code).json({ message });
-  } else if (message === null) {
-    return response.status(code).json(content);
-  } else {
-    return response.status(code).json({ message, content });
   }
+  if (message === null) {
+    return response.status(code).json(content);
+  }
+  return response.status(code).json({ message, content });
 }
 
 export const RESPONSE_CODE = {
@@ -23,6 +23,7 @@ export const RESPONSE_MESSAGE = {
   UNAUTHORIZED: "User not authorized.",
   FORBIDDEN: "Forbidden resource.",
   INTERNAL_SERVER_ERROR: "There is no connection to the database.",
+  INFORMATION_PUT: "Information updated successfully.",
 
   EDUCATIONAL_EXPERIENCE_ALREADY_REGISTERED: "Educational experience already registered in the system.",
   EDUCATIONAL_EXPERIENCE_NOT_FOUND: "Educational experience not found.",
@@ -43,7 +44,7 @@ export const RESPONSE_MESSAGE = {
   FACULTY_DELETE: "Faculty deleted successfully.",
 
   SCHOOL_PERIOD_NOT_FOUND: "School period not found.",
-  
+
   REVIEW_ALREADY_REGISTERED: "Review already registered in the system.",
   REVIEW_NOT_FOUND: "Review not found.",
   REVIEW_POST: "Review posted successfully.",
@@ -68,11 +69,12 @@ export const RESPONSE_MESSAGE = {
   PROFESSOR_PUT: "Professor updated successfully.",
   PROFESSOR_DELETE: "Professor deleted successfully.",
 
-  URL_NOT_FOUND: "URL not found",
+  URL_NOT_FOUND: "URL not found.",
 
   USER_ALREADY_REGISTERED: "User already registered in the system.",
   USER_NOT_FOUND: "User not found.",
   USER_POST: "User posted successfully.",
   USER_PUT: "User updated successfully.",
   USER_DELETE: "User deleted successfully.",
+
 };

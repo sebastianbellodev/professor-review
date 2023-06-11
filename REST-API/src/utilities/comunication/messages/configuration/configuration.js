@@ -1,6 +1,7 @@
 import { config } from "dotenv";
+import { path } from "../../../../environment.js";
 
-config();
+config({ path });
 
 export const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
 export const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN;

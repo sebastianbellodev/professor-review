@@ -5,14 +5,12 @@ import {
   getUserByUsername,
   getUsers,
   patchUser,
-  postUser
+  postUser,
 } from "../controllers/user.controllers.js";
-import {
-  validateCredentials
-} from "../utilities/authentication/basic-auth/basic.js"
+import { validateCredentials } from "../utilities/authentication/basic-auth/basic.js";
 import {
   generateToken,
-  validateToken
+  validateToken,
 } from "../utilities/authentication/bearer/bearer.js";
 import {
   message,
@@ -22,114 +20,82 @@ import {
 
 const router = Router();
 
-router.delete("/users", validateToken, async(request, response) => {
+router.delete("/users", validateToken, async (request, response) => {
   try {
-      const [row] = await deleteUser(request);
-      row.affectedRows > 0
-        ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.USER_DELETE)
-        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+    const [row] = await deleteUser(request);
+    row.affectedRows > 0
+      ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.USER_DELETE)
+      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-      exception
-    );
-  }
-});
-
-router.get("/users/login", validateCredentials, async (request, response) => {
-  try {
-      const [row] = await login(request);
-      row.length > 0
-        ? () => {
-          const token = generateToken(request);
-          message(response, RESPONSE_CODE.OK, token);
-        }
-        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
-  } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-      exception
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
   }
 });
 
 router.get("/users/signup", validateCredentials, (request, response) => {
   try {
-      const token = generateToken(request);
-      message(response, RESPONSE_CODE.OK, token);
+    const token = { token: generateToken(request) };
+    message(response, RESPONSE_CODE.OK, null, token);
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-      exception
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
   }
 });
 
-router.get("/users/username", validateToken, async(request, response) => {
+router.get("/users", validateToken, async (request, response) => {
   try {
-      const [row] = await getUserByUsername(request);
-      row.length > 0
-        ? message(response, RESPONSE_CODE.OK, null, row)
-        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+    const [row] = await getUsers();
+    const users = { users: row };
+    message(response, RESPONSE_CODE.OK, null, users);
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-      exception
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
   }
 });
 
-router.get("/users", validateToken, async(request, response) => {
+router.patch("/users", validateToken, async (request, response) => {
   try {
-      const [row] = await getUsers();
-      message(response, RESPONSE_CODE.OK, null, row);
+    const [row] = await patchUser(request);
+    row.affectedRows > 0
+      ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.USER_PUT)
+      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-      exception
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
   }
 });
 
-router.patch("/users", validateToken, async(request, response) => {
+router.post("/users", validateToken, async (request, response) => {
   try {
-      const [row] = await patchUser(request);
-      row.affectedRows > 0
-        ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.USER_PUT)
-        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+    await postUser(request);
+    message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.USER_POST);
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-      exception
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
   }
 });
 
-router.post("/users", async (request, response) => {
+router.post("/users/login", validateCredentials, async (request, response) => {
   try {
-    verifyToken(request, response, async () => {
-      await postUser(request);
-      message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.USER_POST);
-    });
+    const [row] = await login(request);
+    if (row.length > 0) {
+      const token = { token: generateToken(request) };
+      message(response, RESPONSE_CODE.OK, null, token);
+    } else {
+      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+    }
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-      exception
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+  }
+});
+
+
+router.post("/users/username", validateToken, async (request, response) => {
+  try {
+    const [row] = await getUserByUsername(request);
+    row.length > 0
+      ? () => {
+        const user = { user: row };
+        message(response, RESPONSE_CODE.OK, null, user);
+      }
+      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+  } catch (exception) {
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
   }
 });
 

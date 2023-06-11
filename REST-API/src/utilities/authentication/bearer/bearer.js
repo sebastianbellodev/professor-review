@@ -3,7 +3,7 @@ import { TOKEN_KEY } from "./configuration/configuration.js";
 import {
   message,
   RESPONSE_CODE,
-  RESPONSE_MESSAGE
+  RESPONSE_MESSAGE,
 } from "../../../tools/message.js";
 
 export const generateToken = (request) => {
@@ -17,26 +17,26 @@ export const generateToken = (request) => {
 };
 
 export const validateToken = (request, response, next) => {
-  const bearer = request.headers["authorization"];  
-  if (!(typeof bearer !== "undefined")) {
-    message(response, RESPONSE_CODE.FORBIDDEN, RESPONSE_MESSAGE.FORBIDDEN);
-  } else {
+  const bearer = request.headers["authorization"];
+  if (typeof bearer !== "undefined") {
     const token = bearer.split(" ")[1];
     request.token = token;
-    if(verifyToken(request.token)){
-      message(response, RESPONSE_CODE.FORBIDDEN, RESPONSE_MESSAGE.FORBIDDEN);
-    }else{
+    if (verifyToken(token)) {
       next();
+    } else {
+      message(response, RESPONSE_CODE.FORBIDDEN, RESPONSE_MESSAGE.FORBIDDEN);
     }
+  } else {
+    message(response, RESPONSE_CODE.FORBIDDEN, RESPONSE_MESSAGE.FORBIDDEN);
   }
 };
 
-function verifyToken (token) {
-  flag = true;
+function verifyToken(token) {
+  let flag = true;
   jwt.verify(token, TOKEN_KEY, (error) => {
     if (error) {
       flag = false;
     }
   });
   return flag;
-};
+}

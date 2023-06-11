@@ -12,18 +12,14 @@ import {
 const router = Router();
 
 router.get("/faculties", validateToken, async (request, response) => {
-    try {
-        const [row] = await getFaculties();
-        message(response, RESPONSE_CODE.OK, null, row);
-    } catch (exception) {
-      message(
-        response,
-        RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-        RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-        exception
-      );
-    }
-  });
+try {
+    const [row] = await getFaculties();
+    const faculties = { faculties: row };
+    message(response, RESPONSE_CODE.OK, null, faculties);
+  } catch (exception) {
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+  }
+});
 
 router.post ("/logFaculty", validateToken, (req, res) => {
     try{
@@ -76,3 +72,5 @@ router.delete("/deleteFaculty", validateToken, (req, res) =>{
         );
     }
 });
+
+export default router;

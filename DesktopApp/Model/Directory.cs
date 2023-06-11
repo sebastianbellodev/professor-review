@@ -5,7 +5,7 @@ namespace ProfessorPerformanceEvaluation.Model
     public class Directory
     {
         [JsonProperty("idDirectory")]
-        public int IdDirectory { get; set; }
+        public int IdEducationalExperience { get; set; }
         [JsonProperty("idFaculty")]
         public int IdFaculty { get; set; }
         [JsonProperty("idProfessor")]

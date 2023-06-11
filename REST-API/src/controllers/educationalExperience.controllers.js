@@ -1,4 +1,4 @@
-import { pool } from "../schema/connection";
+import { pool } from "../schema/connection.js";
 
 export const getEducationalExperienceById = (request) => {
   const idEducationalExperience = request.body.idEducationalExperience;
