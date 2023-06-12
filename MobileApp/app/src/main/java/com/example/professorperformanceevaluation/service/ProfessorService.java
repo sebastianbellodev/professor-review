@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProfessorService {
 
-    private static final String URL = R.string.base_url + "professors/";
+    private static final String URL = String.valueOf(R.string.base_url);
 
     private static String token;
     private static Retrofit retrofit;

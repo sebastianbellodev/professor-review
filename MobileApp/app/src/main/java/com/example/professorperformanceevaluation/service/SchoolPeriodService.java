@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SchoolPeriodService {
 
-    private static final String URL = R.string.base_url + "schoolperiods/";
+    private static final String URL = String.valueOf(R.string.base_url);
 
     private static String token;
     private static Retrofit retrofit;

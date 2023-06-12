@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.example.professorperformanceevaluation.R;
 import com.example.professorperformanceevaluation.api.FacultyServiceApi;
+import com.example.professorperformanceevaluation.model.Faculty;
 import com.example.professorperformanceevaluation.model.Response;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -18,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FacultyService {
 
-    private static final String URL = R.string.base_url + "faculties/";
+    private static final String URL = String.valueOf(R.string.base_url);
 
     private static String token;
     private static Retrofit retrofit;
@@ -37,8 +38,47 @@ public class FacultyService {
         apiService = retrofit.create(FacultyServiceApi.class);
     }
 
+    public static Response delete(Faculty faculty) {
+        Call<Response> call = apiService.delete("Bearer " + token, faculty);
+        try {
+            retrofit2.Response<Response> response = call.execute();
+            return response.body();
+        } catch (Exception exception) {
+            Response response = new Response();
+            response.setCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
+            response.setMessage(exception.getMessage());
+            return response;
+        }
+    }
+
     public static Response getFaculties() {
         Call<Response> call = apiService.getFaculties("Bearer " + token);
+        try {
+            retrofit2.Response<Response> response = call.execute();
+            return response.body();
+        } catch (Exception exception) {
+            Response response = new Response();
+            response.setCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
+            response.setMessage(exception.getMessage());
+            return response;
+        }
+    }
+
+    public static Response patch(Faculty faculty) {
+        Call<Response> call = apiService.patch("Bearer " + token, faculty);
+        try {
+            retrofit2.Response<Response> response = call.execute();
+            return response.body();
+        } catch (Exception exception) {
+            Response response = new Response();
+            response.setCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
+            response.setMessage(exception.getMessage());
+            return response;
+        }
+    }
+
+    public static Response post(Faculty faculty) {
+        Call<Response> call = apiService.post("Bearer " + token, faculty);
         try {
             retrofit2.Response<Response> response = call.execute();
             return response.body();

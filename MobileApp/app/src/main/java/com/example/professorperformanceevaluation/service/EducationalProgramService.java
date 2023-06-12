@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.professorperformanceevaluation.R;
-import com.example.professorperformanceevaluation.api.ReviewServiceApi;
-import com.example.professorperformanceevaluation.model.EducationalExperience;
+import com.example.professorperformanceevaluation.api.EducationalProgramServiceApi;
+import com.example.professorperformanceevaluation.model.EducationalProgram;
+import com.example.professorperformanceevaluation.model.Faculty;
 import com.example.professorperformanceevaluation.model.Response;
-import com.example.professorperformanceevaluation.model.Review;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -18,13 +18,13 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ReviewService {
+public class EducationalProgramService {
 
     private static final String URL = String.valueOf(R.string.base_url);
 
     private static String token;
     private static Retrofit retrofit;
-    private static ReviewServiceApi apiService;
+    private static EducationalProgramServiceApi apiService;
 
     public static void initialize(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE);
@@ -36,11 +36,11 @@ public class ReviewService {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(httpClient.build())
                 .build();
-        apiService = retrofit.create(ReviewServiceApi.class);
+        apiService = retrofit.create(EducationalProgramServiceApi.class);
     }
 
-    public static Response delete(Review review) {
-        Call<Response> call = apiService.delete("Bearer " + token, review);
+    public static Response getEducationalPrograms() {
+        Call<Response> call = apiService.getEducationalPrograms("Bearer " + token);
         try {
             retrofit2.Response<Response> response = call.execute();
             return response.body();
@@ -52,8 +52,8 @@ public class ReviewService {
         }
     }
 
-    public static Response getReviewsByEducationalExperience(EducationalExperience educationalExperience) {
-        Call<Response> call = apiService.getReviewsByEducationalExperience("Bearer " + token, educationalExperience);
+    public static Response getEducationalProgramsByFaculty(Faculty faculty) {
+        Call<Response> call = apiService.getEducationalProgramsByFaculty("Bearer " + token, faculty);
         try {
             retrofit2.Response<Response> response = call.execute();
             return response.body();
@@ -65,8 +65,8 @@ public class ReviewService {
         }
     }
 
-    public static Response patch(Review review) {
-        Call<Response> call = apiService.patch("Bearer " + token, review);
+    public static Response patch(EducationalProgram educationalProgram) {
+        Call<Response> call = apiService.patch("Bearer " + token, educationalProgram);
         try {
             retrofit2.Response<Response> response = call.execute();
             return response.body();
@@ -78,8 +78,8 @@ public class ReviewService {
         }
     }
 
-    public static Response post(Review review) {
-        Call<Response> call = apiService.post("Bearer " + token, review);
+    public static Response post(EducationalProgram educationalProgram) {
+        Call<Response> call = apiService.post("Bearer " + token, educationalProgram);
         try {
             retrofit2.Response<Response> response = call.execute();
             return response.body();
