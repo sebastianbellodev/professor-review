@@ -59,6 +59,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\ManageFaculties.xaml.cs">
+      <DependentUpon>ManageFaculties.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegisterFaculty.xaml.cs">
+      <DependentUpon>RegisterFaculty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateFaculty.xaml.cs">
+      <DependentUpon>UpdateFaculty.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AssignEducationalExperienceToProfessor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DeleteReview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -94,10 +111,28 @@
       <DependentUpon>Credentials.resx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Utilities.cs" />
+    <Compile Include="Views\AssignEducationalExperienceToProfessor.xaml.cs">
+      <DependentUpon>AssignEducationalExperienceToProfessor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeleteReview.xaml.cs">
+      <DependentUpon>DeleteReview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ManageFaculties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RegisterFaculty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateFaculty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

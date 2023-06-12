@@ -1,0 +1,43 @@
+﻿<Window x:Class="ProfessorPerformanceEvaluation.Views.DeleteReview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProfessorPerformanceEvaluation.Views"
+        mc:Ignorable="d"
+        Title="Delete Review" Height="569" Width="927">
+    <Grid>
+        <ComboBox x:Name="cbb_Faculty" HorizontalAlignment="Left" Margin="23,55,0,0" VerticalAlignment="Top" Width="185" Height="28" Text="Facultades"/>
+        <ComboBox x:Name="cbb_EducationalProgram" HorizontalAlignment="Left" Margin="255,55,0,0" VerticalAlignment="Top" Width="185" Height="28"/>
+        <ComboBox x:Name="cbb_EducationalExperience" HorizontalAlignment="Left" Margin="488,53,0,0" VerticalAlignment="Top" Width="186" Height="28"/>
+        <ComboBox x:Name="cbb_Professors" HorizontalAlignment="Left" Margin="717,55,0,0" VerticalAlignment="Top" Width="186" Height="28"/>
+        <Label Content="Facultades:" HorizontalAlignment="Left" Margin="23,12,0,0" VerticalAlignment="Top" Width="118" FontSize="18"/>
+        <Label Content="Programas educativos:" HorizontalAlignment="Left" Margin="255,13,0,0" VerticalAlignment="Top" Width="209" FontSize="18"/>
+        <Label Content="Profesores:&#xD;&#xA;" HorizontalAlignment="Left" Margin="717,10,0,0" VerticalAlignment="Top" Width="118" FontSize="18" Height="37"/>
+        <Label Content="Experiencia Educativa&#xD;&#xA;" HorizontalAlignment="Left" Margin="481,13,0,0" VerticalAlignment="Top" Width="201" FontSize="18" Height="34"/>
+        
+        <Button x:Name="btn_delete" Content="Eliminar" HorizontalAlignment="Left" Margin="776,493,0,0" VerticalAlignment="Top" Height="37" Width="128"/>
+        <Button x:Name="btn_cancel" Content="Cancelar" HorizontalAlignment="Left" Margin="602,493,0,0" VerticalAlignment="Top" Height="37" Width="128"/>
+        
+        <DataGrid Name="DataGridReviews" Margin="24,137,23,92">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Estrellas" Width="150"/>
+                <DataGridTextColumn Header="Comentarios" Width="329"/>
+                <DataGridTextColumn Header="Numero de registro" Width="200"/>
+                <DataGridTextColumn Header="Periodo escolar" Width="200"/>
+            </DataGrid.Columns>
+
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    
+                    <Setter Property="Background" Value="HotPink" />
+                    <Setter Property="FontWeight" Value="SemiBold" />
+                    <Setter Property="BorderThickness" Value="0,0,1,2" />
+                    <Setter Property="BorderBrush" Value="White" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid>
+            
+    </Grid>
+</Window>
