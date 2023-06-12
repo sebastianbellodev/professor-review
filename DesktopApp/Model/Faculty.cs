@@ -8,5 +8,6 @@ namespace ProfessorPerformanceEvaluation.Model
         public int IdFaculty { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
+        public bool IsSelected { get; set; }
     }
 }

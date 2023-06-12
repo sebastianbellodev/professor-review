@@ -230,6 +230,12 @@
     <Compile Include="Views\MainMenuWindow.xaml.cs">
       <DependentUpon>MainMenuWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ModifyEducationalExperienceWindow.xaml.cs">
+      <DependentUpon>ModifyEducationalExperienceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModifyEducationalProgramWindow.xaml.cs">
+      <DependentUpon>ModifyEducationalProgramWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SpecificReportGenerationMenuWindow.xaml.cs">
       <DependentUpon>SpecificReportGenerationMenuWindow.xaml</DependentUpon>
     </Compile>
@@ -298,6 +304,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModifyEducationalExperienceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModifyEducationalProgramWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

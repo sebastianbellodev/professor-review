@@ -1,6 +1,7 @@
 import Router from "express-promise-router";
 import {
   deleteSyllabus,
+  getSyllabusesByEducationalExperience,
   getSyllabusById,
   postSyllabus
 } from "../controllers/syllabus.controllers.js";
@@ -30,6 +31,16 @@ router.post("/syllabus", validateToken, async (request, response) => {
   try {
     await postSyllabus(request);
     message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.SYLLABUS_POST);
+  } catch (exception) {
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+  }
+});
+
+router.post("/syllabus/educationalexperience", validateToken, async (request, response) => {
+  try {
+    const [row] = await getSyllabusesByEducationalExperience(request);
+    const syllabuses = { syllabuses: row };
+    message(response, RESPONSE_CODE.OK, null, syllabuses);
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
   }
