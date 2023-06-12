@@ -117,7 +117,85 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ACCEPT_BUTTON" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="ASSIGN_EDUCATIONAL_EXPERIENCE_TO_PROFESSOR_BUTTON" xml:space="preserve">
+    <value>Asignar experiencia educativa a profesor</value>
+  </data>
   <data name="BASE_URL" xml:space="preserve">
     <value>http://localhost:3000/api/</value>
+  </data>
+  <data name="CANCEL_BUTTON" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="EDUCATIONAL_PROGRAM_ADMINISTRATION_BUTTON" xml:space="preserve">
+    <value>Administración del programa educativo</value>
+  </data>
+  <data name="EDUCATIONAL_PROGRAM_ADMINISTRATION_LABEL" xml:space="preserve">
+    <value>Administración del programa educativo.</value>
+  </data>
+  <data name="EDUCATIONAL_PROGRAM_NAME_LABEL" xml:space="preserve">
+    <value>Nombre del programa educativo</value>
+  </data>
+  <data name="GENERATE_ACTIVITY_REPORT_BY_STUDENT_BUTTON" xml:space="preserve">
+    <value>Generar reporte de actividad por estudiante</value>
+  </data>
+  <data name="GENERATE_PROFESSOR_PERFORMANCE_REPORT_BY_EDUCATIONAL_EXPERIENCE_BUTTON" xml:space="preserve">
+    <value>Generar reporte de desempeño docente por experiencia educativa</value>
+  </data>
+  <data name="GENERATE_PROFESSOR_PERFORMANCE_REPORT_BY_PROFESSOR_BUTTON" xml:space="preserve">
+    <value>Generar reporte de desempeño docente por profesor</value>
+  </data>
+  <data name="LOG_EDUCATIONAL_EXPERIENCE_BUTTON" xml:space="preserve">
+    <value>Registrar experiencia educativa</value>
+  </data>
+  <data name="LOG_EDUCATIONAL_EXPERIENCE_INSTRUCTION_LABEL" xml:space="preserve">
+    <value>Ingrese la información de la experiencia educativa y dé clic en el botón de "Aceptar".</value>
+  </data>
+  <data name="LOG_EDUCATIONAL_EXPERIENCE_LABEL" xml:space="preserve">
+    <value>Registrar experiencia educativa.</value>
+  </data>
+  <data name="LOG_EDUCATIONAL_PROGRAM_BUTTON" xml:space="preserve">
+    <value>Registrar programa educativo</value>
+  </data>
+  <data name="LOG_OUT_BUTTON" xml:space="preserve">
+    <value>Cerrar sesión</value>
+  </data>
+  <data name="LOG_PROFESSOR_BUTTON" xml:space="preserve">
+    <value>Registrar profesor</value>
+  </data>
+  <data name="MAIN_MENU_LABEL" xml:space="preserve">
+    <value>Menú principal.</value>
+  </data>
+  <data name="MANAGE_FACULTIES_BUTTON" xml:space="preserve">
+    <value>Gestionar facultades</value>
+  </data>
+  <data name="MODIFY_EDUCATIONAL_EXPERIENCE_BUTTON" xml:space="preserve">
+    <value>Editar experiencia educativa</value>
+  </data>
+  <data name="MODIFY_EDUCATIONAL_PROGRAM_BUTTON" xml:space="preserve">
+    <value>Editar programa educativo</value>
+  </data>
+  <data name="MODIFY_PROFESSOR_BUTTON" xml:space="preserve">
+    <value>Editar profesor</value>
+  </data>
+  <data name="NAME_LABEL" xml:space="preserve">
+    <value>Nombre:</value>
+  </data>
+  <data name="PROFESSOR_PERFORMANCE_EVALUATIONS_MANAGEMENT_BUTTON" xml:space="preserve">
+    <value>Gestión de evaluaciones al desempeño docente</value>
+  </data>
+  <data name="RETURN_BUTTON" xml:space="preserve">
+    <value>Regresar</value>
+  </data>
+  <data name="SPECIFIC_REPORT_GENERATION_BUTTON" xml:space="preserve">
+    <value>Generación de reportes específicos</value>
+  </data>
+  <data name="SPECIFIC_REPORT_GENERATION_LABEL" xml:space="preserve">
+    <value>Generación de reportes específicos.</value>
+  </data>
+  <data name="STUDENT_MANAGEMENT_BUTTON" xml:space="preserve">
+    <value>Gestión de estudiantes</value>
   </data>
 </root>
