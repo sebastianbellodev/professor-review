@@ -13,14 +13,14 @@ export const validateCredentials = (request, response, next) => {
     message(response, RESPONSE_CODE.UNAUTHORIZED, RESPONSE_MESSAGE.FORBIDDEN);
   } else {
     if (verifyCredentials(authentication.name, authentication.pass)) {
+      next();
+    } else {
       response.set("WWW-Authenticate", 'Basic realm ="Secure"');
       message(response, RESPONSE_CODE.UNAUTHORIZED, RESPONSE_MESSAGE.FORBIDDEN);
-    } else {
-      next();
     }
   }
 };
 
 function verifyCredentials(username, password) {
-  return CREDENTIALS.USERNAME == username && CREDENTIALS.PASSWORD == password;
+  return CREDENTIALS.USERNAME === username && CREDENTIALS.PASSWORD === password;
 }
