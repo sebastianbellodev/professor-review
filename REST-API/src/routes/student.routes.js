@@ -9,10 +9,6 @@ import {
   patchStudent,
   postStudent,
 } from "../controllers/student.controllers.js";
-import {
-  getUserByUsername,
-  patchUser,
-} from "../controllers/user.controllers.js";
 import { validateToken } from "../utilities/authentication/bearer/bearer.js";
 import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../tools/message.js";
 
