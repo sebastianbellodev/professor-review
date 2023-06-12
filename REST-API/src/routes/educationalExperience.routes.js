@@ -4,6 +4,7 @@ import {
   getEducationalExperienceByName,
   getEducationalExperiences,
   getEducationalExperiencesByFaculty,
+  getEducationalExperiencesByEducationalProgram,
   patchEducationalExperience,
   postEducationalExperience
 } from "../controllers/educationalExperience.controllers.js";

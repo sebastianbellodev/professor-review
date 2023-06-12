@@ -3,6 +3,7 @@ import {
   getEducationalProgramByName,
   getEducationalPrograms,
   getEducationalProgramsByEducationalExperience,
+  getEducationalProgramOfFaculty,
   patchEducationalProgram,
   postEducationalProgram
 } from "../controllers/educationalProgram.controllers.js";
@@ -23,7 +24,12 @@ router.get("/educationalprograms", validateToken, async (request, response) => {
     const educationalPrograms = { educationalPrograms: row };
     message(response, RESPONSE_CODE.OK, null, educationalPrograms);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception
+    );
   }
 });
 

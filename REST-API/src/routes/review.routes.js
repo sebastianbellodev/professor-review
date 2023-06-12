@@ -54,4 +54,22 @@ router.post("/reviews/educationalexperience", validateToken, async (request, res
   }
 });
 
+
+router.delete("/review/delete", validateToken,(request, response) => {
+    try{
+        verifyToken(request, response, async() => {
+            const [row] = await deleteReview(request);
+            row.affectedRows > 0
+            ? message(response, RES_CODE.OK, RES_MESSAGE.REVIEW_DELETE)
+            : message(RES_CODE.NOT_FOUND, RES_MESSAGE.REVIEW_NOT_FOUND);
+        });
+    }catch(err){        
+        message(
+          response,RES_CODE.INTERNAL_SERVER_ERROR,
+            RES_MESSAGE.INTERAL_SERVER_ERROR,
+            err
+        );
+    }
+});
+
 export default router;
