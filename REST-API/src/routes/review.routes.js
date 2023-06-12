@@ -1,5 +1,6 @@
 import Router from "express-promise-router";
 import {
+  deleteReview,
   getReview,
   getReviewsByEducationalExperience,
   patchReview,
@@ -15,6 +16,17 @@ import {
 } from "../tools/message.js";
 
 const router = Router();
+
+router.delete("/reviews", validateToken, async (request, response) => {
+  try {
+    const [row] = await deleteReview(request);
+    row.affectedRows > 0
+      ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.REVIEW_DELETE)
+      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.REVIEW_NOT_FOUND);
+  } catch (exception) {
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+  }
+});
 
 router.patch("/reviews", validateToken, async (request, response) => {
   try {
@@ -52,24 +64,6 @@ router.post("/reviews/educationalexperience", validateToken, async (request, res
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
   }
-});
-
-
-router.delete("/review/delete", validateToken,(request, response) => {
-    try{
-        verifyToken(request, response, async() => {
-            const [row] = await deleteReview(request);
-            row.affectedRows > 0
-            ? message(response, RES_CODE.OK, RES_MESSAGE.REVIEW_DELETE)
-            : message(RES_CODE.NOT_FOUND, RES_MESSAGE.REVIEW_NOT_FOUND);
-        });
-    }catch(err){        
-        message(
-          response,RES_CODE.INTERNAL_SERVER_ERROR,
-            RES_MESSAGE.INTERAL_SERVER_ERROR,
-            err
-        );
-    }
 });
 
 export default router;
