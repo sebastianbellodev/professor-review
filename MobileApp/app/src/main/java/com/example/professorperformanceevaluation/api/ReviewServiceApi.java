@@ -6,11 +6,15 @@ import com.example.professorperformanceevaluation.model.Review;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 
 public interface ReviewServiceApi {
+
+    @DELETE("reviews")
+    Call<Response> delete(@Header("Authorization") String token, @Body Review review);
 
     @POST("reviews/educationalexperience")
     Call<Response> getReviewsByEducationalExperience(@Header("Authorization") String token, @Body EducationalExperience educationalExperience);
