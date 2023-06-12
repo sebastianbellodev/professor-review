@@ -17,7 +17,7 @@ router.post("/reports/professor", validateToken, async (request, response) => {
     const report = { report: row };
     message(response, RESPONSE_CODE.OK, null, report);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 

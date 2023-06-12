@@ -24,7 +24,7 @@ router.delete("/reviews", validateToken, async (request, response) => {
       ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.REVIEW_DELETE)
       : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.REVIEW_NOT_FOUND);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -38,7 +38,7 @@ router.patch("/reviews", validateToken, async (request, response) => {
         message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.REVIEW_PUT);
       };
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -52,7 +52,7 @@ router.post("/reviews", validateToken, async (request, response) => {
         message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.REVIEW_POST);
       };
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -62,7 +62,7 @@ router.post("/reviews/educationalexperience", validateToken, async (request, res
     const reviews = { reviews: row };
     message(response, RESPONSE_CODE.OK, null, reviews);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 

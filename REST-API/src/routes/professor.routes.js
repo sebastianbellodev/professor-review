@@ -26,7 +26,7 @@ router.delete("/professors", validateToken, async (request, response) => {
       ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.PROFESSOR_DELETE)
       : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.PROFESSOR_NOT_FOUND);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -36,7 +36,7 @@ router.get("/professors", validateToken, async (request, response) => {
     const professors = { professors: row };
     message(response, RESPONSE_CODE.OK, null, professors);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -47,7 +47,7 @@ router.patch("/professors", validateToken, async (request, response) => {
       ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.PROFESSOR_PUT)
       : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.PROFESSOR_NOT_FOUND);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -56,7 +56,7 @@ router.post("/professors", validateToken, async (request, response) => {
     await postProfessor(request);
     message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.PROFESSOR_POST);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -66,7 +66,7 @@ router.post("/professors/educationalexperience", validateToken, async (request, 
     const professors = { professors: row };
     message(response, RESPONSE_CODE.OK, null, professors);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -76,7 +76,7 @@ router.post("/professors/faculty", validateToken, async (request, response) => {
     const professors = { professors: row };
     message(response, RESPONSE_CODE.OK, null, professors);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -90,7 +90,7 @@ router.post("/professors/id", validateToken, async (request, response) => {
       }
       : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 

@@ -25,7 +25,7 @@ router.get("/educationalexperiences", validateToken, async (request, response) =
     const educationalExperiences = { educationalExperiences: row };
     message(response, RESPONSE_CODE.OK, null, educationalExperiences);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -39,7 +39,7 @@ router.patch("/educationalexperiences", validateToken, async (request, response)
         message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_PUT);
       };
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -53,7 +53,7 @@ router.post("/educationalexperiences", validateToken, async (request, response) 
         message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_POST);
       };
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -63,7 +63,7 @@ router.post("/educationalexperiences/educationalprogram", validateToken, async (
     const educationalExperiences = { educationalExperiences, row };
     message(response, RESPONSE_CODE.OK, null, educationalExperiences);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -73,7 +73,7 @@ router.post("/educationalexperiences/faculty", validateToken, async (request, re
     const educationalExperiences = { educationalExperiences: row };
     message(response, RESPONSE_CODE.OK, null, educationalExperiences);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -87,7 +87,7 @@ router.post("/educationalexperiences/id", validateToken, async (request, respons
       }
       : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_NOT_FOUND);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -97,7 +97,7 @@ router.post("/educationalexperiences/name", validateToken, async (request, respo
     const educationalExperience = { educationalExperience, row };
     message(response, RESPONSE_CODE.OK, null, educationalExperience)
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 

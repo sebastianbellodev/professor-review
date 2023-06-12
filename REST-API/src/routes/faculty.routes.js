@@ -24,7 +24,7 @@ router.delete("/faculties", validateToken, async (request, response) => {
             ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.FACULTY_DELETE)
             : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.FACULTY_DELETE);
     } catch (exception) {
-        message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+        message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
     }
 });
 
@@ -34,7 +34,7 @@ router.get("/faculties", validateToken, async (request, response) => {
         const faculties = { faculties: row };
         message(response, RESPONSE_CODE.OK, null, faculties);
     } catch (exception) {
-        message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+        message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
     }
 });
 
@@ -48,7 +48,7 @@ router.post("/faculty", validateToken, async (request, response) => {
                 message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.FACULTY_POST);
             }
     } catch (exception) {
-        message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+        message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
     }
 });
 
@@ -62,7 +62,7 @@ router.patch("/faculty", validateToken, async (request, response) => {
                 message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.FACULTY_PUT);
             }
     } catch (exception) {
-        message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+        message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
     }
 });
 
