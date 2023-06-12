@@ -2,8 +2,7 @@ import Router from "express-promise-router";
 import {
   getEducationalProgramByName,
   getEducationalPrograms,
-  getEducationalProgramsByEducationalExperience,
-  getEducationalProgramOfFaculty,
+  getEducationalProgramsByFaculty,
   patchEducationalProgram,
   postEducationalProgram
 } from "../controllers/educationalProgram.controllers.js";
@@ -24,12 +23,7 @@ router.get("/educationalprograms", validateToken, async (request, response) => {
     const educationalPrograms = { educationalPrograms: row };
     message(response, RESPONSE_CODE.OK, null, educationalPrograms);
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-      exception
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
   }
 });
 
@@ -56,6 +50,16 @@ router.post("/educationalprograms", validateToken, async (request, response) => 
         await postEducationalProgram(request);
         message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.EDUCATIONAL_PROGRAM_POST);
       };
+  } catch (exception) {
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+  }
+});
+
+router.post("/educationalprograms/faculty", validateToken, async (request, response) => {
+  try {
+    const [row] = await getEducationalProgramsByFaculty(request);
+    const educationalPrograms = { educationalPrograms: row };
+    message(response, RESPONSE_CODE.OK, null, educationalPrograms);
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
   }

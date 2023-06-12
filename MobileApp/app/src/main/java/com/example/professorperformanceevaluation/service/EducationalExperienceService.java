@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import com.example.professorperformanceevaluation.R;
 import com.example.professorperformanceevaluation.api.EducationalExperienceServiceApi;
 import com.example.professorperformanceevaluation.model.EducationalExperience;
+import com.example.professorperformanceevaluation.model.EducationalProgram;
 import com.example.professorperformanceevaluation.model.Faculty;
 import com.example.professorperformanceevaluation.model.Response;
 import com.google.gson.Gson;
@@ -20,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EducationalExperienceService {
 
-    private static final String URL = R.string.base_url + "educationalexperiences/";
+    private static final String URL = String.valueOf(R.string.base_url);
 
     private static String token;
     private static Retrofit retrofit;
@@ -52,8 +53,34 @@ public class EducationalExperienceService {
         }
     }
 
+    public static Response getEducationalExperienceByName(EducationalExperience educationalExperience) {
+        Call<Response> call = apiService.getEducationalExperienceByName("Bearer " + token, educationalExperience);
+        try {
+            retrofit2.Response<Response> response = call.execute();
+            return response.body();
+        } catch (Exception exception) {
+            Response response = new Response();
+            response.setCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
+            response.setMessage(exception.getMessage());
+            return response;
+        }
+    }
+
     public static Response getEducationalExperiences() {
         Call<Response> call = apiService.getEducationalExperiences("Bearer " + token);
+        try {
+            retrofit2.Response<Response> response = call.execute();
+            return response.body();
+        } catch (Exception exception) {
+            Response response = new Response();
+            response.setCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
+            response.setMessage(exception.getMessage());
+            return response;
+        }
+    }
+
+    public static Response getEducationalExperiencesByEducationalProgram(EducationalProgram educationalProgram) {
+        Call<Response> call = apiService.getEducationalExperiencesByEducationalProgram("Bearer " + token, educationalProgram);
         try {
             retrofit2.Response<Response> response = call.execute();
             return response.body();

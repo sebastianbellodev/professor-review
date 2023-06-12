@@ -89,12 +89,6 @@ export const getStudentsByFaculty = (request) => {
   );
 };
 
-export const getStudents = () => {
-  return Promise.resolve(
-    pool.query("SELECT\n" + "*\n" + "FROM\n" + "schoolPeriod")
-  );
-};
-
 export const patchStudent = (request) => {
   const {
     registrationNumber,

@@ -1,6 +1,7 @@
 package com.example.professorperformanceevaluation.api;
 
 import com.example.professorperformanceevaluation.model.EducationalExperience;
+import com.example.professorperformanceevaluation.model.EducationalProgram;
 import com.example.professorperformanceevaluation.model.Faculty;
 import com.example.professorperformanceevaluation.model.Response;
 
@@ -16,8 +17,14 @@ public interface EducationalExperienceServiceApi {
     @POST("educationalexperiences/id")
     Call<Response> getEducationalExperienceById(@Header("Authorization") String token, @Body EducationalExperience educationalExperience);
 
+    @POST("educationalexperiences/name")
+    Call<Response> getEducationalExperienceByName(@Header("Authorization") String token, @Body EducationalExperience educationalExperience);
+
     @GET("educationalexperiences")
     Call<Response> getEducationalExperiences(@Header("Authorization") String token);
+
+    @POST("educationalexperiences/educationalprogram")
+    Call<Response> getEducationalExperiencesByEducationalProgram(@Header("Authorization") String token, @Body EducationalProgram educationalProgram);
 
     @POST("educationalexperiences/faculty")
     Call<Response> getEducationalExperiencesByFaculty(@Header("Authorization") String token, @Body Faculty faculty);

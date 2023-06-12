@@ -41,6 +41,25 @@ export const getEducationalExperiences = () => {
   );
 };
 
+export const getEducationalExperiencesByEducationalProgram = (request) => {
+  const idEducationalProgram = request.body.idEducationalProgram;
+  return Promise.resolve(
+    pool.query(
+      "SELECT\n" +
+      "\neducationalexperience.idEducationalExperience, educationalexperience.name\n" +
+      "FROM\n" +
+      "educationalexperience\n" +
+      "INNER JOIN\n" +
+      "syllabus\n" +
+      "ON\n" +
+      "educationalexperience.idEducationalExperience = syllabus.idEducationalExperience\n" +
+      "WHERE\n" +
+      "syllabus.idEducationalProgram = ?",
+      [idEducationalProgram]
+    )
+  );
+};
+
 export const getEducationalExperiencesByFaculty = (request) => {
   const idFaculty = request.body.idFaculty;
   return Promise.resolve(
@@ -69,8 +88,7 @@ export const getEducationalExperiencesByFaculty = (request) => {
 };
 
 export const patchEducationalExperience = (request) => {
-  const {
-    idEducationalExperience,
+  const { idEducationalExperience,
     name } = request.body;
   return Promise.resolve(
     pool.query(
@@ -98,19 +116,6 @@ export const postEducationalExperience = (request) => {
       "VALUES\n" +
       "(?)",
       [name]
-    )
-  );
-};
-
-export const getEducationalExperiencesByEducationalProgram = (request) => {
-  const idEducationalProgram = request.body.idEducationalProgram;
-  return Promise.resolve(
-    pool.query(
-      "SELECT educationalexperience.idEducationalExperience, educationalexperience.name\n" +
-      "FROM educationalexperience\n" +
-      "INNER JOIN syllabus ON educationalexperience.idEducationalExperience = syllabus.idEducationalExperience\n" +
-      "WHERE syllabus.idEducationalProgram = ?",
-      [idEducationalProgram]
     )
   );
 };

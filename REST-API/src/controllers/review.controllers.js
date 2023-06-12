@@ -1,8 +1,20 @@
 import { pool } from "../schema/connection.js";
 
+export const deleteReview = (request) => {
+  const idReview = request.body.idReview;
+  return Promise.resolve(
+    pool.query(
+      "DELETE FROM\n" +
+      "review\n" +
+      "WHERE\n" +
+      "idReview = ?",
+      [idReview]
+    )
+  );
+};
+
 export const getReview = (request) => {
-  const {
-    idSchoolPeriod,
+  const { idSchoolPeriod,
     idAcademicOffering,
     registrationNumber } = request.body;
   return Promise.resolve(
@@ -50,8 +62,7 @@ export const getReviewsByEducationalExperience = (request) => {
 };
 
 export const patchReview = (request) => {
-  const {
-    idReview,
+  const { idReview,
     stars,
     comment,
     idSchoolPeriod } = request.body;
@@ -69,8 +80,7 @@ export const patchReview = (request) => {
 };
 
 export const postReview = (request) => {
-  const {
-    stars,
+  const { stars,
     comment,
     idSchoolPeriod,
     idAcademicOffering,
