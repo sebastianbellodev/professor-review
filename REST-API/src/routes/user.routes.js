@@ -36,7 +36,12 @@ router.get("/users/signup", validateCredentials, (request, response) => {
     const token = { token: generateToken(request) };
     message(response, RESPONSE_CODE.OK, null, token);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(
+      response,
+      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception.message
+    );
   }
 });
 

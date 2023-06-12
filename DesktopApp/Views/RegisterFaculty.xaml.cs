@@ -23,5 +23,15 @@ namespace ProfessorPerformanceEvaluation.Views
         {
             InitializeComponent();
         }
+
+        private void RegisterButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BackButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

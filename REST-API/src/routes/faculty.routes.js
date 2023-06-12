@@ -38,7 +38,7 @@ router.get("/faculties", validateToken, async (request, response) => {
     }
 });
 
-router.post("/faculty", validateToken, async (request, response) => {
+router.post("/faculties", validateToken, async (request, response) => {
     try {
         const [row] = await getFacultyByName(request);
         row.length > 0
@@ -52,7 +52,7 @@ router.post("/faculty", validateToken, async (request, response) => {
     }
 });
 
-router.patch("/faculty", validateToken, async (request, response) => {
+router.patch("/faculties", validateToken, async (request, response) => {
     try {
         const [row] = await getFacultyByName(request);
         row.length > 0
