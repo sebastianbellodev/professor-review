@@ -4,6 +4,7 @@ import {
   getEducationalExperienceByName,
   getEducationalExperiences,
   getEducationalExperiencesByFaculty,
+  getEducationalExperiencesByEducationalProgram,
   patchEducationalExperience,
   postEducationalExperience
 } from "../controllers/educationalExperience.controllers.js";
@@ -35,18 +36,19 @@ router.get("/educationalexperiences/id", validateToken, async (request, response
 });
 
 
-router.get("/educationalExperienceOfEducationalProgram", validateToken, (req, res) => {
+router.get("/educationalexperience/educationalprogram", validateToken, (request, response) => {
   try{
-    verifyToken(req, res, async() => {
-      const [row] = await getEducationalExperienceOfEducationalProgram(req);
-      message(res, RES_CODE.OK, null, row)
+    verifyToken(request, response, async() => {
+      const [row] = await getEducationalExperiencesByEducationalProgram(request);
+      const educationalExperiences = { educationalExperiences: row };
+      message(response, RESPONSE_CODE.OK, null, educationalExperiences);
     });
-  }catch(err){
+  }catch(exception){
     message(
-      res,
+      response,
       RES_CODE.INTERNAL_SERVER_ERROR,
       RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
+      exception
     );
   }
 

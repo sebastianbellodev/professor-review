@@ -3,6 +3,7 @@ import {
   getEducationalProgramByName,
   getEducationalPrograms,
   getEducationalProgramsByEducationalExperience,
+  getEducationalProgramOfFaculty,
   patchEducationalProgram,
   postEducationalProgram
 } from "../controllers/educationalProgram.controllers.js";
@@ -32,18 +33,17 @@ router.get("/educationalprograms", validateToken, async (request, response) => {
   }
 });
 
-router.get("/educationalProgram", validateToken, (request, response) => {
+router.get("/educationalPrograms/faculty", validateToken, async (request, response) => {
   try{
-    verifyToken(request, response, async () => {
-      await getEducationalProgramOfFaculty(request);
-      message(response, RES_CODE.OK, null, row)
-    });
-  }catch(err){
+    const [row] = await getEducationalProgramOfFaculty();
+    const educationalPrograms = { educationalPrograms: row };
+    message(response, RESPONSE_CODE.OK, null, educationalPrograms);
+  }catch(exception){
     message(
       response,
       RES_CODE.INTERNAL_SERVER_ERROR,
       RES_MESSAGE.INTERAL_SERVER_ERROR,
-      err
+      exception
     );
   }
 });

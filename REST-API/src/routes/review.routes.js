@@ -55,7 +55,7 @@ router.post("/reviews/educationalexperience", validateToken, async (request, res
 });
 
 
-router.delete("/review/deletes", validateToken,(request, response) => {
+router.delete("/review/delete", validateToken,(request, response) => {
     try{
         verifyToken(request, response, async() => {
             const [row] = await deleteReview(request);

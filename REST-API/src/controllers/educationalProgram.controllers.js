@@ -17,7 +17,7 @@ export const getEducationalProgramByName = (request) => {
 
 
 export const getEducationalProgramOfFaculty = (request) => {
-  const {idFaculty} = request.body;
+  const {idFaculty} = request.body.idFaculty;
   return Promise.resolve(
     pool.query(
       "SELECT educationalprogram.name FROM educationalprogram"+
