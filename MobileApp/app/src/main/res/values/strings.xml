@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">ProfessorPerformaceEvaluation</string>
+    <string name="app_name">ProfessorPerformanceEvaluation</string>
+    <string name="base_url">http://localhost:3000/api/</string>
 </resources>

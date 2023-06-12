@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DotNetEnv;
+using Newtonsoft.Json;
 using ProfessorPerformanceEvaluation.Model;
 using System.Configuration;
 using System.Net.Http.Headers;
@@ -8,13 +9,13 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System;
 using System.Text;
-using ProfessorPerformanceEvaluation.Utilities;
+using System.IO;
+using System.Windows;
 
 namespace ProfessorPerformanceEvaluation.Service
 {
     public class UserService
     {
-        private static readonly string CREDENTIALS = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{Credentials.USERNAME}:{Credentials.PASSWORD}"));
         private static readonly string TOKEN = ConfigurationManager.OpenExeConfiguration(Assembly.GetExecutingAssembly().Location).AppSettings.Settings["TOKEN"].Value;
         private static readonly string URL = string.Concat(Properties.Resources.BASE_URL, "users/");
 
@@ -93,7 +94,7 @@ namespace ProfessorPerformanceEvaluation.Service
             {
                 try
                 {
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", CREDENTIALS);
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TOKEN);
                     var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, new Uri(URL));
                     HttpResponseMessage httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
                     if (httpResponseMessage != null)
@@ -122,7 +123,8 @@ namespace ProfessorPerformanceEvaluation.Service
             {
                 try
                 {
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", CREDENTIALS);
+                    string credentials = GetCredentials();
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
                     var httpRequestMessage = new HttpRequestMessage()
                     {
                         Content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json"),
@@ -149,33 +151,13 @@ namespace ProfessorPerformanceEvaluation.Service
             return response;
         }
 
-        public static async Task<Response> SignUp()
+        private static string GetCredentials()
         {
-            Response response = new Response();
-            using (var httpClient = new HttpClient())
-            {
-                try
-                {
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", CREDENTIALS);
-                    var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, new Uri(string.Concat(URL, "signup")));
-                    HttpResponseMessage httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-                    if (httpResponseMessage != null)
-                    {
-                        if (httpResponseMessage.IsSuccessStatusCode)
-                        {
-                            string json = await httpResponseMessage.Content.ReadAsStringAsync();
-                            response = JsonConvert.DeserializeObject<Response>(json);
-                        }
-                        response.Code = (int)httpResponseMessage.StatusCode;
-                    }
-                }
-                catch (Exception exception)
-                {
-                    response.Code = (int)HttpStatusCode.InternalServerError;
-                    response.Message = exception.Message;
-                }
-            }
-            return response;
+            string path = Path.GetFullPath(Path.Combine("..", "..", "..", ".env"));
+            Env.Load(path);
+            string username = Environment.GetEnvironmentVariable("NAME");
+            string password = Environment.GetEnvironmentVariable("PASSWORD");
+            return Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
         }
 
         public static async Task<Response> Patch(User user)
@@ -226,6 +208,36 @@ namespace ProfessorPerformanceEvaluation.Service
                         Method = HttpMethod.Post,
                         RequestUri = new Uri(URL)
                     };
+                    HttpResponseMessage httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+                    if (httpResponseMessage != null)
+                    {
+                        if (httpResponseMessage.IsSuccessStatusCode)
+                        {
+                            string json = await httpResponseMessage.Content.ReadAsStringAsync();
+                            response = JsonConvert.DeserializeObject<Response>(json);
+                        }
+                        response.Code = (int)httpResponseMessage.StatusCode;
+                    }
+                }
+                catch (Exception exception)
+                {
+                    response.Code = (int)HttpStatusCode.InternalServerError;
+                    response.Message = exception.Message;
+                }
+            }
+            return response;
+        }
+
+        public static async Task<Response> SignUp()
+        {
+            Response response = new Response();
+            using (var httpClient = new HttpClient())
+            {
+                try
+                {
+                    string credentials = GetCredentials();
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+                    var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, new Uri(string.Concat(URL, "signup")));
                     HttpResponseMessage httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
                     if (httpResponseMessage != null)
                     {
