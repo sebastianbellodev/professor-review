@@ -37,7 +37,7 @@ export const RESPONSE_MESSAGE = {
   EDUCATIONAL_PROGRAM_PUT: "Educational program updated successfully.",
   EDUCATIONAL_PROGRAM_DELETE: "Educational program deleted successfully.",
 
-  FACULTY__ALREADY_REGISTERED: "Faculty already registered in the system.",
+  FACULTY_ALREADY_REGISTERED: "Faculty already registered in the system.",
   FACULTY_NOT_FOUND: "Faculty not found.",
   FACULTY_POST: "Faculty posted successfully.",
   FACULTY_PUT: "Faculty updated successfully.",

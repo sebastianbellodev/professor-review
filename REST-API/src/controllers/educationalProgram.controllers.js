@@ -16,18 +16,6 @@ export const getEducationalProgramByName = (request) => {
 };
 
 
-export const getEducationalProgramOfFaculty = (request) => {
-  const {idFaculty} = request.body.idFaculty;
-  return Promise.resolve(
-    pool.query(
-      "SELECT educationalprogram.name FROM educationalprogram"+
-      "WHERE educationalprogram.idFaculty = ?",
-      [idFaculty]
-    )
-  )
-}
-
-
 export const getEducationalPrograms = () => {
   return Promise.resolve(
     pool.query(
@@ -39,9 +27,23 @@ export const getEducationalPrograms = () => {
   );
 };
 
+export const getEducationalProgramsByFaculty = (request) => {
+  const idFaculty = request.body.idFaculty;
+  return Promise.resolve(
+    pool.query(
+      "SELECT\n" +
+      "educationalprogram.name\n" +
+      "FROM\n" +
+      "educationalprogram\n" +
+      "WHERE\n" +
+      "educationalprogram.idFaculty = ?",
+      [idFaculty]
+    )
+  )
+}
+
 export const patchEducationalProgram = (request) => {
-  const {
-    idEducationalProgram,
+  const { idEducationalProgram,
     name,
     idFaculty } = request.body;
   return Promise.resolve(
@@ -63,8 +65,7 @@ export const patchEducationalProgram = (request) => {
 };
 
 export const postEducationalProgram = (request) => {
-  const {
-    name,
+  const { name,
     idFaculty } = request.body;
   return Promise.resolve(
     pool.query(
@@ -79,4 +80,3 @@ export const postEducationalProgram = (request) => {
     )
   );
 };
-

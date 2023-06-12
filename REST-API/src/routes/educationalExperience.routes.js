@@ -3,8 +3,8 @@ import {
   getEducationalExperienceById,
   getEducationalExperienceByName,
   getEducationalExperiences,
-  getEducationalExperiencesByFaculty,
   getEducationalExperiencesByEducationalProgram,
+  getEducationalExperiencesByFaculty,
   patchEducationalExperience,
   postEducationalExperience
 } from "../controllers/educationalExperience.controllers.js";
@@ -57,6 +57,16 @@ router.post("/educationalexperiences", validateToken, async (request, response) 
   }
 });
 
+router.post("/educationalexperiences/educationalprogram", validateToken, async (request, response) => {
+  try {
+    const [row] = await getEducationalExperiencesByEducationalProgram(request);
+    const educationalExperiences = { educationalExperiences, row };
+    message(response, RESPONSE_CODE.OK, null, educationalExperiences);
+  } catch (exception) {
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+  }
+});
+
 router.post("/educationalexperiences/faculty", validateToken, async (request, response) => {
   try {
     const [row] = await getEducationalExperiencesByFaculty(request);
@@ -70,20 +80,6 @@ router.post("/educationalexperiences/faculty", validateToken, async (request, re
 router.post("/educationalexperiences/id", validateToken, async (request, response) => {
   try {
     const [row] = await getEducationalExperienceById(request);
-    row.length > 0
-      ? () => {
-        const educationalExperience = { educationalExperience, row };
-        message(response, RESPONSE_CODE.OK, null, educationalExperience)
-      }
-      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_NOT_FOUND);
-  } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
-  }
-});
-
-router.post("/educationalexperiences/name", validateToken, async (request, response) => {
-  try {
-    const [row] = await getEducationalExperienceByName(request);
     row.length > 0
       ? () => {
         const educationalExperience = { educationalExperience, row };
