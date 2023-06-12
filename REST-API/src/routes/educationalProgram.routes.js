@@ -55,14 +55,4 @@ router.post("/educationalprograms", validateToken, async (request, response) => 
   }
 });
 
-router.post("/educationalprograms/educationalexperience", validateToken, async (request, response) => {
-  try {
-    const [row] = await getEducationalProgramsByEducationalExperience(request);
-    const educationalPrograms = { educationalPrograms: row };
-    message(response, RESPONSE_CODE.OK, null, educationalPrograms);
-  } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
-  }
-});
-
 export default router;

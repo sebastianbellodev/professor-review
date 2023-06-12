@@ -26,29 +26,6 @@ export const getEducationalPrograms = () => {
   );
 };
 
-export const getEducationalProgramsByEducationalExperience = (request) => {
-  const idEducationalExperience = request.body.idEducationalExperience;
-  return Promise.resolve(
-    pool.query(
-      "SELECT\n" +
-      "educationalProgram.*\n" +
-      "FROM\n" +
-      "educationalProgram\n" +
-      "INNER JOIN\n" +
-      "syllabus\n" +
-      "ON\n" +
-      "educationalProgram.idEducationalProgram = syllabus.idEducationalProgram\n" +
-      "INNER JOIN\n" +
-      "educationalExperience\n" +
-      "ON\n" +
-      "syllabus.idEducationalExperience = syllabus.idEducationalExperience\n" +
-      "WHERE\n" +
-      "educationalExperience.idEducationalExperience = ?",
-      [idEducationalExperience]
-    )
-  );
-};
-
 export const patchEducationalProgram = (request) => {
   const {
     idEducationalProgram,

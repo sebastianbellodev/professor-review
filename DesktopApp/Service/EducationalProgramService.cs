@@ -39,41 +39,7 @@ namespace ProfessorPerformanceEvaluation.Service
                 catch (Exception exception)
                 {
                     response.Code = (int)HttpStatusCode.InternalServerError;
-                    response.Message = exception.Message;
-                }
-            }
-            return response;
-        }
-
-        public static async Task<Response> GetEducationalProgramsByEducationalExperience(EducationalExperience educationalExperience)
-        {
-            Response response = new Response();
-            using (var httpClient = new HttpClient())
-            {
-                try
-                {
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TOKEN);
-                    var httpRequestMessage = new HttpRequestMessage()
-                    {
-                        Content = new StringContent(JsonConvert.SerializeObject(educationalExperience), Encoding.UTF8, "application/json"),
-                        Method = HttpMethod.Post,
-                        RequestUri = new Uri(string.Concat(URL, "educationalexperience"))
-                    };
-                    HttpResponseMessage httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-                    if (httpResponseMessage != null)
-                    {
-                        if (httpResponseMessage.IsSuccessStatusCode)
-                        {
-                            string json = await httpResponseMessage.Content.ReadAsStringAsync();
-                            response = JsonConvert.DeserializeObject<Response>(json);
-                        }
-                        response.Code = (int)httpResponseMessage.StatusCode;
-                    }
-                }
-                catch (Exception exception)
-                {
-                    response.Code = (int)HttpStatusCode.InternalServerError;
-                    response.Message = exception.Message;
+                    Console.WriteLine(exception.Message);
                 }
             }
             return response;
@@ -107,7 +73,7 @@ namespace ProfessorPerformanceEvaluation.Service
                 catch (Exception exception)
                 {
                     response.Code = (int)HttpStatusCode.InternalServerError;
-                    response.Message = exception.Message;
+                    Console.WriteLine(exception.Message);
                 }
             }
             return response;
@@ -141,7 +107,7 @@ namespace ProfessorPerformanceEvaluation.Service
                 catch (Exception exception)
                 {
                     response.Code = (int)HttpStatusCode.InternalServerError;
-                    response.Message = exception.Message;
+                    Console.WriteLine(exception.Message);
                 }
             }
             return response;
