@@ -66,6 +66,17 @@ export const getStudentByRegistrationNumber = (request) => {
   );
 };
 
+export const getStudents = () => {
+  return Promise.resolve(
+      pool.query(
+          "SELECT\n" +
+          "*\n" +
+          "FROM\n" +
+          "student"
+      )
+  );
+};
+
 export const getStudentsByFaculty = (request) => {
   const idFaculty = request.body.idFaculty;
   return Promise.resolve(
