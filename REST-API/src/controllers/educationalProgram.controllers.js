@@ -15,6 +15,19 @@ export const getEducationalProgramByName = (request) => {
   );
 };
 
+
+export const getEducationalProgramOfFaculty = (request) => {
+  const {idFaculty} = request.body.idFaculty;
+  return Promise.resolve(
+    pool.query(
+      "SELECT educationalprogram.name FROM educationalprogram"+
+      "WHERE educationalprogram.idFaculty = ?",
+      [idFaculty]
+    )
+  )
+}
+
+
 export const getEducationalPrograms = () => {
   return Promise.resolve(
     pool.query(
@@ -89,3 +102,4 @@ export const postEducationalProgram = (request) => {
     )
   );
 };
+
