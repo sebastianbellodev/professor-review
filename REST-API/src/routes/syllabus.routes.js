@@ -23,7 +23,7 @@ router.delete("/syllabus", validateToken, async (request, response) => {
       ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.SYLLABUS_DELETE)
       : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.SYLLABUS_NOT_FOUND);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -32,7 +32,7 @@ router.post("/syllabus", validateToken, async (request, response) => {
     await postSyllabus(request);
     message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.SYLLABUS_POST);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -42,7 +42,7 @@ router.post("/syllabus/educationalexperience", validateToken, async (request, re
     const syllabuses = { syllabuses: row };
     message(response, RESPONSE_CODE.OK, null, syllabuses);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -56,7 +56,7 @@ router.post("/syllabus/id", validateToken, async (request, response) => {
       }
       : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.SYLLABUS_NOT_FOUND);
   } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 

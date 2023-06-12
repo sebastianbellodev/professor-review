@@ -13,12 +13,7 @@ router.get("/pings", async (request, response) => {
     const [row] = await ping();
     message(response, RESPONSE_CODE.OK, null, row[0]);
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-      exception
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
