@@ -19,19 +19,20 @@ export const RESPONSE_CODE = {
 };
 
 export const RESPONSE_MESSAGE = {
-
   UNAUTHORIZED: "User not authorized.",
   FORBIDDEN: "Forbidden resource.",
-  INTERNAL_SERVER_ERROR: "There is no connection to the database.",
+  INTERNAL_SERVER_ERROR: "Something went wrong. Please try again later.",
   INFORMATION_PUT: "Information updated successfully.",
 
-  EDUCATIONAL_EXPERIENCE_ALREADY_REGISTERED: "Educational experience already registered in the system.",
+  EDUCATIONAL_EXPERIENCE_ALREADY_REGISTERED:
+    "Educational experience already registered in the system.",
   EDUCATIONAL_EXPERIENCE_NOT_FOUND: "Educational experience not found.",
   EDUCATIONAL_EXPERIENCE_POST: "Educational experience posted successfully.",
   EDUCATIONAL_EXPERIENCE_PUT: "Educational experience updated successfully.",
   EDUCATIONAL_EXPERIENCE_DELETE: "Educational experience deleted successfully.",
 
-  EDUCATIONAL_PROGRAM_ALREADY_REGISTERED: "Educational program already registered in the system.",
+  EDUCATIONAL_PROGRAM_ALREADY_REGISTERED:
+    "Educational program already registered in the system.",
   EDUCATIONAL_PROGRAM_NOT_FOUND: "Educational program not found.",
   EDUCATIONAL_PROGRAM_POST: "Educational program posted successfully.",
   EDUCATIONAL_PROGRAM_PUT: "Educational program updated successfully.",
@@ -76,5 +77,4 @@ export const RESPONSE_MESSAGE = {
   USER_POST: "User posted successfully.",
   USER_PUT: "User updated successfully.",
   USER_DELETE: "User deleted successfully.",
-
 };
