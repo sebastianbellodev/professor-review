@@ -97,6 +97,42 @@ namespace ProfessorPerformanceEvaluation.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Por favor, compruebe la información ingresada e inténtelo nuevamente..
+        /// </summary>
+        public static string CHECK_ENTERED_INFORMATION_LABEL {
+            get {
+                return ResourceManager.GetString("CHECK_ENTERED_INFORMATION_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La información se eliminó correctamente del sistema..
+        /// </summary>
+        public static string DELETED_INFORMATION_LABEL {
+            get {
+                return ResourceManager.GetString("DELETED_INFORMATION_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La información ingresada corresponde a una experiencia educativa que ya se encuentra registrada en el sistema..
+        /// </summary>
+        public static string EDUCATIONAL_EXPERIENCE_ALREADY_REGISTERED_LABEL {
+            get {
+                return ResourceManager.GetString("EDUCATIONAL_EXPERIENCE_ALREADY_REGISTERED_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Experiencia educativa:.
+        /// </summary>
+        public static string EDUCATIONAL_EXPERIENCE_LABEL {
+            get {
+                return ResourceManager.GetString("EDUCATIONAL_EXPERIENCE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Administración del programa educativo.
         /// </summary>
         public static string EDUCATIONAL_PROGRAM_ADMINISTRATION_BUTTON {
@@ -115,11 +151,65 @@ namespace ProfessorPerformanceEvaluation.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a La información ingresada corresponde a un programa educativo que ya se encuentra registrado en el sistema..
+        /// </summary>
+        public static string EDUCATIONAL_PROGRAM_ALREADY_REGISTERED_LABEL {
+            get {
+                return ResourceManager.GetString("EDUCATIONAL_PROGRAM_ALREADY_REGISTERED_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Programa educativo:.
+        /// </summary>
+        public static string EDUCATIONAL_PROGRAM_LABEL {
+            get {
+                return ResourceManager.GetString("EDUCATIONAL_PROGRAM_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Nombre del programa educativo.
         /// </summary>
         public static string EDUCATIONAL_PROGRAM_NAME_LABEL {
             get {
                 return ResourceManager.GetString("EDUCATIONAL_PROGRAM_NAME_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No se puede dejar ningún campo vacío..
+        /// </summary>
+        public static string EMPTY_FIELDS_LABEL {
+            get {
+                return ResourceManager.GetString("EMPTY_FIELDS_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La sesión ha expirado..
+        /// </summary>
+        public static string EXPIRED_SESSION_LABEL {
+            get {
+                return ResourceManager.GetString("EXPIRED_SESSION_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El programa educativo solo puede pertenecer a una facultad..
+        /// </summary>
+        public static string FACULTY_BY_EDUCATIONAL_PROGRAM_LABEL {
+            get {
+                return ResourceManager.GetString("FACULTY_BY_EDUCATIONAL_PROGRAM_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nombre de la facultad.
+        /// </summary>
+        public static string FACULTY_NAME_LABEL {
+            get {
+                return ResourceManager.GetString("FACULTY_NAME_LABEL", resourceCulture);
             }
         }
         
@@ -187,6 +277,15 @@ namespace ProfessorPerformanceEvaluation.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Ingrese la información del programa educativo y dé clic en el botón de &quot;Aceptar&quot;..
+        /// </summary>
+        public static string LOG_EDUCATIONAL_PROGRAM_INSTRUCTION_LABEL {
+            get {
+                return ResourceManager.GetString("LOG_EDUCATIONAL_PROGRAM_INSTRUCTION_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cerrar sesión.
         /// </summary>
         public static string LOG_OUT_BUTTON {
@@ -223,6 +322,15 @@ namespace ProfessorPerformanceEvaluation.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a La información se modificó correctamente en el sistema..
+        /// </summary>
+        public static string MODIFIED_INFORMATION_LABEL {
+            get {
+                return ResourceManager.GetString("MODIFIED_INFORMATION_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Editar experiencia educativa.
         /// </summary>
         public static string MODIFY_EDUCATIONAL_EXPERIENCE_BUTTON {
@@ -232,11 +340,29 @@ namespace ProfessorPerformanceEvaluation.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Editar experiencia educativa..
+        /// </summary>
+        public static string MODIFY_EDUCATIONAL_EXPERIENCE_LABEL {
+            get {
+                return ResourceManager.GetString("MODIFY_EDUCATIONAL_EXPERIENCE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Editar programa educativo.
         /// </summary>
         public static string MODIFY_EDUCATIONAL_PROGRAM_BUTTON {
             get {
                 return ResourceManager.GetString("MODIFY_EDUCATIONAL_PROGRAM_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Editar programa educativo..
+        /// </summary>
+        public static string MODIFY_EDUCATIONAL_PROGRAM_LABEL {
+            get {
+                return ResourceManager.GetString("MODIFY_EDUCATIONAL_PROGRAM_LABEL", resourceCulture);
             }
         }
         
@@ -268,11 +394,29 @@ namespace ProfessorPerformanceEvaluation.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a La información se registró correctamente en el sistema..
+        /// </summary>
+        public static string REGISTERED_INFORMATION_LABEL {
+            get {
+                return ResourceManager.GetString("REGISTERED_INFORMATION_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Regresar.
         /// </summary>
         public static string RETURN_BUTTON {
             get {
                 return ResourceManager.GetString("RETURN_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El servicio no está disponible..
+        /// </summary>
+        public static string SERVICE_NOT_AVAILABLE_LABEL {
+            get {
+                return ResourceManager.GetString("SERVICE_NOT_AVAILABLE_LABEL", resourceCulture);
             }
         }
         
@@ -300,6 +444,15 @@ namespace ProfessorPerformanceEvaluation.Properties {
         public static string STUDENT_MANAGEMENT_BUTTON {
             get {
                 return ResourceManager.GetString("STUDENT_MANAGEMENT_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Por favor, inténtelo más tarde..
+        /// </summary>
+        public static string TRY_AGAIN_LATER_LABEL {
+            get {
+                return ResourceManager.GetString("TRY_AGAIN_LATER_LABEL", resourceCulture);
             }
         }
     }

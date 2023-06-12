@@ -8,14 +8,14 @@
         Title="{x:Static p:Resources.EDUCATIONAL_PROGRAM_ADMINISTRATION_LABEL}" Height="450" Width="800">
     <Grid>
         <Label Content="{x:Static p:Resources.EDUCATIONAL_PROGRAM_ADMINISTRATION_LABEL}" HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="24"/>
-        <Button Content="{x:Static p:Resources.LOG_EDUCATIONAL_EXPERIENCE_BUTTON}" HorizontalAlignment="Left" Margin="75,90,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="50" Width="300" Click="LogEducationalExperienceButtonClick"/>
-        <Button Content="{x:Static p:Resources.MODIFY_EDUCATIONAL_EXPERIENCE_BUTTON}" HorizontalAlignment="Left" Margin="425,90,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="50" Width="300" Click="ModifyEducationalExperienceButtonClick"/>
-        <Button Content="{x:Static p:Resources.LOG_PROFESSOR_BUTTON}" HorizontalAlignment="Left" Margin="75,165,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="50" Width="300" Click="LogProfessorButtonClick"/>
-        <Button Content="{x:Static p:Resources.MODIFY_PROFESSOR_BUTTON}" HorizontalAlignment="Left" Margin="425,165,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="50" Width="300" Click="ModifyProfessorButtonClick"/>
-        <Button Content="{x:Static p:Resources.ASSIGN_EDUCATIONAL_EXPERIENCE_TO_PROFESSOR_BUTTON}" HorizontalAlignment="Left" Margin="75,240,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="50" Width="300" Click="AssignEducationalExperienceToProfessorButtonClick"/>
-        <Button Content="{x:Static p:Resources.LOG_EDUCATIONAL_PROGRAM_BUTTON}" HorizontalAlignment="Left" Margin="425,240,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="50" Width="300" Click="LogEducationalProgramButtonClick"/>
-        <Button Content="{x:Static p:Resources.MODIFY_EDUCATIONAL_PROGRAM_BUTTON}" HorizontalAlignment="Left" Margin="75,310,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="50" Width="300" Click="ModifyEducationalProgramButtonClick"/>
-        <Button Content="{x:Static p:Resources.MANAGE_FACULTIES_BUTTON}" HorizontalAlignment="Left" Margin="425,310,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="50" Width="300" Click="ManageFacultiesButtonClick"/>
+        <Button Content="{x:Static p:Resources.LOG_EDUCATIONAL_EXPERIENCE_BUTTON}" HorizontalAlignment="Left" Margin="75,87,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="50" Width="300" Click="LogEducationalExperienceButtonClick"/>
+        <Button Content="{x:Static p:Resources.MODIFY_EDUCATIONAL_EXPERIENCE_BUTTON}" HorizontalAlignment="Left" Margin="425,87,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="50" Width="300" Click="ModifyEducationalExperienceButtonClick"/>
+        <Button Content="{x:Static p:Resources.LOG_PROFESSOR_BUTTON}" HorizontalAlignment="Left" Margin="75,162,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="50" Width="300" Click="LogProfessorButtonClick"/>
+        <Button Content="{x:Static p:Resources.MODIFY_PROFESSOR_BUTTON}" HorizontalAlignment="Left" Margin="425,162,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="50" Width="300" Click="ModifyProfessorButtonClick"/>
+        <Button Content="{x:Static p:Resources.ASSIGN_EDUCATIONAL_EXPERIENCE_TO_PROFESSOR_BUTTON}" HorizontalAlignment="Left" Margin="75,237,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="50" Width="300" Click="AssignEducationalExperienceToProfessorButtonClick"/>
+        <Button Content="{x:Static p:Resources.LOG_EDUCATIONAL_PROGRAM_BUTTON}" HorizontalAlignment="Left" Margin="425,237,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="50" Width="300" Click="LogEducationalProgramButtonClick"/>
+        <Button Content="{x:Static p:Resources.MODIFY_EDUCATIONAL_PROGRAM_BUTTON}" HorizontalAlignment="Left" Margin="75,307,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="50" Width="300" Click="ModifyEducationalProgramButtonClick"/>
+        <Button Content="{x:Static p:Resources.MANAGE_FACULTIES_BUTTON}" HorizontalAlignment="Left" Margin="425,307,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="50" Width="300" Click="ManageFacultiesButtonClick"/>
         <Button Content="{x:Static p:Resources.RETURN_BUTTON}" HorizontalAlignment="Left" Margin="30,385,0,0" VerticalAlignment="Top" FontFamily="Arial" Width="124" Height="25" Click="ReturnButtonClick"/>
     </Grid>
 </Window>

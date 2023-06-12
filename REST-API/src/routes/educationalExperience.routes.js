@@ -19,41 +19,6 @@ import {
 
 const router = Router();
 
-router.get("/educationalexperiences/id", validateToken, async (request, response) => {
-  try {
-      const [row] = await getEducationalExperienceById(request);
-      row.length > 0
-        ? message(response, RESPONSE_CODE.OK, null, row)
-        : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_NOT_FOUND);
-  } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
-      exception
-    );
-  }
-});
-
-
-router.get("/educationalexperience/educationalprogram", validateToken, (request, response) => {
-  try{
-    verifyToken(request, response, async() => {
-      const [row] = await getEducationalExperiencesByEducationalProgram(request);
-      const educationalExperiences = { educationalExperiences: row };
-      message(response, RESPONSE_CODE.OK, null, educationalExperiences);
-    });
-  }catch(exception){
-    message(
-      response,
-      RES_CODE.INTERNAL_SERVER_ERROR,
-      RES_MESSAGE.INTERAL_SERVER_ERROR,
-      exception
-    );
-  }
-
-});
-
 router.get("/educationalexperiences", validateToken, async (request, response) => {
   try {
     const [row] = await getEducationalExperiences();
@@ -105,6 +70,20 @@ router.post("/educationalexperiences/faculty", validateToken, async (request, re
 router.post("/educationalexperiences/id", validateToken, async (request, response) => {
   try {
     const [row] = await getEducationalExperienceById(request);
+    row.length > 0
+      ? () => {
+        const educationalExperience = { educationalExperience, row };
+        message(response, RESPONSE_CODE.OK, null, educationalExperience)
+      }
+      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_NOT_FOUND);
+  } catch (exception) {
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR, exception);
+  }
+});
+
+router.post("/educationalexperiences/name", validateToken, async (request, response) => {
+  try {
+    const [row] = await getEducationalExperienceByName(request);
     row.length > 0
       ? () => {
         const educationalExperience = { educationalExperience, row };

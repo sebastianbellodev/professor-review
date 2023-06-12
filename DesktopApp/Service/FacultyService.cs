@@ -38,7 +38,7 @@ namespace ProfessorPerformanceEvaluation.Service
                 catch (Exception exception)
                 {
                     response.Code = (int)HttpStatusCode.InternalServerError;
-                    response.Message = exception.Message;
+                    Console.WriteLine(exception.Message);
                 }
             }
             return response;

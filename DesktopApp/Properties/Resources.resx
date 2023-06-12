@@ -129,14 +129,44 @@
   <data name="CANCEL_BUTTON" xml:space="preserve">
     <value>Cancelar</value>
   </data>
+  <data name="CHECK_ENTERED_INFORMATION_LABEL" xml:space="preserve">
+    <value>Por favor, compruebe la información ingresada e inténtelo nuevamente.</value>
+  </data>
+  <data name="DELETED_INFORMATION_LABEL" xml:space="preserve">
+    <value>La información se eliminó correctamente del sistema.</value>
+  </data>
+  <data name="EDUCATIONAL_EXPERIENCE_ALREADY_REGISTERED_LABEL" xml:space="preserve">
+    <value>La información ingresada corresponde a una experiencia educativa que ya se encuentra registrada en el sistema.</value>
+  </data>
+  <data name="EDUCATIONAL_EXPERIENCE_LABEL" xml:space="preserve">
+    <value>Experiencia educativa:</value>
+  </data>
   <data name="EDUCATIONAL_PROGRAM_ADMINISTRATION_BUTTON" xml:space="preserve">
     <value>Administración del programa educativo</value>
   </data>
   <data name="EDUCATIONAL_PROGRAM_ADMINISTRATION_LABEL" xml:space="preserve">
     <value>Administración del programa educativo.</value>
   </data>
+  <data name="EDUCATIONAL_PROGRAM_ALREADY_REGISTERED_LABEL" xml:space="preserve">
+    <value>La información ingresada corresponde a un programa educativo que ya se encuentra registrado en el sistema.</value>
+  </data>
+  <data name="EDUCATIONAL_PROGRAM_LABEL" xml:space="preserve">
+    <value>Programa educativo:</value>
+  </data>
   <data name="EDUCATIONAL_PROGRAM_NAME_LABEL" xml:space="preserve">
     <value>Nombre del programa educativo</value>
+  </data>
+  <data name="EMPTY_FIELDS_LABEL" xml:space="preserve">
+    <value>No se puede dejar ningún campo vacío.</value>
+  </data>
+  <data name="EXPIRED_SESSION_LABEL" xml:space="preserve">
+    <value>La sesión ha expirado.</value>
+  </data>
+  <data name="FACULTY_BY_EDUCATIONAL_PROGRAM_LABEL" xml:space="preserve">
+    <value>El programa educativo solo puede pertenecer a una facultad.</value>
+  </data>
+  <data name="FACULTY_NAME_LABEL" xml:space="preserve">
+    <value>Nombre de la facultad</value>
   </data>
   <data name="GENERATE_ACTIVITY_REPORT_BY_STUDENT_BUTTON" xml:space="preserve">
     <value>Generar reporte de actividad por estudiante</value>
@@ -159,6 +189,9 @@
   <data name="LOG_EDUCATIONAL_PROGRAM_BUTTON" xml:space="preserve">
     <value>Registrar programa educativo</value>
   </data>
+  <data name="LOG_EDUCATIONAL_PROGRAM_INSTRUCTION_LABEL" xml:space="preserve">
+    <value>Ingrese la información del programa educativo y dé clic en el botón de "Aceptar".</value>
+  </data>
   <data name="LOG_OUT_BUTTON" xml:space="preserve">
     <value>Cerrar sesión</value>
   </data>
@@ -171,11 +204,20 @@
   <data name="MANAGE_FACULTIES_BUTTON" xml:space="preserve">
     <value>Gestionar facultades</value>
   </data>
+  <data name="MODIFIED_INFORMATION_LABEL" xml:space="preserve">
+    <value>La información se modificó correctamente en el sistema.</value>
+  </data>
   <data name="MODIFY_EDUCATIONAL_EXPERIENCE_BUTTON" xml:space="preserve">
     <value>Editar experiencia educativa</value>
   </data>
+  <data name="MODIFY_EDUCATIONAL_EXPERIENCE_LABEL" xml:space="preserve">
+    <value>Editar experiencia educativa.</value>
+  </data>
   <data name="MODIFY_EDUCATIONAL_PROGRAM_BUTTON" xml:space="preserve">
     <value>Editar programa educativo</value>
+  </data>
+  <data name="MODIFY_EDUCATIONAL_PROGRAM_LABEL" xml:space="preserve">
+    <value>Editar programa educativo.</value>
   </data>
   <data name="MODIFY_PROFESSOR_BUTTON" xml:space="preserve">
     <value>Editar profesor</value>
@@ -186,8 +228,14 @@
   <data name="PROFESSOR_PERFORMANCE_EVALUATIONS_MANAGEMENT_BUTTON" xml:space="preserve">
     <value>Gestión de evaluaciones al desempeño docente</value>
   </data>
+  <data name="REGISTERED_INFORMATION_LABEL" xml:space="preserve">
+    <value>La información se registró correctamente en el sistema.</value>
+  </data>
   <data name="RETURN_BUTTON" xml:space="preserve">
     <value>Regresar</value>
+  </data>
+  <data name="SERVICE_NOT_AVAILABLE_LABEL" xml:space="preserve">
+    <value>El servicio no está disponible.</value>
   </data>
   <data name="SPECIFIC_REPORT_GENERATION_BUTTON" xml:space="preserve">
     <value>Generación de reportes específicos</value>
@@ -197,5 +245,8 @@
   </data>
   <data name="STUDENT_MANAGEMENT_BUTTON" xml:space="preserve">
     <value>Gestión de estudiantes</value>
+  </data>
+  <data name="TRY_AGAIN_LATER_LABEL" xml:space="preserve">
+    <value>Por favor, inténtelo más tarde.</value>
   </data>
 </root>
