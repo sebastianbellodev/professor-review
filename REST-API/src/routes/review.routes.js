@@ -66,4 +66,15 @@ router.post("/reviews/educationalexperience", validateToken, async (request, res
   }
 });
 
+router.post("/review/professor", validateToken, async (request, response) => {
+  try {
+    const [row] = await getReviewsByProfessor(request);
+    const reviews = { reviews: row };
+    message(response, RESPONSE_CODE.OK, null, reviews);
+  } catch (exception) {
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
+  }
+});
+
+
 export default router;

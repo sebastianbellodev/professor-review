@@ -38,7 +38,7 @@ router.get("/faculties", validateToken, async (request, response) => {
     }
 });
 
-router.post("/faculties", validateToken, async (request, response) => {
+router.post("/faculties/byName", validateToken, async (request, response) => {
     try {
         const [row] = await getFacultyByName(request);
         row.length > 0

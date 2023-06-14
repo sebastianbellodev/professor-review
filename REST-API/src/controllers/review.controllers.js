@@ -102,3 +102,19 @@ export const postReview = (request) => {
     )
   );
 };
+
+export const getReviewsByProfessor = (request) => {
+  const idProfessor = request.body.idProfessor;
+  return Promise.resolve(
+    pool.query(
+      "SELECT review.stars, review.comment, review.registrationNumber,\n" +
+      "schoolperiod.startDate, schoolperiod.endDate\n" +
+      "FROM review\n" +
+      "INNER JOIN schoolperiod ON review.idSchoolPeriod = schoolperiod.idSchoolPeriod\n" +
+      "INNER JOIN academicoffering ON review.idAcademicOffering = academicoffering.idAcademicOffering\n" +
+      "INNER JOIN professor ON academicoffering.idProfessor = professor.idProfessor\n" +
+      "WHERE professor.idProfessor = ?"
+      [idProfessor]
+    )
+  );
+};
