@@ -22,9 +22,11 @@ const router = Router();
 router.delete("/professors", validateToken, async (request, response) => {
   try {
     const [row] = await deleteProfessor(request);
-    row.affectedRows > 0
-      ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.PROFESSOR_DELETE)
-      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.PROFESSOR_NOT_FOUND);
+    if (row.affectedRows > 0) {
+      message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.PROFESSOR_DELETE);
+    } else {
+      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.PROFESSOR_NOT_FOUND);
+    }
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
@@ -43,9 +45,11 @@ router.get("/professors", validateToken, async (request, response) => {
 router.patch("/professors", validateToken, async (request, response) => {
   try {
     const [row] = await patchProfessor(request);
-    row.affectedRows > 0
-      ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.PROFESSOR_PUT)
-      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.PROFESSOR_NOT_FOUND);
+    if (row.affectedRows > 0) {
+      message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.PROFESSOR_PUT);
+    } else {
+      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.PROFESSOR_NOT_FOUND);
+    }
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
@@ -83,12 +87,12 @@ router.post("/professors/faculty", validateToken, async (request, response) => {
 router.post("/professors/id", validateToken, async (request, response) => {
   try {
     const [row] = await getProfessorById(request);
-    row.length > 0
-      ? () => {
-        const professor = { professor: row };
-        message(response, RESPONSE_CODE.OK, null, professor);
-      }
-      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+    if (row.length > 0) {
+      const professor = { professor: row };
+      message(response, RESPONSE_CODE.OK, null, professor);
+    } else {
+      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.PROFESSOR_NOT_FOUND);
+    }
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }

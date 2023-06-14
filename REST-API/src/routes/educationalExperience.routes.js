@@ -32,12 +32,12 @@ router.get("/educationalexperiences", validateToken, async (request, response) =
 router.patch("/educationalexperiences", validateToken, async (request, response) => {
   try {
     const [row] = await getEducationalExperienceByName(request);
-    row.length > 0
-      ? message(response, RESPONSE_CODE.BAD_REQUEST, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_ALREADY_REGISTERED)
-      : async () => {
-        await patchEducationalExperience(request);
-        message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_PUT);
-      };
+    if (row.length > 0) {
+      message(response, RESPONSE_CODE.BAD_REQUEST, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_ALREADY_REGISTERED);
+    } else {
+      await patchEducationalExperience(request);
+      message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_PUT);
+    }
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
@@ -46,12 +46,12 @@ router.patch("/educationalexperiences", validateToken, async (request, response)
 router.post("/educationalexperiences", validateToken, async (request, response) => {
   try {
     const [row] = await getEducationalExperienceByName(request);
-    row.length > 0
-      ? message(response, RESPONSE_CODE.BAD_REQUEST, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_ALREADY_REGISTERED)
-      : async () => {
-        await postEducationalExperience(request);
-        message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_POST);
-      };
+    if (row.lenght > 0) {
+      message(response, RESPONSE_CODE.BAD_REQUEST, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_ALREADY_REGISTERED)
+    } else {
+      await postEducationalExperience(request);
+      message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_POST);
+    }
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
@@ -80,12 +80,12 @@ router.post("/educationalexperiences/faculty", validateToken, async (request, re
 router.post("/educationalexperiences/id", validateToken, async (request, response) => {
   try {
     const [row] = await getEducationalExperienceById(request);
-    row.length > 0
-      ? () => {
-        const educationalExperience = { educationalExperience, row };
-        message(response, RESPONSE_CODE.OK, null, educationalExperience);
-      }
-      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_NOT_FOUND);
+    if (row.length > 0) {
+      const educationalExperience = { educationalExperience: row };
+      message(response, RESPONSE_CODE.OK, null, educationalExperience);
+    } else {
+      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_NOT_FOUND);
+    }
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
@@ -94,8 +94,12 @@ router.post("/educationalexperiences/id", validateToken, async (request, respons
 router.post("/educationalexperiences/name", validateToken, async (request, response) => {
   try {
     const [row] = await getEducationalExperienceByName(request);
-    const educationalExperience = { educationalExperience, row };
-    message(response, RESPONSE_CODE.OK, null, educationalExperience)
+    if (row.length > 0) {
+      const educationalExperiences = { educationalExperiences: row };
+      message(response, RESPONSE_CODE.OK, null, educationalExperiences);
+    } else {
+      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_NOT_FOUND);
+    }
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }

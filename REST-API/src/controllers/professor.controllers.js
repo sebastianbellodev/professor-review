@@ -10,7 +10,7 @@ export const deleteProfessor = (request) => {
       "idProfessor = ?",
       [idProfessor]
     )
-  );
+  )
 };
 
 export const getProfessorById = (request) => {
@@ -34,7 +34,10 @@ export const getProfessors = () => {
       "SELECT\n" +
       "*\n" +
       "FROM\n" +
-      "professor"
+      "professor\n" +
+      "ORDER BY\n" +
+      "name\n" +
+      "ASC"
     )
   );
 };
@@ -56,7 +59,10 @@ export const getProfessorsByEducationalExperience = (request) => {
       "ON\n" +
       "syllabus.idSyllabus = academicOffering.idSyllabus\n" +
       "WHERE\n" +
-      "idEducationalExperience = ?",
+      "idEducationalExperience = ?\n" +
+      "ORDER BY\n" +
+      "professor.name\n" +
+      "ASC",
       [idEducationalExperience]
     )
   );
@@ -79,7 +85,10 @@ export const getProfessorsByFaculty = (request) => {
       "ON\n" +
       "directory.idFaculty = faculty.idFaculty\n" +
       "WHERE\n" +
-      "faculty.idFaculty = ?",
+      "faculty.idFaculty = ?\n" +
+      "ORDER BY\n" +
+      "professor.name\n" +
+      "ASC",
       [idFaculty]
     )
   );
@@ -97,7 +106,7 @@ export const patchProfessor = (request) => {
       "name = IFNULL(?, name),\n" +
       "lastName = IFNULL(?, lastName)\n" +
       "WHERE\n" +
-      "\nidProfessor = ?",
+      "idProfessor = ?",
       [
         name,
         lastName,
@@ -108,7 +117,8 @@ export const patchProfessor = (request) => {
 };
 
 export const postProfessor = (request) => {
-  const { name, lastName } = request.body;
+  const { name,
+    lastName } = request.body;
   return Promise.resolve(
     pool.query(
       "INSERT INTO\n" +
@@ -116,7 +126,10 @@ export const postProfessor = (request) => {
       "(name, lastName)\n" +
       "VALUES\n" +
       "(?, ?)",
-      [name, lastName]
+      [
+        name,
+        lastName
+      ]
     )
   );
 };

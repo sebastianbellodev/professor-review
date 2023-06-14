@@ -2,6 +2,7 @@
 using ProfessorPerformanceEvaluation.Service;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Windows;
 
@@ -27,19 +28,26 @@ namespace ProfessorPerformanceEvaluation.Views
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.EXPIRED_SESSION_LABEL);
-                Close();
+                GoToEducationalProgramAdministrationMenu();
             }
             else
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
-                Close();
+                GoToEducationalProgramAdministrationMenu();
             }
+        }
+
+        private void GoToEducationalProgramAdministrationMenu()
+        {
+            var educationalProgramAdministrationMenuWindow = new EducationalProgramManagementMenuWindow();
+            Close();
+            educationalProgramAdministrationMenuWindow.Show();
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
-            Close();
+            GoToEducationalProgramAdministrationMenu();
         }
 
 
@@ -66,9 +74,10 @@ namespace ProfessorPerformanceEvaluation.Views
             Response response = await EducationalExperienceService.Post(educationalExperience);
             switch (response.Code)
             {
-                case (int)HttpStatusCode.OK:
+                case (int)HttpStatusCode.Created:
                     MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_LABEL);
                     LogSyllabuses(educationalExperience);
+                    GoToEducationalProgramAdministrationMenu();
                     break;
                 case (int)HttpStatusCode.BadRequest:
                     MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
@@ -77,12 +86,12 @@ namespace ProfessorPerformanceEvaluation.Views
                 case (int)HttpStatusCode.Forbidden:
                     MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                         Properties.Resources.EXPIRED_SESSION_LABEL);
-                    Close();
+                    GoToEducationalProgramAdministrationMenu();
                     break;
                 default:
                     MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                         Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
-                    Close();
+                    GoToEducationalProgramAdministrationMenu();
                     break;
             }
         }
@@ -92,19 +101,22 @@ namespace ProfessorPerformanceEvaluation.Views
             Response response = await EducationalExperienceService.GetEducationalExperienceByName(educationalExperience);
             if (response.Code == (int)HttpStatusCode.OK)
             {
-                int idEducationalExperience = educationalExperience.IdEducationalExperience;
-                foreach (EducationalProgram educationalProgram in EducationalProgramsDataGrid.Items)
+                int idEducationalExperience = response.EducationalExperiences.First().IdEducationalExperience;
+                foreach (var item in EducationalProgramsDataGrid.Items)
                 {
-                    bool isSelected = educationalProgram.IsSelected;
-                    if (isSelected)
+                    if (item is EducationalProgram educationalProgram)
                     {
-                        int idEducationalProgram = educationalProgram.IdEducationalProgram;
-                        var syllabus = new Syllabus()
+                        bool isSelected = educationalProgram.IsSelected;
+                        if (isSelected)
                         {
-                            IdEducationalProgram = idEducationalProgram,
-                            IdEducationalExperience = idEducationalExperience
-                        };
-                        LogSyllabus(syllabus);
+                            int idEducationalProgram = educationalProgram.IdEducationalProgram;
+                            var syllabus = new Syllabus()
+                            {
+                                IdEducationalProgram = idEducationalProgram,
+                                IdEducationalExperience = idEducationalExperience
+                            };
+                            LogSyllabus(syllabus);
+                        }
                     }
                 }
             }
@@ -112,20 +124,18 @@ namespace ProfessorPerformanceEvaluation.Views
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.EXPIRED_SESSION_LABEL);
-                Close();
             }
             else
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
-                Close();
             }
         }
 
         private async void LogSyllabus(Syllabus syllabus)
         {
             Response response = await SyllabusService.Post(syllabus);
-            if (response.Code == (int)HttpStatusCode.OK)
+            if (response.Code == (int)HttpStatusCode.Created)
             {
                 Console.WriteLine(Properties.Resources.REGISTERED_INFORMATION_LABEL); 
             }
@@ -133,13 +143,11 @@ namespace ProfessorPerformanceEvaluation.Views
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.EXPIRED_SESSION_LABEL);
-                Close();
             }
             else
             {
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
-                Close();
             }
         }
     }

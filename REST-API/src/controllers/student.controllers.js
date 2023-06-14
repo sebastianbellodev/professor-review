@@ -72,7 +72,10 @@ export const getStudents = () => {
           "SELECT\n" +
           "*\n" +
           "FROM\n" +
-          "student"
+          "student\n" +
+          "ORDER BY\n" +
+          "name\n" +
+          "ASC"
       )
   );
 };
@@ -94,7 +97,10 @@ export const getStudentsByFaculty = (request) => {
       "ON\n" +
       "educationalProgram.idFaculty = faculty.idFaculty\n" +
       "WHERE\n" +
-      "faculty.idFaculty = ?",
+      "faculty.idFaculty = ?\n" +
+      "ORDER BY\n" +
+      "student.name\n" +
+      "ASC",
       [idFaculty]
     )
   );

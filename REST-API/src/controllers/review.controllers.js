@@ -55,7 +55,10 @@ export const getReviewsByEducationalExperience = (request) => {
       "ON\n" +
       "academicOffering.idSyllabus = syllabus.idSyllabus\n" +
       "WHERE\n" +
-      "syllabus.idEducationalExperience = ?"
+      "syllabus.idEducationalExperience = ?\n" +
+      "ORDER BY\n" +
+      "review.comment\n" +
+      "ASC"
       [idEducationalExperience]
     )
   );

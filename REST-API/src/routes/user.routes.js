@@ -23,9 +23,11 @@ const router = Router();
 router.delete("/users", validateToken, async (request, response) => {
   try {
     const [row] = await deleteUser(request);
-    row.affectedRows > 0
-      ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.USER_DELETE)
-      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+    if (row.affectedRows > 0) {
+      message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.USER_DELETE);
+    } else {
+      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+    }
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
@@ -53,9 +55,11 @@ router.get("/users", validateToken, async (request, response) => {
 router.patch("/users", validateToken, async (request, response) => {
   try {
     const [row] = await patchUser(request);
-    row.affectedRows > 0
-      ? message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.USER_PUT)
-      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+    if (row.affectedRows > 0) {
+      message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.USER_PUT);
+    } else {
+      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+    }
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
@@ -88,12 +92,12 @@ router.post("/users/login", validateCredentials, async (request, response) => {
 router.post("/users/username", validateToken, async (request, response) => {
   try {
     const [row] = await getUserByUsername(request);
-    row.length > 0
-      ? () => {
-        const user = { user: row };
-        message(response, RESPONSE_CODE.OK, null, user);
-      }
-      : message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+    if (row.length > 0) {
+      const user = { user: row };
+      message(response, RESPONSE_CODE.OK, null, user);
+    } else {
+      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
+    }
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }

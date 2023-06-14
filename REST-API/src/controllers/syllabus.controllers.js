@@ -45,8 +45,7 @@ export const getSyllabusById = (request) => {
 };
 
 export const postSyllabus = (request) => {
-  const {
-    idEducationalProgram,
+  const { idEducationalProgram,
     idEducationalExperience } = request.body;
   return Promise.resolve(
     pool.query(

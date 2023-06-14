@@ -12,7 +12,7 @@
         <Label Content="{x:Static p:Resources.LOG_EDUCATIONAL_PROGRAM_INSTRUCTION_LABEL}" HorizontalAlignment="Left" Margin="45,85,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
         <Label Content="{x:Static p:Resources.NAME_LABEL}" HorizontalAlignment="Left" Margin="45,130,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
         <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Margin="125,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="575" FontFamily="Arial" Height="20" IsEnabled="False"/>
-        <DataGrid x:Name="FacultiesDataGrid" Margin="45,175,60,78" >
+        <DataGrid x:Name="FacultiesDataGrid" Margin="45,175,60,78" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static p:Resources.FACULTY_NAME_LABEL}" Binding="{Binding Name}" Width="550">
                     <DataGridTextColumn.HeaderStyle>
