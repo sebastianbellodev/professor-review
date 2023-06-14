@@ -2,3 +2,6 @@
 */obj/
 */packages/
 */.vs/
+.env
+MobileApp/app/src/main/res/values/credentials.xml
+REST-API/node_modules

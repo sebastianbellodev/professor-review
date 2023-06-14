@@ -1,0 +1,39 @@
+﻿<Window x:Class="ProfessorPerformanceEvaluation.Views.ModifyEducationalExperienceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:ProfessorPerformanceEvaluation.Properties"
+        mc:Ignorable="d"
+        Title="{x:Static p:Resources.MODIFY_EDUCATIONAL_EXPERIENCE_LABEL}" Height="450" Width="760">
+    <Grid>
+        <Label Content="{x:Static p:Resources.EDUCATIONAL_EXPERIENCE_LABEL}" HorizontalAlignment="Left" Margin="45,45,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+        <ComboBox x:Name="EducationalExperienceComboBox" HorizontalAlignment="Left" Margin="200,47,0,0" VerticalAlignment="Top" Width="500" FontFamily="Arial" Height="20" SelectionChanged="EducationalExperienceComboBoxSelectionChanged"/>
+        <Label Content="{x:Static p:Resources.LOG_EDUCATIONAL_EXPERIENCE_INSTRUCTION_LABEL}" HorizontalAlignment="Left" Margin="45,85,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+        <Label Content="{x:Static p:Resources.NAME_LABEL}" HorizontalAlignment="Left" Margin="45,130,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Margin="125,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="575" FontFamily="Arial" Height="20" IsEnabled="False"/>
+        <DataGrid x:Name="EducationalProgramsDataGrid" Margin="45,175,60,78" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static p:Resources.EDUCATIONAL_PROGRAM_NAME_LABEL}" Binding="{Binding Name}" Width="550">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="FontFamily" Value="Arial"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="FontFamily" Value="Arial"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridCheckBoxColumn Binding="{Binding IsSelected}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="{x:Static p:Resources.CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="45,380,0,0" VerticalAlignment="Top" FontFamily="Arial" Width="125" Height="25" Click="CancelButtonClick"/>
+        <Button Content="{x:Static p:Resources.ACCEPT_BUTTON}" HorizontalAlignment="Left" Margin="575,380,0,0" VerticalAlignment="Top" FontFamily="Arial" Width="125" Height="25" Click="AcceptButtonClick"/>
+    </Grid>
+</Window>

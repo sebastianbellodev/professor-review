@@ -1,22 +1,24 @@
 import Router from "express-promise-router";
-import { validateToken,verifyToken } from "../utilities/authentication/bearer"; 
-import { message, RES_CODE, RES_MESSAGE } from "../utilities/json/message";
-import { getReportOfProfessor } from "../controllers/report.controller";
+import { getReportByProfessor } from "../controllers/report.controller.js";
+import {
+  validateToken
+} from "../utilities/authentication/bearer/bearer.js";
+import {
+  message,
+  RESPONSE_CODE,
+  RESPONSE_MESSAGE
+} from "../tools/message.js";
 
 const router = Router();
 
-router.get("/report/getReportInformation", validateToken, (req,res) => {
-    try{
-        verifyToken(req,res,async () => {
-            const[row] = await getReportOfProfessor(req);
-            message(res, RES_CODE.OK, null, row);
-        });
-    }catch(err){
-        message(
-            res,
-            RES_CODE.INTERNAL_SERVER_ERROR,
-            RES_MESSAGE.INTERAL_SERVER_ERROR,
-            err
-        );
-    }
+router.post("/reports/professor", validateToken, async (request, response) => {
+  try {
+    const [row] = await getReportByProfessor(request);
+    const report = { report: row };
+    message(response, RESPONSE_CODE.OK, null, report);
+  } catch (exception) {
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
+  }
 });
+
+export default router;
