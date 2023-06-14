@@ -3,7 +3,8 @@ package com.example.professorperformanceevaluation.service;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.professorperformanceevaluation.R;
+import androidx.annotation.NonNull;
+
 import com.example.professorperformanceevaluation.api.StudentServiceApi;
 import com.example.professorperformanceevaluation.model.Faculty;
 import com.example.professorperformanceevaluation.model.Response;
@@ -11,27 +12,24 @@ import com.example.professorperformanceevaluation.model.Student;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.net.HttpURLConnection;
-
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class StudentService {
 
-    private static final String URL = String.valueOf(R.string.base_url);
-
+    private static final String URL = "http://professorperformanceevaluation-production-7405.up.railway.app/api/students/";
     private static String token;
-    private static Retrofit retrofit;
     private static StudentServiceApi apiService;
 
-    public static void initialize(Context context) {
+    public StudentService(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE);
         token = sharedPreferences.getString("token", "");
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         Gson gson = new GsonBuilder().create();
-        retrofit = new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(httpClient.build())
@@ -39,108 +37,130 @@ public class StudentService {
         apiService = retrofit.create(StudentServiceApi.class);
     }
 
-    public static Response delete(Student student) {
+    public static void delete(Student student, StudentServiceCallback callback) {
         Call<Response> call = apiService.delete("Bearer " + token, student);
-        try {
-            retrofit2.Response<Response> response = call.execute();
-            return response.body();
-        } catch (Exception exception) {
-            Response response = new Response();
-            response.setCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
-            response.setMessage(exception.getMessage());
-            return response;
-        }
+        call.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
+                callback.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Response> call, @NonNull Throwable throwable) {
+                callback.onFailure(throwable);
+            }
+        });
     }
 
-    public static Response getStudentByEmailAddress(Student student) {
+    public static void getStudentByEmailAddress(Student student, StudentServiceCallback callback) {
         Call<Response> call = apiService.getStudentByEmailAddress("Bearer " + token, student);
-        try {
-            retrofit2.Response<Response> response = call.execute();
-            return response.body();
-        } catch (Exception exception) {
-            Response response = new Response();
-            response.setCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
-            response.setMessage(exception.getMessage());
-            return response;
-        }
+        call.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
+                callback.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Response> call, @NonNull Throwable throwable) {
+                callback.onFailure(throwable);
+            }
+        });
     }
 
-    public static Response getStudentByPhoneNumber(Student student) {
+    public static void getStudentByPhoneNumber(Student student, StudentServiceCallback callback) {
         Call<Response> call = apiService.getStudentByPhoneNumber("Bearer " + token, student);
-        try {
-            retrofit2.Response<Response> response = call.execute();
-            return response.body();
-        } catch (Exception exception) {
-            Response response = new Response();
-            response.setCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
-            response.setMessage(exception.getMessage());
-            return response;
-        }
+        call.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
+                callback.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Response> call, @NonNull Throwable throwable) {
+                callback.onFailure(throwable);
+            }
+        });
     }
 
-    public static Response getStudentByRegistrationNumber(Student student) {
+    public static void getStudentByRegistrationNumber(Student student, StudentServiceCallback callback) {
         Call<Response> call = apiService.getStudentByRegistrationNumber("Bearer " + token, student);
-        try {
-            retrofit2.Response<Response> response = call.execute();
-            return response.body();
-        } catch (Exception exception) {
-            Response response = new Response();
-            response.setCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
-            response.setMessage(exception.getMessage());
-            return response;
-        }
+        call.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
+                callback.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Response> call, @NonNull Throwable throwable) {
+                callback.onFailure(throwable);
+            }
+        });
     }
 
-    public static Response getStudents() {
+    public static void getStudents(StudentServiceCallback callback) {
         Call<Response> call = apiService.getStudents("Bearer " + token);
-        try {
-            retrofit2.Response<Response> response = call.execute();
-            return response.body();
-        } catch (Exception exception) {
-            Response response = new Response();
-            response.setCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
-            response.setMessage(exception.getMessage());
-            return response;
-        }
+        call.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
+                callback.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Response> call, @NonNull Throwable throwable) {
+                callback.onFailure(throwable);
+            }
+        });
     }
 
-    public static Response getStudentsByFaculty(Faculty faculty) {
+    public static void getStudentsByFaculty(Faculty faculty, StudentServiceCallback callback) {
         Call<Response> call = apiService.getStudentsByFaculty("Bearer " + token, faculty);
-        try {
-            retrofit2.Response<Response> response = call.execute();
-            return response.body();
-        } catch (Exception exception) {
-            Response response = new Response();
-            response.setCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
-            response.setMessage(exception.getMessage());
-            return response;
-        }
+        call.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
+                callback.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Response> call, @NonNull Throwable throwable) {
+                callback.onFailure(throwable);
+            }
+        });
     }
 
-    public static Response patch(Student student) {
+    public static void patch(Student student, StudentServiceCallback callback) {
         Call<Response> call = apiService.patch("Bearer " + token, student);
-        try {
-            retrofit2.Response<Response> response = call.execute();
-            return response.body();
-        } catch (Exception exception) {
-            Response response = new Response();
-            response.setCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
-            response.setMessage(exception.getMessage());
-            return response;
-        }
+        call.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
+                callback.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Response> call, @NonNull Throwable throwable) {
+                callback.onFailure(throwable);
+            }
+        });
     }
 
-    public static Response post(Student student) {
+    public static void post(Student student, StudentServiceCallback callback) {
         Call<Response> call = apiService.post("Bearer " + token, student);
-        try {
-            retrofit2.Response<Response> response = call.execute();
-            return response.body();
-        } catch (Exception exception) {
-            Response response = new Response();
-            response.setCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
-            response.setMessage(exception.getMessage());
-            return response;
-        }
+        call.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
+                callback.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Response> call, @NonNull Throwable throwable) {
+                callback.onFailure(throwable);
+            }
+        });
+    }
+
+    public interface StudentServiceCallback {
+        void onSuccess(Response response);
+
+        void onFailure(Throwable throwable);
     }
 
 }

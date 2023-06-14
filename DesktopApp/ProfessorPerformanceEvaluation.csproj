@@ -222,6 +222,9 @@
     <Compile Include="Views\SpecificReportGenerationMenuWindow.xaml.cs">
       <DependentUpon>SpecificReportGenerationMenuWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StudentAccessManagement.xaml.cs">
+      <DependentUpon>StudentAccessManagement.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\EducationalProgramAdministrationMenuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -282,6 +285,10 @@
     <Page Include="Views\SpecificReportGenerationMenuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentAccessManagement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

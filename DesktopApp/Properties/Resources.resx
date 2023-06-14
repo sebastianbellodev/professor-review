@@ -124,7 +124,7 @@
     <value>Asignar experiencia educativa a profesor</value>
   </data>
   <data name="BASE_URL" xml:space="preserve">
-    <value>http://localhost:3000/api/</value>
+    <value>http://professorperformanceevaluation-production-7405.up.railway.app/api/</value>
   </data>
   <data name="CANCEL_BUTTON" xml:space="preserve">
     <value>Cancelar</value>

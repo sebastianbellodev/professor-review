@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">ProfessorPerformanceEvaluation</string>
-    <string name="base_url">http://localhost:3000/api/</string>
+    <string name="username_label">Nombre de usuario:</string>
+    <string name="username_instruction_label">Ingresa tu nombre de usuario...</string>
+    <string name="password_label">Contraseña:</string>
+    <string name="password_instruction_label">Ingresa tu contraseña...</string>
+    <string name="login_button">Iniciar sesión</string>
+    <string name="sign_up_button">Crear cuenta</string>
 </resources>

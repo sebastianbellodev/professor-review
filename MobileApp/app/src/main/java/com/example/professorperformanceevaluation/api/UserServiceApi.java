@@ -13,25 +13,25 @@ import retrofit2.http.POST;
 
 public interface UserServiceApi {
 
-    @DELETE("users")
+    @DELETE
     Call<Response> delete(@Header("Authorization") String token, @Body User user);
 
-    @POST("users/username")
+    @POST("username")
     Call<Response> getUserByUsername(@Header("Authorization") String token, @Body User user);
 
-    @GET("users")
+    @GET
     Call<Response> getUsers(@Header("Authorization") String token);
 
-    @POST("users/login")
+    @POST("login")
     Call<Response> login(@Header("Authorization") String credentials, @Body User user);
 
-    @PATCH("users")
+    @PATCH
     Call<Response> patch(@Header("Authorization") String token, @Body User user);
 
-    @POST("users")
+    @POST
     Call<Response> post(@Header("Authorization") String token, @Body User user);
 
-    @GET("users/signup")
+    @GET("signup")
     Call<Response> signUp(@Header("Authorization") String credentials);
 
 }

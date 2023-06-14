@@ -14,28 +14,28 @@ import retrofit2.http.POST;
 
 public interface StudentServiceApi {
 
-    @DELETE("students")
+    @DELETE
     Call<Response> delete(@Header("Authorization") String token, @Body Student student);
 
-    @POST("students/emailaddress")
+    @POST("emailaddress")
     Call<Response> getStudentByEmailAddress(@Header("Authorization") String token, @Body Student student);
 
-    @POST("students/phonenumber")
+    @POST("phonenumber")
     Call<Response> getStudentByPhoneNumber(@Header("Authorization") String token, @Body Student student);
 
-    @POST("students/registrationnumber")
+    @POST("registrationnumber")
     Call<Response> getStudentByRegistrationNumber(@Header("Authorization") String token, @Body Student student);
 
-    @GET("students")
+    @GET
     Call<Response> getStudents(@Header("Authorization") String token);
 
-    @POST("students/faculty")
+    @POST("faculty")
     Call<Response> getStudentsByFaculty(@Header("Authorization") String token, @Body Faculty faculty);
 
-    @PATCH("students")
+    @PATCH
     Call<Response> patch(@Header("Authorization") String token, @Body Student student);
 
-    @POST("students")
+    @POST
     Call<Response> post(@Header("Authorization") String token, @Body Student student);
 
 }

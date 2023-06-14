@@ -13,16 +13,16 @@ import retrofit2.http.POST;
 
 public interface EducationalProgramServiceApi {
 
-    @GET("educationalprograms")
+    @GET
     Call<Response> getEducationalPrograms(@Header("Authorization") String token);
 
-    @POST("educationalprograms/faculty")
+    @POST("faculty")
     Call<Response> getEducationalProgramsByFaculty(@Header("Authorization") String token, @Body Faculty faculty);
 
-    @PATCH("educationalprograms")
+    @PATCH
     Call<Response> patch(@Header("Authorization") String token, @Body EducationalProgram educationalProgram);
 
-    @POST("educationalprograms")
+    @POST
     Call<Response> post(@Header("Authorization") String token, @Body EducationalProgram educationalProgram);
 
 }
