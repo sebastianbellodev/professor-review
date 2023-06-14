@@ -1,0 +1,20 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Properties="clr-namespace:ProfessorPerformanceEvaluation.Properties" x:Class="ProfessorPerformanceEvaluation.Views.SignUpWindow"
+        mc:Ignorable="d"
+        Title="SignUpWindow" Height="450" Width="760">
+    <Grid>
+        <Label Content="{x:Static Properties:Resources.SIGN_UP_LABEL}" HorizontalAlignment="Center" Margin="0,75,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="24"/>
+        <Label Content="{x:Static Properties:Resources.USERNAME_LABEL}" HorizontalAlignment="Left" Margin="125,158,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+        <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="322,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" FontFamily="Arial" Height="20"/>
+        <Label Content="{x:Static Properties:Resources.PASSWORD_LABEL}" HorizontalAlignment="Left" Margin="125,204,0,0" VerticalAlignment="Top" FontFamily="Arial"/>
+        <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="322,206,0,0" VerticalAlignment="Top" Width="300" FontFamily="Arial" Height="20"/>
+        <Label Content="{x:Static Properties:Resources.PASSWORD_CONFIRMATION_LABEL}" Margin="125,248,472,0" VerticalAlignment="Top" FontFamily="Arial"/>
+        <PasswordBox x:Name="PasswordConfirmationBox" HorizontalAlignment="Left" Margin="322,250,0,0" VerticalAlignment="Top" Width="300" FontFamily="Arial" Height="20"/>
+        <Button Content="{x:Static Properties:Resources.CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="45,350,0,0" VerticalAlignment="Top" FontFamily="Arial" Width="125" Height="25" Click="CancelButtonClick"/>
+        <Button Content="{x:Static Properties:Resources.ACCEPT_BUTTON}" HorizontalAlignment="Left" Margin="575,350,0,0" VerticalAlignment="Top" FontFamily="Arial" Width="125" Height="25" Click="AcceptButtonClick"/>
+    </Grid>
+</Window>

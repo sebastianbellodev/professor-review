@@ -67,8 +67,13 @@ router.patch("/users", validateToken, async (request, response) => {
 
 router.post("/users", validateToken, async (request, response) => {
   try {
-    await postUser(request);
-    message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.USER_POST);
+    const [row] = await getUserByUsername(request);
+    if (row.length > 0) {
+      message(response, RESPONSE_CODE.BAD_REQUEST, RESPONSE_MESSAGE.USER_ALREADY_REGISTERED);
+    } else {
+      await postUser(request);
+      message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.USER_POST);
+    }
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
