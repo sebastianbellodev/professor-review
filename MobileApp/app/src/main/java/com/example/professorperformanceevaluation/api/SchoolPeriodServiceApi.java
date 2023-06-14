@@ -11,10 +11,10 @@ import retrofit2.http.POST;
 
 public interface SchoolPeriodServiceApi {
 
-    @POST("schoolperiods/id")
+    @POST("id")
     Call<Response> getSchoolPeriodById(@Header("Authorization") String token, @Body SchoolPeriod schoolPeriod);
 
-    @GET("schoolperiods")
+    @GET
     Call<Response> getSchoolPeriods(@Header("Authorization") String token);
 
 }

@@ -3,34 +3,32 @@ package com.example.professorperformanceevaluation.service;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.professorperformanceevaluation.R;
+import androidx.annotation.NonNull;
+
 import com.example.professorperformanceevaluation.api.SchoolPeriodServiceApi;
 import com.example.professorperformanceevaluation.model.Response;
 import com.example.professorperformanceevaluation.model.SchoolPeriod;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.net.HttpURLConnection;
-
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SchoolPeriodService {
 
-    private static final String URL = String.valueOf(R.string.base_url);
-
+    private static final String URL = "http://professorperformanceevaluation-production-7405.up.railway.app/api/schoolperiods/";
     private static String token;
-    private static Retrofit retrofit;
     private static SchoolPeriodServiceApi apiService;
 
-    public static void initialize(Context context) {
+    public SchoolPeriodService(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE);
         token = sharedPreferences.getString("token", "");
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         Gson gson = new GsonBuilder().create();
-        retrofit = new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(httpClient.build())
@@ -38,30 +36,40 @@ public class SchoolPeriodService {
         apiService = retrofit.create(SchoolPeriodServiceApi.class);
     }
 
-    public static Response getSchoolPeriodById(SchoolPeriod schoolPeriod) {
+    public static void getSchoolPeriodById(SchoolPeriod schoolPeriod, SchoolPeriodServiceCallback callback) {
         Call<Response> call = apiService.getSchoolPeriodById("Bearer " + token, schoolPeriod);
-        try {
-            retrofit2.Response<Response> response = call.execute();
-            return response.body();
-        } catch (Exception exception) {
-            Response response = new Response();
-            response.setCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
-            response.setMessage(exception.getMessage());
-            return response;
-        }
+        call.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
+                callback.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Response> call, @NonNull Throwable throwable) {
+                callback.onFailure(throwable);
+            }
+        });
     }
 
-    public static Response getSchoolPeriods() {
+    public static void getSchoolPeriods(SchoolPeriodServiceCallback callback) {
         Call<Response> call = apiService.getSchoolPeriods("Bearer " + token);
-        try {
-            retrofit2.Response<Response> response = call.execute();
-            return response.body();
-        } catch (Exception exception) {
-            Response response = new Response();
-            response.setCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
-            response.setMessage(exception.getMessage());
-            return response;
-        }
+        call.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
+                callback.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Response> call, @NonNull Throwable throwable) {
+                callback.onFailure(throwable);
+            }
+        });
+    }
+
+    public interface SchoolPeriodServiceCallback {
+        void onSuccess(Response response);
+
+        void onFailure(Throwable throwable);
     }
 
 }

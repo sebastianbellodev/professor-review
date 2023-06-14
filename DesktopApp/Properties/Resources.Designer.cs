@@ -79,7 +79,7 @@ namespace ProfessorPerformanceEvaluation.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a http://localhost:3000/api/.
+        ///   Busca una cadena traducida similar a http://professorperformanceevaluation-production-7405.up.railway.app/api/.
         /// </summary>
         public static string BASE_URL {
             get {

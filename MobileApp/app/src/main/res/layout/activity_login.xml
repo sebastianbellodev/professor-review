@@ -3,11 +3,74 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <variable
+            name="loginViewModel"
+            type="com.example.professorperformanceevaluation.viewmodel.LoginViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activity.LoginActivity">
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:background="@color/background_color"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/username_label"
+            android:text="@={loginViewModel.username}"
+            android:textSize="16sp" />
+
+        <EditText
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:hint="@string/username_instruction_label"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:text="@={loginViewModel.username}"
+            android:textColorHint="#546E7A"
+            android:textSize="15sp"
+            tools:ignore="VisualLintTextFieldSize" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password_label"
+            android:text="@={loginViewModel.username}"
+            android:textSize="16sp" />
+
+        <EditText
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:hint="@string/password_instruction_label"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:text="@={loginViewModel.password}"
+            android:textColorHint="#546E7A"
+            android:textSize="15sp"
+            tools:ignore="VisualLintTextFieldSize" />
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> loginViewModel.onLoginClicked()}"
+            android:text="@string/login_button"
+            tools:ignore="VisualLintButtonSize" />
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> loginViewModel.onSignUpClicked()}"
+            android:text="@string/sign_up_button"
+            tools:ignore="VisualLintButtonSize" />
+
+    </LinearLayout>
 </layout>

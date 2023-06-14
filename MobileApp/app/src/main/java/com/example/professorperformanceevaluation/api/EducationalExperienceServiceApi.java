@@ -14,25 +14,25 @@ import retrofit2.http.POST;
 
 public interface EducationalExperienceServiceApi {
 
-    @POST("educationalexperiences/id")
+    @POST("id")
     Call<Response> getEducationalExperienceById(@Header("Authorization") String token, @Body EducationalExperience educationalExperience);
 
-    @POST("educationalexperiences/name")
+    @POST("name")
     Call<Response> getEducationalExperienceByName(@Header("Authorization") String token, @Body EducationalExperience educationalExperience);
 
-    @GET("educationalexperiences")
+    @GET
     Call<Response> getEducationalExperiences(@Header("Authorization") String token);
 
-    @POST("educationalexperiences/educationalprogram")
+    @POST("educationalprogram")
     Call<Response> getEducationalExperiencesByEducationalProgram(@Header("Authorization") String token, @Body EducationalProgram educationalProgram);
 
-    @POST("educationalexperiences/faculty")
+    @POST("faculty")
     Call<Response> getEducationalExperiencesByFaculty(@Header("Authorization") String token, @Body Faculty faculty);
 
-    @PATCH("educationalexperiences")
+    @PATCH
     Call<Response> patch(@Header("Authorization") String token, @Body EducationalExperience educationalExperience);
 
-    @POST("educationalexperiences")
+    @POST
     Call<Response> post(@Header("Authorization") String token, @Body EducationalExperience educationalExperience);
 
 }

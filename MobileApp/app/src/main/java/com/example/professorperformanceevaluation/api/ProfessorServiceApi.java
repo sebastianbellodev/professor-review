@@ -15,25 +15,25 @@ import retrofit2.http.POST;
 
 public interface ProfessorServiceApi {
 
-    @DELETE("professors")
+    @DELETE
     Call<Response> delete(@Header("Authorization") String token, @Body Professor professor);
 
-    @POST("professors/id")
+    @POST("id")
     Call<Response> getProfessorById(@Header("Authorization") String token, @Body Professor professor);
 
-    @GET("professors")
+    @GET
     Call<Response> getProfessors(@Header("Authorization") String token);
 
-    @POST("professors/educationalprogram")
+    @POST("educationalprogram")
     Call<Response> getProfessorsByEducationalProgram(@Header("Authorization") String token, @Body EducationalProgram educationalProgram);
 
-    @POST("professors/faculty")
+    @POST("faculty")
     Call<Response> getProfessorsByFaculty(@Header("Authorization") String token, @Body Faculty faculty);
 
-    @PATCH("professors")
+    @PATCH
     Call<Response> patch(@Header("Authorization") String token, @Body Professor professor);
 
-    @POST("professors")
+    @POST
     Call<Response> post(@Header("Authorization") String token, @Body Professor professor);
 
 }

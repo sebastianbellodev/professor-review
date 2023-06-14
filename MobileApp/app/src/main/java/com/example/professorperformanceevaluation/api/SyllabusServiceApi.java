@@ -11,13 +11,13 @@ import retrofit2.http.POST;
 
 public interface SyllabusServiceApi {
 
-    @DELETE("syllabuses")
+    @DELETE
     Call<Response> delete(@Header("Authorization") String token, @Body Syllabus syllabus);
 
-    @POST("syllabuses/id")
+    @POST("id")
     Call<Response> getSyllabusById(@Header("Authorization") String token, @Body Syllabus syllabus);
 
-    @POST("syllabuses")
+    @POST
     Call<Response> post(@Header("Authorization") String token, @Body Syllabus syllabus);
 
 }
