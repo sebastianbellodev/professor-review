@@ -98,9 +98,11 @@ public class ReviewService {
     }
 
     public interface ReviewServiceCallback {
+
         void onSuccess(Response response);
 
         void onFailure(Throwable throwable);
+
     }
 
 }

@@ -98,9 +98,11 @@ public class EducationalProgramService {
     }
 
     public interface EducationalProgramServiceCallback {
+
         void onSuccess(Response response);
 
         void onFailure(Throwable throwable);
+
     }
 
 }

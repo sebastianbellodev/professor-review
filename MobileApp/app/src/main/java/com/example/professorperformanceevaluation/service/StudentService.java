@@ -158,9 +158,11 @@ public class StudentService {
     }
 
     public interface StudentServiceCallback {
+
         void onSuccess(Response response);
 
         void onFailure(Throwable throwable);
+
     }
 
 }

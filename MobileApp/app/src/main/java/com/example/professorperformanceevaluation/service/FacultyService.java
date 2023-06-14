@@ -97,9 +97,11 @@ public class FacultyService {
     }
 
     public interface FacultyServiceCallback {
+
         void onSuccess(Response response);
 
         void onFailure(Throwable throwable);
+
     }
 
 }
