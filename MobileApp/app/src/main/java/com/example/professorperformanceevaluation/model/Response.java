@@ -1,30 +1,52 @@
 package com.example.professorperformanceevaluation.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class Response {
 
-    private int code;
-    private String message;
-    private String token;
-    private AcademicOffering academicOffering;
-    private List<AcademicOffering> academicOfferings;
-    private EducationalExperience educationalExperience;
-    private List<EducationalExperience> educationalExperiences;
-    private EducationalProgram educationalProgram;
-    private List<EducationalProgram> educationalPrograms;
-    private Faculty faculty;
-    private List<Faculty> faculties;
-    private Professor professor;
-    private List<Professor> professors;
-    private Review review;
-    private List<Review> reviews;
-    private SchoolPeriod schoolPeriod;
-    private List<SchoolPeriod> schoolPeriods;
-    private Student student;
-    private List<Student> students;
-    private User user;
-    private List<User> users;
+    public int code;
+    @JsonProperty("message")
+    public String message;
+    @JsonProperty("token")
+    public String token;
+    @JsonProperty("educationalExperience")
+    public EducationalExperience educationalExperience;
+    @JsonProperty("educationalExperiences")
+    public List<EducationalExperience> educationalExperiences;
+    @JsonProperty("educationalProgram")
+    public EducationalProgram educationalProgram;
+    @JsonProperty("educationalPrograms")
+    public List<EducationalProgram> educationalPrograms;
+    @JsonProperty("faculty")
+    public Faculty faculty;
+    @JsonProperty("faculties")
+    public List<Faculty> faculties;
+    @JsonProperty("professor")
+    public Professor professor;
+    @JsonProperty("professors")
+    public List<Professor> professors;
+    @JsonProperty("review")
+    public Review review;
+    @JsonProperty("reviews")
+    public List<Review> reviews;
+    @JsonProperty("schoolPeriod")
+    public SchoolPeriod schoolPeriod;
+    @JsonProperty("schoolPeriods")
+    public List<SchoolPeriod> schoolPeriods;
+    @JsonProperty("student")
+    public Student student;
+    @JsonProperty("students")
+    public List<Student> students;
+    @JsonProperty("syllabus")
+    public Syllabus syllabus;
+    @JsonProperty("syllabuses")
+    public List<Syllabus> syllabuses;
+    @JsonProperty("user")
+    public User user;
+    @JsonProperty("users")
+    public List<User> users;
 
     public Response() {
     }
@@ -51,22 +73,6 @@ public class Response {
 
     public void setToken(String token) {
         this.token = token;
-    }
-
-    public AcademicOffering getAcademicOffering() {
-        return academicOffering;
-    }
-
-    public void setAcademicOffering(AcademicOffering academicOffering) {
-        this.academicOffering = academicOffering;
-    }
-
-    public List<AcademicOffering> getAcademicOfferings() {
-        return academicOfferings;
-    }
-
-    public void setAcademicOfferings(List<AcademicOffering> academicOfferings) {
-        this.academicOfferings = academicOfferings;
     }
 
     public EducationalExperience getEducationalExperience() {

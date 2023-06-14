@@ -1,18 +1,30 @@
 package com.example.professorperformanceevaluation.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 public class Student {
 
+    @JsonProperty("registrationNumber")
     private String registrationNumber;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("lastName")
     private String lastName;
+    @JsonProperty("emailAddress")
     private String emailAddress;
+    @JsonProperty("phoneNumber")
     private String phoneNumber;
+    @JsonProperty("biography")
     private String biography;
+    @JsonProperty("active")
     private boolean active;
+    @JsonProperty("activationDate")
     private Date activationDate;
+    @JsonProperty("oneTimePassword")
     private String oneTimePassword;
+    @JsonProperty("idEducationalProgram")
     private int idEducationalProgram;
 
     public Student() {

@@ -41,7 +41,6 @@ public class LoginViewModel extends ViewModel {
         userService.login(user, new UserService.UserServiceCallback() {
             @Override
             public void onSuccess(Response response) {
-                System.out.println(response.getMessage());
             }
 
             @Override
@@ -49,7 +48,6 @@ public class LoginViewModel extends ViewModel {
                 Response response = new Response();
                 response.setCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
                 response.setMessage(throwable.getMessage());
-                System.out.println(response.getMessage());
             }
         });
     }

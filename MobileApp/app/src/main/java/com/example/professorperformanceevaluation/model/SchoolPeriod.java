@@ -1,11 +1,16 @@
 package com.example.professorperformanceevaluation.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 public class SchoolPeriod {
 
+    @JsonProperty("idSchoolPeriod")
     private int idSchoolPeriod;
+    @JsonProperty("startDate")
     private Date startDate;
+    @JsonProperty("endDate")
     private Date endDate;
 
     public SchoolPeriod() {

@@ -1,9 +1,14 @@
 package com.example.professorperformanceevaluation.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Professor {
 
+    @JsonProperty("idProfessor")
     private int idProfessor;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("lastName")
     private String lastName;
 
     public Professor() {
