@@ -1,6 +1,7 @@
 package com.example.professorperformanceevaluation.viewmodel;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -34,6 +35,7 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void onLoginClicked() {;
+        System.out.println("Processing...");
         String username = this.username.getValue();
         String password = this.password.getValue();
         password = Utilities.computeSHA256Hash(password);
@@ -41,6 +43,7 @@ public class LoginViewModel extends ViewModel {
         userService.signUp(new UserService.UserServiceCallback() {
             @Override
             public void onSuccess(Response response) {
+                Toast.makeText(context, "Successful login!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -48,6 +51,8 @@ public class LoginViewModel extends ViewModel {
                 Response response = new Response();
                 response.setCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
                 response.setMessage(throwable.getMessage());
+                System.out.println(throwable);
+                Toast.makeText(context, "Failed request...", Toast.LENGTH_SHORT).show();
             }
         });
     }

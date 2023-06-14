@@ -12,7 +12,6 @@ import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 
 public interface UserServiceApi {
-
     @DELETE
     Call<Response> delete(@Header("Authorization") String token, @Body User user);
 
@@ -22,7 +21,7 @@ public interface UserServiceApi {
     @GET
     Call<Response> getUsers(@Header("Authorization") String token);
 
-    @POST("login")
+    @POST("api/users/login")
     Call<Response> login(@Header("Authorization") String credentials, @Body User user);
 
     @PATCH
