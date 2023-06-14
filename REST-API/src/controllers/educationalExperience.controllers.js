@@ -36,7 +36,10 @@ export const getEducationalExperiences = () => {
       "SELECT\n" +
       "*\n" +
       "FROM\n" +
-      "educationalExperience"
+      "educationalExperience\n" +
+      "ORDER BY\n" +
+      "name\n" +
+      "ASC"
     )
   );
 };
@@ -54,7 +57,10 @@ export const getEducationalExperiencesByEducationalProgram = (request) => {
       "ON\n" +
       "educationalexperience.idEducationalExperience = syllabus.idEducationalExperience\n" +
       "WHERE\n" +
-      "syllabus.idEducationalProgram = ?",
+      "syllabus.idEducationalProgram = ?\n" +
+      "ORDER BY\n" +
+      "educationalExperience.name\n" +
+      "ASC",
       [idEducationalProgram]
     )
   );
@@ -81,7 +87,10 @@ export const getEducationalExperiencesByFaculty = (request) => {
       "ON\n" +
       "faculty.idFaculty = educationalProgram.idFaculty\n" +
       "WHERE\n" +
-      "faculty.idFaculty = ?",
+      "faculty.idFaculty = ?\n" +
+      "ORDER BY\n" +
+      "educationalExperience.name\n" +
+      "ASC",
       [idFaculty]
     )
   );
