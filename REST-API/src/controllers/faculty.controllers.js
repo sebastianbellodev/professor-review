@@ -35,7 +35,10 @@ export const getFaculties = () => {
             "SELECT\n" +
             "*\n" +
             "FROM\n" +
-            "faculty"
+            "faculty\n" +
+            "ORDER BY\n" +
+            "name\n" +
+            "ASC"
         )
     );
 };

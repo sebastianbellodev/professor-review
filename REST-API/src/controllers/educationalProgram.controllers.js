@@ -22,7 +22,10 @@ export const getEducationalPrograms = () => {
       "SELECT\n" +
       "*\n" +
       "FROM\n" +
-      "educationalProgram"
+      "educationalProgram\n" +
+      "ORDER BY\n" +
+      "name\n" +
+      "ASC"
     )
   );
 };
@@ -36,7 +39,10 @@ export const getEducationalProgramsByFaculty = (request) => {
       "FROM\n" +
       "educationalprogram\n" +
       "WHERE\n" +
-      "educationalprogram.idFaculty = ?",
+      "educationalprogram.idFaculty = ?\n" +
+      "ORDER BY\n" +
+      "name\n" +
+      "ASC",
       [idFaculty]
     )
   )

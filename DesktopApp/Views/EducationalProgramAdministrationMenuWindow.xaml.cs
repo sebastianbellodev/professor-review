@@ -12,13 +12,15 @@ namespace ProfessorPerformanceEvaluation.Views
         private void LogEducationalExperienceButtonClick(object sender, RoutedEventArgs e)
         {
             var logEducationalExperienceWindow = new LogEducationalExperienceWindow();
-            logEducationalExperienceWindow.ShowDialog();
+            Close();
+            logEducationalExperienceWindow.Show();
         }
 
         private void ModifyEducationalExperienceButtonClick(object sender, RoutedEventArgs e)
         {
             var modifyEducationalExperienceWindow = new ModifyEducationalExperienceWindow();
-            modifyEducationalExperienceWindow.ShowDialog();
+            Close();
+            modifyEducationalExperienceWindow.Show();
         }
 
         private void LogProfessorButtonClick(object sender, RoutedEventArgs e)
@@ -41,7 +43,7 @@ namespace ProfessorPerformanceEvaluation.Views
         {
             var modifyEducationalProgramWindow = new ModifyEducationalProgramWindow();
             Close();
-            modifyEducationalProgramWindow.ShowDialog();
+            modifyEducationalProgramWindow.Show();
         }
 
         private void ManageFacultiesButtonClick(object sender, RoutedEventArgs e)

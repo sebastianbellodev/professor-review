@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Windows.Controls;
 
 namespace ProfessorPerformanceEvaluation.Model
 {
@@ -8,5 +9,10 @@ namespace ProfessorPerformanceEvaluation.Model
         public int IdEducationalExperience { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

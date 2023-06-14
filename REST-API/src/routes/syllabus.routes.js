@@ -16,7 +16,7 @@ import {
 
 const router = Router();
 
-router.delete("/syllabus", validateToken, async (request, response) => {
+router.delete("/syllabuses", validateToken, async (request, response) => {
   try {
     const [row] = await deleteSyllabus(request);
     row.affectedRows > 0
@@ -27,7 +27,7 @@ router.delete("/syllabus", validateToken, async (request, response) => {
   }
 });
 
-router.post("/syllabus", validateToken, async (request, response) => {
+router.post("/syllabuses", validateToken, async (request, response) => {
   try {
     await postSyllabus(request);
     message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.SYLLABUS_POST);
@@ -36,7 +36,7 @@ router.post("/syllabus", validateToken, async (request, response) => {
   }
 });
 
-router.post("/syllabus/educationalexperience", validateToken, async (request, response) => {
+router.post("/syllabuses/educationalexperience", validateToken, async (request, response) => {
   try {
     const [row] = await getSyllabusesByEducationalExperience(request);
     const syllabuses = { syllabuses: row };
@@ -46,7 +46,7 @@ router.post("/syllabus/educationalexperience", validateToken, async (request, re
   }
 });
 
-router.post("/syllabus/id", validateToken, async (request, response) => {
+router.post("/syllabuses/id", validateToken, async (request, response) => {
   try {
     const [row] = await getSyllabusById(request);
     if (row.length > 0) {
