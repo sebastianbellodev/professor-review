@@ -38,7 +38,7 @@ public class LoginViewModel extends ViewModel {
         String password = this.password.getValue();
         password = Utilities.computeSHA256Hash(password);
         User user = new User(username, password);
-        userService.login(user, new UserService.UserServiceCallback() {
+        userService.signUp(new UserService.UserServiceCallback() {
             @Override
             public void onSuccess(Response response) {
             }

@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UserService {
 
-    private static final String URL = "http://professorperformanceevaluation-production-7405.up.railway.app/api/users/";
+    private static final String URL = "http://10.0.2.2:3000/api/users/";
     private static Context context;
     private static String token;
     private static UserServiceApi apiService;
