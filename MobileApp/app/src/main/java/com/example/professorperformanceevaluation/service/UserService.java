@@ -155,9 +155,11 @@ public class UserService {
     }
 
     public interface UserServiceCallback {
+
         void onSuccess(Response response);
 
         void onFailure(Throwable throwable);
+
     }
 
 }

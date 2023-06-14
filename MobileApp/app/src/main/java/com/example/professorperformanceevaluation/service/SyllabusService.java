@@ -82,9 +82,11 @@ public class SyllabusService {
     }
 
     public interface SyllabusServiceCallback {
+
         void onSuccess(Response response);
 
         void onFailure(Throwable throwable);
+
     }
 
 }

@@ -144,9 +144,11 @@ public class EducationalExperienceService {
     }
 
     public interface EducationalExperienceServiceCallback {
+
         void onSuccess(Response response);
 
         void onFailure(Throwable throwable);
+
     }
 
 }
