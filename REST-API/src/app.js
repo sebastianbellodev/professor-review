@@ -9,6 +9,7 @@ import studentRoutes from "./routes/student.routes.js";
 import syllabusRoutes from "./routes/syllabus.routes.js";
 import testRoutes from "./routes/test.routes.js";
 import userRoutes from "./routes/user.routes.js";
+import academicofferingRoutes from "./routes/academicoffering.routes.js";
 import {
   message,
   RESPONSE_CODE,
@@ -31,6 +32,7 @@ app.use(api, studentRoutes);
 app.use(api, syllabusRoutes);
 app.use(api, testRoutes);
 app.use(api, userRoutes);
+app.use(api, academicofferingRoutes);
 
 app.use((request, response, next) => {
   message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.URL_NOT_FOUND);
