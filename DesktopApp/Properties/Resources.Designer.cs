@@ -79,7 +79,7 @@ namespace ProfessorPerformanceEvaluation.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a http://professorperformanceevaluation-production-7405.up.railway.app/api/.
+        ///   Busca una cadena traducida similar a http://localhost:3000/api/.
         /// </summary>
         public static string BASE_URL {
             get {
@@ -241,6 +241,15 @@ namespace ProfessorPerformanceEvaluation.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Los datos ingresados son inválidos..
+        /// </summary>
+        public static string INVALID_DATA_LABEL {
+            get {
+                return ResourceManager.GetString("INVALID_DATA_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Registrar experiencia educativa.
         /// </summary>
         public static string LOG_EDUCATIONAL_EXPERIENCE_BUTTON {
@@ -300,6 +309,24 @@ namespace ProfessorPerformanceEvaluation.Properties {
         public static string LOG_PROFESSOR_BUTTON {
             get {
                 return ResourceManager.GetString("LOG_PROFESSOR_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Iniciar sesión.
+        /// </summary>
+        public static string LOGIN_BUTTON {
+            get {
+                return ResourceManager.GetString("LOGIN_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Iniciar sesión..
+        /// </summary>
+        public static string LOGIN_LABEL {
+            get {
+                return ResourceManager.GetString("LOGIN_LABEL", resourceCulture);
             }
         }
         
@@ -385,6 +412,24 @@ namespace ProfessorPerformanceEvaluation.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Confirmación de contraseña:.
+        /// </summary>
+        public static string PASSWORD_CONFIRMATION_LABEL {
+            get {
+                return ResourceManager.GetString("PASSWORD_CONFIRMATION_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Contraseña:.
+        /// </summary>
+        public static string PASSWORD_LABEL {
+            get {
+                return ResourceManager.GetString("PASSWORD_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Gestión de evaluaciones al desempeño docente.
         /// </summary>
         public static string PROFESSOR_PERFORMANCE_EVALUATIONS_MANAGEMENT_BUTTON {
@@ -421,6 +466,24 @@ namespace ProfessorPerformanceEvaluation.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Crear cuenta.
+        /// </summary>
+        public static string SIGN_UP_BUTTON {
+            get {
+                return ResourceManager.GetString("SIGN_UP_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Crear cuenta..
+        /// </summary>
+        public static string SIGN_UP_LABEL {
+            get {
+                return ResourceManager.GetString("SIGN_UP_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Generación de reportes específicos.
         /// </summary>
         public static string SPECIFIC_REPORT_GENERATION_BUTTON {
@@ -453,6 +516,24 @@ namespace ProfessorPerformanceEvaluation.Properties {
         public static string TRY_AGAIN_LATER_LABEL {
             get {
                 return ResourceManager.GetString("TRY_AGAIN_LATER_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La información ingresada corresponde a un usuario que ya se encuentra registrado en el sistema..
+        /// </summary>
+        public static string USER_ALREADY_REGISTERED_LABEL {
+            get {
+                return ResourceManager.GetString("USER_ALREADY_REGISTERED_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nombre de usuario:.
+        /// </summary>
+        public static string USERNAME_LABEL {
+            get {
+                return ResourceManager.GetString("USERNAME_LABEL", resourceCulture);
             }
         }
     }

@@ -33,7 +33,7 @@ app.use(api, testRoutes);
 app.use(api, userRoutes);
 
 app.use((request, response, next) => {
-  message(response, RESPONSE_CODE.UNAUTHORIZED, RESPONSE_MESSAGE.URL_NOT_FOUND);
+  message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.URL_NOT_FOUND);
 });
 
 export default app;
