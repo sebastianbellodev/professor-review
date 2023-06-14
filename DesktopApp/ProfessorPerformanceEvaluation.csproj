@@ -185,6 +185,7 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -207,6 +208,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Service\AcademicOfferingService.cs" />
     <Compile Include="Views\ManageFaculties.xaml.cs">
       <DependentUpon>ManageFaculties.xaml</DependentUpon>
     </Compile>
@@ -285,7 +287,6 @@
     </Compile>
     <Compile Include="Views\LogEducationalExperienceWindow.xaml.cs">
       <DependentUpon>LogEducationalExperienceWindow.xaml</DependentUpon>
-
     </Compile>
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>

@@ -15,9 +15,9 @@
         <Label Content="Programas educativos:" HorizontalAlignment="Left" Margin="255,13,0,0" VerticalAlignment="Top" Width="209" FontSize="18"/>
         <Label Content="Profesores:&#xD;&#xA;" HorizontalAlignment="Left" Margin="717,10,0,0" VerticalAlignment="Top" Width="118" FontSize="18" Height="37"/>
         <Label Content="Experiencia Educativa&#xD;&#xA;" HorizontalAlignment="Left" Margin="481,13,0,0" VerticalAlignment="Top" Width="201" FontSize="18" Height="34"/>
-        
-        <Button x:Name="btn_delete" Content="Eliminar" HorizontalAlignment="Left" Margin="776,493,0,0" VerticalAlignment="Top" Height="37" Width="128"/>
-        <Button x:Name="btn_cancel" Content="Cancelar" HorizontalAlignment="Left" Margin="602,493,0,0" VerticalAlignment="Top" Height="37" Width="128"/>
+
+        <Button x:Name="btn_delete" Content="Eliminar" HorizontalAlignment="Left" Margin="776,493,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="DeleteButtonClick"/>
+        <Button x:Name="btn_cancel" Content="Cancelar" HorizontalAlignment="Left" Margin="602,493,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="CancelButtonClick"/>
         
         <DataGrid Name="DataGridReviews" Margin="24,137,23,92">
             <DataGrid.Columns>

@@ -3,6 +3,7 @@ using ProfessorPerformanceEvaluation.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,25 +22,69 @@ namespace ProfessorPerformanceEvaluation.Views
     /// </summary>
     public partial class UpdateFaculty : Window
     {
-        private Faculty newFaculty = new Faculty();
+        private Faculty selectedFaculty = new Faculty();
 
         public UpdateFaculty()
         {
             InitializeComponent();
         }
 
-        public void setView(Faculty faculty)
+        public void SetView(Faculty faculty)
         {
-            this.newFaculty = faculty;
+            this.selectedFaculty = faculty;
         }
 
-        private void update_Click(object sender, RoutedEventArgs e)
+        private void Update_Click(object sender, RoutedEventArgs e)
         {
-            String facultyName = this.txt_facultyName.Text;
-            
+            if (EmptyFields()) {
+                var faculty = new Faculty()
+                {
+                    Name = this.txt_facultyName.Text,
+                    IdFaculty = this.selectedFaculty.IdFaculty
+                };
+                UpdateFacultyName(faculty);
+            }
+            else
+            {
+                MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
+                   Properties.Resources.EMPTY_FIELDS_LABEL);
+            }
+
         }
 
-        private void back_Click(object sender, RoutedEventArgs e)
+        private Boolean EmptyFields()
+        {
+            Boolean result = false;
+            if (!string.IsNullOrEmpty(this.txt_facultyName.Text))
+            {
+                result = true;
+            }
+            return result;
+        }
+        
+        private async void UpdateFacultyName(Faculty faculty)
+        {
+            Response response = await FacultyService.Patch(faculty);
+            if (response.Code == (int)HttpStatusCode.OK)
+            {
+                MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_LABEL);
+                this.Close();
+            }
+            else if (response.Code == (int)HttpStatusCode.Forbidden)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.EXPIRED_SESSION_LABEL);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
+                this.Close();
+            }
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

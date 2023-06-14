@@ -10,10 +10,10 @@
         <Label Content="Recuerde que para eliminar o actualizar debe de seleccionar una facultad &#xD;&#xA;de la lista mostrada:" HorizontalAlignment="Left" Margin="24,40,0,0" VerticalAlignment="Top" FontSize="16" Width="560"/>
         <Label Content="Opciones:" HorizontalAlignment="Left" Margin="748,114,0,0" VerticalAlignment="Top" FontSize="16" Width="92"/>
 
-        <Button x:Name="btn_delete" Content="Eliminar" HorizontalAlignment="Left" Margin="730,387,0,0" VerticalAlignment="Top" Height="37" Width="128"/>
-        <Button x:Name="btn_register" Content="Registrar" HorizontalAlignment="Left" Margin="730,194,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="register_Click"/>
-        <Button x:Name="btn_update" Content="Actualizar" HorizontalAlignment="Left" Margin="730,292,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="update_Click"/>
-        <Button x:Name="btn_cancel" Content="Cancelar" HorizontalAlignment="Left" Margin="794,520,0,0" VerticalAlignment="Top" Height="37" Width="128"/>
+        <Button x:Name="btn_delete" Content="Eliminar" HorizontalAlignment="Left" Margin="730,387,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="DeleteButtonClick"/>
+        <Button x:Name="btn_register" Content="Registrar" HorizontalAlignment="Left" Margin="730,194,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="RegisterButtonClick"/>
+        <Button x:Name="btn_update" Content="Actualizar" HorizontalAlignment="Left" Margin="730,292,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="UpdateButtonClick"/>
+        <Button x:Name="btn_cancel" Content="Cancelar" HorizontalAlignment="Left" Margin="794,520,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="btn_cancelButtonClick"/>
 
         <DataGrid Name="DataGridFaculties" Margin="24,114,376,114">
             <DataGrid.Columns>

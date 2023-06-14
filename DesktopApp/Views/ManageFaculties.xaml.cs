@@ -1,7 +1,9 @@
 ﻿using ProfessorPerformanceEvaluation.Model;
+using ProfessorPerformanceEvaluation.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,36 +25,54 @@ namespace ProfessorPerformanceEvaluation.Views
         public ManageFaculties()
         {
             InitializeComponent();
-            loadDataGrid();
+            LoadDataGrid();
         }
 
-        private void loadDataGrid()
+        private async void LoadDataGrid()
         {
-            DataGridFaculties.DataContext = null;
-            //DataGridFaculties.DataContext = 
+            Response response = await FacultyService.GetFaculties();
+            if (response.Code == (int)HttpStatusCode.OK)
+            {
+                List<Faculty> faculties = response.Faculties;
+                DataGridFaculties.ItemsSource = faculties;
+                //DataGridFaculties.DataContext = faculties; --Ver que funciona mejor
+            }
+            else if (response.Code == (int)HttpStatusCode.Forbidden)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.EXPIRED_SESSION_LABEL);
+                Close();
+            }
+            else
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
+                Close();
+            }
+
         }
 
-        private void register_Click(object sender, RoutedEventArgs e)
+        private void RegisterButtonClick(object sender, RoutedEventArgs e)
         {
             RegisterFaculty registerFaculty = new RegisterFaculty();
             registerFaculty.Show();
         }
 
-        private void update_Click(object sender, RoutedEventArgs e)
+        private void UpdateButtonClick(object sender, RoutedEventArgs e)
         {
-            if (verifySelectedFacultyDataGrid())
-            {
-                Faculty facultyDataGrid = new Faculty();
+            UpdateFaculty updateFaculty = new UpdateFaculty();
+            Faculty facultyDataGrid = new Faculty();
+            if (VerifySelectedFacultyDataGrid())
+            {                
                 facultyDataGrid = this.DataGridFaculties.SelectedItem as Faculty;
-
-                UpdateFaculty updateFaculty = new UpdateFaculty();
-                updateFaculty.setView(facultyDataGrid);
+                
+                updateFaculty.SetView(facultyDataGrid);
                 updateFaculty.Show();
             }
 
         }
         
-        private Boolean verifySelectedFacultyDataGrid()
+        private Boolean VerifySelectedFacultyDataGrid()
         {
             Boolean result = false;
             if (DataGridFaculties.SelectedIndex != -1)
@@ -62,5 +82,44 @@ namespace ProfessorPerformanceEvaluation.Views
             return result;
         }
 
+        private void DeleteButtonClick(object sender, RoutedEventArgs e)
+        {
+            Faculty selectedFacultyDataGrid = new Faculty();
+            if (VerifySelectedFacultyDataGrid())
+            {
+                selectedFacultyDataGrid = this.DataGridFaculties.SelectedItem as Faculty;
+                DeleteFaculty(selectedFacultyDataGrid);
+            }
+            else
+            {
+                MessageBox.Show(Properties.Resources.EMPTY_FIELDS_LABEL);
+            }
+        }
+
+        private async void DeleteFaculty(Faculty faculty)
+        {
+            Response response = await FacultyService.Delete(faculty);
+            if (response.Code == (int)HttpStatusCode.OK)
+            {
+                MessageBox.Show(Properties.Resources.DELETED_INFORMATION_LABEL);
+                this.Close(); ;
+            }
+            else if (response.Code == (int)HttpStatusCode.Forbidden)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.EXPIRED_SESSION_LABEL);
+                Close();
+            }
+            else
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
+                Close();
+            }
+        }
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

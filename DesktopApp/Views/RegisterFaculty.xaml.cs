@@ -1,6 +1,9 @@
-﻿using System;
+﻿using ProfessorPerformanceEvaluation.Model;
+using ProfessorPerformanceEvaluation.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,12 +29,57 @@ namespace ProfessorPerformanceEvaluation.Views
 
         private void RegisterButtonClick(object sender, RoutedEventArgs e)
         {
-
+            if (EmptyFields())
+            {
+                var faculty = new Faculty()
+                {
+                    Name = this.txt_FacultyName.Text,
+                };
+                LogFacultyName(faculty);
+            }
+            else
+            {
+                MessageBox.Show(Properties.Resources.CHECK_ENTERED_INFORMATION_LABEL,
+                   Properties.Resources.EMPTY_FIELDS_LABEL);
+            }
         }
+
+        private Boolean EmptyFields()
+        {
+            Boolean result = false;
+            if (!string.IsNullOrEmpty(this.txt_FacultyName.Text))
+            {
+                result = true;
+            }
+            return result;
+        }
+
+        private async void LogFacultyName(Faculty faculty)
+        {
+            Response response = await FacultyService.Post(faculty);
+            if (response.Code == (int)HttpStatusCode.OK)
+            {
+                MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_LABEL);
+                this.Close();
+            }
+            else if (response.Code == (int)HttpStatusCode.Forbidden)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.EXPIRED_SESSION_LABEL);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
+                this.Close();
+            }
+        }
+
 
         private void BackButtonClick(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

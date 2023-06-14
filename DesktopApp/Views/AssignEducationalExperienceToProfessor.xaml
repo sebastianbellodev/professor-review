@@ -9,23 +9,23 @@
     <Grid>
         <Label Content="Programa educativo:" HorizontalAlignment="Left" Margin="446,30,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="Facultad:" HorizontalAlignment="Left" Margin="25,30,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label Content="Experiencia educativa:" HorizontalAlignment="Left" Margin="25,78,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label Content="Profesor:" HorizontalAlignment="Left" Margin="548,78,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label Content="Seleccione una experiencia educativa:" HorizontalAlignment="Left" Margin="25,122,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label Content="Seleccione un profesor:" HorizontalAlignment="Left" Margin="548,122,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <ComboBox x:Name="cbb_EducationalProgram" HorizontalAlignment="Left" Margin="620,33,0,0" VerticalAlignment="Top" Width="300" Height="28"/>
-        <ComboBox x:Name="cbb_Faculty" HorizontalAlignment="Left" Margin="124,33,0,0" VerticalAlignment="Top" Width="300" Height="28"/>
-        
-        <TextBox HorizontalAlignment="Left" Margin="195,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="254" Height="32" IsEnabled="False"/>
-        <TextBox HorizontalAlignment="Left" Margin="666,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="254" Height="32"/>
-        <TextBox x:Name="txt_EducationalExperiencie" HorizontalAlignment="Left" Margin="25,158,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="372" Height="32" />
-        <TextBox x:Name="txt_Professor" HorizontalAlignment="Left" Margin="548,158,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="372" Height="32" />
-        <Button x:Name="btn_regresar" Content="Regresar" HorizontalAlignment="Left" Margin="635,525,0,0" VerticalAlignment="Top" Height="37" Width="128"/>
-        <Button x:Name="btn_Registrar" Content="Registrar" HorizontalAlignment="Left" Margin="793,525,0,0" VerticalAlignment="Top" Height="37" Width="128"/>
+        <Label Content="Experiencia educativa:" HorizontalAlignment="Left" Margin="25,157,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Profesor:" HorizontalAlignment="Left" Margin="521,157,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Seleccione una experiencia educativa:" HorizontalAlignment="Left" Margin="25,78,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Seleccione un profesor:" HorizontalAlignment="Left" Margin="524,78,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <ComboBox x:Name="cbb_EducationalProgram" HorizontalAlignment="Left" Margin="620,33,0,0" VerticalAlignment="Top" Width="300" Height="28" SelectionChanged="EducationalProgramComboBoxSelectionChanged"/>
+        <ComboBox x:Name="cbb_Faculty" HorizontalAlignment="Left" Margin="124,33,0,0" VerticalAlignment="Top" Width="300" Height="28" SelectionChanged="FacultyComboBoxSelectionChanged"/>
 
-        <DataGrid Name="DataGriEducationalExperience" Margin="25,211,563,89">
+        <TextBox x:Name="EducationalExperienceNameTextBox" HorizontalAlignment="Left" Margin="195,157,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="229" Height="32" IsEnabled="False"/>
+        <TextBox x:Name="ProfessorNameTextBox" HorizontalAlignment="Left" Margin="598,157,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="322" Height="32" IsEnabled="False"/>
+        <TextBox x:Name="EducationalExperienceSearchTextBox" HorizontalAlignment="Left" Margin="25,110,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="399" Height="32" TextChanged="EducationalExperienceSearchTextBoxTextChanged" />
+        <TextBox x:Name="ProfessorSearchTextBox" HorizontalAlignment="Left" Margin="521,110,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="399" Height="32" TextChanged="ProfessorSearchTextBoxTextChanged" />
+        <Button x:Name="btn_regresar" Content="Regresar" HorizontalAlignment="Left" Margin="635,525,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="btn_regresar_Click"/>
+        <Button x:Name="btn_Registrar" Content="Registrar" HorizontalAlignment="Left" Margin="793,525,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="btn_Registrar_Click"/>
+
+        <DataGrid Name="DataGriEducationalExperience" Margin="25,211,536,89" SelectionChanged="EducationalExperienceDataGridSelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Experiencia educativa" Width="372"/>
+                <DataGridTextColumn Header="Experiencia educativa" Width="399"/>
             </DataGrid.Columns>
 
             <DataGrid.Resources>
@@ -39,9 +39,9 @@
             </DataGrid.Resources>
         </DataGrid>
 
-        <DataGrid Name="DataGridProfessor" Margin="548,211,40,89">
+        <DataGrid Name="DataGridProfessor" Margin="524,211,40,89" SelectionChanged="ProfessorDataGridSelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Profesor" Width="372"/>
+                <DataGridTextColumn Header="Profesor" Width="399"/>
             </DataGrid.Columns>
 
             <DataGrid.Resources>
@@ -54,7 +54,7 @@
                 </Style>
             </DataGrid.Resources>
         </DataGrid>
-        
+
 
     </Grid>
 </Window>
