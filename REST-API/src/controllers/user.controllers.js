@@ -1,5 +1,4 @@
 import { pool } from "../schema/connection.js";
-import { isNullish } from "@supercharge/goodies";
 
 export const deleteUser = (request) => {
   const username = request.body.username;
@@ -11,10 +10,7 @@ export const deleteUser = (request) => {
 };
 
 export const getUserByUsername = (request) => {
-  const username =
-    isNullish(request.body.username)
-      ? request.body.username
-      : "";
+  const username = request.body.username;
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
