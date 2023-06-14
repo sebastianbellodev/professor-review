@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test":"jasmine",
+    "test": "jasmine",
     "dev": "nodemon src/index.js",
     "start": "node src/index.js"
   },
@@ -15,12 +15,12 @@
   "dependencies": {
     "@supercharge/goodies": "^1.11.1",
     "basic-auth": "^2.0.1",
-    "dotenv": "^16.1.0",
+    "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "express-promise-router": "^4.1.1",
     "jasmine-node": "^1.16.0",
     "jsonwebtoken": "^9.0.0",
-    "mysql2": "^3.3.0",
+    "mysql2": "^3.3.5",
     "otp-generator": "^4.0.1"
   },
   "devDependencies": {
