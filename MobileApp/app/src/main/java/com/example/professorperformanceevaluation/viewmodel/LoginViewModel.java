@@ -38,7 +38,8 @@ public class LoginViewModel extends ViewModel {
         return password;
     }
 
-    public void onLoginClicked() {;
+    public void onLoginClicked() {
+        ;
         String username = this.username.getValue();
         String password = this.password.getValue();
         password = Utilities.computeSHA256Hash(password);
@@ -61,8 +62,10 @@ public class LoginViewModel extends ViewModel {
         testService.ping(new TestService.TestServiceCallback() {
             @Override
             public void onSuccess(Response response) {
-                Test test = response.test;
-                Toast.makeText(context, "Result " + test.getResult(), Toast.LENGTH_SHORT).show();
+                Integer result = response.getTest().getResult();
+                if (result != null) {
+                    Toast.makeText(context, "Result " + result, Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

@@ -5,17 +5,18 @@ import com.google.gson.annotations.SerializedName;
 
 public class Test {
     @SerializedName("result")
-    private int result;
+    @Expose
+    private Integer result;
 
     public Test(Integer result) {
         this.result = result;
     }
 
-    public int getResult() {
+    public Integer getResult() {
         return result;
     }
 
-    public void setResult(int result) {
+    public void setResult(Integer result) {
         this.result = result;
     }
 }
