@@ -42,7 +42,7 @@ namespace ProfessorPerformanceEvaluation.Views
 
         private void GoToEducationalProgramAdministrationMenu()
         {
-            var educationalProgramAdministrationMenuWindow = new EducationalProgramManagementMenuWindow();
+            var educationalProgramAdministrationMenuWindow = new EducationalProgramAdministrationMenuWindow();
             Close();
             educationalProgramAdministrationMenuWindow.Show();
         }

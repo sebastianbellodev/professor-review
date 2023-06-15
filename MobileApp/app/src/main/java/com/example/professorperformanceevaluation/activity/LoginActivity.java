@@ -12,15 +12,13 @@ import com.example.professorperformanceevaluation.viewmodel.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private ActivityLoginBinding binding;
-    private LoginViewModel loginViewModel;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
-        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-        loginViewModel.setContext(this);
-        binding.setLoginViewModel(loginViewModel);
+        ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        LoginViewModel viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        binding.setLifecycleOwner(this);
+        binding.setLoginViewModel(viewModel);
     }
+
 }

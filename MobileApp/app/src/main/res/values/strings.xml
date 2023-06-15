@@ -1,10 +1,24 @@
 <resources>
     <string name="app_name">ProfessorPerformanceEvaluation</string>
-    <string name="base_url"><a href="http://10.0.2.2:3000/api/">Click me!</a></string>
     <string name="username_label">Nombre de usuario:</string>
     <string name="username_instruction_label">Ingresa tu nombre de usuario...</string>
     <string name="password_label">Contraseña:</string>
     <string name="password_instruction_label">Ingresa tu contraseña...</string>
     <string name="login_button">Iniciar sesión</string>
     <string name="sign_up_button">Crear cuenta</string>
+    <string name="empty_fields_label">No se puede dejar ningún campo vacío.</string>
+    <string name="invalid_data_label">Los datos ingresados son inválidos.</string>
+    <string name="expired_session_label">La sesión ha expirado.</string>
+    <string name="service_not_available_label">El servicio no está disponible.</string>
+    <string name="professor_performance_evaluations_management_button">Gestión de evaluaciones al desempeño docente</string>
+    <string name="educational_program_administration_button">Administración del programa educativo</string>
+    <string name="student_management_button">Gestión de estudiantes</string>
+    <string name="log_out_button">Cerrar sesión</string>
+    <string name="query_educational_experience_button">Consultar experiencia educativa</string>
+    <string name="query_professor_button">Consultar profesor</string>
+    <string name="return_button">Regresar</string>
+    <string name="log_professor_performance_evaluation_button">Registrar evaluación al desempeño docente</string>
+    <string name="modify_professor_performance_evaluation_button">Editar evaluación al desempeño docente</string>
+    <string name="query_student_button">Consultar estudiante</string>
+    <string name="modify_student_button">Modificar estudiante</string>
 </resources>

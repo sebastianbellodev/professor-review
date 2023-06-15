@@ -9,7 +9,7 @@
     <Grid>
         <Label Content="{x:Static p:Resources.MAIN_MENU_LABEL}" HorizontalAlignment="Center" Margin="0,45,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="24"/>
         <Button Content="{x:Static p:Resources.PROFESSOR_PERFORMANCE_EVALUATIONS_MANAGEMENT_BUTTON}" HorizontalAlignment="Left" Margin="75,120,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="75" Width="300" Click="ProfessorPerformanceEvaluationsManagementButtonClick"/>
-        <Button Content="{x:Static p:Resources.EDUCATIONAL_PROGRAM_ADMINISTRATION_BUTTON}" HorizontalAlignment="Left" Margin="425,120,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="75" Width="300" Click="EducationalProgramManagementButtonClick"/>
+        <Button Content="{x:Static p:Resources.EDUCATIONAL_PROGRAM_ADMINISTRATION_BUTTON}" HorizontalAlignment="Left" Margin="425,120,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="75" Width="300" Click="EducationalProgramAdministrationButtonClick"/>
         <Button Content="{x:Static p:Resources.STUDENT_MANAGEMENT_BUTTON}" HorizontalAlignment="Left" Margin="75,235,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="75" Width="300" Click="StudentManagementButtonClick"/>
         <Button Content="{x:Static p:Resources.SPECIFIC_REPORT_GENERATION_BUTTON}" HorizontalAlignment="Left" Margin="425,235,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="75" Width="300" Click="SpecificReportGenerationButtonClick"/>
         <Button Content="{x:Static p:Resources.LOG_OUT_BUTTON}" HorizontalAlignment="Center" Margin="0,365,0,0" VerticalAlignment="Top" FontFamily="Arial" Width="124" Height="25" Click="LogOutButtonClick"/>

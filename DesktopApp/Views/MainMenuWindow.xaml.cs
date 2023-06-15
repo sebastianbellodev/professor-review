@@ -13,11 +13,11 @@ namespace ProfessorPerformanceEvaluation.Views
         {
         }
 
-        private void EducationalProgramManagementButtonClick(object sender, RoutedEventArgs e)
+        private void EducationalProgramAdministrationButtonClick(object sender, RoutedEventArgs e)
         {
-            var educationalProgramManagementMenuWindow = new EducationalProgramManagementMenuWindow();
+            var educationalProgramAdministrationMenuWindow = new EducationalProgramAdministrationMenuWindow();
             Close();
-            educationalProgramManagementMenuWindow.Show();
+            educationalProgramAdministrationMenuWindow.Show();
         }
 
         private void StudentManagementButtonClick(object sender, RoutedEventArgs e)
