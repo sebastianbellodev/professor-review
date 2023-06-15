@@ -1,8 +1,10 @@
-﻿using ProfessorPerformanceEvaluation.BusinessLogic;
+﻿using ProfessorPerformanceEvaluation.Model;
+using ProfessorPerformanceEvaluation.Service;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,7 +30,7 @@ namespace ProfessorPerformanceEvaluation.Views
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string stringValue = value as string;
-            if (int.Parse(stringValue) == 1) {
+            if ((int)value == 1) {
                 return true;
             }
             return false;
@@ -38,66 +40,104 @@ namespace ProfessorPerformanceEvaluation.Views
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             bool boolValue = (bool)value;
-            return boolValue ? "1" : "0";
+            return boolValue ? 1 : 0;
         }
 
     }
     public partial class StudentAccessManagement : Window
     {
-        List<Student> studentsToUpdate = new List<Student>();
+        private List<Student> studentsToUpdate = new List<Student>();
         public StudentAccessManagement()
         {
             InitializeComponent();
-            this.ComboBox_Faculties.ItemsSource = this.GetFaculties();
+            this.GetFaculties();
         }
 
 
-        private List<Faculty> GetFaculties()
+        private async void GetFaculties()
         {
             List<Faculty> faculties = new List<Faculty>();
-            //Generar la petición y parsear los datos
-            Faculty fac = new Faculty();
-            fac.Name = "Test1";
-            Faculty fac2 = new Faculty();
-            fac2.Name = "Test2";
-            faculties.Add(fac);
-            faculties.Add(fac2);
-
-            return faculties;
+            Response response = await FacultyService.GetFaculties();
+            if (response.Code == (int)HttpStatusCode.OK)
+            {
+                faculties = response.Faculties;
+                this.ComboBox_Faculties.ItemsSource = faculties;
+            }
+            else if (response.Code == (int)HttpStatusCode.Forbidden)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.EXPIRED_SESSION_LABEL);
+                this.GoBack();
+            }
+            else {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
+                this.GoBack();
+            }
         }
 
-        private void Button_GenerateReport_Click(object sender, RoutedEventArgs e)
-        {
+        private void GoBack() 
+        { 
+            //Nav Service
+        }
 
+        private async void Button_UpdateStatus_Click(object sender, RoutedEventArgs e)
+        {
+            Response response = await StudentService.UpdateStatus(this.studentsToUpdate);
+            if (response.Code == (int)HttpStatusCode.OK)
+            {
+                MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_LABEL, "");
+                this.studentsToUpdate.Clear();
+                Faculty selectedFaculty = ComboBox_Faculties.SelectedItem as Faculty;
+                this.GetStudents(selectedFaculty);                
+            }
+            else if (response.Code == (int)HttpStatusCode.Forbidden)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.EXPIRED_SESSION_LABEL);
+                this.GoBack();
+            }
+            else
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                   Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
+                this.GoBack();
+            }
         }
 
         private void Button_Back_Click(object sender, RoutedEventArgs e)
         {
-
+            this.GoBack();
         }
 
-        private List<Student> GetStudent(int idFaculty) {
+        private async void GetStudents(Faculty faculty) {
             List<Student> students = new List<Student>();
-            Student s1 = new Student();
-            s1.Name = "s1 name";
-            s1.Active = "1";
-            students.Add(s1);
-            Student s2 = new Student();
-            s2.Name = "s2 name";
-            s2.Active = "0";
-            students.Add(s2);
-            return students;
-        
+            Response response = await StudentService.GetStudentsByFaculty(faculty);
+            if (response.Code == (int)HttpStatusCode.OK)
+            {
+                students = response.Students;
+                this.DataGrid_Student.ItemsSource = students;
+            }
+            else if (response.Code == (int)HttpStatusCode.Forbidden)
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.EXPIRED_SESSION_LABEL);
+                this.GoBack();          
+            }
+            else 
+            {
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                   Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
+                this.GoBack();
+            }              
         }
-
-
 
         private void ComboBox_Faculties_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Faculty selectedFaculty = ComboBox_Faculties.SelectedItem as Faculty;
             if (selectedFaculty != null)
             {
-                this.DataGrid_Student.ItemsSource = this.GetStudent(selectedFaculty.IdFaculty);
+                this.GetStudents(selectedFaculty);
             }
         }
 
@@ -106,28 +146,28 @@ namespace ProfessorPerformanceEvaluation.Views
             CheckBox checkBox = sender as CheckBox;
             Student student = checkBox.DataContext as Student;
 
-            if (!this.studentsToUpdate.Contains(student))
-            {
-                this.studentsToUpdate.Add(student);
-            }
-            else if (int.Parse(student.Active) == 0)
+            if (this.studentsToUpdate.Contains(student) && student.Active == 1)
             {
                 this.studentsToUpdate.Remove(student);
+            }
+            else if (!(student.Active == 1) && !this.studentsToUpdate.Contains(student))
+            {
+                this.studentsToUpdate.Add(student);            
             }
         }
 
         private void RadioButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            CheckBox checkBox = sender as CheckBox;
-            Student student = checkBox.DataContext as Student;
+            CheckBox checkBox = (CheckBox)sender;
+            Student student = (Student)checkBox.DataContext;
 
-            if (int.Parse(student.Active) == 1)
-            {
-                this.studentsToUpdate.Remove(student);
-            }
-            else if (!this.studentsToUpdate.Contains(student))
+            if (!this.studentsToUpdate.Contains(student) && student.Active == 1)
             {
                 this.studentsToUpdate.Add(student);
+            }
+            else if (!(student.Active == 1) && this.studentsToUpdate.Contains(student))
+            {
+                this.studentsToUpdate.Remove(student);
             }
         }
     }

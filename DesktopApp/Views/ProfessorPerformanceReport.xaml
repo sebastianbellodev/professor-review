@@ -31,7 +31,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                        <Button x:Name="Button_GenerateReport" Content="Generar Reporte"  Margin="10 0 0 0" Width="100" Height="30" Grid.Column="0" />
+                        <Button x:Name="Button_GenerateReport" Content="Generar Reporte" Click="Button_GenerateReport_Click" Margin="10 0 0 0" Width="100" Height="30" Grid.Column="0" />
                         <Button x:Name="Button_Back" Content="Regresar" Click="Button_Back_Click" Margin="10 0 0 0" Width="100" Height="30" Grid.Column="1" />
                 </Grid>
             </Grid>
