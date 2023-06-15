@@ -6,7 +6,10 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 
 import com.example.professorperformanceevaluation.model.Response;
+<<<<<<< HEAD
 import com.example.professorperformanceevaluation.model.Test;
+=======
+>>>>>>> dd91e9286aaa31599cb923c0cb56dc00948cac15
 import com.example.professorperformanceevaluation.model.User;
 import com.example.professorperformanceevaluation.service.client.TestClient;
 import com.example.professorperformanceevaluation.service.client.UserClient;
@@ -16,9 +19,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class TestService {
+<<<<<<< HEAD
     private Context context;
     private Gson gson;
     private String token;
+=======
+    private final Context context;
+    private final Gson gson;
+    private final String token;
+>>>>>>> dd91e9286aaa31599cb923c0cb56dc00948cac15
 
     public TestService(Context context) {
         this.context = context;
@@ -49,4 +58,8 @@ public class TestService {
         void onFailure(Throwable throwable);
 
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dd91e9286aaa31599cb923c0cb56dc00948cac15
 }

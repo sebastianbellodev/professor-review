@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Response {
+<<<<<<< HEAD
 
     public int code;
     @SerializedName("message")
@@ -77,6 +78,72 @@ public class Response {
     public List<Test> tests;
     @SerializedName("result")
     private Integer result;
+=======
+    private int code;
+    @SerializedName("message")
+    @Expose
+    private String message;
+    @SerializedName("token")
+    @Expose
+    private String token;
+    @SerializedName("educationalExperience")
+    @Expose
+    private EducationalExperience educationalExperience;
+    @SerializedName("educationalExperiences")
+    @Expose
+    private List<EducationalExperience> educationalExperiences;
+    @SerializedName("educationalProgram")
+    @Expose
+    private EducationalProgram educationalProgram;
+    @SerializedName("educationalPrograms")
+    @Expose
+    private List<EducationalProgram> educationalPrograms;
+    @SerializedName("faculty")
+    @Expose
+    private Faculty faculty;
+    @SerializedName("faculties")
+    @Expose
+    private List<Faculty> faculties;
+    @SerializedName("professor")
+    @Expose
+    private Professor professor;
+    @SerializedName("professors")
+    @Expose
+    private List<Professor> professors;
+    @SerializedName("review")
+    @Expose
+    private Review review;
+    @SerializedName("reviews")
+    @Expose
+    private List<Review> reviews;
+    @SerializedName("schoolPeriod")
+    @Expose
+    private SchoolPeriod schoolPeriod;
+    @SerializedName("schoolPeriods")
+    @Expose
+    private List<SchoolPeriod> schoolPeriods;
+    @SerializedName("student")
+    @Expose
+    private Student student;
+    @SerializedName("students")
+    @Expose
+    private List<Student> students;
+    @SerializedName("syllabus")
+    @Expose
+    private Syllabus syllabus;
+    @SerializedName("syllabuses")
+    @Expose
+    private List<Syllabus> syllabuses;
+    @SerializedName("user")
+    @Expose
+    private User user;
+    @SerializedName("users")
+    @Expose
+    private List<User> users;
+    @SerializedName("test")
+    @Expose
+    private Test test;
+>>>>>>> dd91e9286aaa31599cb923c0cb56dc00948cac15
 
     public Response() {
     }
@@ -256,6 +323,7 @@ public class Response {
     public void setTest(Test test) {
         this.test = test;
     }
+<<<<<<< HEAD
 
     public List<Test> getTests() {
         return tests;
@@ -272,4 +340,6 @@ public class Response {
     public void setResult(Integer result) {
         this.result = result;
     }
+=======
+>>>>>>> dd91e9286aaa31599cb923c0cb56dc00948cac15
 }

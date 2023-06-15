@@ -17,9 +17,9 @@ import retrofit2.Callback;
 
 public class UserService {
 
-    private Context context;
-    private Gson gson;
-    private String token;
+    private final Context context;
+    private final Gson gson;
+    private final String token;
 
     public UserService(Context context) {
         this.context = context;

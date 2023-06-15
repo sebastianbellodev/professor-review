@@ -151,3 +151,15 @@ export const postStudent = (request) => {
     )
   );
 };
+
+export const updateStatus = (request) => {
+  const {
+    ids
+  } = request.body;
+  return Promise.resolve(
+    pool.query(
+      "UPDATE student SET active = CASE WHEN active = 1 THEN 0 ELSE 1 END WHERE registrationNumber IN (?)",
+      [ids]
+    )
+  );
+};

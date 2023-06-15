@@ -8,7 +8,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TestClient {
-
     private final TestServiceApi apiService;
     private static TestClient instance = null;
 

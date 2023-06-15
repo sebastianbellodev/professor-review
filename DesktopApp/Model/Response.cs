@@ -46,5 +46,7 @@ namespace ProfessorPerformanceEvaluation.Model
         public User User { get; set; }
         [JsonProperty("users")]
         public List<User> Users { get; set; }
+        [JsonProperty("report")]
+        public List<Report> Reports { get; set; }
     }
 }

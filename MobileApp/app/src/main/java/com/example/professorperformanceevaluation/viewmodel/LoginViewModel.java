@@ -20,8 +20,8 @@ public class LoginViewModel extends ViewModel {
     private UserService userService;
     private TestService testService;
 
-    private MutableLiveData<String> username = new MutableLiveData<>();
-    private MutableLiveData<String> password = new MutableLiveData<>();
+    private final MutableLiveData<String> username = new MutableLiveData<>();
+    private final MutableLiveData<String> password = new MutableLiveData<>();
 
     public void setContext(Context context) {
         this.context = context;
@@ -60,16 +60,12 @@ public class LoginViewModel extends ViewModel {
         testService.ping(new TestService.TestServiceCallback() {
             @Override
             public void onSuccess(Response response) {
-                Integer result = response.getResult();
-                if (result != null) {
-                    Toast.makeText(context, "Result " + result, Toast.LENGTH_SHORT).show();
-                }
+                Toast.makeText(context, "Result: " + response.getTest().getResult(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Throwable throwable) {
-                Toast.makeText(context, "Test failed...", Toast.LENGTH_SHORT).show();
-                System.err.println(throwable);
+                Toast.makeText(context, throwable.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -9,7 +9,7 @@ router.post("/pings", async (request, response) => {
     const [row] = await ping();
     const result = row[0];
     const test = { test: result };
-    message(response, RESPONSE_CODE.OK, null, row[0]);
+    message(response, RESPONSE_CODE.OK, null, test);
   } catch (exception) {
     message(
       response,

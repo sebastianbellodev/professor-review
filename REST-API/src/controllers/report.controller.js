@@ -5,7 +5,7 @@ export const getReportByProfessor = (request) => {
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
-      "educationalExperience.name educationalExperience\n" +
+      "educationalExperience.name educationalExperience,\n" +
       "COUNT(review.idReview) reviews\n" +
       "FROM\n" +
       "review\n" +
