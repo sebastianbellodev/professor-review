@@ -177,6 +177,15 @@
   <data name="GENERATE_PROFESSOR_PERFORMANCE_REPORT_BY_PROFESSOR_BUTTON" xml:space="preserve">
     <value>Generar reporte de desempeño docente por profesor</value>
   </data>
+  <data name="INVALID_DATA_LABEL" xml:space="preserve">
+    <value>Los datos ingresados son inválidos.</value>
+  </data>
+  <data name="LOGIN_BUTTON" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="LOGIN_LABEL" xml:space="preserve">
+    <value>Iniciar sesión.</value>
+  </data>
   <data name="LOG_EDUCATIONAL_EXPERIENCE_BUTTON" xml:space="preserve">
     <value>Registrar experiencia educativa</value>
   </data>
@@ -225,6 +234,12 @@
   <data name="NAME_LABEL" xml:space="preserve">
     <value>Nombre:</value>
   </data>
+  <data name="PASSWORD_CONFIRMATION_LABEL" xml:space="preserve">
+    <value>Confirmación de contraseña:</value>
+  </data>
+  <data name="PASSWORD_LABEL" xml:space="preserve">
+    <value>Contraseña:</value>
+  </data>
   <data name="PROFESSOR_PERFORMANCE_EVALUATIONS_MANAGEMENT_BUTTON" xml:space="preserve">
     <value>Gestión de evaluaciones al desempeño docente</value>
   </data>
@@ -237,6 +252,12 @@
   <data name="SERVICE_NOT_AVAILABLE_LABEL" xml:space="preserve">
     <value>El servicio no está disponible.</value>
   </data>
+  <data name="SIGN_UP_BUTTON" xml:space="preserve">
+    <value>Crear cuenta</value>
+  </data>
+  <data name="SIGN_UP_LABEL" xml:space="preserve">
+    <value>Crear cuenta.</value>
+  </data>
   <data name="SPECIFIC_REPORT_GENERATION_BUTTON" xml:space="preserve">
     <value>Generación de reportes específicos</value>
   </data>
@@ -248,5 +269,11 @@
   </data>
   <data name="TRY_AGAIN_LATER_LABEL" xml:space="preserve">
     <value>Por favor, inténtelo más tarde.</value>
+  </data>
+  <data name="USERNAME_LABEL" xml:space="preserve">
+    <value>Nombre de usuario:</value>
+  </data>
+  <data name="USER_ALREADY_REGISTERED_LABEL" xml:space="preserve">
+    <value>La información ingresada corresponde a un usuario que ya se encuentra registrado en el sistema.</value>
   </data>
 </root>
