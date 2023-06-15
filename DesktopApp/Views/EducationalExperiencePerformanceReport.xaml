@@ -1,0 +1,40 @@
+﻿<Window x:Class="ProfessorPerformanceEvaluation.Views.EducationalExperiencePerformanceReport"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProfessorPerformanceEvaluation.Views"
+        mc:Ignorable="d"
+        Title="EducationalExperiencePerformanceReport" Height="362" Width="774">
+    <Grid>
+        <Label Content="Facultades:" HorizontalAlignment="Left" Margin="45,12,0,0" VerticalAlignment="Top" Width="118" FontSize="18"/>
+        <ComboBox x:Name="FacultyComboBox" HorizontalAlignment="Left" Margin="45,55,0,0" VerticalAlignment="Top" Width="185" Height="28" Text="Facultades" SelectionChanged="FacultyComboBoxSelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=Value}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label Content="Programas educativos:" HorizontalAlignment="Left" Margin="296,12,0,0" VerticalAlignment="Top" Width="209" FontSize="18"/>
+        <ComboBox x:Name="EducationalProgramComboBox" HorizontalAlignment="Left" Margin="296,55,0,0" VerticalAlignment="Top" Width="184" Height="28" SelectionChanged="EducationalProgramComboBoxSelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=Value}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label Content="Experiencia Educativa:" HorizontalAlignment="Left" Margin="563,12,0,0" VerticalAlignment="Top" Width="201" FontSize="18" Height="34"/>
+        <ComboBox x:Name="EducationalExperienceComboBox" HorizontalAlignment="Left" Margin="563,55,0,0" VerticalAlignment="Top" Width="186" Height="28" SelectionChanged="EducationalExperienceComboBoxSelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=Value}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBox Name="DocumentNameTextBox"  HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="554" Height="43" Margin="0,173,0,0"/>
+        <Label Content="Ingrese el nombre de su documento:" HorizontalAlignment="Left" Margin="110,122,0,0" VerticalAlignment="Top" FontSize="18"/>
+
+        <Button x:Name="SaveButton" Content="Guardar" HorizontalAlignment="Left" Margin="621,275,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="SaveButtonClick"/>
+        <Button x:Name="CancelButton" Content="Cancelar" HorizontalAlignment="Left" Margin="459,275,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="CancelButtonClick"/>
+    </Grid>
+</Window>
