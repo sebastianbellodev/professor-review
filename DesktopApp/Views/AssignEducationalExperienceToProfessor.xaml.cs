@@ -40,6 +40,7 @@ namespace ProfessorPerformanceEvaluation.Views
             {
                 List<Faculty> faculties = response.Faculties;
                 cbb_Faculty.ItemsSource = faculties;
+                cbb_Faculty.DisplayMemberPath = nameof(response.Faculty.Name);
 
             }
             else if (response.Code == (int)HttpStatusCode.Forbidden)

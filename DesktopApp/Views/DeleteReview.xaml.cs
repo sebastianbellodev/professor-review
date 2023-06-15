@@ -35,6 +35,9 @@ namespace ProfessorPerformanceEvaluation.Views
             {
                 List<Faculty> faculties = response.Faculties;
                 cbb_Faculty.ItemsSource = faculties;
+                cbb_Faculty.DisplayMemberPath = nameof(response.Faculty.Name);
+
+
 
             }
             else if (response.Code == (int)HttpStatusCode.Forbidden)
@@ -121,7 +124,8 @@ namespace ProfessorPerformanceEvaluation.Views
             if (response.Code == (int)HttpStatusCode.OK)
             {
                 List<Professor> professors = response.Professors;
-                cbb_Professors.ItemsSource = professors;
+                cbb_Professors.ItemsSource = professors;               
+                cbb_Professors.DisplayMemberPath = nameof(response.Faculty.Name);
 
             }
             else if (response.Code == (int)HttpStatusCode.Forbidden)

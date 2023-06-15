@@ -43,6 +43,7 @@ namespace ProfessorPerformanceEvaluation.Views
             {
                 List<Faculty> faculties = response.Faculties;
                 FacultyComboBox.ItemsSource = faculties;
+                FacultyComboBox.DisplayMemberPath = nameof(response.Faculty.Name);
 
             }
             else if (response.Code == (int)HttpStatusCode.Forbidden)
@@ -221,8 +222,18 @@ namespace ProfessorPerformanceEvaluation.Views
                     }
                     document.Close();
                     stream.Close();
-
+                    ShowMessage();
+                    
                 }
+            }
+        }
+
+        private void ShowMessage()
+        {
+            var result = MessageBox.Show("Document saved", "Success", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.Yes);
+            if (result == MessageBoxResult.OK)
+            {
+                DocumentNameTextBox.Clear();
             }
         }
 
