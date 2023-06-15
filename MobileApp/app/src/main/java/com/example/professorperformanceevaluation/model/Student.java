@@ -46,6 +46,11 @@ public class Student implements Serializable {
         this.registrationNumber = registrationNumber;
     }
 
+    public Student(String emailAddress, String phoneNumber) {
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getRegistrationNumber() {
         return registrationNumber;
     }

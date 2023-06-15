@@ -1,5 +1,4 @@
 import { pool } from "../schema/connection.js";
-import { isNullish } from "@supercharge/goodies";
 
 export const deleteStudent = (request) => {
   const registrationNumber = request.body.registrationNumber;
@@ -16,10 +15,7 @@ export const deleteStudent = (request) => {
 };
 
 export const getStudentByEmailAddress = (request) => {
-  const emailAddress =
-    isNullish(request.body.emailAddress)
-      ? request.body.emailAddress
-      : "";
+  const emailAddress = request.body.emailAddress;
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
@@ -34,10 +30,7 @@ export const getStudentByEmailAddress = (request) => {
 };
 
 export const getStudentByPhoneNumber = (request) => {
-  const phoneNumber =
-    isNullish(request.body.phoneNumber)
-      ? request.body.phoneNumber
-      : "";
+  const phoneNumber = request.body.phoneNumber;
   return Promise.resolve(
     pool.query(
       "SELECT\n" +

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="logStudentEmailAddressPhoneNumberViewModel"
+            type="com.example.professorperformanceevaluation.viewmodel.LogStudentEmailAddressPhoneNumberViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        tools:context=".activity.LogStudentEmailAddressPhoneNumberActivity">
+
+        <TextView
+            android:id="@+id/email_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="@string/email_address_label"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/email_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/email_text_view"
+            android:layout_marginTop="5dp"
+            android:autofillHints=""
+            android:hint="@string/email_address_instruction_label"
+            android:inputType="textEmailAddress"
+            android:text="@={logStudentEmailAddressPhoneNumberViewModel.emailAddress}"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/phone_number_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/email_edit_text"
+            android:layout_marginTop="20dp"
+            android:text="@string/phone_number_label"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/phone_number_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phone_number_text_view"
+            android:layout_marginTop="5dp"
+            android:autofillHints=""
+            android:hint="@string/phone_number_instruction_label"
+            android:inputType="phone"
+            android:text="@={logStudentEmailAddressPhoneNumberViewModel.phoneNumber}"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="126dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phone_number_edit_text"
+            android:layout_marginTop="20dp"
+            android:onClick="@{() -> logStudentEmailAddressPhoneNumberViewModel.onCancelClicked()}"
+            android:text="@string/cancel_button" />
+
+        <Button
+            android:id="@+id/accept_button"
+            android:layout_width="131dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phone_number_edit_text"
+            android:layout_marginStart="135dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@id/cancel_button"
+            android:onClick="@{() -> logStudentEmailAddressPhoneNumberViewModel.onAcceptClicked()}"
+            android:text="@string/accept_button" />
+
+    </RelativeLayout>
+</layout>
