@@ -1,52 +1,76 @@
 package com.example.professorperformanceevaluation.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class Response {
-
-    public int code;
-    @JsonProperty("message")
-    public String message;
-    @JsonProperty("token")
-    public String token;
-    @JsonProperty("educationalExperience")
-    public EducationalExperience educationalExperience;
-    @JsonProperty("educationalExperiences")
-    public List<EducationalExperience> educationalExperiences;
-    @JsonProperty("educationalProgram")
-    public EducationalProgram educationalProgram;
-    @JsonProperty("educationalPrograms")
-    public List<EducationalProgram> educationalPrograms;
-    @JsonProperty("faculty")
-    public Faculty faculty;
-    @JsonProperty("faculties")
-    public List<Faculty> faculties;
-    @JsonProperty("professor")
-    public Professor professor;
-    @JsonProperty("professors")
-    public List<Professor> professors;
-    @JsonProperty("review")
-    public Review review;
-    @JsonProperty("reviews")
-    public List<Review> reviews;
-    @JsonProperty("schoolPeriod")
-    public SchoolPeriod schoolPeriod;
-    @JsonProperty("schoolPeriods")
-    public List<SchoolPeriod> schoolPeriods;
-    @JsonProperty("student")
-    public Student student;
-    @JsonProperty("students")
-    public List<Student> students;
-    @JsonProperty("syllabus")
-    public Syllabus syllabus;
-    @JsonProperty("syllabuses")
-    public List<Syllabus> syllabuses;
-    @JsonProperty("user")
-    public User user;
-    @JsonProperty("users")
-    public List<User> users;
+    private int code;
+    @SerializedName("message")
+    @Expose
+    private String message;
+    @SerializedName("token")
+    @Expose
+    private String token;
+    @SerializedName("educationalExperience")
+    @Expose
+    private EducationalExperience educationalExperience;
+    @SerializedName("educationalExperiences")
+    @Expose
+    private List<EducationalExperience> educationalExperiences;
+    @SerializedName("educationalProgram")
+    @Expose
+    private EducationalProgram educationalProgram;
+    @SerializedName("educationalPrograms")
+    @Expose
+    private List<EducationalProgram> educationalPrograms;
+    @SerializedName("faculty")
+    @Expose
+    private Faculty faculty;
+    @SerializedName("faculties")
+    @Expose
+    private List<Faculty> faculties;
+    @SerializedName("professor")
+    @Expose
+    private Professor professor;
+    @SerializedName("professors")
+    @Expose
+    private List<Professor> professors;
+    @SerializedName("review")
+    @Expose
+    private Review review;
+    @SerializedName("reviews")
+    @Expose
+    private List<Review> reviews;
+    @SerializedName("schoolPeriod")
+    @Expose
+    private SchoolPeriod schoolPeriod;
+    @SerializedName("schoolPeriods")
+    @Expose
+    private List<SchoolPeriod> schoolPeriods;
+    @SerializedName("student")
+    @Expose
+    private Student student;
+    @SerializedName("students")
+    @Expose
+    private List<Student> students;
+    @SerializedName("syllabus")
+    @Expose
+    private Syllabus syllabus;
+    @SerializedName("syllabuses")
+    @Expose
+    private List<Syllabus> syllabuses;
+    @SerializedName("user")
+    @Expose
+    private User user;
+    @SerializedName("users")
+    @Expose
+    private List<User> users;
+    @SerializedName("test")
+    @Expose
+    private Test test;
 
     public Response() {
     }
@@ -219,4 +243,11 @@ public class Response {
         this.users = users;
     }
 
+    public Test getTest() {
+        return test;
+    }
+
+    public void setTest(Test test) {
+        this.test = test;
+    }
 }

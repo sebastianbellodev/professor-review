@@ -1,30 +1,41 @@
 package com.example.professorperformanceevaluation.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
 public class Student {
-
-    @JsonProperty("registrationNumber")
+    @SerializedName("registrationNumber")
+    @Expose
     private String registrationNumber;
-    @JsonProperty("name")
+    @SerializedName("name")
+    @Expose
     private String name;
-    @JsonProperty("lastName")
+    @SerializedName("lastName")
+    @Expose
     private String lastName;
-    @JsonProperty("emailAddress")
+    @SerializedName("emailAddress")
+    @Expose
     private String emailAddress;
-    @JsonProperty("phoneNumber")
+    @SerializedName("phoneNumber")
+    @Expose
     private String phoneNumber;
-    @JsonProperty("biography")
+    @SerializedName("biography")
+    @Expose
     private String biography;
-    @JsonProperty("active")
+    @SerializedName("active")
+    @Expose
     private boolean active;
-    @JsonProperty("activationDate")
+    @SerializedName("activationDate")
+    @Expose
     private Date activationDate;
-    @JsonProperty("oneTimePassword")
+    @SerializedName("oneTimePassword")
+    @Expose
     private String oneTimePassword;
-    @JsonProperty("idEducationalProgram")
+    @SerializedName("idEducationalProgram")
+    @Expose
     private int idEducationalProgram;
 
     public Student() {
