@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="mainMenuViewModel"
+            type="com.example.professorperformanceevaluation.viewmodel.MainMenuViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context="activity.MainActivity">
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:onClick="@{() -> mainMenuViewModel.onProfessorPerformanceEvaluationsManagementClicked()}"
+            android:text="@string/professor_performance_evaluations_management_button"
+            tools:ignore="VisualLintButtonSize" />
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:onClick="@{() -> mainMenuViewModel.onEducationalProgramManagementClicked()}"
+            android:text="@string/educational_program_administration_button"
+            tools:ignore="VisualLintButtonSize" />
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="80dp"
+            android:onClick="@{() -> mainMenuViewModel.onStudentManagementClicked()}"
+            android:text="@string/student_management_button"
+            tools:ignore="VisualLintButtonSize" />
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> mainMenuViewModel.onLogOutClicked()}"
+            android:text="@string/log_out_button"
+            tools:ignore="VisualLintButtonSize" />
+
+    </LinearLayout>
+</layout>

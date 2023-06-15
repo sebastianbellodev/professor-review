@@ -2,9 +2,9 @@
 
 namespace ProfessorPerformanceEvaluation.Views
 {
-    public partial class EducationalProgramManagementMenuWindow : Window
+    public partial class EducationalProgramAdministrationMenuWindow : Window
     {
-        public EducationalProgramManagementMenuWindow()
+        public EducationalProgramAdministrationMenuWindow()
         {
             InitializeComponent();
         }

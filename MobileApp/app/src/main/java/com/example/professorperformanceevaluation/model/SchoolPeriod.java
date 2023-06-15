@@ -1,11 +1,21 @@
 package com.example.professorperformanceevaluation.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class SchoolPeriod {
+public class SchoolPeriod implements Serializable {
 
+    @SerializedName("idSchoolPeriod")
+    @Expose
     private int idSchoolPeriod;
+    @SerializedName("startDate")
+    @Expose
     private Date startDate;
+    @SerializedName("endDate")
+    @Expose
     private Date endDate;
 
     public SchoolPeriod() {

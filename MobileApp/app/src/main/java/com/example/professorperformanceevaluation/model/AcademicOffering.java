@@ -1,9 +1,20 @@
 package com.example.professorperformanceevaluation.model;
 
-public class AcademicOffering {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
+public class AcademicOffering implements Serializable {
+
+    @SerializedName("idAcademicOffering")
+    @Expose
     private int idAcademicOffering;
+    @SerializedName("idSyllabus")
+    @Expose
     private int idSyllabus;
+    @SerializedName("idProfessor")
+    @Expose
     private int idProfessor;
 
     public AcademicOffering() {

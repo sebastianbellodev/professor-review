@@ -1,32 +1,83 @@
 package com.example.professorperformanceevaluation.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.List;
 
-public class Response {
+public class Response implements Serializable {
 
     private int code;
+    @SerializedName("message")
+    @Expose
     private String message;
+    @SerializedName("token")
+    @Expose
     private String token;
-    private AcademicOffering academicOffering;
-    private List<AcademicOffering> academicOfferings;
+    @SerializedName("educationalExperience")
+    @Expose
     private EducationalExperience educationalExperience;
+    @SerializedName("educationalExperiences")
+    @Expose
     private List<EducationalExperience> educationalExperiences;
+    @SerializedName("educationalProgram")
+    @Expose
     private EducationalProgram educationalProgram;
+    @SerializedName("educationalPrograms")
+    @Expose
     private List<EducationalProgram> educationalPrograms;
+    @SerializedName("faculty")
+    @Expose
     private Faculty faculty;
+    @SerializedName("faculties")
+    @Expose
     private List<Faculty> faculties;
+    @SerializedName("professor")
+    @Expose
     private Professor professor;
+    @SerializedName("professors")
+    @Expose
     private List<Professor> professors;
+    @SerializedName("review")
+    @Expose
     private Review review;
+    @SerializedName("reviews")
+    @Expose
     private List<Review> reviews;
+    @SerializedName("schoolPeriod")
+    @Expose
     private SchoolPeriod schoolPeriod;
+    @SerializedName("schoolPeriods")
+    @Expose
     private List<SchoolPeriod> schoolPeriods;
+    @SerializedName("student")
+    @Expose
     private Student student;
+    @SerializedName("students")
+    @Expose
     private List<Student> students;
+    @SerializedName("syllabus")
+    @Expose
+    private Syllabus syllabus;
+    @SerializedName("syllabuses")
+    @Expose
+    private List<Syllabus> syllabuses;
+    @SerializedName("user")
+    @Expose
     private User user;
+    @SerializedName("users")
+    @Expose
     private List<User> users;
+    @SerializedName("test")
+    @Expose
+    private Test test;
 
     public Response() {
+    }
+
+    public Response(int code) {
+        this.code = code;
     }
 
     public int getCode() {
@@ -51,22 +102,6 @@ public class Response {
 
     public void setToken(String token) {
         this.token = token;
-    }
-
-    public AcademicOffering getAcademicOffering() {
-        return academicOffering;
-    }
-
-    public void setAcademicOffering(AcademicOffering academicOffering) {
-        this.academicOffering = academicOffering;
-    }
-
-    public List<AcademicOffering> getAcademicOfferings() {
-        return academicOfferings;
-    }
-
-    public void setAcademicOfferings(List<AcademicOffering> academicOfferings) {
-        this.academicOfferings = academicOfferings;
     }
 
     public EducationalExperience getEducationalExperience() {
@@ -181,6 +216,22 @@ public class Response {
         this.students = students;
     }
 
+    public Syllabus getSyllabus() {
+        return syllabus;
+    }
+
+    public void setSyllabus(Syllabus syllabus) {
+        this.syllabus = syllabus;
+    }
+
+    public List<Syllabus> getSyllabuses() {
+        return syllabuses;
+    }
+
+    public void setSyllabuses(List<Syllabus> syllabuses) {
+        this.syllabuses = syllabuses;
+    }
+
     public User getUser() {
         return user;
     }
@@ -195,6 +246,14 @@ public class Response {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public Test getTest() {
+        return test;
+    }
+
+    public void setTest(Test test) {
+        this.test = test;
     }
 
 }

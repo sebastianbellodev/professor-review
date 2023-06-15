@@ -6,25 +6,11 @@ import {
 
 sendgridMail.setApiKey(TWILIO_SENDGRID_API_KEY);
 
-export const createEmail = (to, subject, body) => {
-  var message = {
-    to: to,
-    from: FROM_EMAIL,
-    subject: subject,
-    text: body,
-  };
-  return message;
-};
-
-export const sendEmail = (message) => {
-  return Promise.resolve(sendgridMail.send(message));
-};
-
-export const sendOTP = (request) => {
-  const { email, otp } = request.body;
+export const sendMail = (request) => {
+  const { emailAddress, otp } = request.body;
   return Promise.resolve(
     sendgridMail.send({
-      to: email,
+      to: emailAddress,
       from: TWILIO_EMAIL,
       subject: "OTP verification",
       text: `This is your security code: ${otp}`,

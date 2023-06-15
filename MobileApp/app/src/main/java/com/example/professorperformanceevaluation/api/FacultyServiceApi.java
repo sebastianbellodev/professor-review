@@ -13,7 +13,7 @@ import retrofit2.http.POST;
 
 public interface FacultyServiceApi {
 
-    @DELETE("professors")
+    @DELETE("faculties")
     Call<Response> delete(@Header("Authorization") String token, @Body Faculty faculty);
 
     @GET("faculties")

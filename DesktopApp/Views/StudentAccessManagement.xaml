@@ -1,0 +1,58 @@
+﻿<Window x:Class="ProfessorPerformanceEvaluation.Views.StudentAccessManagement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProfessorPerformanceEvaluation.Views"
+        mc:Ignorable="d"
+        Title="StudentAccessManagement" Height="450" Width="800">
+    <Window.Resources>
+        <local:StringToBooleanConverter x:Key="StringToBooleanConverter"/>
+    </Window.Resources>
+
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <ComboBox x:Name="ComboBox_Faculties" HorizontalAlignment="Left" Margin="414,23,0,0" VerticalAlignment="Top" Width="341" DisplayMemberPath="Name" SelectionChanged="ComboBox_Faculties_SelectionChanged" />
+                    <Label Content="Facultades:" HorizontalAlignment="Left" Margin="22,19,0,0" VerticalAlignment="Top"/>
+                </Grid>
+                <Grid Margin="20 20 20 20" Grid.Row="1">
+                    <DataGrid x:Name="DataGrid_Student" AutoGenerateColumns="False" IsReadOnly="True" Height="250px" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nombre del Estudiante" Width="350">
+                                <DataGridTextColumn.Binding>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="Name" />
+                                        <Binding Path="LastName"/>
+                                    </MultiBinding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn Header="Activo">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding Active, Converter={StaticResource StringToBooleanConverter} , Mode=TwoWay}" Checked="RadioButton_Checked" Unchecked="RadioButton_Unchecked" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+                <Grid Margin="10 10 20 10" Grid.Row="2" HorizontalAlignment="Right">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="Button_UpdateStatus" Click="Button_UpdateStatus_Click" Content="Guardar"  Margin="10 0 0 0" Width="100" Height="30" Grid.Column="0" />
+                    <Button x:Name="Button_Back" Content="Regresar" Click="Button_Back_Click" Margin="10 0 0 0" Width="100" Height="30" Grid.Column="1" />
+                </Grid>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

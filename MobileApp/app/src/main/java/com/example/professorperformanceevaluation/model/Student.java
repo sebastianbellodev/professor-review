@@ -1,21 +1,49 @@
 package com.example.professorperformanceevaluation.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Student {
+public class Student implements Serializable {
 
+    @SerializedName("registrationNumber")
+    @Expose
     private String registrationNumber;
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("lastName")
+    @Expose
     private String lastName;
+    @SerializedName("emailAddress")
+    @Expose
     private String emailAddress;
+    @SerializedName("phoneNumber")
+    @Expose
     private String phoneNumber;
+    @SerializedName("biography")
+    @Expose
     private String biography;
-    private boolean active;
+    @SerializedName("active")
+    @Expose
+    private int active;
+    @SerializedName("activationDate")
+    @Expose
     private Date activationDate;
+    @SerializedName("oneTimePassword")
+    @Expose
     private String oneTimePassword;
+    @SerializedName("idEducationalProgram")
+    @Expose
     private int idEducationalProgram;
 
     public Student() {
+    }
+
+    public Student(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
     }
 
     public String getRegistrationNumber() {
@@ -66,11 +94,11 @@ public class Student {
         this.biography = biography;
     }
 
-    public boolean isActive() {
+    public int isActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(int active) {
         this.active = active;
     }
 
