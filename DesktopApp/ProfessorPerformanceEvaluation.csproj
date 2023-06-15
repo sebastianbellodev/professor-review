@@ -233,6 +233,9 @@
     <Compile Include="Views\ProfessorPerformanceReport.xaml.cs">
       <DependentUpon>ProfessorPerformanceReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SignUpWindow.xaml.cs">
+      <DependentUpon>SignUpWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SpecificReportGenerationMenuWindow.xaml.cs">
       <DependentUpon>SpecificReportGenerationMenuWindow.xaml</DependentUpon>
     </Compile>
@@ -297,6 +300,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProfessorPerformanceReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SignUpWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

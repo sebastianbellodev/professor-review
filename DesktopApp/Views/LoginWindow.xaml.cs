@@ -55,12 +55,10 @@ namespace ProfessorPerformanceEvaluation
                 case (int)HttpStatusCode.Forbidden:
                     MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                         Properties.Resources.EXPIRED_SESSION_LABEL);
-                    Close();
                     break;
                 default:
                     MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                         Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
-                    Close();
                     break;
             }
         }
