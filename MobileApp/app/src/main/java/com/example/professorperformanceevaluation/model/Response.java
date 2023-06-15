@@ -1,52 +1,55 @@
 package com.example.professorperformanceevaluation.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class Response {
 
     public int code;
-    @JsonProperty("message")
+    @SerializedName("message")
     public String message;
-    @JsonProperty("token")
+    @SerializedName("token")
     public String token;
-    @JsonProperty("educationalExperience")
+    @SerializedName("educationalExperience")
     public EducationalExperience educationalExperience;
-    @JsonProperty("educationalExperiences")
+    @SerializedName("educationalExperiences")
     public List<EducationalExperience> educationalExperiences;
-    @JsonProperty("educationalProgram")
+    @SerializedName("educationalProgram")
     public EducationalProgram educationalProgram;
-    @JsonProperty("educationalPrograms")
+    @SerializedName("educationalPrograms")
     public List<EducationalProgram> educationalPrograms;
-    @JsonProperty("faculty")
+    @SerializedName("faculty")
     public Faculty faculty;
-    @JsonProperty("faculties")
+    @SerializedName("faculties")
     public List<Faculty> faculties;
-    @JsonProperty("professor")
+    @SerializedName("professor")
     public Professor professor;
-    @JsonProperty("professors")
+    @SerializedName("professors")
     public List<Professor> professors;
-    @JsonProperty("review")
+    @SerializedName("review")
     public Review review;
-    @JsonProperty("reviews")
+    @SerializedName("reviews")
     public List<Review> reviews;
-    @JsonProperty("schoolPeriod")
+    @SerializedName("schoolPeriod")
     public SchoolPeriod schoolPeriod;
-    @JsonProperty("schoolPeriods")
+    @SerializedName("schoolPeriods")
     public List<SchoolPeriod> schoolPeriods;
-    @JsonProperty("student")
+    @SerializedName("student")
     public Student student;
-    @JsonProperty("students")
+    @SerializedName("students")
     public List<Student> students;
-    @JsonProperty("syllabus")
+    @SerializedName("syllabus")
     public Syllabus syllabus;
-    @JsonProperty("syllabuses")
+    @SerializedName("syllabuses")
     public List<Syllabus> syllabuses;
-    @JsonProperty("user")
+    @SerializedName("user")
     public User user;
-    @JsonProperty("users")
+    @SerializedName("users")
     public List<User> users;
+    @SerializedName("result")
+    public int result;
 
     public Response() {
     }

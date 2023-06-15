@@ -1,12 +1,15 @@
 package com.example.professorperformanceevaluation.viewmodel;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.professorperformanceevaluation.model.Response;
+import com.example.professorperformanceevaluation.model.Test;
 import com.example.professorperformanceevaluation.model.User;
+import com.example.professorperformanceevaluation.service.service.TestService;
 import com.example.professorperformanceevaluation.service.service.UserService;
 import com.example.professorperformanceevaluation.utilities.Utilities;
 
@@ -16,6 +19,7 @@ public class LoginViewModel extends ViewModel {
 
     private Context context;
     private UserService userService;
+    private TestService testService;
 
     private MutableLiveData<String> username = new MutableLiveData<>();
     private MutableLiveData<String> password = new MutableLiveData<>();
@@ -23,6 +27,7 @@ public class LoginViewModel extends ViewModel {
     public void setContext(Context context) {
         this.context = context;
         this.userService = new UserService(context);
+        this.testService = new TestService(context);
     }
 
     public MutableLiveData<String> getUsername() {
@@ -52,7 +57,24 @@ public class LoginViewModel extends ViewModel {
         });
     }
 
+    public void test() {
+        testService.ping(new TestService.TestServiceCallback() {
+            @Override
+            public void onSuccess(Response response) {
+                int result = response.result;
+                Toast.makeText(context, "Result " + result, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                Toast.makeText(context, "Test failed...", Toast.LENGTH_SHORT).show();
+                System.err.println(throwable);
+            }
+        });
+    }
+
     public void onSignUpClicked() {
+        test();
     }
 
 }
