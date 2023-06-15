@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">ProfessorPerformanceEvaluation</string>
+    <string name="base_url"><a href="http://10.0.2.2:3000/api/">Click me!</a></string>
     <string name="username_label">Nombre de usuario:</string>
     <string name="username_instruction_label">Ingresa tu nombre de usuario...</string>
     <string name="password_label">Contraseña:</string>
