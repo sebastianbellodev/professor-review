@@ -30,13 +30,6 @@ public class LoginViewModel extends AndroidViewModel {
     private final StudentService studentService;
     private final UserService userService;
 
-    public LoginViewModel(@NonNull Application application) {
-        super(application);
-        context = application.getApplicationContext();
-        studentService = new StudentService(context);
-        userService = new UserService(context);
-    }
-
     public MutableLiveData<String> getUsername() {
         return username;
     }
@@ -45,7 +38,14 @@ public class LoginViewModel extends AndroidViewModel {
         return password;
     }
 
-    public void onLoginClicked() {
+    public LoginViewModel(@NonNull Application application) {
+        super(application);
+        context = application.getApplicationContext();
+        studentService = new StudentService(context);
+        userService = new UserService(context);
+    }
+
+    public void onLoginButtonClicked() {
         if (username.getValue() != null & password.getValue() != null) {
             String username = this.username.getValue();
             String password = this.password.getValue();
@@ -131,7 +131,7 @@ public class LoginViewModel extends AndroidViewModel {
         context.startActivity(intent);
     }
 
-    public void onSignUpClicked() {
+    public void onSignUpButtonClicked() {
         Intent intent = new Intent(context, LogStudentEmailAddressPhoneNumberActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);

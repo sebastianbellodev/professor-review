@@ -65,18 +65,18 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/phone_number_edit_text"
             android:layout_marginTop="20dp"
-            android:onClick="@{() -> logStudentEmailAddressPhoneNumberViewModel.onCancelClicked()}"
+            android:onClick="@{() -> logStudentEmailAddressPhoneNumberViewModel.onCancelButtonClicked()}"
             android:text="@string/cancel_button" />
 
         <Button
             android:id="@+id/accept_button"
-            android:layout_width="131dp"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/phone_number_edit_text"
             android:layout_marginStart="135dp"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@id/cancel_button"
-            android:onClick="@{() -> logStudentEmailAddressPhoneNumberViewModel.onAcceptClicked()}"
+            android:onClick="@{() -> logStudentEmailAddressPhoneNumberViewModel.onAcceptButtonClicked()}"
             android:text="@string/accept_button" />
 
     </RelativeLayout>

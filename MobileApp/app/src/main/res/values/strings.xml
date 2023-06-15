@@ -28,4 +28,7 @@
     <string name="cancel_button">Cancelar</string>
     <string name="accept_button">Aceptar</string>
     <string name="student_already_registered_label">El estudiante ya se encuentra registrado en el sistema.</string>
+    <string name="faculty_label">Facultad:</string>
+    <string name="educational_program_instruction_label">Selecciona la facultad y el programa educativo al que perteneces. Asegúrate que la información seleccionada es correcta, ya que no podrá modificarse posteriormente.</string>
+    <string name="educational_program_label">Programa educativo:</string>
 </resources>

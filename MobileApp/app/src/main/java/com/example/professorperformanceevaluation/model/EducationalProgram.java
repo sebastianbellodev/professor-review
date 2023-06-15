@@ -44,4 +44,9 @@ public class EducationalProgram implements Serializable {
         this.idFaculty = idFaculty;
     }
 
+    @Override
+    public String toString() {
+        return getName();
+    }
+
 }
