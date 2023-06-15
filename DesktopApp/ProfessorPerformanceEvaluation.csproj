@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.Drawing.Common, Version=23.5.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>packages\Aspose.Drawing.Common.23.5.0\lib\net20\Aspose.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetEnv, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\DotNetEnv.2.5.0\lib\netstandard1.3\DotNetEnv.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Configuration, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.Configuration.1.1.2\lib\netstandard1.1\Microsoft.Extensions.Configuration.dll</HintPath>
@@ -207,6 +216,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Report.cs" />
+    <Compile Include="Service\ReportService.cs" />
     <Compile Include="Views\EducationalProgramAdministrationMenuWindow.xaml.cs">
       <DependentUpon>EducationalProgramAdministrationMenuWindow.xaml</DependentUpon>
     </Compile>
@@ -219,8 +230,14 @@
     <Compile Include="Views\ModifyEducationalProgramWindow.xaml.cs">
       <DependentUpon>ModifyEducationalProgramWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProfessorPerformanceReport.xaml.cs">
+      <DependentUpon>ProfessorPerformanceReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SpecificReportGenerationMenuWindow.xaml.cs">
       <DependentUpon>SpecificReportGenerationMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentAccessManagement.xaml.cs">
+      <DependentUpon>StudentAccessManagement.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\EducationalProgramAdministrationMenuWindow.xaml">
       <SubType>Designer</SubType>
@@ -279,9 +296,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ProfessorPerformanceReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SpecificReportGenerationMenuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentAccessManagement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
