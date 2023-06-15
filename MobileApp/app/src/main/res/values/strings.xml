@@ -21,4 +21,11 @@
     <string name="modify_professor_performance_evaluation_button">Editar evaluación al desempeño docente</string>
     <string name="query_student_button">Consultar estudiante</string>
     <string name="modify_student_button">Modificar estudiante</string>
+    <string name="email_address_label">Correo electrónico:</string>
+    <string name="email_address_instruction_label">Ingresa tu correo electrónico...</string>
+    <string name="phone_number_label">Número de teléfono:</string>
+    <string name="phone_number_instruction_label">Ingresa tu número de teléfono...</string>
+    <string name="cancel_button">Cancelar</string>
+    <string name="accept_button">Aceptar</string>
+    <string name="student_already_registered_label">El estudiante ya se encuentra registrado en el sistema.</string>
 </resources>

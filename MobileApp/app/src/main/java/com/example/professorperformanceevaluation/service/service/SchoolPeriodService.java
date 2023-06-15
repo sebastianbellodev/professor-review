@@ -26,7 +26,11 @@ public class SchoolPeriodService {
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
-                callback.onSuccess(response.body());
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onSuccess(new Response(response.code()));
+                }
             }
 
             @Override
@@ -41,7 +45,11 @@ public class SchoolPeriodService {
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
-                callback.onSuccess(response.body());
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onSuccess(new Response(response.code()));
+                }
             }
 
             @Override
