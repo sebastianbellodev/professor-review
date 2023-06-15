@@ -6,11 +6,14 @@ import {
   getStudentByRegistrationNumber,
   getStudents,
   getStudentsByFaculty,
+  patchStatus,
   patchStudent,
   postStudent,
-  updateStatus,
 } from "../controllers/student.controllers.js";
 import { validateToken } from "../utilities/authentication/bearer/bearer.js";
+import { generateOneTimePassword } from "../utilities/authentication/token/otp.js"
+import { sendMail } from "../utilities/comunication/email/sendgridemail.js";
+import { sendMessage } from "../utilities/comunication/messages/twilio.js";
 import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../tools/message.js";
 
 const router = Router();
@@ -53,7 +56,11 @@ router.patch("/students", validateToken, async (request, response) => {
 
 router.post("/students", validateToken, async (request, response) => {
   try {
+    const otp = generateOneTimePassword();
+    request.body.otp = otp;
     await postStudent(request);
+    sendMail(request);
+    sendMessage(request);
     message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.STUDENT_POST);
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
@@ -112,9 +119,9 @@ router.post("/students/registrationnumber", validateToken, async (request, respo
   }
 });
 
-router.post("/students/updatestatus", validateToken, async (request, response) => {
+router.post("/students/status", validateToken, async (request, response) => {
   try {
-    const [row] = await updateStatus(request);
+    const [row] = await patchStatus(request);
     if (row.affectedRows > 0) {
       message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.STUDENT_PUT);
     } else {

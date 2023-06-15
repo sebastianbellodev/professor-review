@@ -7,8 +7,8 @@ import {
 
 const client = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
-export const sendMessage = (req) => {
-  const { phoneNumber, otp } = req.body;
+export const sendMessage = (request) => {
+  const { phoneNumber, otp } = request.body;
   return client.messages.create({
     to: phoneNumber,
     from: TWILIO_PHONE_NUMBER,
