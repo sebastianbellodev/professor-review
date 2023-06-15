@@ -1,6 +1,7 @@
 package com.example.professorperformanceevaluation.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -50,6 +51,8 @@ public class Response {
     public List<User> users;
     @SerializedName("test")
     public Test test;
+    @SerializedName("test")
+    public List<Test> tests;
 
     public Response() {
     }
