@@ -8,10 +8,10 @@ import {
 
 const router = Router();
 
-router.get("/pings", async (request, response) => {
+router.post("/pings", async (request, response) => {
   try {
     const [row] = await ping();
-    const test = { result: row[0]}
+    const test = { test: row[0]}
     message(response, RESPONSE_CODE.OK, null, test);
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
