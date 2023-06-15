@@ -43,41 +43,7 @@ namespace ProfessorPerformanceEvaluation.Service
                 }
             }
             return response;
-        }
-
-        public static async Task<Response> GetEducationalProgramByFaculty(Faculty faculty)
-        {
-            Response response = new Response();
-            using (var httpClient = new HttpClient())
-            {
-                try
-                {
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TOKEN);
-                    var httpRequestMessage = new HttpRequestMessage()
-                    {
-                        Content = new StringContent(JsonConvert.SerializeObject(faculty), Encoding.UTF8, "application/json"),
-                        Method = HttpMethod.Post,
-                        RequestUri = new Uri(string.Concat(URL, "faculty"))
-                    };
-                    HttpResponseMessage httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-                    if (httpResponseMessage != null)
-                    {
-                        if (httpResponseMessage.IsSuccessStatusCode)
-                        {
-                            string json = await httpResponseMessage.Content.ReadAsStringAsync();
-                            response = JsonConvert.DeserializeObject<Response>(json);
-                        }
-                        response.Code = (int)httpResponseMessage.StatusCode;
-                    }
-                }
-                catch (Exception exception)
-                {
-                    response.Code = (int)HttpStatusCode.InternalServerError;
-                    response.Message = exception.Message;
-                }
-            }
-            return response;
-        }
+        }      
 
         public static async Task<Response> GetEducationalProgramsByEducationalExperience(EducationalExperience educationalExperience)
         {

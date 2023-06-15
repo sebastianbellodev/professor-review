@@ -17,14 +17,14 @@ using System.Windows.Shapes;
 
 namespace ProfessorPerformanceEvaluation.Views
 {
-    /// <summary>
-    /// Lógica de interacción para AssignEducationalExperienceToProfessor.xaml
-    /// </summary>
     public partial class AssignEducationalExperienceToProfessor : Window
     {
         private List<Professor> professorsList;
         private List<EducationalExperience> educationalExperienceList;
-        private int selectedIdSyllabus = 0;
+        private Syllabus selectedIdSyllabus = new Syllabus();
+
+        Dictionary<string, string> FacultyDictionary;
+
         public AssignEducationalExperienceToProfessor()
         {
             InitializeComponent();
@@ -150,7 +150,7 @@ namespace ProfessorPerformanceEvaluation.Views
         private void ProfessorDataGridSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             Professor professor = DataGridProfessor.SelectedItem as Professor;
-            EducationalExperienceNameTextBox.Text = professor.Name;
+            ProfessorNameTextBox.Text = professor.Name;
         }
 
         private void EducationalExperienceSearchTextBoxTextChanged(object sender, TextChangedEventArgs e)
@@ -183,16 +183,18 @@ namespace ProfessorPerformanceEvaluation.Views
             }
         }
 
-        private void RegistrarButtonClick(object sender, RoutedEventArgs e)
+        private async void RegistrarButtonClick(object sender, RoutedEventArgs e)
         {
             EducationalExperience educationalExperience = DataGriEducationalExperience.SelectedItem as EducationalExperience;
             Professor professor = DataGridProfessor.SelectedItem as Professor;
-            GetSyllabus(educationalExperience);
 
-            AcademicOffering academicOffering = new AcademicOffering()
+            Response response = await SyllabusService.GetSyllabusesByEducationalExperience(educationalExperience);
+            int idSyllabus = response.Syllabuses.First().IdSyllabus;
+
+            var academicOffering = new AcademicOffering()
             {
                 IdProfessor = professor.IdProfessor,
-                IdSyllabus = selectedIdSyllabus
+                IdSyllabus = idSyllabus
             };
 
             PostAcademicOffering(academicOffering);
@@ -222,12 +224,6 @@ namespace ProfessorPerformanceEvaluation.Views
                     Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
                 Close();
             }
-        }
-
-        private async void GetSyllabus(EducationalExperience educationalExperience)
-        {
-            Response response = await SyllabusService.GetSyllabusesByEducationalExperience(educationalExperience);
-            selectedIdSyllabus = response.Syllabus.IdSyllabus;
         }
 
         private void RegresarButtonClick(object sender, RoutedEventArgs e)

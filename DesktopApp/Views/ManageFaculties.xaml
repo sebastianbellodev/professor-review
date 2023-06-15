@@ -13,23 +13,27 @@
         <Button x:Name="btn_delete" Content="Eliminar" HorizontalAlignment="Left" Margin="730,387,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="DeleteButtonClick"/>
         <Button x:Name="btn_register" Content="Registrar" HorizontalAlignment="Left" Margin="730,194,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="RegisterButtonClick"/>
         <Button x:Name="btn_update" Content="Actualizar" HorizontalAlignment="Left" Margin="730,292,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="UpdateButtonClick"/>
-        <Button x:Name="btn_cancel" Content="Cancelar" HorizontalAlignment="Left" Margin="794,520,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="btn_cancelButtonClick"/>
+        <Button x:Name="btn_cancel" Content="Cancelar" HorizontalAlignment="Left" Margin="794,520,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="CancelButtonClick"/>
 
-        <DataGrid Name="DataGridFaculties" Margin="24,114,376,114">
+        <DataGrid Name="DataGridFaculties" Margin="24,114,376,114" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nombre" Width="560"/>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Name}" Width="550">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="FontFamily" Value="Arial"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="FontFamily" Value="Arial"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
-
-            <DataGrid.Resources>
-                <Style TargetType="{x:Type DataGridColumnHeader}">
-
-                    <Setter Property="Background" Value="HotPink" />
-                    <Setter Property="FontWeight" Value="SemiBold" />
-                    <Setter Property="BorderThickness" Value="0,0,1,2" />
-                    <Setter Property="BorderBrush" Value="White" />
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                </Style>
-            </DataGrid.Resources>
         </DataGrid>
 
 

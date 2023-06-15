@@ -35,7 +35,6 @@ namespace ProfessorPerformanceEvaluation.Views
             {
                 List<Faculty> faculties = response.Faculties;
                 DataGridFaculties.ItemsSource = faculties;
-                //DataGridFaculties.DataContext = faculties; --Ver que funciona mejor
             }
             else if (response.Code == (int)HttpStatusCode.Forbidden)
             {

@@ -33,7 +33,7 @@ namespace ProfessorPerformanceEvaluation.Views
             {
                 var faculty = new Faculty()
                 {
-                    Name = this.txt_FacultyName.Text,
+                    Name = this.FacultyNameTextBox.Text
                 };
                 LogFacultyName(faculty);
             }
@@ -47,7 +47,7 @@ namespace ProfessorPerformanceEvaluation.Views
         private Boolean EmptyFields()
         {
             Boolean result = false;
-            if (!string.IsNullOrEmpty(this.txt_FacultyName.Text))
+            if (!string.IsNullOrEmpty(this.FacultyNameTextBox.Text))
             {
                 result = true;
             }

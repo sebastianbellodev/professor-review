@@ -34,12 +34,12 @@ namespace ProfessorPerformanceEvaluation.Views
             this.selectedFaculty = faculty;
         }
 
-        private void Update_Click(object sender, RoutedEventArgs e)
+        private void UpdateButtonClick(object sender, RoutedEventArgs e)
         {
             if (EmptyFields()) {
                 var faculty = new Faculty()
                 {
-                    Name = this.txt_facultyName.Text,
+                    Name = this.FacultyNameTextBox.Text,
                     IdFaculty = this.selectedFaculty.IdFaculty
                 };
                 UpdateFacultyName(faculty);
@@ -55,7 +55,7 @@ namespace ProfessorPerformanceEvaluation.Views
         private Boolean EmptyFields()
         {
             Boolean result = false;
-            if (!string.IsNullOrEmpty(this.txt_facultyName.Text))
+            if (!string.IsNullOrEmpty(this.FacultyNameTextBox.Text))
             {
                 result = true;
             }
@@ -84,7 +84,7 @@ namespace ProfessorPerformanceEvaluation.Views
             }
         }
 
-        private void Back_Click(object sender, RoutedEventArgs e)
+        private void BackButtonClick(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

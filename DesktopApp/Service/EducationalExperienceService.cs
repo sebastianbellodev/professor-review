@@ -113,40 +113,6 @@ namespace ProfessorPerformanceEvaluation.Service
             return response;
         }
 
-        public static async Task<Response> GetEducationalExperiencesByEducationalProgram(EducationalProgram educationalProgram)
-        {
-            Response response = new Response();
-            using (var httpClient = new HttpClient())
-            {
-                try
-                {
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TOKEN);
-                    var httpRequestMessage = new HttpRequestMessage()
-                    {
-                        Content = new StringContent(JsonConvert.SerializeObject(educationalProgram), Encoding.UTF8, "application/json"),
-                        Method = HttpMethod.Post,
-                        RequestUri = new Uri(string.Concat(URL, "educationalprogram"))
-                    };
-                    HttpResponseMessage httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-                    if (httpResponseMessage != null)
-                    {
-                        if (httpResponseMessage.IsSuccessStatusCode)
-                        {
-                            string json = await httpResponseMessage.Content.ReadAsStringAsync();
-                            response = JsonConvert.DeserializeObject<Response>(json);
-                        }
-                        response.Code = (int)httpResponseMessage.StatusCode;
-                    }
-                }
-                catch (Exception exception)
-                {
-                    response.Code = (int)HttpStatusCode.InternalServerError;
-                    Console.WriteLine(exception.Message);
-                }
-            }
-            return response;
-        }
-
         public static async Task<Response> GetEducationalExperiencesByFaculty(Faculty faculty)
         {
             Response response = new Response();
@@ -193,7 +159,7 @@ namespace ProfessorPerformanceEvaluation.Service
                     {
                         Content = new StringContent(JsonConvert.SerializeObject(educationalProgram), Encoding.UTF8, "application/json"),
                         Method = HttpMethod.Post,
-                        RequestUri = new Uri(string.Concat(URL, "educationalProgram"))
+                        RequestUri = new Uri(string.Concat(URL, "educationalprogram"))
                     };
                     HttpResponseMessage httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
                     if (httpResponseMessage != null)

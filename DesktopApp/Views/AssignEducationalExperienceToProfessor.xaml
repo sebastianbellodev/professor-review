@@ -20,12 +20,12 @@
         <TextBox x:Name="ProfessorNameTextBox" HorizontalAlignment="Left" Margin="598,157,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="322" Height="32" IsEnabled="False"/>
         <TextBox x:Name="EducationalExperienceSearchTextBox" HorizontalAlignment="Left" Margin="25,110,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="399" Height="32" TextChanged="EducationalExperienceSearchTextBoxTextChanged" />
         <TextBox x:Name="ProfessorSearchTextBox" HorizontalAlignment="Left" Margin="521,110,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="399" Height="32" TextChanged="ProfessorSearchTextBoxTextChanged" />
-        <Button x:Name="btn_regresar" Content="Regresar" HorizontalAlignment="Left" Margin="635,525,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="btn_regresar_Click"/>
-        <Button x:Name="btn_Registrar" Content="Registrar" HorizontalAlignment="Left" Margin="793,525,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="btn_Registrar_Click"/>
+        <Button x:Name="btn_regresar" Content="Regresar" HorizontalAlignment="Left" Margin="635,525,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="RegresarButtonClick"/>
+        <Button x:Name="btn_Registrar" Content="Registrar" HorizontalAlignment="Left" Margin="793,525,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="RegistrarButtonClick"/>
 
-        <DataGrid Name="DataGriEducationalExperience" Margin="25,211,536,89" SelectionChanged="EducationalExperienceDataGridSelectionChanged">
+        <DataGrid Name="DataGriEducationalExperience" Margin="25,211,536,89" AutoGenerateColumns="False" SelectionChanged="EducationalExperienceDataGridSelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Experiencia educativa" Width="399"/>
+                <DataGridTextColumn Header="Experiencia educativa" Binding="{Binding Name}" Width="399"/>
             </DataGrid.Columns>
 
             <DataGrid.Resources>
@@ -39,9 +39,9 @@
             </DataGrid.Resources>
         </DataGrid>
 
-        <DataGrid Name="DataGridProfessor" Margin="524,211,40,89" SelectionChanged="ProfessorDataGridSelectionChanged">
+        <DataGrid Name="DataGridProfessor" Margin="524,211,40,89" AutoGenerateColumns="False" SelectionChanged="ProfessorDataGridSelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Profesor" Width="399"/>
+                <DataGridTextColumn Header="Profesor" Binding="{Binding Name}" Width="399"/>
             </DataGrid.Columns>
 
             <DataGrid.Resources>

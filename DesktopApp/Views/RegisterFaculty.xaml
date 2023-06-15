@@ -8,7 +8,7 @@
         Title="RegisterFaculty" Height="225" Width="500">
     <Grid>
         <Label Content="Ingrese el nombre de la facultad que desaea registrar:" HorizontalAlignment="Center" Margin="0,39,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <TextBox x:Name="txt_FacultyName" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="456" Height="28"/>
+        <TextBox x:Name="FacultyNameTextBox" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="456" Height="28"/>
         <Button x:Name="btn_back" Content="Regresar" HorizontalAlignment="Left" Margin="212,162,0,0" VerticalAlignment="Top" Height="28" Width="114" Click="BackButtonClick"/>
         <Button x:Name="btn_Register" Content="Registrar" HorizontalAlignment="Left" Margin="364,162,0,0" VerticalAlignment="Top" Height="28" Width="114" Click="RegisterButtonClick"/>
     </Grid>

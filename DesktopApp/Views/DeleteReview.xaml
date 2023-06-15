@@ -7,24 +7,23 @@
         mc:Ignorable="d"
         Title="Delete Review" Height="569" Width="927">
     <Grid>
-        <ComboBox x:Name="cbb_Faculty" HorizontalAlignment="Left" Margin="23,55,0,0" VerticalAlignment="Top" Width="185" Height="28" Text="Facultades"/>
-        <ComboBox x:Name="cbb_EducationalProgram" HorizontalAlignment="Left" Margin="255,55,0,0" VerticalAlignment="Top" Width="185" Height="28"/>
-        <ComboBox x:Name="cbb_EducationalExperience" HorizontalAlignment="Left" Margin="488,53,0,0" VerticalAlignment="Top" Width="186" Height="28"/>
-        <ComboBox x:Name="cbb_Professors" HorizontalAlignment="Left" Margin="717,55,0,0" VerticalAlignment="Top" Width="186" Height="28"/>
+        <ComboBox x:Name="cbb_Faculty" HorizontalAlignment="Left" Margin="23,55,0,0" VerticalAlignment="Top" Width="185" Height="28" Text="Facultades" SelectionChanged="FacultyComboBoxSelectionChanged"/>
+        <ComboBox x:Name="cbb_EducationalProgram" HorizontalAlignment="Left" Margin="255,55,0,0" VerticalAlignment="Top" Width="185" Height="28" SelectionChanged="EducationalProgramComboBoxSelectionChanged"/>
+        <ComboBox x:Name="cbb_EducationalExperience" HorizontalAlignment="Left" Margin="488,53,0,0" VerticalAlignment="Top" Width="186" Height="28" SelectionChanged="EducationalExperienceComboBoxSelectionChanged"/>
+        <ComboBox x:Name="cbb_Professors" HorizontalAlignment="Left" Margin="717,55,0,0" VerticalAlignment="Top" Width="186" Height="28" SelectionChanged="ProfessorComboBoxSelectionChanged"/>
         <Label Content="Facultades:" HorizontalAlignment="Left" Margin="23,12,0,0" VerticalAlignment="Top" Width="118" FontSize="18"/>
         <Label Content="Programas educativos:" HorizontalAlignment="Left" Margin="255,13,0,0" VerticalAlignment="Top" Width="209" FontSize="18"/>
-        <Label Content="Profesores:&#xD;&#xA;" HorizontalAlignment="Left" Margin="717,10,0,0" VerticalAlignment="Top" Width="118" FontSize="18" Height="37"/>
+        <Label Content="Profesores:" HorizontalAlignment="Left" Margin="717,10,0,0" VerticalAlignment="Top" Width="118" FontSize="18" Height="37"/>
         <Label Content="Experiencia Educativa&#xD;&#xA;" HorizontalAlignment="Left" Margin="481,13,0,0" VerticalAlignment="Top" Width="201" FontSize="18" Height="34"/>
 
         <Button x:Name="btn_delete" Content="Eliminar" HorizontalAlignment="Left" Margin="776,493,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="DeleteButtonClick"/>
         <Button x:Name="btn_cancel" Content="Cancelar" HorizontalAlignment="Left" Margin="602,493,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="CancelButtonClick"/>
-        
-        <DataGrid Name="DataGridReviews" Margin="24,137,23,92">
+
+        <DataGrid Name="DataGridReviews" Margin="24,137,23,92" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Estrellas" Width="150"/>
-                <DataGridTextColumn Header="Comentarios" Width="329"/>
-                <DataGridTextColumn Header="Numero de registro" Width="200"/>
-                <DataGridTextColumn Header="Periodo escolar" Width="200"/>
+                <DataGridTextColumn Header="Estrellas" Binding="{Binding Stars}" Width="178"/>
+                <DataGridTextColumn Header="Comentarios" Binding="{Binding Comment}" Width="500"/>
+                <DataGridTextColumn Header="Numero de registro" Binding="{Binding RegistrationNumber}" Width="200"/>
             </DataGrid.Columns>
 
             <DataGrid.Resources>

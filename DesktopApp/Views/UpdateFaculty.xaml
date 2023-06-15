@@ -8,8 +8,8 @@
         Title="UpdateFaculty" Height="225" Width="500">
     <Grid>
         <Label Content="Ingrese el nuevo nombre de la facultad:" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <TextBox x:Name="txt_facultyName" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="456" Height="28"/>
-        <Button x:Name="btn_back" Content="Regresar" HorizontalAlignment="Left" Margin="212,162,0,0" VerticalAlignment="Top" Height="28" Width="114" Click="Back_Click"/>
-        <Button x:Name="btn_Update" Content="Actualizar" HorizontalAlignment="Left" Margin="364,162,0,0" VerticalAlignment="Top" Height="28" Width="114" Click="Update_Click"/>
+        <TextBox x:Name="FacultyNameTextBox" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="456" Height="28"/>
+        <Button x:Name="btn_back" Content="Regresar" HorizontalAlignment="Left" Margin="212,162,0,0" VerticalAlignment="Top" Height="28" Width="114" Click="BackButtonClick"/>
+        <Button x:Name="btn_Update" Content="Actualizar" HorizontalAlignment="Left" Margin="364,162,0,0" VerticalAlignment="Top" Height="28" Width="114" Click="UpdateButtonClick"/>
     </Grid>
 </Window>
