@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.professorperformanceevaluation.model.Response;
-import com.example.professorperformanceevaluation.model.Test;
 import com.example.professorperformanceevaluation.model.User;
 import com.example.professorperformanceevaluation.service.service.TestService;
 import com.example.professorperformanceevaluation.service.service.UserService;
@@ -39,7 +38,6 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void onLoginClicked() {
-        ;
         String username = this.username.getValue();
         String password = this.password.getValue();
         password = Utilities.computeSHA256Hash(password);
