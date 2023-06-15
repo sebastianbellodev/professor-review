@@ -5,8 +5,9 @@ import com.example.professorperformanceevaluation.model.Response;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 
 public interface TestServiceApi {
-    @GET("pings")
+    @POST("pings")
     Call<Response> ping();
 }
