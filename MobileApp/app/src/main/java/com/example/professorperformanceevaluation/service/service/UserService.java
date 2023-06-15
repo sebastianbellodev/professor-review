@@ -10,7 +10,6 @@ import com.example.professorperformanceevaluation.R;
 import com.example.professorperformanceevaluation.model.Response;
 import com.example.professorperformanceevaluation.model.User;
 import com.example.professorperformanceevaluation.service.client.UserClient;
-import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,12 +17,10 @@ import retrofit2.Callback;
 public class UserService {
 
     private final Context context;
-    private final Gson gson;
     private final String token;
 
     public UserService(Context context) {
         this.context = context;
-        gson = new Gson();
         SharedPreferences sharedPreferences = context.getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE);
         token = sharedPreferences.getString("token", "");
     }
@@ -79,7 +76,11 @@ public class UserService {
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
-                callback.onSuccess(response.body());
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onSuccess(new Response(response.code()));
+                }
             }
 
             @Override

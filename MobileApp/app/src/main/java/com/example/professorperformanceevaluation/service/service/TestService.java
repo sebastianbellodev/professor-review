@@ -1,29 +1,16 @@
 package com.example.professorperformanceevaluation.service.service;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
 import androidx.annotation.NonNull;
 
 import com.example.professorperformanceevaluation.model.Response;
-import com.example.professorperformanceevaluation.model.User;
 import com.example.professorperformanceevaluation.service.client.TestClient;
-import com.example.professorperformanceevaluation.service.client.UserClient;
-import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 
 public class TestService {
-    private final Context context;
-    private final Gson gson;
-    private final String token;
 
-    public TestService(Context context) {
-        this.context = context;
-        gson = new Gson();
-        SharedPreferences sharedPreferences = context.getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE);
-        token = sharedPreferences.getString("token", "");
+    public TestService() {
     }
 
     public void ping(TestService.TestServiceCallback callback) {

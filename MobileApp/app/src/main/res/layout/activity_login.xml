@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/username_label"
-            android:text="@={loginViewModel.username}"
             android:textSize="16sp" />
 
         <EditText
@@ -40,7 +39,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password_label"
-            android:text="@={loginViewModel.username}"
             android:textSize="16sp" />
 
         <EditText

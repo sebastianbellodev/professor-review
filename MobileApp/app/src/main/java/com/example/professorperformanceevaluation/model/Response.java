@@ -1,12 +1,13 @@
 package com.example.professorperformanceevaluation.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Response {
+public class Response implements Serializable {
+
     private int code;
     @SerializedName("message")
     @Expose
@@ -73,6 +74,10 @@ public class Response {
     private Test test;
 
     public Response() {
+    }
+
+    public Response(int code) {
+        this.code = code;
     }
 
     public int getCode() {
@@ -250,4 +255,5 @@ public class Response {
     public void setTest(Test test) {
         this.test = test;
     }
+
 }

@@ -1,12 +1,13 @@
 package com.example.professorperformanceevaluation.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Student {
+public class Student implements Serializable {
+
     @SerializedName("registrationNumber")
     @Expose
     private String registrationNumber;
@@ -27,7 +28,7 @@ public class Student {
     private String biography;
     @SerializedName("active")
     @Expose
-    private boolean active;
+    private int active;
     @SerializedName("activationDate")
     @Expose
     private Date activationDate;
@@ -39,6 +40,10 @@ public class Student {
     private int idEducationalProgram;
 
     public Student() {
+    }
+
+    public Student(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
     }
 
     public String getRegistrationNumber() {
@@ -89,11 +94,11 @@ public class Student {
         this.biography = biography;
     }
 
-    public boolean isActive() {
+    public int isActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(int active) {
         this.active = active;
     }
 
