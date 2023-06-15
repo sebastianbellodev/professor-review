@@ -13,16 +13,16 @@ import retrofit2.http.POST;
 
 public interface ReviewServiceApi {
 
-    @DELETE
+    @DELETE("reviews")
     Call<Response> delete(@Header("Authorization") String token, @Body Review review);
 
-    @POST("educationalexperience")
+    @POST("reviews/educationalexperience")
     Call<Response> getReviewsByEducationalExperience(@Header("Authorization") String token, @Body EducationalExperience educationalExperience);
 
-    @PATCH
+    @PATCH("reviews")
     Call<Response> patch(@Header("Authorization") String token, @Body Review review);
 
-    @POST
+    @POST("reviews")
     Call<Response> post(@Header("Authorization") String token, @Body Review review);
 
 }

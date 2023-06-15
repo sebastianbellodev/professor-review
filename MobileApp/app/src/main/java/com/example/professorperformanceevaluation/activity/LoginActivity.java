@@ -8,7 +8,6 @@ import android.os.Bundle;
 
 import com.example.professorperformanceevaluation.R;
 import com.example.professorperformanceevaluation.databinding.ActivityLoginBinding;
-import com.example.professorperformanceevaluation.service.UserService;
 import com.example.professorperformanceevaluation.viewmodel.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {

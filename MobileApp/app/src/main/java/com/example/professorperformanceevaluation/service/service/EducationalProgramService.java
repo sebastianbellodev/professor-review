@@ -1,44 +1,29 @@
-package com.example.professorperformanceevaluation.service;
+package com.example.professorperformanceevaluation.service.service;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 
-import com.example.professorperformanceevaluation.api.ReviewServiceApi;
-import com.example.professorperformanceevaluation.model.EducationalExperience;
+import com.example.professorperformanceevaluation.model.EducationalProgram;
+import com.example.professorperformanceevaluation.model.Faculty;
 import com.example.professorperformanceevaluation.model.Response;
-import com.example.professorperformanceevaluation.model.Review;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.example.professorperformanceevaluation.service.client.EducationalProgramClient;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ReviewService {
+public class EducationalProgramService {
 
-    private static final String URL = "http://professorperformanceevaluation-production-7405.up.railway.app/api/reviews/";
-    private static String token;
-    private static ReviewServiceApi apiService;
+    private String token;
 
-    public ReviewService(Context context) {
+    public EducationalProgramService(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE);
         token = sharedPreferences.getString("token", "");
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        Gson gson = new GsonBuilder().create();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(httpClient.build())
-                .build();
-        apiService = retrofit.create(ReviewServiceApi.class);
     }
 
-    public static void delete(Review review, ReviewServiceCallback callback) {
-        Call<Response> call = apiService.delete("Bearer " + token, review);
+    public void getEducationalPrograms(EducationalProgramServiceCallback callback) {
+        Call<Response> call = EducationalProgramClient.getInstance().getApiService().getEducationalPrograms("Bearer " + token);
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
@@ -52,8 +37,8 @@ public class ReviewService {
         });
     }
 
-    public static void getReviewsByEducationalExperience(EducationalExperience educationalExperience, ReviewServiceCallback callback) {
-        Call<Response> call = apiService.getReviewsByEducationalExperience("Bearer " + token, educationalExperience);
+    public void getEducationalProgramsByFaculty(Faculty faculty, EducationalProgramServiceCallback callback) {
+        Call<Response> call = EducationalProgramClient.getInstance().getApiService().getEducationalProgramsByFaculty("Bearer " + token, faculty);
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
@@ -67,8 +52,8 @@ public class ReviewService {
         });
     }
 
-    public static void patch(Review review, ReviewServiceCallback callback) {
-        Call<Response> call = apiService.patch("Bearer " + token, review);
+    public void patch(EducationalProgram educationalProgram, EducationalProgramServiceCallback callback) {
+        Call<Response> call = EducationalProgramClient.getInstance().getApiService().patch("Bearer " + token, educationalProgram);
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
@@ -82,8 +67,8 @@ public class ReviewService {
         });
     }
 
-    public static void post(Review review, ReviewServiceCallback callback) {
-        Call<Response> call = apiService.post("Bearer " + token, review);
+    public void post(EducationalProgram educationalProgram, EducationalProgramServiceCallback callback) {
+        Call<Response> call = EducationalProgramClient.getInstance().getApiService().post("Bearer " + token, educationalProgram);
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
@@ -97,7 +82,7 @@ public class ReviewService {
         });
     }
 
-    public interface ReviewServiceCallback {
+    public interface EducationalProgramServiceCallback {
 
         void onSuccess(Response response);
 

@@ -187,6 +187,22 @@ public class Response {
         this.students = students;
     }
 
+    public Syllabus getSyllabus() {
+        return syllabus;
+    }
+
+    public void setSyllabus(Syllabus syllabus) {
+        this.syllabus = syllabus;
+    }
+
+    public List<Syllabus> getSyllabuses() {
+        return syllabuses;
+    }
+
+    public void setSyllabuses(List<Syllabus> syllabuses) {
+        this.syllabuses = syllabuses;
+    }
+
     public User getUser() {
         return user;
     }
