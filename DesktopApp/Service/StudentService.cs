@@ -8,6 +8,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ProfessorPerformanceEvaluation.Service
 {
@@ -208,6 +210,7 @@ namespace ProfessorPerformanceEvaluation.Service
                 }
                 catch (Exception exception)
                 {
+                    Console.WriteLine(exception.Message);
                     response.Code = (int)HttpStatusCode.InternalServerError;
                     Console.WriteLine(exception.Message);
                 }
@@ -277,10 +280,47 @@ namespace ProfessorPerformanceEvaluation.Service
                 catch (Exception exception)
                 {
                     response.Code = (int)HttpStatusCode.InternalServerError;
-                    Console.WriteLine(exception.Message);
                 }
             }
             return response;
+        }
+
+        public static async Task<Response> UpdateStatus(List<Student> students)
+        {
+            Response response = new Response();
+            using (var httpClient = new HttpClient())
+            {
+                List<string> ids = students.Select(e => e.RegistrationNumber).ToList();
+                var requestBody = new { ids };
+                try
+                {
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TOKEN);
+                    var httpRequestMessage = new HttpRequestMessage()
+                    {
+                        Content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json"),
+                        Method = HttpMethod.Post,
+                        
+
+                        RequestUri = new Uri(string.Concat(URL, "updatestatus"))
+                    };
+                    HttpResponseMessage httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+                    if (httpResponseMessage != null)
+                    {
+                        if (httpResponseMessage.IsSuccessStatusCode)
+                        {
+                            string json = await httpResponseMessage.Content.ReadAsStringAsync();
+                            response = JsonConvert.DeserializeObject<Response>(json);
+                        }
+                        response.Code = (int)httpResponseMessage.StatusCode;
+                    }
+                }
+                catch (Exception exception)
+                {
+                    response.Code = (int)HttpStatusCode.InternalServerError;
+                    Console.WriteLine(exception.Message);
+                }
+            }
+            return response;        
         }
     }
 }

@@ -8,6 +8,7 @@ import {
   getStudentsByFaculty,
   patchStudent,
   postStudent,
+  updateStatus,
 } from "../controllers/student.controllers.js";
 import { validateToken } from "../utilities/authentication/bearer/bearer.js";
 import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../tools/message.js";
@@ -109,6 +110,19 @@ router.post("/students/registrationnumber", validateToken, async (request, respo
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
+});
+
+router.post("/students/updatestatus", validateToken, async (request,response) => {
+    try {
+      const [row] = await updateStatus(request);
+      if (row.affectedRows > 0) {
+        message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.STUDENT_PUT);
+      } else {
+        message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
+      }
+    } catch (exception) {
+      message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
+    }
 });
 
 export default router;
