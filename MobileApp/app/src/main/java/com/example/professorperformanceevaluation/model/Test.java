@@ -4,17 +4,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class Test {
     @SerializedName("result")
-    private Integer result;
+    private int result;
 
     public Test(Integer result) {
         this.result = result;
     }
 
-    public Integer getResult() {
+    public int getResult() {
         return result;
     }
 
-    public void setResult(Integer result) {
+    public void setResult(int result) {
         this.result = result;
     }
 }

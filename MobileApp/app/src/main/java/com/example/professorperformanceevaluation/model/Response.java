@@ -48,8 +48,8 @@ public class Response {
     public User user;
     @SerializedName("users")
     public List<User> users;
-    @SerializedName("result")
-    public int result;
+    @SerializedName("test")
+    public Test test;
 
     public Response() {
     }
