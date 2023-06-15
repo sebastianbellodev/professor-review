@@ -11,8 +11,11 @@ const router = Router();
 router.post("/pings", async (request, response) => {
   try {
     const [row] = await ping();
-    const test = { test: row[0]}
-    message(response, RESPONSE_CODE.OK, null, test);
+    var o = {}
+    const test = "test"
+    o[test] = []
+    o[test].push(row[0])
+    message(response, RESPONSE_CODE.OK, null, o);
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
