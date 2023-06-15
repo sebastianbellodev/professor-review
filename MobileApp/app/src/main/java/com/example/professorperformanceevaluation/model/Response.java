@@ -10,49 +10,73 @@ public class Response {
 
     public int code;
     @SerializedName("message")
+    @Expose
     public String message;
     @SerializedName("token")
+    @Expose
     public String token;
     @SerializedName("educationalExperience")
+    @Expose
     public EducationalExperience educationalExperience;
     @SerializedName("educationalExperiences")
+    @Expose
     public List<EducationalExperience> educationalExperiences;
     @SerializedName("educationalProgram")
+    @Expose
     public EducationalProgram educationalProgram;
     @SerializedName("educationalPrograms")
+    @Expose
     public List<EducationalProgram> educationalPrograms;
     @SerializedName("faculty")
+    @Expose
     public Faculty faculty;
     @SerializedName("faculties")
+    @Expose
     public List<Faculty> faculties;
     @SerializedName("professor")
+    @Expose
     public Professor professor;
     @SerializedName("professors")
+    @Expose
     public List<Professor> professors;
     @SerializedName("review")
+    @Expose
     public Review review;
     @SerializedName("reviews")
+    @Expose
     public List<Review> reviews;
     @SerializedName("schoolPeriod")
+    @Expose
     public SchoolPeriod schoolPeriod;
     @SerializedName("schoolPeriods")
+    @Expose
     public List<SchoolPeriod> schoolPeriods;
     @SerializedName("student")
+    @Expose
     public Student student;
     @SerializedName("students")
+    @Expose
     public List<Student> students;
     @SerializedName("syllabus")
+    @Expose
     public Syllabus syllabus;
     @SerializedName("syllabuses")
+    @Expose
     public List<Syllabus> syllabuses;
     @SerializedName("user")
+    @Expose
     public User user;
     @SerializedName("users")
+    @Expose
     public List<User> users;
     @SerializedName("test")
+    @Expose
     public Test test;
-    @SerializedName("test")
+    @SerializedName("tests")
+    @Expose
     public List<Test> tests;
+    @SerializedName("result")
+    private Integer result;
 
     public Response() {
     }
@@ -225,4 +249,19 @@ public class Response {
         this.users = users;
     }
 
+    public Test getTest() {
+        return test;
+    }
+
+    public void setTest(Test test) {
+        this.test = test;
+    }
+
+    public List<Test> getTests() {
+        return tests;
+    }
+
+    public void setTests(List<Test> tests) {
+        this.tests = tests;
+    }
 }
