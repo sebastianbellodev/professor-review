@@ -1,14 +1,18 @@
 package com.example.professorperformanceevaluation.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class AcademicOffering {
-
-    @JsonProperty("idAcademicOffering")
+    @SerializedName("idAcademicOffering")
+    @Expose
     private int idAcademicOffering;
-    @JsonProperty("idSyllabus")
+    @SerializedName("idSyllabus")
+    @Expose
     private int idSyllabus;
-    @JsonProperty("idProfessor")
+    @SerializedName("idProfessor")
+    @Expose
     private int idProfessor;
 
     public AcademicOffering() {

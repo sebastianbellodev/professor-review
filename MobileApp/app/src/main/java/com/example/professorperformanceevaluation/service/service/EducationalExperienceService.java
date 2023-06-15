@@ -16,7 +16,7 @@ import retrofit2.Callback;
 
 public class EducationalExperienceService {
 
-    private String token;
+    private final String token;
 
     public EducationalExperienceService(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE);

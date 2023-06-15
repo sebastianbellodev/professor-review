@@ -1,14 +1,18 @@
 package com.example.professorperformanceevaluation.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class User {
-
-    @JsonProperty("username")
+    @SerializedName("username")
+    @Expose
     private String username;
-    @JsonProperty("password")
+    @SerializedName("password")
+    @Expose
     private String password;
-    @JsonProperty("registrationNumber")
+    @SerializedName("registrationNumber")
+    @Expose
     private String registrationNumber;
 
     public User() {
