@@ -24,13 +24,13 @@ public class StudentManagementViewModel extends AndroidViewModel {
         this.student = student;
     }
 
-    public void onQueryStudentClicked() {
+    public void onQueryStudentButtonClicked() {
     }
 
-    public void onModifyStudentClicked() {
+    public void onModifyStudentButtonClicked() {
     }
 
-    public void onReturnClicked() {
+    public void onReturnButtonClicked() {
         Intent intent = new Intent(context, MainMenuActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra("student", student);

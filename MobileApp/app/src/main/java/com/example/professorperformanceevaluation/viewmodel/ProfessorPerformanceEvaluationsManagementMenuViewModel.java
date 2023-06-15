@@ -24,13 +24,13 @@ public class ProfessorPerformanceEvaluationsManagementMenuViewModel extends Andr
         this.student = student;
     }
 
-    public void onLogProfessorPerformanceEvaluationClicked() {
+    public void onLogProfessorPerformanceEvaluationButtonClicked() {
     }
 
-    public void onModifyProfessorPerformanceEvaluationClicked() {
+    public void onModifyProfessorPerformanceEvaluationButtonClicked() {
     }
 
-    public void onReturnClicked() {
+    public void onReturnButtonClicked() {
         Intent intent = new Intent(context, MainMenuActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra("student", student);

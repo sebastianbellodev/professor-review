@@ -11,6 +11,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.professorperformanceevaluation.R;
+import com.example.professorperformanceevaluation.activity.LogStudentEducationalProgramActivity;
+import com.example.professorperformanceevaluation.activity.LogStudentEmailAddressPhoneNumberActivity;
 import com.example.professorperformanceevaluation.activity.LoginActivity;
 import com.example.professorperformanceevaluation.model.Response;
 import com.example.professorperformanceevaluation.model.Student;
@@ -29,13 +31,6 @@ public class LogStudentEmailAddressPhoneNumberViewModel extends AndroidViewModel
     private final StudentService studentService;
     private final UserService userService;
 
-    public LogStudentEmailAddressPhoneNumberViewModel(@NonNull Application application) {
-        super(application);
-        context = application.getApplicationContext();
-        studentService = new StudentService(context);
-        userService = new UserService(context);
-    }
-
     public MutableLiveData<String> getEmailAddress() {
         return emailAddress;
     }
@@ -44,13 +39,20 @@ public class LogStudentEmailAddressPhoneNumberViewModel extends AndroidViewModel
         return phoneNumber;
     }
 
-    public void onCancelClicked() {
+    public LogStudentEmailAddressPhoneNumberViewModel(@NonNull Application application) {
+        super(application);
+        context = application.getApplicationContext();
+        studentService = new StudentService(context);
+        userService = new UserService(context);
+    }
+
+    public void onCancelButtonClicked() {
         Intent intent = new Intent(context, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
     }
 
-    public void onAcceptClicked() {
+    public void onAcceptButtonClicked() {
         userService.signUp(new UserService.UserServiceCallback() {
             @Override
             public void onSuccess(Response response) {
@@ -115,7 +117,7 @@ public class LogStudentEmailAddressPhoneNumberViewModel extends AndroidViewModel
                 if (response.getCode() == HttpURLConnection.HTTP_FORBIDDEN) {
                     Toast.makeText(context, R.string.expired_session_label, Toast.LENGTH_SHORT).show();
                 } else if (response.getCode() == HttpURLConnection.HTTP_NOT_FOUND) {
-                    goToLogStudentEducationalProgram();
+                    goToLogStudentEducationalProgram(student);
                 } else {
                     Toast.makeText(context, R.string.student_already_registered_label, Toast.LENGTH_SHORT).show();
                 }
@@ -128,8 +130,11 @@ public class LogStudentEmailAddressPhoneNumberViewModel extends AndroidViewModel
         });
     }
 
-    private void goToLogStudentEducationalProgram() {
-
+    private void goToLogStudentEducationalProgram(Student student) {
+        Intent intent = new Intent(context, LogStudentEducationalProgramActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("student", student);
+        context.startActivity(intent);
     }
 
 }
