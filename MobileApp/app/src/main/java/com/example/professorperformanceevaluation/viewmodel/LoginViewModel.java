@@ -62,7 +62,7 @@ public class LoginViewModel extends ViewModel {
         testService.ping(new TestService.TestServiceCallback() {
             @Override
             public void onSuccess(Response response) {
-                Integer result = response.getTest().getResult();
+                Integer result = response.getResult();
                 if (result != null) {
                     Toast.makeText(context, "Result " + result, Toast.LENGTH_SHORT).show();
                 }

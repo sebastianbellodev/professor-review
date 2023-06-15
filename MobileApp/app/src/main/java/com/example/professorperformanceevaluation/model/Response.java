@@ -264,4 +264,12 @@ public class Response {
     public void setTests(List<Test> tests) {
         this.tests = tests;
     }
+
+    public Integer getResult() {
+        return result;
+    }
+
+    public void setResult(Integer result) {
+        this.result = result;
+    }
 }
