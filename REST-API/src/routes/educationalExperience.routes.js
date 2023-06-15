@@ -60,7 +60,7 @@ router.post("/educationalexperiences", validateToken, async (request, response) 
 router.post("/educationalexperiences/educationalprogram", validateToken, async (request, response) => {
   try {
     const [row] = await getEducationalExperiencesByEducationalProgram(request);
-    const educationalExperiences = { educationalExperiences, row };
+    const educationalExperiences = { educationalExperiences: row };
     message(response, RESPONSE_CODE.OK, null, educationalExperiences);
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);

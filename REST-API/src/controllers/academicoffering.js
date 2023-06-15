@@ -7,7 +7,7 @@ export const postAcademicOffering = (request) => {
       pool.query(
         "INSERT INTO academicoffering \n" +
         "(idSyllabus, idProfessor)\n " +
-        "VALUES (?, ?)"
+        "VALUES (?, ?)",
         [
             idSyllabus,
             idProfessor
@@ -24,7 +24,7 @@ export const getAcademicOffering = (request) => {
         "SELECT * \n" +
         "FROM academicoffering\n" + 
         "WHERE idSyllabus = ? \n" +
-        "AND idProfessor = ?"
+        "AND idProfessor = ?",
         [
             idSyllabus,
             idProfessor

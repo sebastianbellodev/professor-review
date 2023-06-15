@@ -35,6 +35,7 @@ export const getEducationalProgramsByFaculty = (request) => {
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
+      "educationalprogram.idEducationalProgram,\n" +
       "educationalprogram.name\n" +
       "FROM\n" +
       "educationalprogram\n" +

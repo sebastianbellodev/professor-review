@@ -4,7 +4,8 @@ import {
   getReview,
   getReviewsByEducationalExperience,
   patchReview,
-  postReview
+  postReview,
+  getReviewsByProfessor
 } from "../controllers/review.controllers.js";
 import {
   validateToken
@@ -68,7 +69,7 @@ router.post("/reviews/educationalexperience", validateToken, async (request, res
   }
 });
 
-router.post("/review/professor", validateToken, async (request, response) => {
+router.post("/reviews/professor", validateToken, async (request, response) => {
   try {
     const [row] = await getReviewsByProfessor(request);
     const reviews = { reviews: row };
