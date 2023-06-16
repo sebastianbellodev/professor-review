@@ -27,11 +27,11 @@ export const getUserByUsername = (request) => {
 export const getUsers = () => {
   return Promise.resolve(
     pool.query(
-      "SELECT\n" + 
+      "SELECT\n" +
       "username, registrationNumber\n" +
       "FROM\n" +
       "user\n" +
-      "ORDER BY" +
+      "ORDER BY\n" +
       "username\n" +
       "ASC"
     )
