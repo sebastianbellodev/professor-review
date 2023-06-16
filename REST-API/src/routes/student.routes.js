@@ -13,7 +13,6 @@ import {
 } from "../controllers/student.controllers.js";
 import { validateToken } from "../utilities/authentication/bearer/bearer.js";
 import { generateOneTimePassword } from "../utilities/authentication/token/otp.js";
-import { sendMail } from "../utilities/comunication/email/sendgridemail.js";
 import { sendMessage } from "../utilities/comunication/messages/twilio.js";
 import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "../tools/message.js";
 
@@ -25,18 +24,10 @@ router.delete("/students", validateToken, async (request, response) => {
     if (row.affectedRows > 0) {
       message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.STUDENT_DELETE);
     } else {
-      message(
-        response,
-        RESPONSE_CODE.NOT_FOUND,
-        RESPONSE_MESSAGE.STUDENT_NOT_FOUND
-      );
+      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
     }
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -45,11 +36,7 @@ router.get("/students", validateToken, async (request, response) => {
     const [row] = await getStudents();
     message(response, RESPONSE_CODE.OK, null, { students: row });
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -59,18 +46,10 @@ router.patch("/students", validateToken, async (request, response) => {
     if (row.affectedRows > 0) {
       message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.STUDENT_PUT);
     } else {
-      message(
-        response,
-        RESPONSE_CODE.NOT_FOUND,
-        RESPONSE_MESSAGE.STUDENT_NOT_FOUND
-      );
+      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
     }
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -80,18 +59,10 @@ router.patch("/students/activate", validateToken, async (request, response) => {
     if (row.affectedRows > 0) {
       message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.STUDENT_PUT);
     } else {
-      message(
-        response,
-        RESPONSE_CODE.NOT_FOUND,
-        RESPONSE_MESSAGE.STUDENT_NOT_FOUND
-      );
+      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
     }
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
@@ -101,39 +72,26 @@ router.patch("/students/status", validateToken, async (request, response) => {
     if (row.affectedRows > 0) {
       message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.STUDENT_PUT);
     } else {
-      message(
-        response,
-        RESPONSE_CODE.NOT_FOUND,
-        RESPONSE_MESSAGE.STUDENT_NOT_FOUND
-      );
+      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
     }
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
 router.post("/students", validateToken, async (request, response) => {
   try {
-    const oneTimePassword = generateOneTimePassword();
+    let oneTimePassword = generateOneTimePassword();
     request.body.oneTimePassword = oneTimePassword;
     sendMessage(request);
     await postStudent(request);
     message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.STUDENT_POST);
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
-router.post(
-  "/students/emailaddress",
+router.post("/students/emailaddress",
   validateToken,
   async (request, response) => {
     try {
@@ -148,11 +106,7 @@ router.post(
         );
       }
     } catch (exception) {
-      message(
-        response,
-        RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-        RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR
-      );
+      message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
     }
   }
 );
@@ -162,62 +116,34 @@ router.post("/students/faculty", validateToken, async (request, response) => {
     const [row] = await getStudentsByFaculty(request);
     message(response, RESPONSE_CODE.OK, null, { students: row });
   } catch (exception) {
-    message(
-      response,
-      RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR
-    );
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
 
-router.post(
-  "/students/phonenumber",
-  validateToken,
-  async (request, response) => {
-    try {
-      const [row] = await getStudentByPhoneNumber(request);
-      if (row.length > 0) {
-        message(response, RESPONSE_CODE.OK, null, { students: row });
-      } else {
-        message(
-          response,
-          RESPONSE_CODE.NOT_FOUND,
-          RESPONSE_MESSAGE.STUDENT_NOT_FOUND
-        );
-      }
-    } catch (exception) {
-      message(
-        response,
-        RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-        RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR
-      );
+router.post("/students/phonenumber", validateToken, async (request, response) => {
+  try {
+    const [row] = await getStudentByPhoneNumber(request);
+    if (row.length > 0) {
+      message(response, RESPONSE_CODE.OK, null, { students: row });
+    } else {
+      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
     }
+  } catch (exception) {
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
-);
+});
 
-router.post(
-  "/students/registrationnumber",
-  validateToken,
-  async (request, response) => {
-    try {
-      const [row] = await getStudentByRegistrationNumber(request);
-      if (row.length > 0) {
-        message(response, RESPONSE_CODE.OK, null, { students: row });
-      } else {
-        message(
-          response,
-          RESPONSE_CODE.NOT_FOUND,
-          RESPONSE_MESSAGE.STUDENT_NOT_FOUND
-        );
-      }
-    } catch (exception) {
-      message(
-        response,
-        RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-        RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR
-      );
+router.post("/students/registrationnumber", validateToken, async (request, response) => {
+  try {
+    const [row] = await getStudentByRegistrationNumber(request);
+    if (row.length > 0) {
+      message(response, RESPONSE_CODE.OK, null, { students: row });
+    } else {
+      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
     }
+  } catch (exception) {
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
-);
+});
 
 export default router;

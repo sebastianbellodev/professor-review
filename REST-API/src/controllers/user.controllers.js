@@ -39,7 +39,8 @@ export const getUsers = () => {
 };
 
 export const login = (request) => {
-  const { username, password } = request.body;
+  const { username,
+    password } = request.body;
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
@@ -56,7 +57,8 @@ export const login = (request) => {
 };
 
 export const patchUser = (request) => {
-  const { username, password } = request.body;
+  const { username,
+    password } = request.body;
   return Promise.resolve(
     pool.query(
       "UPDATE\n" +
@@ -71,7 +73,9 @@ export const patchUser = (request) => {
 };
 
 export const postUser = (request) => {
-  const { username, password, registrationNumber } = request.body;
+  const { username,
+    password,
+    registrationNumber } = request.body;
   return Promise.resolve(
     pool.query(
       "INSERT INTO\n" +
