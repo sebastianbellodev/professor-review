@@ -24,6 +24,7 @@
             android:text="Regresar"
             android:layout_alignParentStart="true"
             android:layout_marginStart="16dp"
+            android:onClick="@{()->logReviewViewModel.goToMenu()}"
             android:layout_marginTop="16dp" />
 
         <Button
@@ -31,11 +32,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Aceptar"
+            android:onClick="@{()->logReviewViewModel.onAceptClicked()}"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp" />
 
-        <!-- ComboBox para Periodos Escolares -->
         <Spinner
             android:id="@+id/spinnerPeriods"
             android:layout_width="match_parent"
@@ -46,7 +47,6 @@
             android:entries="@{logReviewViewModel.schoolPeriods}"
             android:layout_marginTop="16dp" />
 
-        <!-- ComboBox para Experiencias Educativas -->
         <Spinner
             android:id="@+id/spinnerEducationalExperience"
             android:layout_width="match_parent"
@@ -55,10 +55,7 @@
             android:contentDescription="Selecciona la Experiencia Educativa..."
             android:minHeight="48dp"
             android:entries="@{logReviewViewModel.educationalExperiences}"
-            android:onItemSelected="@{(parent, view, position, id)-> logReviewViewModel.onEducationalExperienceSelected(position)}"
             android:layout_marginTop="16dp" />
-
-        <!-- ComboBox para Profesores -->
         <Spinner
             android:id="@+id/spinnerProfessor"
             android:layout_width="match_parent"
@@ -68,10 +65,9 @@
             android:minHeight="48dp"
             android:entries="@{logReviewViewModel.professors}"
             android:layout_marginTop="16dp" />
-
-        <!-- Calificación con estrellas -->
         <RatingBar
             android:id="@+id/ratingBar"
+            android:rating="@={logReviewViewModel.rating}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/spinnerProfessor"
@@ -80,14 +76,15 @@
             android:numStars="5"
             android:stepSize="1" />
 
-        <!-- Campo para ingresar comentario -->
         <EditText
             android:id="@+id/editTextComentary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/ratingBar"
             android:layout_marginTop="16dp"
+            android:inputType="text"
             android:hint="Ingrese un comentario"
+            android:text="@={logReviewViewModel.comment}"
             android:minHeight="48dp"
             android:textSize="16sp" />
     </RelativeLayout>

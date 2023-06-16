@@ -18,6 +18,7 @@ import com.example.professorperformanceevaluation.model.DataManager;
 import com.example.professorperformanceevaluation.model.Response;
 import com.example.professorperformanceevaluation.model.Student;
 import com.example.professorperformanceevaluation.model.User;
+import com.example.professorperformanceevaluation.service.service.FacultyService;
 import com.example.professorperformanceevaluation.service.service.StudentService;
 import com.example.professorperformanceevaluation.service.service.UserService;
 import com.example.professorperformanceevaluation.utilities.Utilities;
@@ -129,7 +130,6 @@ public class LoginViewModel extends AndroidViewModel {
             }
         });
     }
-
     private void goToMainMenu(Student student) {
         Intent intent = new Intent(context, MainMenuActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

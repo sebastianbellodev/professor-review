@@ -1,5 +1,7 @@
 package com.example.professorperformanceevaluation.model;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -45,4 +47,9 @@ public class SchoolPeriod implements Serializable {
         this.endDate = endDate;
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return this.getStartDate().toString()+ " " + this.getEndDate().toString();
+    }
 }
