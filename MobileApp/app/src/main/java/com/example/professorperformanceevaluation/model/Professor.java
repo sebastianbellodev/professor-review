@@ -1,7 +1,5 @@
 package com.example.professorperformanceevaluation.model;
 
-import androidx.annotation.NonNull;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -20,6 +18,10 @@ public class Professor implements Serializable {
     private String lastName;
 
     public Professor() {
+    }
+
+    public Professor(int idProfessor) {
+        this.idProfessor = idProfessor;
     }
 
     public int getIdProfessor() {
@@ -46,9 +48,9 @@ public class Professor implements Serializable {
         this.lastName = lastName;
     }
 
-    @NonNull
     @Override
     public String toString() {
-        return this.getName() + " " + this.getLastName();
+        return getName() + " " + getLastName();
     }
+
 }

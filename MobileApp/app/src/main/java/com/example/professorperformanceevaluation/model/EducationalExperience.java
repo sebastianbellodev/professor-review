@@ -1,7 +1,5 @@
 package com.example.professorperformanceevaluation.model;
 
-import androidx.annotation.NonNull;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -35,9 +33,9 @@ public class EducationalExperience implements Serializable {
         this.name = name;
     }
 
-    @NonNull
     @Override
     public String toString() {
-        return this.name;
+        return getName();
     }
+
 }

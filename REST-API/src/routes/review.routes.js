@@ -62,8 +62,7 @@ router.post("/reviews", validateToken, async (request, response) => {
 router.post("/reviews/educationalexperience", validateToken, async (request, response) => {
   try {
     const [row] = await getReviewsByEducationalExperience(request);
-    const reviews = { reviews: row };
-    message(response, RESPONSE_CODE.OK, null, reviews);
+    message(response, RESPONSE_CODE.OK, null, { reviews: row });
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
