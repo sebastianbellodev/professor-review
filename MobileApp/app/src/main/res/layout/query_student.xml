@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="queryStudentProfileViewModel"
+            type="com.example.professorperformanceevaluation.viewmodel.QueryStudentProfileViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/student_name"
+            tools:layout_editor_absoluteX="27dp"
+            tools:layout_editor_absoluteY="89dp" />
+
+        <TextView
+            android:id="@+id/student_name_text_view"
+            android:layout_width="230dp"
+            android:layout_height="24dp"
+            tools:layout_editor_absoluteX="122dp"
+            tools:layout_editor_absoluteY="84dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/student_last_name"
+            tools:layout_editor_absoluteX="27dp"
+            tools:layout_editor_absoluteY="133dp" />
+
+        <TextView
+            android:id="@+id/student_last_name_text_view"
+            android:layout_width="230dp"
+            android:layout_height="24dp"
+            tools:layout_editor_absoluteX="122dp"
+            tools:layout_editor_absoluteY="128dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/student_email"
+            tools:layout_editor_absoluteX="27dp"
+            tools:layout_editor_absoluteY="177dp" />
+
+        <TextView
+            android:id="@+id/student_email_text_view"
+            android:layout_width="230dp"
+            android:layout_height="24dp"
+            tools:layout_editor_absoluteX="122dp"
+            tools:layout_editor_absoluteY="175dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_number_label"
+            tools:layout_editor_absoluteX="29dp"
+            tools:layout_editor_absoluteY="223dp" />
+
+        <TextView
+            android:id="@+id/student_phone_number_text_view"
+            android:layout_width="164dp"
+            android:layout_height="24dp"
+            tools:layout_editor_absoluteX="188dp"
+            tools:layout_editor_absoluteY="218dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/student_biography"
+            tools:layout_editor_absoluteX="27dp"
+            tools:layout_editor_absoluteY="305dp" />
+
+        <TextView
+            android:id="@+id/student_biography_text_view"
+            android:layout_width="332dp"
+            android:layout_height="255dp"
+            tools:layout_editor_absoluteX="39dp"
+            tools:layout_editor_absoluteY="353dp" />
+
+        <Button
+            android:id="@+id/user_accept_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> queryStudentProfileViewModel.onReturnButtonClicked()}"
+            android:text="@string/accept_button"
+            tools:layout_editor_absoluteX="277dp"
+            tools:layout_editor_absoluteY="645dp" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/student_profile"
+            tools:layout_editor_absoluteX="153dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

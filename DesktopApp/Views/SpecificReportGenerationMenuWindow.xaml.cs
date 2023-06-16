@@ -17,6 +17,8 @@ namespace ProfessorPerformanceEvaluation.Views
 
         private void GenerateProfessorPerformanceReportByEducationalExperienceButtonClick(object sender, RoutedEventArgs e)
         {
+            var educationalExperience = new EducationalExperiencePerformanceReport();
+            educationalExperience.Show();
         }
 
         private void GenerateActivityReportByStudentButtonClick(object sender, RoutedEventArgs e)
