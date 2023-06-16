@@ -63,6 +63,7 @@ router.post("/educationalexperiences/educationalprogram", validateToken, async (
     const educationalExperiences = { educationalExperiences: row };
     message(response, RESPONSE_CODE.OK, null, educationalExperiences);
   } catch (exception) {
+    console.log(exception.message);
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
@@ -81,8 +82,8 @@ router.post("/educationalexperiences/id", validateToken, async (request, respons
   try {
     const [row] = await getEducationalExperienceById(request);
     if (row.length > 0) {
-      const educationalExperience = { educationalExperience: row };
-      message(response, RESPONSE_CODE.OK, null, educationalExperience);
+      const educationalExperiences = { educationalExperiences: row };
+      message(response, RESPONSE_CODE.OK, null, educationalExperiences);
     } else {
       message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_NOT_FOUND);
     }

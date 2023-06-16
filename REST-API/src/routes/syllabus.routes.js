@@ -39,8 +39,7 @@ router.post("/syllabuses", validateToken, async (request, response) => {
 router.post("/syllabuses/educationalexperience", validateToken, async (request, response) => {
   try {
     const [row] = await getSyllabusesByEducationalExperience(request);
-    const syllabuses = { syllabuses: row };
-    message(response, RESPONSE_CODE.OK, null, syllabuses);
+    message(response, RESPONSE_CODE.OK, null, { syllabuses: row });
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
@@ -50,8 +49,7 @@ router.post("/syllabuses/id", validateToken, async (request, response) => {
   try {
     const [row] = await getSyllabusById(request);
     if (row.length > 0) {
-      const syllabus = { syllabus: row };
-      message(response, RESPONSE_CODE.OK, null, syllabus);
+      message(response, RESPONSE_CODE.OK, null, { syllabuses: row });
     } else {
       message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.SYLLABUS_NOT_FOUND);
     }

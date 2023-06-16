@@ -20,6 +20,10 @@ public class EducationalProgram implements Serializable {
     public EducationalProgram() {
     }
 
+    public EducationalProgram(int idEducationalProgram) {
+        this.idEducationalProgram = idEducationalProgram;
+    }
+
     public int getIdEducationalProgram() {
         return idEducationalProgram;
     }
