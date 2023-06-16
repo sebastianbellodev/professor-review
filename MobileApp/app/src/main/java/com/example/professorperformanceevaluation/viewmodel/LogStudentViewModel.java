@@ -79,7 +79,8 @@ public class LogStudentViewModel extends AndroidViewModel {
             if (Objects.equals(password, passwordConfirmation)) {
                 String username = getUsername().getValue();
                 password = Utilities.computeSHA256Hash(password);
-                user = new User(username, password);
+                String registrationNumber = student.getRegistrationNumber();
+                user = new User(username, password, registrationNumber);
                 String name = getName().getValue();
                 String lastName = getLastName().getValue();
                 student.setName(name);
