@@ -28,4 +28,10 @@
     <string name="cancel_button">Cancelar</string>
     <string name="accept_button">Aceptar</string>
     <string name="student_already_registered_label">El estudiante ya se encuentra registrado en el sistema.</string>
+    <string name="student_name">Nombre:</string>
+    <string name="student_last_name">Apellidos:</string>
+    <string name="student_email">Correo:</string>
+    <string name="student_phone_number">Numero de telefono:</string>
+    <string name="student_biography">Biografia:</string>
+    <string name="student_profile">Perfil de usuario:</string>
 </resources>
