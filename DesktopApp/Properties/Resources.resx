@@ -170,7 +170,7 @@
     <value>El programa educativo solo puede pertenecer a una facultad.</value>
   </data>
   <data name="FACULTY_NAME_LABEL" xml:space="preserve">
-    <value>Nombre de la facultad</value>
+    <value>Facultad:</value>
   </data>
   <data name="GENERATE_ACTIVITY_REPORT_BY_STUDENT_BUTTON" xml:space="preserve">
     <value>Generar reporte de actividad por estudiante</value>
@@ -183,6 +183,9 @@
   </data>
   <data name="INVALID_DATA_LABEL" xml:space="preserve">
     <value>Los datos ingresados son inválidos.</value>
+  </data>
+  <data name="LAST_NAME_LABEL" xml:space="preserve">
+    <value>Apellidos:</value>
   </data>
   <data name="LOGIN_BUTTON" xml:space="preserve">
     <value>Iniciar sesión</value>
@@ -203,13 +206,22 @@
     <value>Registrar programa educativo</value>
   </data>
   <data name="LOG_EDUCATIONAL_PROGRAM_INSTRUCTION_LABEL" xml:space="preserve">
-    <value>Ingrese la información del programa educativo y dé clic en el botón de "Aceptar".</value>
+    <value>Ingrese la información del programa educativo, y dé clic en el botón de "Aceptar".</value>
+  </data>
+  <data name="LOG_EDUCATIONAL_PROGRAM_LABEL" xml:space="preserve">
+    <value>Registrar programa educativo.</value>
   </data>
   <data name="LOG_OUT_BUTTON" xml:space="preserve">
     <value>Cerrar sesión</value>
   </data>
   <data name="LOG_PROFESSOR_BUTTON" xml:space="preserve">
     <value>Registrar profesor</value>
+  </data>
+  <data name="LOG_PROFESSOR_INSTRUCTION_LABEL" xml:space="preserve">
+    <value>Ingrese la información del professor, y dé clic en el botón de "Aceptar".</value>
+  </data>
+  <data name="LOG_PROFESSOR_LABEL" xml:space="preserve">
+    <value>Registrar profesor.</value>
   </data>
   <data name="MAIN_MENU_LABEL" xml:space="preserve">
     <value>Menú principal.</value>
@@ -235,6 +247,9 @@
   <data name="MODIFY_PROFESSOR_BUTTON" xml:space="preserve">
     <value>Editar profesor</value>
   </data>
+  <data name="MODIFY_PROFESSOR_LABEL" xml:space="preserve">
+    <value>Editar profesor.</value>
+  </data>
   <data name="NAME_LABEL" xml:space="preserve">
     <value>Nombre:</value>
   </data>
@@ -243,6 +258,9 @@
   </data>
   <data name="PASSWORD_LABEL" xml:space="preserve">
     <value>Contraseña:</value>
+  </data>
+  <data name="PROFESSOR_LABEL" xml:space="preserve">
+    <value>Profesor:</value>
   </data>
   <data name="PROFESSOR_PERFORMANCE_EVALUATIONS_MANAGEMENT_BUTTON" xml:space="preserve">
     <value>Gestión de evaluaciones al desempeño docente</value>
