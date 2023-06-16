@@ -81,12 +81,20 @@ router.post("/professors", validateToken, async (request, response) => {
   }
 });
 
-router.post("/professors/educationalexperience", validateToken, async (request, response) => {
-  try {
-    const [row] = await getProfessorsByEducationalExperience(request);
-    message(response, RESPONSE_CODE.OK, null, { professors: row });
-  } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
+router.post(
+  "/professors/educationalexperience",
+  validateToken,
+  async (request, response) => {
+    try {
+      const [row] = await getProfessorsByEducationalExperience(request);
+      message(response, RESPONSE_CODE.OK, null, { professors: row });
+    } catch (exception) {
+      message(
+        response,
+        RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+        RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR
+      );
+    }
   }
 );
 
