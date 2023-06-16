@@ -22,6 +22,9 @@ namespace ProfessorPerformanceEvaluation.Views
 
         private void StudentManagementButtonClick(object sender, RoutedEventArgs e)
         {
+            var studentAccess = new StudentAccessManagement();
+            Close();
+            studentAccess.Show();
         }
 
         private void SpecificReportGenerationButtonClick(object sender, RoutedEventArgs e)
