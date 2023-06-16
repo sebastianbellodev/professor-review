@@ -1,5 +1,26 @@
 import { pool } from "../schema/connection.js";
 
+export const getAcademicOffering = (request) => {
+    const { idSyllabus,
+        idProfessor } = request.body;
+    return Promise.resolve(
+        pool.query(
+            "SELECT\n" +
+            "*\n" +
+            "FROM\n" +
+            "academicoffering\n" +
+            "WHERE\n" +
+            "idSyllabus = ?\n" +
+            "AND\n" +
+            "idProfessor = ?",
+            [
+                idSyllabus,
+                idProfessor
+            ]
+        )
+    );
+};
+
 export const getAcademicOfferingById = (request) => {
     const idAcademicOffering = request.body.idAcademicOffering;
     return Promise.resolve(
@@ -20,26 +41,10 @@ export const postAcademicOffering = (request) => {
         idProfessor } = request.body;
     return Promise.resolve(
         pool.query(
-            "INSERT INTO academicoffering \n" +
+            "INSERT INTO\n" +
+            "academicoffering \n" +
             "(idSyllabus, idProfessor)\n " +
             "VALUES (?, ?)",
-            [
-                idSyllabus,
-                idProfessor
-            ]
-        )
-    );
-};
-
-export const getAcademicOffering = (request) => {
-    const { idSyllabus,
-        idProfessor } = request.body;
-    return Promise.resolve(
-        pool.query(
-            "SELECT * \n" +
-            "FROM academicoffering\n" +
-            "WHERE idSyllabus = ? \n" +
-            "AND idProfessor = ?",
             [
                 idSyllabus,
                 idProfessor

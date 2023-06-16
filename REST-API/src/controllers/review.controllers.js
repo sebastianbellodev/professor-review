@@ -85,6 +85,29 @@ export const getReviewsByEducationalExperience = (request) => {
   );
 };
 
+export const getReviewsByProfessor = (request) => {
+  const idProfessor = request.body.idProfessor;
+  return Promise.resolve(
+    pool.query(
+      "SELECT\n" +
+      "review.idReview, review.stars, review.comment, review.registrationNumber\n" +
+      "FROM\n" +
+      "review\n" +
+      "INNER JOIN\n" +
+      "academicoffering\n" +
+      "ON\n" +
+      "review.idAcademicOffering = academicoffering.idAcademicOffering\n" +
+      "INNER JOIN\n" +
+      "professor\n" +
+      "ON\n" +
+      "academicoffering.idProfessor = professor.idProfessor\n" +
+      "WHERE\n" +
+      "professor.idProfessor = ?",
+      [idProfessor]
+    )
+  );
+};
+
 export const patchReview = (request) => {
   const { idReview,
     stars,
@@ -123,20 +146,6 @@ export const postReview = (request) => {
         idAcademicOffering,
         registrationNumber
       ]
-    )
-  );
-};
-
-export const getReviewsByProfessor = (request) => {
-  const idProfessor = request.body.idProfessor;
-  return Promise.resolve(
-    pool.query(
-      "SELECT  review.idReview, review.stars, review.comment, review.registrationNumber\n" +
-      "FROM review\n" +
-      "INNER JOIN academicoffering ON review.idAcademicOffering = academicoffering.idAcademicOffering\n" +
-      "INNER JOIN professor ON academicoffering.idProfessor = professor.idProfessor\n" +
-      "WHERE professor.idProfessor = ?",
-      [idProfessor]
     )
   );
 };
