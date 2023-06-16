@@ -6,7 +6,6 @@ import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.ViewModel;
 
 import com.example.professorperformanceevaluation.activity.MainMenuActivity;
 import com.example.professorperformanceevaluation.model.Student;

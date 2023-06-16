@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="activeAccountViewModel"
+            type="com.example.professorperformanceevaluation.viewmodel.ActiveAccountViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".activity.ActiveAccountActivity">
+
+        <TextView
+            android:id="@+id/instruction_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/otp_instruction_label"
+            android:textColor="#616161"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/registration_number_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/instruction_text_view"
+            android:layout_margin="16dp"
+            android:text="@string/registration_number_label"
+            android:textColor="#616161"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/registration_number_edit_text"
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registration_number_text_view"
+            android:layout_margin="8dp"
+            android:autofillHints=""
+            android:hint="@string/registration_number_instruction_label"
+            android:inputType="text"
+            android:text="@={activeAccountViewModel.registrationNumber}"
+            android:textSize="15sp"
+            tools:ignore="TextFields" />
+
+        <TextView
+            android:id="@+id/otp_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registration_number_edit_text"
+            android:layout_margin="8dp"
+            android:text="@string/otp_label"
+            android:textColor="#616161"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/otp_edit_text"
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/otp_text_view"
+            android:layout_margin="16dp"
+            android:autofillHints=""
+            android:hint="@string/password_instruction_label"
+            android:inputType="text"
+            android:text="@={activeAccountViewModel.oneTimePassword}"
+            android:textSize="15sp" />
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/otp_edit_text"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:onClick="@{() -> activeAccountViewModel.onCancelButtonClick()}"
+            android:text="@string/cancel_button" />
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/otp_edit_text"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="@{() -> activeAccountViewModel.onAcceptButtonClick()}"
+            android:text="@string/accept_button" />
+
+    </RelativeLayout>
+</layout>
