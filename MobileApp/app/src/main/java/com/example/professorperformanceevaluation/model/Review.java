@@ -19,15 +19,23 @@ public class Review implements Serializable {
     @SerializedName("idSchoolPeriod")
     @Expose
     private int idSchoolPeriod;
+    @SerializedName("schoolPeriod")
+    @Expose
     private String schoolPeriod;
     @SerializedName("idAcademicOffering")
     @Expose
     private int idAcademicOffering;
+    @SerializedName("educationalExperience")
+    @Expose
     private String educationalExperience;
+    @SerializedName("professor")
+    @Expose
     private String professor;
     @SerializedName("registrationNumber")
     @Expose
     private String registrationNumber;
+    @SerializedName("student")
+    @Expose
     private String student;
 
     public Review() {
