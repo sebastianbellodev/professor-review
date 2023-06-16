@@ -11,6 +11,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.professorperformanceevaluation.R;
+import com.example.professorperformanceevaluation.activity.LogStudentEducationalProgramActivity;
 import com.example.professorperformanceevaluation.activity.LoginActivity;
 import com.example.professorperformanceevaluation.model.Response;
 import com.example.professorperformanceevaluation.model.Student;
@@ -23,9 +24,7 @@ public class LogStudentEmailAddressPhoneNumberViewModel extends AndroidViewModel
 
     private final MutableLiveData<String> emailAddress = new MutableLiveData<>();
     private final MutableLiveData<String> phoneNumber = new MutableLiveData<>();
-
     private final Context context;
-
     private final StudentService studentService;
     private final UserService userService;
 
@@ -44,13 +43,13 @@ public class LogStudentEmailAddressPhoneNumberViewModel extends AndroidViewModel
         return phoneNumber;
     }
 
-    public void onCancelClicked() {
+    public void onCancelButtonClicked() {
         Intent intent = new Intent(context, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
     }
 
-    public void onAcceptClicked() {
+    public void onAcceptButtonClicked() {
         userService.signUp(new UserService.UserServiceCallback() {
             @Override
             public void onSuccess(Response response) {
@@ -80,11 +79,29 @@ public class LogStudentEmailAddressPhoneNumberViewModel extends AndroidViewModel
     private void signUp() {
         if (emailAddress.getValue() != null & phoneNumber.getValue() != null) {
             String emailAddress = this.emailAddress.getValue();
-            String phoneNumber = this.phoneNumber.getValue();
-            Student student = new Student(emailAddress, phoneNumber);
-            checkStudentByEmailAddressExistence(student);
+            if (checkEmailAddressFormat(emailAddress)) {
+                String registrationNumber = emailAddress.substring(0, emailAddress.indexOf('@'));
+                String phoneNumber = this.phoneNumber.getValue();
+                Student student = new Student(registrationNumber, emailAddress, phoneNumber);
+                checkStudentByEmailAddressExistence(student);
+            } else {
+                Toast.makeText(context, R.string.invalid_data_label, Toast.LENGTH_SHORT).show();
+            }
         } else {
             Toast.makeText(context, R.string.empty_fields_label, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean checkEmailAddressFormat(String emailAddress) {
+        if (emailAddress.indexOf('@') != -1) {
+            String domain = emailAddress.substring(emailAddress.indexOf('@') + 1);
+            if (domain.equals("estudiantes.uv.mx")) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
         }
     }
 
@@ -92,9 +109,10 @@ public class LogStudentEmailAddressPhoneNumberViewModel extends AndroidViewModel
         studentService.getStudentByEmailAddress(student, new StudentService.StudentServiceCallback() {
             @Override
             public void onSuccess(Response response) {
-                if (response.getCode() == HttpURLConnection.HTTP_FORBIDDEN) {
+                int code = response.getCode();
+                if (code == HttpURLConnection.HTTP_FORBIDDEN) {
                     Toast.makeText(context, R.string.expired_session_label, Toast.LENGTH_SHORT).show();
-                } else if (response.getCode() == HttpURLConnection.HTTP_NOT_FOUND) {
+                } else if (code == HttpURLConnection.HTTP_NOT_FOUND) {
                     checkStudentByPhoneNumberExistence(student);
                 } else {
                     Toast.makeText(context, R.string.student_already_registered_label, Toast.LENGTH_SHORT).show();
@@ -112,10 +130,11 @@ public class LogStudentEmailAddressPhoneNumberViewModel extends AndroidViewModel
         studentService.getStudentByPhoneNumber(student, new StudentService.StudentServiceCallback() {
             @Override
             public void onSuccess(Response response) {
-                if (response.getCode() == HttpURLConnection.HTTP_FORBIDDEN) {
+                int code = response.getCode();
+                if (code == HttpURLConnection.HTTP_FORBIDDEN) {
                     Toast.makeText(context, R.string.expired_session_label, Toast.LENGTH_SHORT).show();
-                } else if (response.getCode() == HttpURLConnection.HTTP_NOT_FOUND) {
-                    goToLogStudentEducationalProgram();
+                } else if (code == HttpURLConnection.HTTP_NOT_FOUND) {
+                    goToLogStudentEducationalProgram(student);
                 } else {
                     Toast.makeText(context, R.string.student_already_registered_label, Toast.LENGTH_SHORT).show();
                 }
@@ -128,8 +147,11 @@ public class LogStudentEmailAddressPhoneNumberViewModel extends AndroidViewModel
         });
     }
 
-    private void goToLogStudentEducationalProgram() {
-
+    private void goToLogStudentEducationalProgram(Student student) {
+        Intent intent = new Intent(context, LogStudentEducationalProgramActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("student", student);
+        context.startActivity(intent);
     }
 
 }

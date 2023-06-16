@@ -12,22 +12,21 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"
-        android:paddingRight="16dp"
-        android:paddingBottom="16dp"
+        android:background="@color/background_color"
+        android:gravity="center"
+        android:orientation="vertical"
         tools:context=".activity.LogStudentEmailAddressPhoneNumberActivity">
 
         <TextView
             android:id="@+id/email_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
             android:text="@string/email_address_label"
             android:textSize="16sp" />
 
         <EditText
             android:id="@+id/email_edit_text"
+            style="@style/EditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/email_text_view"
@@ -35,8 +34,11 @@
             android:autofillHints=""
             android:hint="@string/email_address_instruction_label"
             android:inputType="textEmailAddress"
+            android:minHeight="48dp"
             android:text="@={logStudentEmailAddressPhoneNumberViewModel.emailAddress}"
-            android:textSize="15sp" />
+            android:textColorHint="#757575"
+            android:textSize="15sp"
+            tools:ignore="VisualLintTextFieldSize" />
 
         <TextView
             android:id="@+id/phone_number_text_view"
@@ -49,6 +51,7 @@
 
         <EditText
             android:id="@+id/phone_number_edit_text"
+            style="@style/EditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/phone_number_text_view"
@@ -56,27 +59,32 @@
             android:autofillHints=""
             android:hint="@string/phone_number_instruction_label"
             android:inputType="phone"
+            android:minHeight="48dp"
             android:text="@={logStudentEmailAddressPhoneNumberViewModel.phoneNumber}"
-            android:textSize="15sp" />
+            android:textColorHint="#757575"
+            android:textSize="15sp"
+            tools:ignore="VisualLintTextFieldSize" />
 
         <Button
             android:id="@+id/cancel_button"
+            style="@style/ButtonStyle"
             android:layout_width="126dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/phone_number_edit_text"
             android:layout_marginTop="20dp"
-            android:onClick="@{() -> logStudentEmailAddressPhoneNumberViewModel.onCancelClicked()}"
+            android:onClick="@{() -> logStudentEmailAddressPhoneNumberViewModel.onCancelButtonClicked()}"
             android:text="@string/cancel_button" />
 
         <Button
             android:id="@+id/accept_button"
-            android:layout_width="131dp"
+            style="@style/ButtonStyle"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/phone_number_edit_text"
-            android:layout_marginStart="135dp"
+            android:layout_marginStart="155dp"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@id/cancel_button"
-            android:onClick="@{() -> logStudentEmailAddressPhoneNumberViewModel.onAcceptClicked()}"
+            android:onClick="@{() -> logStudentEmailAddressPhoneNumberViewModel.onAcceptButtonClicked()}"
             android:text="@string/accept_button" />
 
     </RelativeLayout>

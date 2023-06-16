@@ -27,28 +27,28 @@ public class MainMenuViewModel extends AndroidViewModel {
         this.student = student;
     }
 
-    public void onProfessorPerformanceEvaluationsManagementClicked() {
+    public void onProfessorPerformanceEvaluationsManagementButtonClicked() {
         Intent intent = new Intent(context, ProfessorPerformanceManagementMenuActivity.class);
         intent.putExtra("student", student);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
     }
 
-    public void onEducationalProgramManagementClicked() {
+    public void onEducationalProgramManagementButtonClicked() {
         Intent intent = new Intent(context, EducationalProgramAdministrationMenuActivity.class);
         intent.putExtra("student", student);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
     }
 
-    public void onStudentManagementClicked() {
+    public void onStudentManagementButtonClicked() {
         Intent intent = new Intent(context, StudentManagementMenuActivity.class);
         intent.putExtra("student", student);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
     }
 
-    public void onLogOutClicked() {
+    public void onLogOutButtonClicked() {
         Intent intent = new Intent(context, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);

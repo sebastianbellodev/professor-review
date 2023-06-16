@@ -6,7 +6,6 @@ import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.ViewModel;
 
 import com.example.professorperformanceevaluation.activity.MainMenuActivity;
 import com.example.professorperformanceevaluation.model.Student;
@@ -25,13 +24,13 @@ public class EducationalProgramAdministrationMenuViewModel extends AndroidViewMo
         this.student = student;
     }
 
-    public void onQueryEducationalExperienceClicked() {
+    public void onQueryEducationalExperienceButtonClicked() {
     }
 
-    public void onQueryProfessorClicked() {
+    public void onQueryProfessorButtonClicked() {
     }
 
-    public void onReturnClicked() {
+    public void onReturnButtonClicked() {
         Intent intent = new Intent(context, MainMenuActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra("student", student);

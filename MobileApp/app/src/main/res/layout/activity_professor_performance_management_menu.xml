@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:onClick="@{() -> professorPerformanceManagementMenuViewModel.onLogProfessorPerformanceEvaluationClicked()}"
+            android:onClick="@{() -> professorPerformanceManagementMenuViewModel.onLogProfessorPerformanceEvaluationButtonClicked()}"
             android:text="@string/log_professor_performance_evaluation_button"
             tools:ignore="VisualLintButtonSize" />
 
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="80dp"
-            android:onClick="@{() -> professorPerformanceManagementMenuViewModel.onModifyProfessorPerformanceEvaluationClicked()}"
+            android:onClick="@{() -> professorPerformanceManagementMenuViewModel.onModifyProfessorPerformanceEvaluationButtonClicked()}"
             android:text="@string/modify_professor_performance_evaluation_button"
             tools:ignore="VisualLintButtonSize" />
 
@@ -39,7 +39,7 @@
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> professorPerformanceManagementMenuViewModel.onReturnClicked()}"
+            android:onClick="@{() -> professorPerformanceManagementMenuViewModel.onReturnButtonClicked()}"
             android:text="@string/return_button"
             tools:ignore="VisualLintButtonSize" />
 

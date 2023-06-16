@@ -11,6 +11,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.professorperformanceevaluation.R;
+import com.example.professorperformanceevaluation.activity.ActiveAccountActivity;
 import com.example.professorperformanceevaluation.activity.LogStudentEmailAddressPhoneNumberActivity;
 import com.example.professorperformanceevaluation.activity.MainMenuActivity;
 import com.example.professorperformanceevaluation.model.Response;
@@ -45,7 +46,7 @@ public class LoginViewModel extends AndroidViewModel {
         return password;
     }
 
-    public void onLoginClicked() {
+    public void onLoginButtonClicked() {
         if (username.getValue() != null & password.getValue() != null) {
             String username = this.username.getValue();
             String password = this.password.getValue();
@@ -61,9 +62,10 @@ public class LoginViewModel extends AndroidViewModel {
         userService.login(user, new UserService.UserServiceCallback() {
             @Override
             public void onSuccess(Response response) {
-                if (response.getCode() == HttpURLConnection.HTTP_FORBIDDEN) {
+                int code = response.getCode();
+                if (code == HttpURLConnection.HTTP_FORBIDDEN) {
                     Toast.makeText(context, R.string.expired_session_label, Toast.LENGTH_SHORT).show();
-                } else if (response.getCode() == HttpURLConnection.HTTP_NOT_FOUND) {
+                } else if (code == HttpURLConnection.HTTP_NOT_FOUND) {
                     Toast.makeText(context, R.string.invalid_data_label, Toast.LENGTH_SHORT).show();
                 } else {
                     String token = response.getToken();
@@ -90,7 +92,8 @@ public class LoginViewModel extends AndroidViewModel {
         userService.getUserByUsername(user, new UserService.UserServiceCallback() {
             @Override
             public void onSuccess(Response response) {
-                if (response.getCode() == HttpURLConnection.HTTP_FORBIDDEN) {
+                int code = response.getCode();
+                if (code == HttpURLConnection.HTTP_FORBIDDEN) {
                     Toast.makeText(context, R.string.expired_session_label, Toast.LENGTH_SHORT).show();
                 } else {
                     String registrationNumber = response.getUsers().get(0).getRegistrationNumber();
@@ -110,7 +113,8 @@ public class LoginViewModel extends AndroidViewModel {
         studentService.getStudentByRegistrationNumber(student, new StudentService.StudentServiceCallback() {
             @Override
             public void onSuccess(Response response) {
-                if (response.getCode() == HttpURLConnection.HTTP_FORBIDDEN) {
+                int code = response.getCode();
+                if (code == HttpURLConnection.HTTP_FORBIDDEN) {
                     Toast.makeText(context, R.string.expired_session_label, Toast.LENGTH_SHORT).show();
                 } else {
                     goToMainMenu(response.getStudents().get(0));
@@ -131,8 +135,14 @@ public class LoginViewModel extends AndroidViewModel {
         context.startActivity(intent);
     }
 
-    public void onSignUpClicked() {
+    public void onSignUpButtonClicked() {
         Intent intent = new Intent(context, LogStudentEmailAddressPhoneNumberActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intent);
+    }
+
+    public void onActiveAccountButtonClicked() {
+        Intent intent = new Intent(context, ActiveAccountActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
     }

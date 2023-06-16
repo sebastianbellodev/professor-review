@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:onClick="@{() -> studentManagementMenuViewModel.onQueryStudentClicked()}"
+            android:onClick="@{() -> studentManagementMenuViewModel.onQueryStudentButtonClicked()}"
             android:text="@string/query_student_button"
             tools:ignore="VisualLintButtonSize" />
 
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="80dp"
-            android:onClick="@{() -> studentManagementMenuViewModel.onModifyStudentClicked()}"
+            android:onClick="@{() -> studentManagementMenuViewModel.onModifyStudentButtonClicked()}"
             android:text="@string/modify_student_button"
             tools:ignore="VisualLintButtonSize" />
 
@@ -39,7 +39,7 @@
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> studentManagementMenuViewModel.onReturnClicked()}"
+            android:onClick="@{() -> studentManagementMenuViewModel.onReturnButtonClicked()}"
             android:text="@string/return_button"
             tools:ignore="VisualLintButtonSize" />
 
