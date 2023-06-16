@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="modifyStudentViewModel"
+            type="com.example.professorperformanceevaluation.viewmodel.ModifyStudentViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        tools:context=".activity.ModifyStudentActivity">
+
+        <EditText
+            android:id="@+id/username_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:hint="@string/username_label"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/student_biography_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/username_edit_text"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/student_biography"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/student_biography_edit_text"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/name_label"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/last_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name_edit_text"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/last_name_label"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/phone_number_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/last_name_edit_text"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/phone_number_label"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/email_address_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phone_number_edit_text"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/email_address_label"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/cancel_button"
+            style="@style/ButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/email_address_edit_text"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="32dp"
+            android:onClick="@{() -> modifyStudentViewModel.onCancelButtonClicked()}"
+            android:text="@string/cancel_button" />
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBaseline="@id/cancel_button"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="20dp"
+            android:onClick="@{() -> modifyStudentViewModel.onAcceptButtonClicked()}"
+            android:text="@string/accept_button" />
+
+
+
+    </RelativeLayout>
+</layout>
