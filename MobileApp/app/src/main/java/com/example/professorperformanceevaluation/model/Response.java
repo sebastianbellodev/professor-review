@@ -15,6 +15,12 @@ public class Response implements Serializable {
     @SerializedName("token")
     @Expose
     private String token;
+    @SerializedName("academicOffering")
+    @Expose
+    private AcademicOffering academicOffering;
+    @SerializedName("academicOfferings")
+    @Expose
+    private List<AcademicOffering> academicOfferings;
     @SerializedName("educationalExperience")
     @Expose
     private EducationalExperience educationalExperience;
@@ -102,6 +108,22 @@ public class Response implements Serializable {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public AcademicOffering getAcademicOffering() {
+        return academicOffering;
+    }
+
+    public void setAcademicOffering(AcademicOffering academicOffering) {
+        this.academicOffering = academicOffering;
+    }
+
+    public List<AcademicOffering> getAcademicOfferings() {
+        return academicOfferings;
+    }
+
+    public void setAcademicOfferings(List<AcademicOffering> academicOfferings) {
+        this.academicOfferings = academicOfferings;
     }
 
     public EducationalExperience getEducationalExperience() {

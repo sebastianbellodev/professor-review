@@ -20,6 +20,10 @@ public class Professor implements Serializable {
     public Professor() {
     }
 
+    public Professor(int idProfessor) {
+        this.idProfessor = idProfessor;
+    }
+
     public int getIdProfessor() {
         return idProfessor;
     }
@@ -42,6 +46,11 @@ public class Professor implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return getName() + " " + getLastName();
     }
 
 }

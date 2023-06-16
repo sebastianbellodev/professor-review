@@ -1,4 +1,5 @@
 import express from "express";
+import academicOfferingRoutes from "./routes/academicOffering.routes.js"
 import educationalExperienceRoutes from "./routes/educationalExperience.routes.js";
 import educationalProgramRoutes from "./routes/educationalProgram.routes.js";
 import facultyRoutes from "./routes/faculty.routes.js";
@@ -21,6 +22,7 @@ app.use(express.json());
 
 const api = "/api";
 
+app.use(api, academicOfferingRoutes);
 app.use(api, educationalExperienceRoutes);
 app.use(api, educationalProgramRoutes);
 app.use(api, facultyRoutes);

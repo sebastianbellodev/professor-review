@@ -14,8 +14,7 @@ const router = Router();
 router.post("/reports/professor", validateToken, async (request, response) => {
   try {
     const [row] = await getReportByProfessor(request);
-    const report = { report: row };
-    message(response, RESPONSE_CODE.OK, null, report);
+    message(response, RESPONSE_CODE.OK, null, { report: row });
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }

@@ -9,7 +9,7 @@ export const getEducationalExperienceById = (request) => {
       "FROM\n" +
       "educationalExperience\n" +
       "WHERE\n" +
-      "educationalExperience.idEducationalExperience = ?",
+      "idEducationalExperience = ?",
       [idEducationalExperience]
     )
   );
@@ -49,7 +49,7 @@ export const getEducationalExperiencesByEducationalProgram = (request) => {
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
-      "\neducationalexperience.idEducationalExperience, educationalexperience.name\n" +
+      "educationalexperience.idEducationalExperience, educationalexperience.name\n" +
       "FROM\n" +
       "educationalexperience\n" +
       "INNER JOIN\n" +

@@ -137,4 +137,9 @@ public class Student implements Serializable {
         this.idEducationalProgram = idEducationalProgram;
     }
 
+    @Override
+    public String toString() {
+        return getName() + " " + getLastName();
+    }
+
 }
