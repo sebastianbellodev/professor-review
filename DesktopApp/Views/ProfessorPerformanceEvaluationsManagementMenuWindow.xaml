@@ -1,0 +1,16 @@
+﻿<Window x:Class="ProfessorPerformanceEvaluation.Views.ProfessorPerformanceEvaluationsManagementMenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:ProfessorPerformanceEvaluation.Properties"
+        xmlns:local="clr-namespace:ProfessorPerformanceEvaluation.Views"
+        mc:Ignorable="d"
+        Title="Evaluacion al desempeño docente" Height="450" Width="800">
+    <Grid>
+        <Label Content="Evaluacion al desempeño docente" HorizontalAlignment="Center" Margin="0,45,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="24"/>
+        <Button Content="Eliminar evaluacion al docente" HorizontalAlignment="Center" Margin="0,110,0,0" VerticalAlignment="Top" FontFamily="Arial" Height="65" Width="624" Click="DeleteProfessorPerformanceEvaluationButtonClick"/>
+        <Button Content="{x:Static p:Resources.RETURN_BUTTON}" HorizontalAlignment="Left" Margin="30,385,0,0" VerticalAlignment="Top" FontFamily="Arial" Width="124" Height="25" Click="ReturnButtonClick"/>
+        
+    </Grid>
+</Window>

@@ -39,6 +39,9 @@ namespace ProfessorPerformanceEvaluation.Views
 
         private void AssignEducationalExperienceToProfessorButtonClick(object sender, RoutedEventArgs e)
         {
+            var assignEducationalExperienceToProfessor = new AssignEducationalExperienceToProfessor();
+            Close();
+            assignEducationalExperienceToProfessor.Show();
         }
 
         private void LogEducationalProgramButtonClick(object sender, RoutedEventArgs e)
@@ -57,6 +60,9 @@ namespace ProfessorPerformanceEvaluation.Views
 
         private void ManageFacultiesButtonClick(object sender, RoutedEventArgs e)
         {
+            var manageFaculties = new ManageFaculties();
+            Close();
+            manageFaculties.Show();
         }
 
         private void ReturnButtonClick(object sender, RoutedEventArgs e)

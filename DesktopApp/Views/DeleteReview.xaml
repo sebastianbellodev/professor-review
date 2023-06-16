@@ -19,7 +19,7 @@
         <Button x:Name="btn_delete" Content="Eliminar" HorizontalAlignment="Left" Margin="776,493,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="DeleteButtonClick"/>
         <Button x:Name="btn_cancel" Content="Cancelar" HorizontalAlignment="Left" Margin="602,493,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="CancelButtonClick"/>
 
-        <DataGrid Name="DataGridReviews" Margin="24,137,23,92" AutoGenerateColumns="False">
+        <DataGrid Name="DataGridReviews" Margin="24,137,23,92" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Estrellas" Binding="{Binding Stars}" Width="178"/>
                 <DataGridTextColumn Header="Comentarios" Binding="{Binding Comment}" Width="500"/>

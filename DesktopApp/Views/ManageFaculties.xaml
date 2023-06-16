@@ -15,7 +15,7 @@
         <Button x:Name="btn_update" Content="Actualizar" HorizontalAlignment="Left" Margin="730,292,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="UpdateButtonClick"/>
         <Button x:Name="btn_cancel" Content="Cancelar" HorizontalAlignment="Left" Margin="794,520,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="CancelButtonClick"/>
 
-        <DataGrid Name="DataGridFaculties" Margin="24,114,376,114" AutoGenerateColumns="False">
+        <DataGrid Name="DataGridFaculties" Margin="24,114,376,114" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nombre" Binding="{Binding Name}" Width="550">
                     <DataGridTextColumn.HeaderStyle>
