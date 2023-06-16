@@ -42,4 +42,5 @@ router.post("/academicofferings/id", validateToken, async (request, response) =>
     }
 });
 
+
 export default router;
