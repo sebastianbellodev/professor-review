@@ -18,7 +18,6 @@ import com.example.professorperformanceevaluation.model.DataManager;
 import com.example.professorperformanceevaluation.model.Response;
 import com.example.professorperformanceevaluation.model.Student;
 import com.example.professorperformanceevaluation.model.User;
-import com.example.professorperformanceevaluation.service.service.FacultyService;
 import com.example.professorperformanceevaluation.service.service.StudentService;
 import com.example.professorperformanceevaluation.service.service.UserService;
 import com.example.professorperformanceevaluation.utilities.Utilities;
