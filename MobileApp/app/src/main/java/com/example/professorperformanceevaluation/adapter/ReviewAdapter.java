@@ -61,6 +61,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         public void bind(Review review) {
             starsTextView.setText(String.valueOf(review.getStars()));
             commentTextView.setText(review.getComment());
+            educationalExperienceTextView.setText(review.getEducationalExperience());
             professorTextView.setText(review.getProfessor());
             studentTextView.setText(review.getStudent());
             schoolPeriodTextView.setText(review.getSchoolPeriod());

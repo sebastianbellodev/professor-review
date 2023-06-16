@@ -65,9 +65,10 @@ namespace ProfessorPerformanceEvaluation.Views
         private async void UpdateFacultyName(Faculty faculty)
         {
             Response response = await FacultyService.Patch(faculty);
-            if (response.Code == (int)HttpStatusCode.OK)
+            if (response.Code != (int)HttpStatusCode.OK)
             {
-                MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_LABEL);
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
                 this.Close();
             }
             else if (response.Code == (int)HttpStatusCode.Forbidden)
@@ -77,9 +78,8 @@ namespace ProfessorPerformanceEvaluation.Views
                 this.Close();
             }
             else
-            {
-                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
-                    Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
+            {                
+                MessageBox.Show(Properties.Resources.REGISTERED_INFORMATION_LABEL);
                 this.Close();
             }
         }

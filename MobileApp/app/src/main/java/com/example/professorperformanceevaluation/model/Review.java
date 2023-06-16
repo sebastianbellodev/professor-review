@@ -6,7 +6,18 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class Review implements Serializable {
-
+    @SerializedName("idEducationalExperience")
+    @Expose
+    private int idEducationaExperience;
+    @SerializedName("idEducationalProgram")
+    @Expose
+    private int idEducationalProgram;
+    @SerializedName("idProfessor")
+    @Expose
+    private int idProfessor;
+    @SerializedName("idSyllabus")
+    @Expose
+    private int idSyllabus;
     @SerializedName("idReview")
     @Expose
     private int idReview;
@@ -19,18 +30,58 @@ public class Review implements Serializable {
     @SerializedName("idSchoolPeriod")
     @Expose
     private int idSchoolPeriod;
+    @SerializedName("schoolPeriod")
+    @Expose
     private String schoolPeriod;
     @SerializedName("idAcademicOffering")
     @Expose
     private int idAcademicOffering;
+    @SerializedName("educationalExperience")
+    @Expose
     private String educationalExperience;
+    @SerializedName("professor")
+    @Expose
     private String professor;
     @SerializedName("registrationNumber")
     @Expose
     private String registrationNumber;
+    @SerializedName("student")
+    @Expose
     private String student;
 
     public Review() {
+    }
+
+    public int getIdProfessor() {
+        return idProfessor;
+    }
+
+    public int getIdSyllabus() {
+        return idSyllabus;
+    }
+
+    public void setIdSyllabus(int idSyllabus) {
+        this.idSyllabus = idSyllabus;
+    }
+
+    public void setIdProfessor(int idProfessor) {
+        this.idProfessor = idProfessor;
+    }
+
+    public int getIdEducationaExperience() {
+        return idEducationaExperience;
+    }
+
+    public void setIdEducationaExperience(int idEducationaExperience) {
+        this.idEducationaExperience = idEducationaExperience;
+    }
+
+    public int getIdEducationalProgram() {
+        return idEducationalProgram;
+    }
+
+    public void setIdEducationalProgram(int idEducationalProgram) {
+        this.idEducationalProgram = idEducationalProgram;
     }
 
     public int getIdReview() {

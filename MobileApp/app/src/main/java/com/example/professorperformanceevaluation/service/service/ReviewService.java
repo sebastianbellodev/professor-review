@@ -6,8 +6,10 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 
 import com.example.professorperformanceevaluation.model.EducationalExperience;
+import com.example.professorperformanceevaluation.model.Professor;
 import com.example.professorperformanceevaluation.model.Response;
 import com.example.professorperformanceevaluation.model.Review;
+import com.example.professorperformanceevaluation.model.Syllabus;
 import com.example.professorperformanceevaluation.service.client.ReviewClient;
 
 import retrofit2.Call;

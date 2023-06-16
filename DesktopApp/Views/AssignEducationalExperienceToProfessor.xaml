@@ -23,7 +23,7 @@
         <Button x:Name="btn_regresar" Content="Regresar" HorizontalAlignment="Left" Margin="635,525,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="RegresarButtonClick"/>
         <Button x:Name="btn_Registrar" Content="Registrar" HorizontalAlignment="Left" Margin="793,525,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="RegistrarButtonClick"/>
 
-        <DataGrid Name="DataGriEducationalExperience" Margin="25,211,536,89" AutoGenerateColumns="False" SelectionChanged="EducationalExperienceDataGridSelectionChanged">
+        <DataGrid Name="DataGriEducationalExperience" Margin="25,211,536,89" AutoGenerateColumns="False" SelectionChanged="EducationalExperienceDataGridSelectionChanged" IsReadOnly="True" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Experiencia educativa" Binding="{Binding Name}" Width="399"/>
             </DataGrid.Columns>
@@ -39,7 +39,7 @@
             </DataGrid.Resources>
         </DataGrid>
 
-        <DataGrid Name="DataGridProfessor" Margin="524,211,40,89" AutoGenerateColumns="False" SelectionChanged="ProfessorDataGridSelectionChanged">
+        <DataGrid Name="DataGridProfessor" Margin="524,211,40,89" AutoGenerateColumns="False" SelectionChanged="ProfessorDataGridSelectionChanged" IsReadOnly="True" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Profesor" Binding="{Binding Name}" Width="399"/>
             </DataGrid.Columns>

@@ -1,5 +1,6 @@
 package com.example.professorperformanceevaluation.api;
 
+import com.example.professorperformanceevaluation.model.EducationalExperience;
 import com.example.professorperformanceevaluation.model.EducationalProgram;
 import com.example.professorperformanceevaluation.model.Faculty;
 import com.example.professorperformanceevaluation.model.Professor;
@@ -27,6 +28,8 @@ public interface ProfessorServiceApi {
     @POST("professors/educationalprogram")
     Call<Response> getProfessorsByEducationalProgram(@Header("Authorization") String token, @Body EducationalProgram educationalProgram);
 
+    @POST("professors/educationalexperience")
+    Call<Response> getProfessorsByEducationalExperience(@Header("Authorization") String token, @Body EducationalExperience educationalExperience);
     @POST("professors/faculty")
     Call<Response> getProfessorsByFaculty(@Header("Authorization") String token, @Body Faculty faculty);
 
