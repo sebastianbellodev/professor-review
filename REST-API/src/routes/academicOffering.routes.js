@@ -31,19 +31,16 @@ router.post("/academicofferings", validateToken, async (request, response) => {
 
 router.post("/academicofferings/id", validateToken, async (request, response) => {
     try {
-        const [row] = await getAcademicOffering(request);
+        const [row] = await getAcademicOfferingById(request);
         if (row.length > 0) {
-            message(response, RESPONSE_CODE.BAD_REQUEST, RESPONSE_MESSAGE.ACADEMIC_OFFERING_ALREADY_REGISTERED)
+            message(response, RESPONSE_CODE.OK, null, { academicOfferings: row });
         } else {
-            await postAcademicOffering(request);
-            message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.ACADEMIC_OFFERING_POST);
+            message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.ACADEMIC_OFFERING_NOT_FOUND);
         }
     } catch (exception) {
         message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
     }
 });
-
-
 
 
 export default router;
