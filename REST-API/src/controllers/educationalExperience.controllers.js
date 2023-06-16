@@ -49,13 +49,13 @@ export const getEducationalExperiencesByEducationalProgram = (request) => {
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
-      "educationalexperience.idEducationalExperience, educationalexperience.name\n" +
+      "educationalExperience.*\n" +
       "FROM\n" +
-      "educationalexperience\n" +
+      "educationalExperience\n" +
       "INNER JOIN\n" +
       "syllabus\n" +
       "ON\n" +
-      "educationalexperience.idEducationalExperience = syllabus.idEducationalExperience\n" +
+      "educationalExperience.idEducationalExperience = syllabus.idEducationalExperience\n" +
       "WHERE\n" +
       "syllabus.idEducationalProgram = ?\n" +
       "ORDER BY\n" +
