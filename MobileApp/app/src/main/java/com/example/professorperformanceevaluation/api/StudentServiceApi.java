@@ -35,6 +35,12 @@ public interface StudentServiceApi {
     @PATCH("students")
     Call<Response> patch(@Header("Authorization") String token, @Body Student student);
 
+    @PATCH("students/activate")
+    Call<Response> activate(@Header("Authorization") String token, @Body Student student);
+
+    @PATCH("students/status")
+    Call<Response> patchStatus(@Header("Authorization") String token, @Body Student student);
+
     @POST("students")
     Call<Response> post(@Header("Authorization") String token, @Body Student student);
 
