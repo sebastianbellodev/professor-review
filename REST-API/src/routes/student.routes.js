@@ -95,7 +95,7 @@ router.patch("/students/activate", validateToken, async (request, response) => {
   }
 });
 
-router.patch("/students/status", validateToken, async (request, response) => {
+router.post("/students/status", validateToken, async (request, response) => {
   try {
     const [row] = await patchStatus(request);
     if (row.affectedRows > 0) {
