@@ -20,6 +20,10 @@ public class AcademicOffering implements Serializable {
     public AcademicOffering() {
     }
 
+    public AcademicOffering(int idAcademicOffering) {
+        this.idAcademicOffering = idAcademicOffering;
+    }
+
     public int getIdAcademicOffering() {
         return idAcademicOffering;
     }

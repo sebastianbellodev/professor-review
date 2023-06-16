@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="queryEducationalExperienceViewModel"
+            type="com.example.professorperformanceevaluation.viewmodel.QueryEducationalExperienceViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".activity.QueryEducationalExperienceActivity">
+
+        <Button
+            android:id="@+id/return_button"
+            style="@style/ButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> queryEducationalExperienceViewModel.onReturnButtonClicked()}"
+            android:text="@string/return_button"
+            tools:ignore="VisualLintButtonSize" />
+
+        <TextView
+            android:id="@+id/educational_experience_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/return_button"
+            android:layout_marginTop="16dp"
+            android:text="@string/educational_experience_label"
+            android:textColor="#616161"
+            android:textSize="16sp" />
+
+        <Spinner
+            android:id="@+id/educational_experience_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/educational_experience_text_view"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:entries="@{queryEducationalExperienceViewModel.educationalExperiences}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/review_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/educational_experience_spinner"
+            android:layout_marginTop="16dp" />
+
+    </RelativeLayout>
+</layout>

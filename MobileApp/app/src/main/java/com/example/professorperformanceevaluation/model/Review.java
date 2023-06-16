@@ -19,12 +19,16 @@ public class Review implements Serializable {
     @SerializedName("idSchoolPeriod")
     @Expose
     private int idSchoolPeriod;
+    private String schoolPeriod;
     @SerializedName("idAcademicOffering")
     @Expose
     private int idAcademicOffering;
+    private String educationalExperience;
+    private String professor;
     @SerializedName("registrationNumber")
     @Expose
     private String registrationNumber;
+    private String student;
 
     public Review() {
     }
@@ -61,6 +65,14 @@ public class Review implements Serializable {
         this.idSchoolPeriod = idSchoolPeriod;
     }
 
+    public String getSchoolPeriod() {
+        return schoolPeriod;
+    }
+
+    public void setSchoolPeriod(String schoolPeriod) {
+        this.schoolPeriod = schoolPeriod;
+    }
+
     public int getIdAcademicOffering() {
         return idAcademicOffering;
     }
@@ -69,12 +81,36 @@ public class Review implements Serializable {
         this.idAcademicOffering = idAcademicOffering;
     }
 
+    public String getEducationalExperience() {
+        return educationalExperience;
+    }
+
+    public void setEducationalExperience(String educationalExperience) {
+        this.educationalExperience = educationalExperience;
+    }
+
+    public String getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(String professor) {
+        this.professor = professor;
+    }
+
     public String getRegistrationNumber() {
         return registrationNumber;
     }
 
     public void setRegistrationNumber(String registrationNumber) {
         this.registrationNumber = registrationNumber;
+    }
+
+    public String getStudent() {
+        return student;
+    }
+
+    public void setStudent(String student) {
+        this.student = student;
     }
 
 }

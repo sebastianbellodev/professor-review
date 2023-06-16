@@ -33,8 +33,7 @@ router.delete("/faculties", validateToken, async (request, response) => {
 router.get("/faculties", validateToken, async (request, response) => {
     try {
         const [row] = await getFaculties();
-        const faculties = { faculties: row };
-        message(response, RESPONSE_CODE.OK, null, faculties);
+        message(response, RESPONSE_CODE.OK, null, { faculties: row });
     } catch (exception) {
         message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
     }
