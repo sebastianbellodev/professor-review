@@ -1,4 +1,5 @@
 import Router from "express-promise-router";
+import { getAcademicOffering } from "../controllers/academicOffering.controllers.js";
 import {
   deleteReview,
   getReview,
@@ -7,6 +8,7 @@ import {
   postReview,
   getReviewsByProfessor
 } from "../controllers/review.controllers.js";
+import { getSyllabusesByEducationalExperienceEducationalProgram } from "../controllers/syllabus.controllers.js";
 import {
   validateToken
 } from "../utilities/authentication/bearer/bearer.js";
@@ -15,8 +17,6 @@ import {
   RESPONSE_CODE,
   RESPONSE_MESSAGE
 } from "../tools/message.js";
-import { getAcademicOffering } from "../controllers/academicOffering.controllers.js";
-import { getSyllabusesByEducationalExperienceEducationalProgram } from "../controllers/syllabus.controllers.js";
 
 const router = Router();
 
@@ -49,14 +49,12 @@ router.patch("/reviews", validateToken, async (request, response) => {
 
 router.post("/reviews", validateToken, async (request, response) => {
   try {
-    const[row3] = await getSyllabusesByEducationalExperienceEducationalProgram(request);
-    if(row3.length>0){
-      request.body.idSyllabus = row3[0].idSyllabus;  
-      console.log(request.body);    
+    const [row3] = await getSyllabusesByEducationalExperienceEducationalProgram(request);
+    if (row3.length > 0) {
+      request.body.idSyllabus = row3[0].idSyllabus;
       const [row2] = await getAcademicOffering(request);
-      
-      if(row2.length>0){
-        request.body.idAcademicOffering = row2[0].idAcademicOffering;        
+      if (row2.length > 0) {
+        request.body.idAcademicOffering = row2[0].idAcademicOffering;
         const [row] = await getReview(request);
         if (row.length > 0) {
           message(response, RESPONSE_CODE.BAD_REQUEST, RESPONSE_MESSAGE.REVIEW_ALREADY_REGISTERED)
@@ -64,11 +62,11 @@ router.post("/reviews", validateToken, async (request, response) => {
           await postReview(request);
           message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.REVIEW_POST)
         }
-      }else {
+      } else {
         await postReview(request);
         message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.REVIEW_POST)
       }
-    }else {
+    } else {
       await postReview(request);
       message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.REVIEW_POST)
     }
