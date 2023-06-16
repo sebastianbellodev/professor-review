@@ -1,5 +1,6 @@
 package com.example.professorperformanceevaluation.api;
 
+import com.example.professorperformanceevaluation.model.EducationalExperience;
 import com.example.professorperformanceevaluation.model.Response;
 import com.example.professorperformanceevaluation.model.Syllabus;
 
@@ -20,4 +21,6 @@ public interface SyllabusServiceApi {
     @POST("syllabuses")
     Call<Response> post(@Header("Authorization") String token, @Body Syllabus syllabus);
 
+    @POST("syllabuses/educationalexperience")
+    Call<Response> getSyllabusByEducationalExperience(@Header("Authorization") String token, @Body EducationalExperience educationalExperience);
 }

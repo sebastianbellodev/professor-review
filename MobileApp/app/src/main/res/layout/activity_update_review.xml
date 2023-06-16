@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="updateReviewViewModel"
+            type="com.example.professorperformanceevaluation.viewmodel.UpdateReviewViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".activity.LogReviewActivity">
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Regresar"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:onClick="@{()->updateReviewViewModel.goToMenu()}"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/btnAcept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aceptar"
+            android:onClick="@{()->updateReviewViewModel.onAceptClicked()}"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp" />
+        <Spinner
+            android:id="@+id/spinnerPeriods"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnBack"
+            android:contentDescription="Selecciona el Periodo Escolar..."
+            android:minHeight="48dp"
+            android:entries="@{updateReviewViewModel.schoolPeriods}"
+            android:layout_marginTop="16dp" />
+        <TextView
+            android:id="@+id/educational_experience_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "@={updateReviewViewModel.educationalExperience}"
+            android:layout_below="@id/spinnerPeriods"
+            android:minHeight="48dp"
+            />
+        <TextView
+            android:id="@+id/professor_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "@={updateReviewViewModel.professor}"
+            android:layout_below="@id/educational_experience_text_view"
+            android:minHeight="48dp"
+            />
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:rating="@={updateReviewViewModel.rating}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/professor_text_view"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/rating_ratingbar"
+            android:numStars="5"
+            android:stepSize="1" />
+        <EditText
+            android:id="@+id/editTextComentary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ratingBar"
+            android:layout_marginTop="16dp"
+            android:inputType="text"
+            android:hint="Ingrese un comentario"
+            android:text="@={updateReviewViewModel.comment}"
+            android:minHeight="48dp"
+            android:textSize="16sp" />
+    </RelativeLayout>
+</layout>

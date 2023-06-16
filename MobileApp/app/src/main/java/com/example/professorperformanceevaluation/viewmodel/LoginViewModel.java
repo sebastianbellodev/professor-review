@@ -14,9 +14,11 @@ import com.example.professorperformanceevaluation.R;
 import com.example.professorperformanceevaluation.activity.ActiveAccountActivity;
 import com.example.professorperformanceevaluation.activity.LogStudentEmailAddressPhoneNumberActivity;
 import com.example.professorperformanceevaluation.activity.MainMenuActivity;
+import com.example.professorperformanceevaluation.model.DataManager;
 import com.example.professorperformanceevaluation.model.Response;
 import com.example.professorperformanceevaluation.model.Student;
 import com.example.professorperformanceevaluation.model.User;
+import com.example.professorperformanceevaluation.service.service.FacultyService;
 import com.example.professorperformanceevaluation.service.service.StudentService;
 import com.example.professorperformanceevaluation.service.service.UserService;
 import com.example.professorperformanceevaluation.utilities.Utilities;
@@ -117,6 +119,7 @@ public class LoginViewModel extends AndroidViewModel {
                 if (code == HttpURLConnection.HTTP_FORBIDDEN) {
                     Toast.makeText(context, R.string.expired_session_label, Toast.LENGTH_SHORT).show();
                 } else {
+                    DataManager.getInstance().setStudent(response.getStudents().get(0));
                     goToMainMenu(response.getStudents().get(0));
                 }
             }
@@ -127,7 +130,6 @@ public class LoginViewModel extends AndroidViewModel {
             }
         });
     }
-
     private void goToMainMenu(Student student) {
         Intent intent = new Intent(context, MainMenuActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
