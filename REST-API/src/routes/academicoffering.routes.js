@@ -8,9 +8,9 @@ import {
     RESPONSE_MESSAGE
 } from "../tools/message.js";
 import {
+    getAcademicOffering,
     getAcademicOfferingById,
     postAcademicOffering,
-    getAcademicOffering
 } from "../controllers/academicOffering.controllers.js";
 
 const router = Router();
