@@ -29,6 +29,21 @@ export const getSyllabusesByEducationalExperience = (request) => {
   );
 };
 
+export const getSyllabusesByEducationalExperienceEducationalProgram = (request) => {
+  const {idEducationalExperience,idEducationalProgram} = request.body;
+  return Promise.resolve(
+    pool.query(
+      "SELECT\n" +
+      "*\n" +
+      "FROM\n" +
+      "syllabus\n" +
+      "WHERE\n" +
+      "idEducationalExperience = ? && idEducationalProgram = ?",
+      [idEducationalExperience, idEducationalProgram]
+    )
+  );
+};
+
 export const getSyllabusById = (request) => {
   const idSyllabus = request.body.idSyllabus;
   return Promise.resolve(

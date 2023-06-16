@@ -10,6 +10,7 @@ import syllabusesRoutes from "./routes/syllabus.routes.js";
 import testRoutes from "./routes/test.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import academicofferingRoutes from "./routes/academicoffering.routes.js";
+import schoolPeriodsRoutes from "./routes/schoolperiod.routes.js"
 import {
   message,
   RESPONSE_CODE,
@@ -25,6 +26,7 @@ const api = "/api";
 app.use(api, educationalExperienceRoutes);
 app.use(api, educationalProgramRoutes);
 app.use(api, facultyRoutes);
+app.use(api,schoolPeriodsRoutes)
 app.use(api, professorRoutes);
 app.use(api, reportRoutes);
 app.use(api, reviewRoutes);
