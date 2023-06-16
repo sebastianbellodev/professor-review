@@ -358,7 +358,7 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\LogProfessorWindow.xaml">
+    <Page Include="Views\LogProfessorWindow.xaml"/>
     <Page Include="Views\ManageFaculties.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
