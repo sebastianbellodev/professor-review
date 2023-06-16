@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.professorperformanceevaluation.R;
 import com.example.professorperformanceevaluation.activity.MainMenuActivity;
@@ -20,7 +21,7 @@ public class QueryStudentProfileViewModel extends  AndroidViewModel{
 
     private  final Context context;
     private Student student;
-    private TextView name;
+    private Student actualStudent;
     private final StudentService studentService;
 
     public QueryStudentProfileViewModel(@NonNull Application application){
@@ -43,7 +44,7 @@ public class QueryStudentProfileViewModel extends  AndroidViewModel{
                     Toast.makeText(context, R.string.invalid_data_label, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, R.string.welcome_label, Toast.LENGTH_SHORT).show();
-                    loadInformation(response.getStudents().get(0));
+                    actualStudent = response.getStudents().get(0);
                 }
             }
 
@@ -53,8 +54,8 @@ public class QueryStudentProfileViewModel extends  AndroidViewModel{
             }
         });
     }
-    private void loadInformation(Student student){
-
+    public Student getStudent(){
+        return actualStudent;
     }
 
     public void onReturnButtonClicked() {

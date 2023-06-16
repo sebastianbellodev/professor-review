@@ -1,6 +1,7 @@
 package com.example.professorperformanceevaluation.activity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -23,5 +24,17 @@ public class QueryStudentProfileActivity extends AppCompatActivity {
         viewModel.setStudent(student);
         binding.setLifecycleOwner(this);
         binding.setQueryStudentProfileViewModel(viewModel);
+        TextView textViewName = findViewById(R.id.student_name_text_view);
+        TextView textViewLastName = findViewById(R.id.student_last_name_text_view);
+        TextView textViewEmail = findViewById(R.id.student_email_text_view);
+        TextView textViewPhoneNumber = findViewById(R.id.student_phone_number_text_view);
+        TextView textViewBiography = findViewById(R.id.student_biography_text_view);
+
+        Student usableStudent = viewModel.getStudent();
+        textViewName.setText(usableStudent.getName());
+        textViewLastName.setText(usableStudent.getLastName());
+        textViewEmail.setText(usableStudent.getEmailAddress());
+        textViewPhoneNumber.setText(usableStudent.getPhoneNumber());
+        textViewBiography.setText(usableStudent.getBiography());
     }
 }
