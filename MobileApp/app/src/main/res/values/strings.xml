@@ -48,4 +48,5 @@
     <string name="registration_number_instruction_label">Ingresa tu matrícula...</string>
     <string name="otp_label">Contraseña de un solo uso (OTP):</string>
     <string name="modified_information_label">La información se modificó correctamente en el sistema.</string>
+    <string name="rating_ratingbar">Calificacion</string>
 </resources>

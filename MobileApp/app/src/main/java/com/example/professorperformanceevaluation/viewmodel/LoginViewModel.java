@@ -14,6 +14,7 @@ import com.example.professorperformanceevaluation.R;
 import com.example.professorperformanceevaluation.activity.ActiveAccountActivity;
 import com.example.professorperformanceevaluation.activity.LogStudentEmailAddressPhoneNumberActivity;
 import com.example.professorperformanceevaluation.activity.MainMenuActivity;
+import com.example.professorperformanceevaluation.model.DataManager;
 import com.example.professorperformanceevaluation.model.Response;
 import com.example.professorperformanceevaluation.model.Student;
 import com.example.professorperformanceevaluation.model.User;
@@ -117,6 +118,7 @@ public class LoginViewModel extends AndroidViewModel {
                 if (code == HttpURLConnection.HTTP_FORBIDDEN) {
                     Toast.makeText(context, R.string.expired_session_label, Toast.LENGTH_SHORT).show();
                 } else {
+                    DataManager.getInstance().setStudent(response.getStudents().get(0));
                     goToMainMenu(response.getStudents().get(0));
                 }
             }
