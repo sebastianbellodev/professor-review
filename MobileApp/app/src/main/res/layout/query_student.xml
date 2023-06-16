@@ -20,14 +20,13 @@
             tools:layout_editor_absoluteY="89dp" />
 
         <TextView
-            android:id="@+id/user_name_text_view"
+            android:id="@+id/student_name_text_view"
             android:layout_width="230dp"
             android:layout_height="24dp"
             tools:layout_editor_absoluteX="122dp"
             tools:layout_editor_absoluteY="84dp" />
 
         <TextView
-            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/student_last_name"
@@ -35,14 +34,13 @@
             tools:layout_editor_absoluteY="133dp" />
 
         <TextView
-            android:id="@+id/user_last_name_text_view"
+            android:id="@+id/student_last_name_text_view"
             android:layout_width="230dp"
             android:layout_height="24dp"
             tools:layout_editor_absoluteX="122dp"
             tools:layout_editor_absoluteY="128dp" />
 
         <TextView
-            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/student_email"
@@ -50,14 +48,13 @@
             tools:layout_editor_absoluteY="177dp" />
 
         <TextView
-            android:id="@+id/user_email_text_view"
+            android:id="@+id/student_email_text_view"
             android:layout_width="230dp"
             android:layout_height="24dp"
             tools:layout_editor_absoluteX="122dp"
             tools:layout_editor_absoluteY="175dp" />
 
         <TextView
-            android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/phone_number_label"
@@ -65,14 +62,13 @@
             tools:layout_editor_absoluteY="223dp" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/student_phone_number_text_view"
             android:layout_width="164dp"
             android:layout_height="24dp"
             tools:layout_editor_absoluteX="188dp"
             tools:layout_editor_absoluteY="218dp" />
 
         <TextView
-            android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/student_biography"
@@ -80,7 +76,7 @@
             tools:layout_editor_absoluteY="305dp" />
 
         <TextView
-            android:id="@+id/biography_text_view"
+            android:id="@+id/student_biography_text_view"
             android:layout_width="332dp"
             android:layout_height="255dp"
             tools:layout_editor_absoluteX="39dp"
@@ -90,6 +86,7 @@
             android:id="@+id/user_accept_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> queryStudentProfileViewModel.onReturnButtonClicked()}"
             android:text="@string/accept_button"
             tools:layout_editor_absoluteX="277dp"
             tools:layout_editor_absoluteY="645dp" />
