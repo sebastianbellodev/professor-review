@@ -298,10 +298,8 @@ namespace ProfessorPerformanceEvaluation.Service
                     var httpRequestMessage = new HttpRequestMessage()
                     {
                         Content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json"),
-                        Method = HttpMethod.Post,
-                        
-
-                        RequestUri = new Uri(string.Concat(URL, "updatestatus"))
+                        Method = HttpMethod.Post,                 
+                        RequestUri = new Uri(string.Concat(URL, "status"))
                     };
                     HttpResponseMessage httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
                     if (httpResponseMessage != null)

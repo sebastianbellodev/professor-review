@@ -77,8 +77,10 @@ namespace ProfessorPerformanceEvaluation.Views
         }
 
         private void GoBack() 
-        { 
-            //Nav Service
+        {
+            MainMenuWindow main = new MainMenuWindow();
+            main.Show();
+            this.Close();
         }
 
         private async void Button_UpdateStatus_Click(object sender, RoutedEventArgs e)

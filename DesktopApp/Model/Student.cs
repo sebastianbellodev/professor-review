@@ -18,9 +18,9 @@ namespace ProfessorPerformanceEvaluation.Model
         [JsonProperty("biography")]
         public string Biography { get; set; }
         [JsonProperty("active")]
-        public int Active { get; set; }
+        public int Active { get; set; }/*
         [JsonProperty("activationDate")]
-        public DateTime ActivationDate { get; set; }
+        public DateTime ActivationDate { get; set; }`*/
         [JsonProperty("oneTimePassword")]
         public string OneTimePassword { get; set; }
         [JsonProperty("idEducationalProgram")]
