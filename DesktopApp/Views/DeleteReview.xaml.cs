@@ -36,9 +36,6 @@ namespace ProfessorPerformanceEvaluation.Views
                 List<Faculty> faculties = response.Faculties;
                 cbb_Faculty.ItemsSource = faculties;
                 cbb_Faculty.DisplayMemberPath = nameof(response.Faculty.Name);
-
-
-
             }
             else if (response.Code == (int)HttpStatusCode.Forbidden)
             {
@@ -197,10 +194,11 @@ namespace ProfessorPerformanceEvaluation.Views
         private async void DeleteSelectedReview(Review review)
         {
             Response response = await ReviewService.Delete(review);
-            if (response.Code == (int)HttpStatusCode.OK)
+            if (response.Code != (int)HttpStatusCode.OK)
             {
-                MessageBox.Show(Properties.Resources.DELETED_INFORMATION_LABEL);
-                this.Close(); ;
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                    Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
+                Close();
             }
             else if (response.Code == (int)HttpStatusCode.Forbidden)
             {
@@ -210,9 +208,8 @@ namespace ProfessorPerformanceEvaluation.Views
             }
             else
             {
-                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
-                    Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
-                Close();
+                MessageBox.Show(Properties.Resources.DELETED_INFORMATION_LABEL);
+                this.Close();
             }
         }
 

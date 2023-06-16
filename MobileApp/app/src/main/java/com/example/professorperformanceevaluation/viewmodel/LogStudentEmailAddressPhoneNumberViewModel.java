@@ -95,11 +95,7 @@ public class LogStudentEmailAddressPhoneNumberViewModel extends AndroidViewModel
     private boolean checkEmailAddressFormat(String emailAddress) {
         if (emailAddress.indexOf('@') != -1) {
             String domain = emailAddress.substring(emailAddress.indexOf('@') + 1);
-            if (domain.equals("estudiantes.uv.mx")) {
-                return true;
-            } else {
-                return false;
-            }
+            return domain.equals("estudiantes.uv.mx");
         } else {
             return false;
         }

@@ -43,9 +43,22 @@ export const getReviewsByEducationalExperience = (request) => {
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
-      "review.*\n" +
+      "review.stars,\n" +
+      "review.comment,\n" +
+      "CONCAT(schoolPeriod.startDate, \" - \", schoolperiod.endDate) AS schoolPeriod,\n" +
+      "educationalexperience.name AS educationalExperience,\n" +
+      "CONCAT(professor.name, \" \", professor.lastName) AS professor,\n" +
+      "CONCAT(student.name, \" \", student.lastName) AS student\n" +
       "FROM\n" +
       "review\n" +
+      "INNER JOIN\n" +
+      "schoolPeriod\n" +
+      "ON\n" +
+      "review.idSchoolPeriod = schoolPeriod.idSchoolPeriod\n" +
+      "INNER JOIN\n" +
+      "student\n" +
+      "ON\n" +
+      "review.registrationNumber = student.registrationNumber\n" +
       "INNER JOIN\n" +
       "academicOffering\n" +
       "ON\n" +
@@ -54,6 +67,14 @@ export const getReviewsByEducationalExperience = (request) => {
       "syllabus\n" +
       "ON\n" +
       "academicOffering.idSyllabus = syllabus.idSyllabus\n" +
+      "INNER JOIN\n" +
+      "educationalExperience\n" +
+      "ON\n" +
+      "educationalExperience.idEducationalExperience = syllabus.idEducationalExperience\n" +
+      "INNER JOIN\n" +
+      "professor\n" +
+      "ON\n" +
+      "academicOffering.idProfessor = professor.idProfessor\n" +
       "WHERE\n" +
       "syllabus.idEducationalExperience = ?\n" +
       "ORDER BY\n" +

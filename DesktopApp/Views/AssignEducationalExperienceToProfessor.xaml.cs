@@ -206,12 +206,10 @@ namespace ProfessorPerformanceEvaluation.Views
         private async void PostAcademicOffering(AcademicOffering academicOffering)
         {
             Response response = await AcademicOfferingService.Post(academicOffering);
-            if (response.Code == (int)HttpStatusCode.OK)
+            if (response.Code != (int)HttpStatusCode.OK)
             {
-                List<Professor> professors = response.Professors;
-                professorsList = professors;
-                DataGridProfessor.ItemsSource = professors;
-
+                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
+                Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
             }
             else if (response.Code == (int)HttpStatusCode.Forbidden)
             {
@@ -220,10 +218,8 @@ namespace ProfessorPerformanceEvaluation.Views
                 Close();
             }
             else
-            {
-                MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
-                    Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
-                Close();
+            {          
+                MessageBox.Show("Document saved", "Success", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.Yes);
             }
         }
 

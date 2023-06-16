@@ -250,6 +250,9 @@
     <Compile Include="Views\ManageFaculties.xaml.cs">
       <DependentUpon>ManageFaculties.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProfessorPerformanceEvaluationsManagementMenuWindow.xaml.cs">
+      <DependentUpon>ProfessorPerformanceEvaluationsManagementMenuWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RegisterFaculty.xaml.cs">
       <DependentUpon>RegisterFaculty.xaml</DependentUpon>
     </Compile>
@@ -358,8 +361,12 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\LogProfessorWindow.xaml">
+    <Page Include="Views\LogProfessorWindow.xaml" />
     <Page Include="Views\ManageFaculties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProfessorPerformanceEvaluationsManagementMenuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
