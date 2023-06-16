@@ -7,6 +7,7 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
+import com.example.professorperformanceevaluation.activity.LogReviewActivity;
 import com.example.professorperformanceevaluation.activity.MainMenuActivity;
 import com.example.professorperformanceevaluation.model.Student;
 
@@ -25,6 +26,9 @@ public class ProfessorPerformanceEvaluationsManagementMenuViewModel extends Andr
     }
 
     public void onLogProfessorPerformanceEvaluationButtonClicked() {
+        Intent intent = new Intent(context, LogReviewActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intent);
     }
 
     public void onModifyProfessorPerformanceEvaluationButtonClicked() {
