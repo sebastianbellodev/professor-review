@@ -68,8 +68,8 @@ export const postFaculty = (request) => {
         pool.query(
             "INSERT INTO\n" +
             "faculty\n" +
-            "('name')" +
-            "VALUES('?')",
+            "(name)" +
+            "VALUES(?)",
             [name]
         )
     )
