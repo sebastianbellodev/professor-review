@@ -22,8 +22,7 @@ const router = Router();
 router.get("/educationalexperiences", validateToken, async (request, response) => {
   try {
     const [row] = await getEducationalExperiences();
-    const educationalExperiences = { educationalExperiences: row };
-    message(response, RESPONSE_CODE.OK, null, educationalExperiences);
+    message(response, RESPONSE_CODE.OK, null, { educationalExperiences: row });
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
@@ -60,8 +59,7 @@ router.post("/educationalexperiences", validateToken, async (request, response) 
 router.post("/educationalexperiences/educationalprogram", validateToken, async (request, response) => {
   try {
     const [row] = await getEducationalExperiencesByEducationalProgram(request);
-    const educationalExperiences = { educationalExperiences: row };
-    message(response, RESPONSE_CODE.OK, null, educationalExperiences);
+    message(response, RESPONSE_CODE.OK, null, { educationalExperiences: row });
   } catch (exception) {
     console.log(exception.message);
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
@@ -71,8 +69,7 @@ router.post("/educationalexperiences/educationalprogram", validateToken, async (
 router.post("/educationalexperiences/faculty", validateToken, async (request, response) => {
   try {
     const [row] = await getEducationalExperiencesByFaculty(request);
-    const educationalExperiences = { educationalExperiences: row };
-    message(response, RESPONSE_CODE.OK, null, educationalExperiences);
+    message(response, RESPONSE_CODE.OK, null, { educationalExperiences: row });
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
@@ -82,8 +79,7 @@ router.post("/educationalexperiences/id", validateToken, async (request, respons
   try {
     const [row] = await getEducationalExperienceById(request);
     if (row.length > 0) {
-      const educationalExperiences = { educationalExperiences: row };
-      message(response, RESPONSE_CODE.OK, null, educationalExperiences);
+      message(response, RESPONSE_CODE.OK, null, { educationalExperiences: row });
     } else {
       message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_NOT_FOUND);
     }
@@ -96,8 +92,7 @@ router.post("/educationalexperiences/name", validateToken, async (request, respo
   try {
     const [row] = await getEducationalExperienceByName(request);
     if (row.length > 0) {
-      const educationalExperiences = { educationalExperiences: row };
-      message(response, RESPONSE_CODE.OK, null, educationalExperiences);
+      message(response, RESPONSE_CODE.OK, null, { educationalExperiences: row });
     } else {
       message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.EDUCATIONAL_EXPERIENCE_NOT_FOUND);
     }
