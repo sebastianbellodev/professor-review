@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.professorperformanceevaluation.R;
 import com.example.professorperformanceevaluation.activity.EducationalProgramAdministrationMenuActivity;
+import com.example.professorperformanceevaluation.adapter.ReviewAdapter;
 import com.example.professorperformanceevaluation.model.AcademicOffering;
 import com.example.professorperformanceevaluation.model.EducationalExperience;
 import com.example.professorperformanceevaluation.model.EducationalProgram;
@@ -34,24 +35,21 @@ public class QueryEducationalExperienceViewModel extends AndroidViewModel {
     public MutableLiveData<List<EducationalExperience>> educationalExperiences = new MutableLiveData<>();
     public MutableLiveData<List<Review>> reviews = new MutableLiveData<>();
     private final Context context;
+    private ReviewAdapter reviewAdapter;
     private Student student;
     private EducationalExperience educationalExperience;
-    private AcademicOfferingService academicOfferingService;
-    private EducationalExperienceService educationalExperienceService;
-    private ProfessorService professorService;
-    private ReviewService reviewService;
-    private SchoolPeriodService schoolPeriodService;
-    private StudentService studentService;
+    private final EducationalExperienceService educationalExperienceService;
+    private final ReviewService reviewService;
 
     public QueryEducationalExperienceViewModel(@NonNull Application application) {
         super(application);
         context = application.getApplicationContext();
-        academicOfferingService = new AcademicOfferingService(context);
         educationalExperienceService = new EducationalExperienceService(context);
-        professorService = new ProfessorService(context);
         reviewService = new ReviewService(context);
-        schoolPeriodService = new SchoolPeriodService(context);
-        studentService = new StudentService(context);
+    }
+
+    public void setReviewAdapter(ReviewAdapter reviewAdapter) {
+        this.reviewAdapter = reviewAdapter;
     }
 
     public void setStudent(Student student) {
@@ -89,14 +87,7 @@ public class QueryEducationalExperienceViewModel extends AndroidViewModel {
                 if (code == HttpURLConnection.HTTP_FORBIDDEN) {
                     Toast.makeText(context, R.string.expired_session_label, Toast.LENGTH_SHORT).show();
                 } else {
-                    List<Review> reviewsByEducationalExperience = response.getReviews();
-                    for (Review review : reviewsByEducationalExperience) {
-                        review = getSchoolPeriodById(review);
-                        review.setEducationalExperience(educationalExperience.getName());
-                        review = getProfessorById(review);
-                        review = getStudentByRegistrationNumber(review);
-                    }
-                    reviews.postValue(reviewsByEducationalExperience);
+                    reviews.setValue(response.getReviews());
                 }
             }
 
@@ -105,74 +96,6 @@ public class QueryEducationalExperienceViewModel extends AndroidViewModel {
                 Toast.makeText(context, R.string.service_not_available_label, Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    public Review getSchoolPeriodById(Review review) {
-        int idSchoolPeriod = review.getIdSchoolPeriod();
-        SchoolPeriod schoolPeriod = new SchoolPeriod(idSchoolPeriod);
-        schoolPeriodService.getSchoolPeriodById(schoolPeriod, new SchoolPeriodService.SchoolPeriodServiceCallback() {
-            @Override
-            public void onSuccess(Response response) {
-                review.setSchoolPeriod(response.getSchoolPeriods().get(0).toString());
-            }
-
-            @Override
-            public void onFailure(Throwable throwable) {
-                Toast.makeText(context, R.string.service_not_available_label, Toast.LENGTH_SHORT).show();
-            }
-        });
-        return review;
-    }
-
-    public Review getProfessorById(Review review) {
-        int idAcademicOffering = review.getIdAcademicOffering();
-        AcademicOffering academicOffering = new AcademicOffering(idAcademicOffering);
-        academicOfferingService.getAcademicOfferingById(academicOffering, new AcademicOfferingService.AcademicOfferingServiceCallback() {
-            @Override
-            public void onSuccess(Response response) {
-                int code = response.getCode();
-                if (code == HttpURLConnection.HTTP_FORBIDDEN) {
-                    Toast.makeText(context, R.string.expired_session_label, Toast.LENGTH_SHORT).show();
-                } else {
-                    int idProfessor = response.getAcademicOfferings().get(0).getIdProfessor();
-                    Professor professor = new Professor(idProfessor);
-                    professorService.getProfessorById(professor, new ProfessorService.ProfessorServiceCallback() {
-                        @Override
-                        public void onSuccess(Response response) {
-                            review.setProfessor(response.getProfessors().get(0).toString());
-                        }
-
-                        @Override
-                        public void onFailure(Throwable throwable) {
-                            Toast.makeText(context, R.string.service_not_available_label, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable throwable) {
-                Toast.makeText(context, R.string.service_not_available_label, Toast.LENGTH_SHORT).show();
-            }
-        });
-        return review;
-    }
-
-    public Review getStudentByRegistrationNumber(Review review) {
-        String registrationNumber = review.getRegistrationNumber();
-        Student student = new Student(registrationNumber);
-        studentService.getStudentByRegistrationNumber(student, new StudentService.StudentServiceCallback() {
-            @Override
-            public void onSuccess(Response response) {
-                review.setStudent(response.getStudents().get(0).toString());
-            }
-
-            @Override
-            public void onFailure(Throwable throwable) {
-                Toast.makeText(context, R.string.service_not_available_label, Toast.LENGTH_SHORT).show();
-            }
-        });
-        return review;
     }
 
     public void onReturnButtonClicked() {

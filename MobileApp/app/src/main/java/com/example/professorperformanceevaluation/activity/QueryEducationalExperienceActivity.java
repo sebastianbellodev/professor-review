@@ -1,5 +1,6 @@
 package com.example.professorperformanceevaluation.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,16 +21,23 @@ import com.example.professorperformanceevaluation.viewmodel.QueryEducationalExpe
 
 public class QueryEducationalExperienceActivity extends AppCompatActivity {
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityQueryEducationalExperienceBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_query_educational_experience);
         QueryEducationalExperienceViewModel viewModel = new ViewModelProvider(this).get(QueryEducationalExperienceViewModel.class);
+        ReviewAdapter reviewAdapter = new ReviewAdapter();
+        viewModel.setReviewAdapter(reviewAdapter);
+        viewModel.reviews.observe(this, reviews -> {
+            reviewAdapter.setReviews(reviews);
+            reviewAdapter.notifyDataSetChanged();
+        });
         Student student = (Student) getIntent().getSerializableExtra("student");
         viewModel.setStudent(student);
         binding.setLifecycleOwner(this);
         binding.setQueryEducationalExperienceViewModel(viewModel);
-        Spinner educationalExperienceSpinner = findViewById(R.id.educational_program_spinner);
+        Spinner educationalExperienceSpinner = findViewById(R.id.educational_experience_spinner);
         educationalExperienceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -44,7 +52,6 @@ public class QueryEducationalExperienceActivity extends AppCompatActivity {
         RecyclerView reviewRecyclerView = findViewById(R.id.review_recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         reviewRecyclerView.setLayoutManager(linearLayoutManager);
-        ReviewAdapter reviewAdapter = new ReviewAdapter();
         reviewRecyclerView.setAdapter(reviewAdapter);
     }
 
