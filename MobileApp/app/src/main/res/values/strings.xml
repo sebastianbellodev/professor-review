@@ -55,4 +55,11 @@
     <string name="otp_label">Contraseña de un solo uso (OTP):</string>
     <string name="modified_information_label">La información se modificó correctamente en el sistema.</string>
     <string name="welcome_label">Bienvenido.</string>
+    <string name="rating_ratingbar">Calificacion</string>
+    <string name="educational_experience_label">Experiencia educativa:</string>
+    <string name="stars_label">Número de estrellas:</string>
+    <string name="comment_label">Comentario:</string>
+    <string name="school_period_label">Periodo escolar:</string>
+    <string name="professor_label">Profesor:</string>
+    <string name="student_label">Estudiante:</string>
 </resources>

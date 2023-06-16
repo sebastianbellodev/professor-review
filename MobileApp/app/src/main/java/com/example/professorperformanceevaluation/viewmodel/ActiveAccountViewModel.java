@@ -24,14 +24,13 @@ public class ActiveAccountViewModel extends AndroidViewModel {
     private final MutableLiveData<String> registrationNumber = new MutableLiveData<>();
     private final MutableLiveData<String> oneTimePassword = new MutableLiveData<>();
     private final Context context;
-    private StudentService studentService;
-    private UserService userService;
+    private final StudentService studentService;
 
     public ActiveAccountViewModel(@NonNull Application application) {
         super(application);
         context = application.getApplicationContext();
         studentService = new StudentService(context);
-        userService = new UserService(context);
+        UserService userService = new UserService(context);
         userService.signUp(new UserService.UserServiceCallback() {
             @Override
             public void onSuccess(Response response) {

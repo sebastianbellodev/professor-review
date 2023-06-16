@@ -21,6 +21,10 @@ public class SchoolPeriod implements Serializable {
     public SchoolPeriod() {
     }
 
+    public SchoolPeriod(int idSchoolPeriod) {
+        this.idSchoolPeriod = idSchoolPeriod;
+    }
+
     public int getIdSchoolPeriod() {
         return idSchoolPeriod;
     }
@@ -43,6 +47,11 @@ public class SchoolPeriod implements Serializable {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    @Override
+    public String toString() {
+        return getStartDate() + " - " + getEndDate();
     }
 
 }
