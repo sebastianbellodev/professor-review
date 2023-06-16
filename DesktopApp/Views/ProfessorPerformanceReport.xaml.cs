@@ -8,7 +8,11 @@ using System.IO;
 using Microsoft.Win32;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
+using iTextSharp.tool.xml;
+using System.IO;
 using Newtonsoft.Json;
+using System.Linq;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ProfessorPerformanceEvaluation.Views
 {
@@ -93,115 +97,146 @@ namespace ProfessorPerformanceEvaluation.Views
             }
         }
 
-        private void GeneratePDF(List<Report> reportData) {
-            string htmlContent = this.GetHTMLFormat(reportData);
+        private void GeneratePDF(List<Report> reportData, Professor professor) {
+            //string htmlContent = this.GetHTMLFormat(reportData, professor);
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Archivos PDF|*.pdf";
             saveFileDialog.Title = "Guardar archivo PDF";
             saveFileDialog.FileName = "Report";
             saveFileDialog.CheckFileExists = false;
             saveFileDialog.CheckPathExists = true;
+
+
             if (saveFileDialog.ShowDialog() == true)
             {
                 string pdfRoute = saveFileDialog.FileName;
+                Document document = new Document();
 
-                Document pdfReport = new Document();
-                PdfWriter writer = PdfWriter.GetInstance(pdfReport, new FileStream(pdfRoute, FileMode.Create));
-                pdfReport.Open();
-                using (var reader = new StringReader(htmlContent))
+                // Crear el escritor del documento
+                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(pdfRoute, FileMode.Create));
+
+                // Abrir el documento
+                document.Open();
+
+                // Agregar el título
+                Paragraph title = new Paragraph("Reporte de Profesor", new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD));
+                title.Alignment = Element.ALIGN_CENTER;
+                document.Add(title);
+
+                // Agregar el nombre y apellido del profesor
+                Paragraph professorName = new Paragraph($"{professor.Name} {professor.LastName}", new Font(Font.FontFamily.HELVETICA, 14));
+                professorName.Alignment = Element.ALIGN_CENTER;
+                document.Add(professorName);
+
+                // Crear la tabla
+                PdfPTable table = new PdfPTable(2);
+                table.WidthPercentage = 100;
+                table.SpacingBefore = 20f;
+                table.SpacingAfter = 20f;
+
+                // Agregar el encabezado de la tabla
+                table.AddCell(new PdfPCell(new Phrase("Experiencia Educativa", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD))));
+                table.AddCell(new PdfPCell(new Phrase("Cantidad de Reportes", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD))));
+
+                // Agregar las filas de la tabla
+                foreach (var report in reportData)
                 {
-                    //var converter = new GroupDocs.Conversion.Converter("sample.html");
-                    /*var parser = new HTMLWorker(pdfReport);
-                    parser.Parse(reader);*/
-                    //ITextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfReport, reader);
+                    table.AddCell(new PdfPCell(new Phrase(report.EducationalExperience)));
+                    table.AddCell(new PdfPCell(new Phrase(report.Reviews.ToString())));
                 }
-                pdfReport.Close();
-            }
+
+                // Agregar la tabla al documento
+                document.Add(table);
+
+                // Crear la gráfica de pastel
+                var claves = reportData.Select(report => report.EducationalExperience).ToArray();
+                var valores = reportData.Select(report => report.Reviews).ToArray();
+
+                //Crear la gráfica
+                // Crear la gráfica de pastel
+                Chart chart = new Chart();
+                chart.ChartAreas.Add(new ChartArea());
+                chart.Series.Add(new Series());
+                chart.Series[0].ChartType = SeriesChartType.Pie;
+
+                // Agregar los puntos de datos a la gráfica
+                foreach (var report in reportData)
+                {
+                    chart.Series[0].Points.AddXY(report.EducationalExperience, report.Reviews);
+                }
+
+                // Guardar la gráfica en un archivo de imagen
+                string chartImagePath = "ruta_de_la_imagen.png";
+                chart.SaveImage(chartImagePath, ChartImageFormat.Png);
+
+                // Agregar la imagen de la gráfica al documento PDF
+                iTextSharp.text.Image chartImage = iTextSharp.text.Image.GetInstance(chartImagePath);
+                chartImage.Alignment = Element.ALIGN_CENTER;
+                document.Add(chartImage);
+
+                // Cerrar el documento
+                document.Close();
+            }            
         }
 
-        private string GetHTMLFormat(List<Report> reports) {
-            string contenidoHtml = @"
+        private string GetHTMLFormat(List<Report> reports,Professor professor) {
+            string contenidoHtml = $@"
 <!DOCTYPE html>
 <html>
 <head>
-    <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
     <style>
-        .container {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-        .tabla {
-            width: 50%;
-        }
-        .grafica {
-            width: 40%;
-        }
+        .tabla {{
+            width: 100%;
+            border-collapse: collapse;
+        }}
+
+        .tabla th {{
+            background-color: lightgray;
+            font-weight: bold;
+            border: 1px solid black;
+            padding: 5px;
+        }}
+
+        .tabla td {{
+            border: 1px solid black;
+            padding: 5px;
+        }}
+
+        .titulo {{
+            text-align: center;
+            font-weight: bold;
+        }}
     </style>
 </head>
 <body>
-    <div class='container'>
-        <div class='tabla'>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Clave</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody>";
+    <h2 class='titulo'>Reporte de Profesor</h2>
+    <h3>{professor.Name} {professor.LastName}</h3>
+
+    <table class='tabla'>
+        <thead>
+            <tr>
+                <th>Clave</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>";
 
             // Agregar las filas de la tabla
             foreach (var report in reports)
             {
                 contenidoHtml += $@"
-                    <tr>
-                        <td>{report.EducationalExperience}</td>
-                        <td>{report.Reviews}</td>
-                    </tr>";
+            <tr>
+                <td>{report.EducationalExperience}</td>
+                <td>{report.Reviews}</td>
+            </tr>";
             }
 
             contenidoHtml += @"
-                </tbody>
-            </table>
-        </div>
-        <div class='grafica'>
-            <canvas id='graficaPastel'></canvas>
-        </div>
-    </div>
-
-    <script>
-        // Obtener los datos de la lista
-        var datos = " + JsonConvert.SerializeObject(reports) + @";
-
-        // Obtener las claves y los valores de la lista
-        var claves = datos.map(report => report.EducationalExperience);
-        var valores = datos.map(report => report.Reviews);
-
-        // Configurar la gráfica de pastel
-        var ctx = document.getElementById('graficaPastel').getContext('2d');
-        var graficaPastel = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: claves,
-                datasets: [{
-                    data: valores,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.7)',
-                        'rgba(54, 162, 235, 0.7)',
-                        'rgba(255, 206, 86, 0.7)',
-                        'rgba(75, 192, 192, 0.7)',
-                        'rgba(153, 102, 255, 0.7)'
-                    ]
-                }]
-            },
-            options: {
-                responsive: true
-            }
-        });
-    </script>
+        </tbody>
+    </table>
 </body>
 </html>";
+
 
             return contenidoHtml;
         }
@@ -224,7 +259,7 @@ namespace ProfessorPerformanceEvaluation.Views
                 MessageBox.Show(Properties.Resources.TRY_AGAIN_LATER_LABEL,
                     Properties.Resources.SERVICE_NOT_AVAILABLE_LABEL);
             }
-            this.GeneratePDF(report);
+            this.GeneratePDF(report, professor);
         }
     }
 }
