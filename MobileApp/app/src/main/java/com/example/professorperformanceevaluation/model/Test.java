@@ -3,20 +3,24 @@ package com.example.professorperformanceevaluation.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Test {
+import java.io.Serializable;
+
+public class Test implements Serializable {
+
     @SerializedName("result")
     @Expose
-    private int result;
+    private Integer result;
 
-    public Test(int result) {
+    public Test(Integer result) {
         this.result = result;
     }
 
-    public int getResult() {
+    public Integer getResult() {
         return result;
     }
 
-    public void setResult(int result) {
+    public void setResult(Integer result) {
         this.result = result;
     }
+
 }

@@ -98,8 +98,8 @@ router.post("/users/username", validateToken, async (request, response) => {
   try {
     const [row] = await getUserByUsername(request);
     if (row.length > 0) {
-      const user = { user: row };
-      message(response, RESPONSE_CODE.OK, null, user);
+      const users = { users: row };
+      message(response, RESPONSE_CODE.OK, null, users);
     } else {
       message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
     }

@@ -1,0 +1,41 @@
+﻿<Window x:Class="ProfessorPerformanceEvaluation.Views.ManageFaculties"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProfessorPerformanceEvaluation.Views"
+        mc:Ignorable="d"
+        Title="ManageFaculties" Height="600" Width="960">
+    <Grid>
+        <Label Content="Recuerde que para eliminar o actualizar debe de seleccionar una facultad &#xD;&#xA;de la lista mostrada:" HorizontalAlignment="Left" Margin="24,40,0,0" VerticalAlignment="Top" FontSize="16" Width="560"/>
+        <Label Content="Opciones:" HorizontalAlignment="Left" Margin="748,114,0,0" VerticalAlignment="Top" FontSize="16" Width="92"/>
+
+        <Button x:Name="btn_delete" Content="Eliminar" HorizontalAlignment="Left" Margin="730,387,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="DeleteButtonClick"/>
+        <Button x:Name="btn_register" Content="Registrar" HorizontalAlignment="Left" Margin="730,194,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="RegisterButtonClick"/>
+        <Button x:Name="btn_update" Content="Actualizar" HorizontalAlignment="Left" Margin="730,292,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="UpdateButtonClick"/>
+        <Button x:Name="btn_cancel" Content="Cancelar" HorizontalAlignment="Left" Margin="794,520,0,0" VerticalAlignment="Top" Height="37" Width="128" Click="CancelButtonClick"/>
+
+        <DataGrid Name="DataGridFaculties" Margin="24,114,376,114" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Name}" Width="550">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="FontFamily" Value="Arial"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="FontFamily" Value="Arial"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+    </Grid>
+</Window>

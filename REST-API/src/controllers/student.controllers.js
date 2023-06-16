@@ -1,5 +1,25 @@
 import { pool } from "../schema/connection.js";
-import { isNullish } from "@supercharge/goodies";
+
+export const activate = (request) => {
+  const { registrationNumber,
+    oneTimePassword } = request.body;
+  return Promise.resolve(
+    pool.query(
+      "UPDATE\n" +
+      "student\n" +
+      "SET\n" +
+      "active = 1\n" +
+      "WHERE\n" +
+      "registrationNumber = ?\n" +
+      "AND\n" +
+      "oneTimePassword = ?",
+      [
+        registrationNumber,
+        oneTimePassword
+      ]
+    )
+  );
+};
 
 export const deleteStudent = (request) => {
   const registrationNumber = request.body.registrationNumber;
@@ -16,10 +36,7 @@ export const deleteStudent = (request) => {
 };
 
 export const getStudentByEmailAddress = (request) => {
-  const emailAddress =
-    isNullish(request.body.emailAddress)
-      ? request.body.emailAddress
-      : "";
+  const emailAddress = request.body.emailAddress;
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
@@ -34,10 +51,7 @@ export const getStudentByEmailAddress = (request) => {
 };
 
 export const getStudentByPhoneNumber = (request) => {
-  const phoneNumber =
-    isNullish(request.body.phoneNumber)
-      ? request.body.phoneNumber
-      : "";
+  const phoneNumber = request.body.phoneNumber;
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
@@ -68,15 +82,15 @@ export const getStudentByRegistrationNumber = (request) => {
 
 export const getStudents = () => {
   return Promise.resolve(
-      pool.query(
-          "SELECT\n" +
-          "*\n" +
-          "FROM\n" +
-          "student\n" +
-          "ORDER BY\n" +
-          "name\n" +
-          "ASC"
-      )
+    pool.query(
+      "SELECT\n" +
+      "*\n" +
+      "FROM\n" +
+      "student\n" +
+      "ORDER BY\n" +
+      "name\n" +
+      "ASC"
+    )
   );
 };
 
@@ -106,6 +120,21 @@ export const getStudentsByFaculty = (request) => {
   );
 };
 
+export const patchStatus = (request) => {
+  const { registrationNumber } = request.body.registrationNumber;
+  return Promise.resolve(
+    pool.query(
+      "UPDATE\n" +
+      "student\n" +
+      "SET\n" +
+      "active = CASE WHEN active = 1 THEN 0 ELSE 1 END\n" +
+      "WHERE\n" +
+      "registrationNumber IN (?)",
+      [registrationNumber]
+    )
+  );
+};
+
 export const patchStudent = (request) => {
   const {
     registrationNumber,
@@ -127,7 +156,14 @@ export const patchStudent = (request) => {
       "biography = IFNULL(?, biography)\n" +
       "WHERE\n" +
       "registrationNumber = ?",
-      [name, lastName, emailAddress, phoneNumber, biography, registrationNumber]
+      [
+        name,
+        lastName,
+        emailAddress,
+        phoneNumber,
+        biography,
+        registrationNumber
+      ]
     )
   );
 };
@@ -138,28 +174,26 @@ export const postStudent = (request) => {
     name,
     lastName,
     emailAddress,
+    phoneNumber,
+    oneTimePassword,
     idEducationalProgram,
   } = request.body;
   return Promise.resolve(
     pool.query(
       "INSERT INTO\n" +
       "student\n" +
-      "(registrationNumber, name, lastName, emailAddress, idEducationalProgram)\n" +
+      "(registrationNumber, name, lastName, emailAddress, phoneNumber, oneTimePassword, idEducationalProgram)\n" +
       "VALUES\n" +
-      "(?, ?, ?, ?, ?)",
-      [registrationNumber, name, lastName, emailAddress, idEducationalProgram]
-    )
-  );
-};
-
-export const updateStatus = (request) => {
-  const {
-    ids
-  } = request.body;
-  return Promise.resolve(
-    pool.query(
-      "UPDATE student SET active = CASE WHEN active = 1 THEN 0 ELSE 1 END WHERE registrationNumber IN (?)",
-      [ids]
+      "(?, ?, ?, ?, ?, ?, ?)",
+      [
+        registrationNumber,
+        name,
+        lastName,
+        emailAddress,
+        phoneNumber,
+        oneTimePassword,
+        idEducationalProgram
+      ]
     )
   );
 };

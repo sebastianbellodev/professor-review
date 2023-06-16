@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/username_label"
-            android:text="@={loginViewModel.username}"
             android:textSize="16sp" />
 
         <EditText
@@ -40,7 +39,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password_label"
-            android:text="@={loginViewModel.username}"
             android:textSize="16sp" />
 
         <EditText
@@ -60,7 +58,8 @@
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> loginViewModel.onLoginClicked()}"
+            android:layout_marginTop="32dp"
+            android:onClick="@{() -> loginViewModel.onLoginButtonClicked()}"
             android:text="@string/login_button"
             tools:ignore="VisualLintButtonSize" />
 
@@ -68,8 +67,17 @@
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> loginViewModel.onSignUpClicked()}"
+            android:layout_marginTop="32dp"
+            android:onClick="@{() -> loginViewModel.onSignUpButtonClicked()}"
             android:text="@string/sign_up_button"
+            tools:ignore="VisualLintButtonSize" />
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> loginViewModel.onActiveAccountButtonClicked()}"
+            android:text="@string/active_account_button"
             tools:ignore="VisualLintButtonSize" />
 
     </LinearLayout>

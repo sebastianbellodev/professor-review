@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="studentManagementMenuViewModel"
+            type="com.example.professorperformanceevaluation.viewmodel.StudentManagementViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".activity.StudentManagementMenuActivity">
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:onClick="@{() -> studentManagementMenuViewModel.onQueryStudentButtonClicked()}"
+            android:text="@string/query_student_button"
+            tools:ignore="VisualLintButtonSize" />
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="80dp"
+            android:onClick="@{() -> studentManagementMenuViewModel.onModifyStudentButtonClicked()}"
+            android:text="@string/modify_student_button"
+            tools:ignore="VisualLintButtonSize" />
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> studentManagementMenuViewModel.onReturnButtonClicked()}"
+            android:text="@string/return_button"
+            tools:ignore="VisualLintButtonSize" />
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="professorPerformanceManagementMenuViewModel"
+            type="com.example.professorperformanceevaluation.viewmodel.ProfessorPerformanceEvaluationsManagementMenuViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_color"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context="activity.ProfessorPerformanceManagementMenuActivity">
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:onClick="@{() -> professorPerformanceManagementMenuViewModel.onLogProfessorPerformanceEvaluationButtonClicked()}"
+            android:text="@string/log_professor_performance_evaluation_button"
+            tools:ignore="VisualLintButtonSize" />
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="80dp"
+            android:onClick="@{() -> professorPerformanceManagementMenuViewModel.onModifyProfessorPerformanceEvaluationButtonClicked()}"
+            android:text="@string/modify_professor_performance_evaluation_button"
+            tools:ignore="VisualLintButtonSize" />
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> professorPerformanceManagementMenuViewModel.onReturnButtonClicked()}"
+            android:text="@string/return_button"
+            tools:ignore="VisualLintButtonSize" />
+
+    </LinearLayout>
+</layout>

@@ -22,12 +22,35 @@ public class StudentService {
         token = sharedPreferences.getString("token", "");
     }
 
+    public void activate(Student student, StudentServiceCallback callback) {
+        Call<Response> call = StudentClient.getInstance().getApiService().activate("Bearer " + token, student);
+        call.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onSuccess(new Response(response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Response> call, @NonNull Throwable throwable) {
+                callback.onFailure(throwable);
+            }
+        });
+    }
+
     public void delete(Student student, StudentServiceCallback callback) {
         Call<Response> call = StudentClient.getInstance().getApiService().delete("Bearer " + token, student);
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
-                callback.onSuccess(response.body());
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onSuccess(new Response(response.code()));
+                }
             }
 
             @Override
@@ -42,7 +65,11 @@ public class StudentService {
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
-                callback.onSuccess(response.body());
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onSuccess(new Response(response.code()));
+                }
             }
 
             @Override
@@ -57,7 +84,11 @@ public class StudentService {
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
-                callback.onSuccess(response.body());
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onSuccess(new Response(response.code()));
+                }
             }
 
             @Override
@@ -72,7 +103,11 @@ public class StudentService {
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
-                callback.onSuccess(response.body());
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onSuccess(new Response(response.code()));
+                }
             }
 
             @Override
@@ -87,7 +122,11 @@ public class StudentService {
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
-                callback.onSuccess(response.body());
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onSuccess(new Response(response.code()));
+                }
             }
 
             @Override
@@ -102,7 +141,11 @@ public class StudentService {
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
-                callback.onSuccess(response.body());
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onSuccess(new Response(response.code()));
+                }
             }
 
             @Override
@@ -117,7 +160,30 @@ public class StudentService {
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
-                callback.onSuccess(response.body());
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onSuccess(new Response(response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Response> call, @NonNull Throwable throwable) {
+                callback.onFailure(throwable);
+            }
+        });
+    }
+
+    public void patchStatus(Student student, StudentServiceCallback callback) {
+        Call<Response> call = StudentClient.getInstance().getApiService().patchStatus("Bearer " + token, student);
+        call.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onSuccess(new Response(response.code()));
+                }
             }
 
             @Override
@@ -132,7 +198,11 @@ public class StudentService {
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
-                callback.onSuccess(response.body());
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onSuccess(new Response(response.code()));
+                }
             }
 
             @Override

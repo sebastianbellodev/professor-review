@@ -58,7 +58,7 @@ export const getReviewsByEducationalExperience = (request) => {
       "syllabus.idEducationalExperience = ?\n" +
       "ORDER BY\n" +
       "review.comment\n" +
-      "ASC"
+      "ASC",
       [idEducationalExperience]
     )
   );
@@ -102,6 +102,20 @@ export const postReview = (request) => {
         idAcademicOffering,
         registrationNumber
       ]
+    )
+  );
+};
+
+export const getReviewsByProfessor = (request) => {
+  const idProfessor = request.body.idProfessor;
+  return Promise.resolve(
+    pool.query(
+      "SELECT  review.idReview, review.stars, review.comment, review.registrationNumber\n" +
+      "FROM review\n" +
+      "INNER JOIN academicoffering ON review.idAcademicOffering = academicoffering.idAcademicOffering\n" +
+      "INNER JOIN professor ON academicoffering.idProfessor = professor.idProfessor\n" +
+      "WHERE professor.idProfessor = ?",
+      [idProfessor]
     )
   );
 };

@@ -1,10 +1,12 @@
 package com.example.professorperformanceevaluation.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class EducationalProgram {
+import java.io.Serializable;
+
+public class EducationalProgram implements Serializable {
+
     @SerializedName("idEducationalProgram")
     @Expose
     public int idEducationalProgram;
@@ -40,6 +42,11 @@ public class EducationalProgram {
 
     public void setIdFaculty(int idFaculty) {
         this.idFaculty = idFaculty;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 
 }
