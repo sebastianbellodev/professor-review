@@ -67,6 +67,12 @@ export const RESPONSE_MESSAGE = {
   PROFESSOR_POST: "Professor posted successfully.",
   PROFESSOR_PUT: "Professor updated successfully.",
 
+  ACADEMIC_OFFERING_ALREADY_REGISTERED: "Academic offering already registered in the system.",
+  ACADEMIC_OFFERING_DELETE: "Academic offering deleted successfully.",
+  ACADEMIC_OFFERING_NOT_FOUND: "Academic offering not found.",
+  ACADEMIC_OFFERING_POST: "Academic offering posted successfully.",
+  ACADEMIC_OFFERING_PUT: "Academic offering updated successfully.",
+
   URL_NOT_FOUND: "URL not found.",
 
   USER_ALREADY_REGISTERED: "User already registered in the system.",

@@ -1,5 +1,6 @@
 import Router from "express-promise-router";
 import {
+  activate,
   deleteStudent,
   getStudentByEmailAddress,
   getStudentByPhoneNumber,
@@ -34,8 +35,7 @@ router.delete("/students", validateToken, async (request, response) => {
 router.get("/students", validateToken, async (request, response) => {
   try {
     const [row] = await getStudents();
-    const students = { students: row };
-    message(response, RESPONSE_CODE.OK, null, students);
+    message(response, RESPONSE_CODE.OK, null, { students: row });
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
@@ -54,13 +54,37 @@ router.patch("/students", validateToken, async (request, response) => {
   }
 });
 
+router.patch("/students/activate", validateToken, async (request, response) => {
+  try {
+    const [row] = await activate(request);
+    if (row.affectedRows > 0) {
+      message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.STUDENT_PUT);
+    } else {
+      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
+    }
+  } catch (exception) {
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
+  }
+});
+
+router.patch("/students/status", validateToken, async (request, response) => {
+  try {
+    const [row] = await patchStatus(request);
+    if (row.affectedRows > 0) {
+      message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.STUDENT_PUT);
+    } else {
+      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
+    }
+  } catch (exception) {
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
+  }
+});
+
 router.post("/students", validateToken, async (request, response) => {
   try {
     const otp = generateOneTimePassword();
     request.body.otp = otp;
     await postStudent(request);
-    sendMail(request);
-    sendMessage(request);
     message(response, RESPONSE_CODE.CREATED, RESPONSE_MESSAGE.STUDENT_POST);
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
@@ -71,8 +95,7 @@ router.post("/students/emailaddress", validateToken, async (request, response) =
   try {
     const [row] = await getStudentByEmailAddress(request);
     if (row.length > 0) {
-      const students = { students: row };
-      message(response, RESPONSE_CODE.OK, null, students);
+      message(response, RESPONSE_CODE.OK, null, { students: row });
     } else {
       message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
     }
@@ -84,8 +107,7 @@ router.post("/students/emailaddress", validateToken, async (request, response) =
 router.post("/students/faculty", validateToken, async (request, response) => {
   try {
     const [row] = await getStudentsByFaculty(request);
-    const students = { students: row };
-    message(response, RESPONSE_CODE.OK, null, students);
+    message(response, RESPONSE_CODE.OK, null, { students: row });
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
@@ -95,8 +117,7 @@ router.post("/students/phonenumber", validateToken, async (request, response) =>
   try {
     const [row] = await getStudentByPhoneNumber(request);
     if (row.length > 0) {
-      const students = { student: row };
-      message(response, RESPONSE_CODE.OK, null, students);
+      message(response, RESPONSE_CODE.OK, null, { students: row });
     } else {
       message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
     }
@@ -109,21 +130,7 @@ router.post("/students/registrationnumber", validateToken, async (request, respo
   try {
     const [row] = await getStudentByRegistrationNumber(request);
     if (row.length > 0) {
-      const students = { students: row };
-      message(response, RESPONSE_CODE.OK, null, students)
-    } else {
-      message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
-    }
-  } catch (exception) {
-    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
-  }
-});
-
-router.post("/students/status", validateToken, async (request, response) => {
-  try {
-    const [row] = await patchStatus(request);
-    if (row.affectedRows > 0) {
-      message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.STUDENT_PUT);
+      message(response, RESPONSE_CODE.OK, null, { students: row });
     } else {
       message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.STUDENT_NOT_FOUND);
     }

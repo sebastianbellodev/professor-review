@@ -18,20 +18,20 @@
         tools:context=".activity.LogStudentEducationalProgramActivity">
 
         <TextView
-            android:id="@+id/educational_program_instruction_text_view"
+            android:id="@+id/instruction_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:hint="@string/educational_program_instruction_label"
+            android:hint="@string/faculty_educational_program_instruction_label"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/faculty_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/educational_program_instruction_text_view"
-            android:hint="@string/faculty_label"
+            android:layout_below="@+id/instruction_text_view"
             android:layout_marginBottom="16dp"
+            android:hint="@string/faculty_label"
             android:textSize="16sp" />
 
         <Spinner
@@ -39,14 +39,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/faculty_text_view"
+            android:contentDescription="@string/faculty_instruction_label"
             android:layout_marginTop="8dp"
-            android:entries="@{logStudentEducationalProgramViewModel.faculties}" />
+            android:entries="@{logStudentEducationalProgramViewModel.faculties}"
+            android:minHeight="48dp" />
 
         <TextView
             android:id="@+id/educational_program_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/faculty_spinner"
+            android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
             android:hint="@string/educational_program_label"
             android:textSize="16sp" />
@@ -56,24 +59,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/educational_program_text_view"
+            android:contentDescription="@string/educational_program_instruction_label"
             android:layout_marginTop="8dp"
-            android:entries="@{logStudentEducationalProgramViewModel.educationalPrograms}" />
+            android:entries="@{logStudentEducationalProgramViewModel.educationalPrograms}"
+            android:minHeight="48dp" />
 
         <Button
+            style="@style/ButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/educational_program_spinner"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="32dp"
             android:onClick="@{() -> logStudentEducationalProgramViewModel.onCancelButtonClicked()}"
             android:text="@string/cancel_button" />
 
         <Button
+            style="@style/ButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/educational_program_spinner"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="20dp"
             android:onClick="@{() -> logStudentEducationalProgramViewModel.onAcceptButtonClicked()}"
             android:text="@string/accept_button" />
 

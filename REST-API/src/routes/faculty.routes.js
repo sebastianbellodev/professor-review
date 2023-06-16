@@ -33,14 +33,13 @@ router.delete("/faculties", validateToken, async (request, response) => {
 router.get("/faculties", validateToken, async (request, response) => {
     try {
         const [row] = await getFaculties();
-        const faculties = { faculties: row };
-        message(response, RESPONSE_CODE.OK, null, faculties);
+        message(response, RESPONSE_CODE.OK, null, { faculties: row });
     } catch (exception) {
         message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
     }
 });
 
-router.post("/faculty", validateToken, async (request, response) => {
+router.post("/faculties", validateToken, async (request, response) => {
     try {
         const [row] = await getFacultyByName(request);
         if (row.length > 0) {
@@ -54,7 +53,7 @@ router.post("/faculty", validateToken, async (request, response) => {
     }
 });
 
-router.patch("/faculty", validateToken, async (request, response) => {
+router.patch("/faculties", validateToken, async (request, response) => {
     try {
         const [row] = await getFacultyByName(request);
         if (row.length > 0) {

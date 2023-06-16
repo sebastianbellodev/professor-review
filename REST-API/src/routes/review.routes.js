@@ -4,7 +4,8 @@ import {
   getReview,
   getReviewsByEducationalExperience,
   patchReview,
-  postReview
+  postReview,
+  getReviewsByProfessor
 } from "../controllers/review.controllers.js";
 import {
   validateToken
@@ -61,11 +62,21 @@ router.post("/reviews", validateToken, async (request, response) => {
 router.post("/reviews/educationalexperience", validateToken, async (request, response) => {
   try {
     const [row] = await getReviewsByEducationalExperience(request);
+    message(response, RESPONSE_CODE.OK, null, { reviews: row });
+  } catch (exception) {
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
+  }
+});
+
+router.post("/reviews/professor", validateToken, async (request, response) => {
+  try {
+    const [row] = await getReviewsByProfessor(request);
     const reviews = { reviews: row };
     message(response, RESPONSE_CODE.OK, null, reviews);
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 });
+
 
 export default router;

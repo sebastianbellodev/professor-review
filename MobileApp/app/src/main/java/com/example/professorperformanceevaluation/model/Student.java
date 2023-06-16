@@ -46,7 +46,13 @@ public class Student implements Serializable {
         this.registrationNumber = registrationNumber;
     }
 
-    public Student(String emailAddress, String phoneNumber) {
+    public Student(String registrationNumber, String oneTimePassword) {
+        this.registrationNumber = registrationNumber;
+        this.oneTimePassword = oneTimePassword;
+    }
+
+    public Student(String registrationNumber, String emailAddress, String phoneNumber) {
+        this.registrationNumber = registrationNumber;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
     }
@@ -129,6 +135,11 @@ public class Student implements Serializable {
 
     public void setIdEducationalProgram(int idEducationalProgram) {
         this.idEducationalProgram = idEducationalProgram;
+    }
+
+    @Override
+    public String toString() {
+        return getName() + " " + getLastName();
     }
 
 }

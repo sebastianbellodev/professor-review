@@ -29,6 +29,24 @@
     <string name="accept_button">Aceptar</string>
     <string name="student_already_registered_label">El estudiante ya se encuentra registrado en el sistema.</string>
     <string name="faculty_label">Facultad:</string>
-    <string name="educational_program_instruction_label">Selecciona la facultad y el programa educativo al que perteneces. Asegúrate que la información seleccionada es correcta, ya que no podrá modificarse posteriormente.</string>
+    <string name="faculty_educational_program_instruction_label">Selecciona la facultad y el programa educativo al que perteneces. Asegúrate que la información seleccionada es correcta, ya que no podrá modificarse posteriormente.</string>
     <string name="educational_program_label">Programa educativo:</string>
+    <string name="name_label">Nombre:</string>
+    <string name="password_confirmation_label">Confirmación de contraseña:</string>
+    <string name="last_name_label">Apellido(s):</string>
+    <string name="name_instruction_label">Ingresa tu nombre...</string>
+    <string name="last_name_instruction_label">Ingresa tu(s) apellido(s)...</string>
+    <string name="password_confirmation_instruction_label">Ingresa tu confirmación de contraseña...</string>
+    <string name="email_address_domain">estudiantes.uv.mx</string>
+    <string name="user_already_registered">El usuario ya se encuentra registrado en el sistema.</string>
+    <string name="registered_information_label">La información se registró correctamente en el sistema.</string>
+    <string name="faculty_instruction_label">Selecciona tu facultad...</string>
+    <string name="educational_program_instruction_label">Selecciona tu programa educativo</string>
+    <string name="active_account_button">Activar cuenta</string>
+    <string name="otp_instruction_label">Ingresa la contraseña de un solo uso (OTP) enviada a tu correo electrónico institucional y a tu número de teléfono.</string>
+    <string name="registration_number_label">Matrícula:</string>
+    <string name="registration_number_instruction_label">Ingresa tu matrícula...</string>
+    <string name="otp_label">Contraseña de un solo uso (OTP):</string>
+    <string name="modified_information_label">La información se modificó correctamente en el sistema.</string>
+    <string name="educational_experience_label">Experiencia educativa:</string>
 </resources>

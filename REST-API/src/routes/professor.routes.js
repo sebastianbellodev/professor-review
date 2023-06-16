@@ -37,8 +37,7 @@ router.delete("/professors", validateToken, async (request, response) => {
 router.get("/professors", validateToken, async (request, response) => {
   try {
     const [row] = await getProfessors();
-    const professors = { professors: row };
-    message(response, RESPONSE_CODE.OK, null, professors);
+    message(response, RESPONSE_CODE.OK, null, { professors: row });
   } catch (exception) {
     message(
       response,
@@ -82,29 +81,19 @@ router.post("/professors", validateToken, async (request, response) => {
   }
 });
 
-router.post(
-  "/professors/educationalexperience",
-  validateToken,
-  async (request, response) => {
-    try {
-      const [row] = await getProfessorsByEducationalExperience(request);
-      const professors = { professors: row };
-      message(response, RESPONSE_CODE.OK, null, professors);
-    } catch (exception) {
-      message(
-        response,
-        RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-        RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR
-      );
-    }
+router.post("/professors/educationalexperience", validateToken, async (request, response) => {
+  try {
+    const [row] = await getProfessorsByEducationalExperience(request);
+    message(response, RESPONSE_CODE.OK, null, { professors: row });
+  } catch (exception) {
+    message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
 );
 
 router.post("/professors/faculty", validateToken, async (request, response) => {
   try {
     const [row] = await getProfessorsByFaculty(request);
-    const professors = { professors: row };
-    message(response, RESPONSE_CODE.OK, null, professors);
+    message(response, RESPONSE_CODE.OK, null, { professors: row });
   } catch (exception) {
     message(
       response,
@@ -118,8 +107,7 @@ router.post("/professors/id", validateToken, async (request, response) => {
   try {
     const [row] = await getProfessorById(request);
     if (row.length > 0) {
-      const professor = { professor: row };
-      message(response, RESPONSE_CODE.OK, null, professor);
+      message(response, RESPONSE_CODE.OK, null, { professors: row });
     } else {
       message(
         response,

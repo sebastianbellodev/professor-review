@@ -16,6 +16,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.QueryEducationalExperienceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ActiveAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.LogStudentActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.LogStudentEducationalProgramActivity"
             android:exported="false" />
         <activity

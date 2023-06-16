@@ -1,5 +1,26 @@
 import { pool } from "../schema/connection.js";
 
+export const activate = (request) => {
+  const { registrationNumber,
+    oneTimePassword } = request.body;
+  return Promise.resolve(
+    pool.query(
+      "UPDATE\n" +
+      "student\n" +
+      "SET\n" +
+      "active = 1\n" +
+      "WHERE\n" +
+      "registrationNumber = ?\n" +
+      "AND\n" +
+      "oneTimePassword = ?",
+      [
+        registrationNumber,
+        oneTimePassword
+      ]
+    )
+  );
+};
+
 export const deleteStudent = (request) => {
   const registrationNumber = request.body.registrationNumber;
   return Promise.resolve(

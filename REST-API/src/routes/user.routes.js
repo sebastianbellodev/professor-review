@@ -45,8 +45,7 @@ router.get("/users/signup", validateCredentials, (request, response) => {
 router.get("/users", validateToken, async (request, response) => {
   try {
     const [row] = await getUsers();
-    const users = { users: row };
-    message(response, RESPONSE_CODE.OK, null, users);
+    message(response, RESPONSE_CODE.OK, null, { users: row });
   } catch (exception) {
     message(response, RESPONSE_CODE.INTERNAL_SERVER_ERROR, RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR);
   }
@@ -98,8 +97,7 @@ router.post("/users/username", validateToken, async (request, response) => {
   try {
     const [row] = await getUserByUsername(request);
     if (row.length > 0) {
-      const users = { users: row };
-      message(response, RESPONSE_CODE.OK, null, users);
+      message(response, RESPONSE_CODE.OK, null, { users: row });
     } else {
       message(response, RESPONSE_CODE.NOT_FOUND, RESPONSE_MESSAGE.USER_NOT_FOUND);
     }
