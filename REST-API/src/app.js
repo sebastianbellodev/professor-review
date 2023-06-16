@@ -1,23 +1,18 @@
 import express from "express";
-import academicOfferingRoutes from "./routes/academicOffering.routes.js"
+import academicOfferingRoutes from "./routes/academicoffering.routes.js";
 import educationalExperienceRoutes from "./routes/educationalExperience.routes.js";
 import educationalProgramRoutes from "./routes/educationalProgram.routes.js";
 import facultyRoutes from "./routes/faculty.routes.js";
 import professorRoutes from "./routes/professor.routes.js";
 import reportRoutes from "./routes/report.routes.js";
 import reviewRoutes from "./routes/review.routes.js";
-import schoolPeriodRoutes from "./routes/schoolperiod.routes.js"
+import schoolPeriodRoutes from "./routes/schoolperiod.routes.js";
 import studentRoutes from "./routes/student.routes.js";
 import syllabusesRoutes from "./routes/syllabus.routes.js";
 import testRoutes from "./routes/test.routes.js";
 import userRoutes from "./routes/user.routes.js";
-import academicofferingRoutes from "./routes/academicoffering.routes.js";
-import schoolPeriodsRoutes from "./routes/schoolperiod.routes.js"
-import {
-  message,
-  RESPONSE_CODE,
-  RESPONSE_MESSAGE
-} from "./tools/message.js";
+import schoolPeriodsRoutes from "./routes/schoolperiod.routes.js";
+import { message, RESPONSE_CODE, RESPONSE_MESSAGE } from "./tools/message.js";
 
 const app = express();
 
@@ -29,7 +24,7 @@ app.use(api, academicOfferingRoutes);
 app.use(api, educationalExperienceRoutes);
 app.use(api, educationalProgramRoutes);
 app.use(api, facultyRoutes);
-app.use(api,schoolPeriodsRoutes)
+app.use(api, schoolPeriodsRoutes);
 app.use(api, professorRoutes);
 app.use(api, reportRoutes);
 app.use(api, reviewRoutes);

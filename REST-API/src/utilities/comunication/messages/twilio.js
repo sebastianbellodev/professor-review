@@ -8,10 +8,10 @@ import {
 const client = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
 export const sendMessage = (request) => {
-  const { phoneNumber, otp } = request.body;
+  const { phoneNumber, oneTimePassword } = request.body;
   return client.messages.create({
     to: phoneNumber,
     from: TWILIO_PHONE_NUMBER,
-    body: `This your security code: ${otp}`,
+    body: `This your security code: ${oneTimePassword}`,
   });
 };
