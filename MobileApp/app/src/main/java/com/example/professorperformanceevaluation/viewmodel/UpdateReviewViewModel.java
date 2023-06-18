@@ -39,8 +39,9 @@ public class UpdateReviewViewModel extends AndroidViewModel {
         this.loadInformation();
     }
     private void loadInformation(){
-
-
+        comment.setValue(this.review.getComment());
+        educationalExperience.setValue(this.review.getEducationalExperience());
+        professor.setValue(this.review.getProfessor());
     }
 
     private void loadSchoolPeriods(){
@@ -124,8 +125,11 @@ public class UpdateReviewViewModel extends AndroidViewModel {
                 int code = response.getCode();
                 if (code == HttpURLConnection.HTTP_FORBIDDEN) {
                     Toast.makeText(context, R.string.expired_session_label, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(context, "Se ha regitrado correctamente en el sistema", Toast.LENGTH_SHORT).show();
+                } else if(code == 456){
+                    Toast.makeText(context, "Ya se encuentra una reseña registrada con la misma información", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(context, "Se ha registrado correctamente en el sistema", Toast.LENGTH_SHORT).show();
+                    goToMenu();
                 }
             }
 

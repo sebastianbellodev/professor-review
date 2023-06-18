@@ -41,7 +41,7 @@ router.patch("/reviews", validateToken, async (request, response) => {
     if (row.length > 0) {
       message(
         response,
-        RESPONSE_CODE.BAD_REQUEST,
+        RESPONSE_CODE.ALREADY_DATA,
         RESPONSE_MESSAGE.REVIEW_ALREADY_REGISTERED
       );
     } else {
@@ -72,7 +72,7 @@ router.post("/reviews", validateToken, async (request, response) => {
         if (row.length > 0) {
           message(
             response,
-            RESPONSE_CODE.BAD_REQUEST,
+            RESPONSE_CODE.ALREADY_DATA,
             RESPONSE_MESSAGE.REVIEW_ALREADY_REGISTERED
           );
         } else {

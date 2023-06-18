@@ -137,8 +137,11 @@ public class LogReviewViewModel extends AndroidViewModel {
                 int code = response.getCode();
                 if (code == HttpURLConnection.HTTP_FORBIDDEN) {
                     Toast.makeText(context, R.string.expired_session_label, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(context, "Se ha regitrado correctamente en el sistema", Toast.LENGTH_SHORT).show();
+                } else if(code == 456){
+                    Toast.makeText(context, "Ya se encuentra una reseña registrada con la misma información", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(context, "Se ha registrado correctamente en el sistema", Toast.LENGTH_SHORT).show();
+                    goToMenu();
                 }
             }
 
@@ -148,35 +151,13 @@ public class LogReviewViewModel extends AndroidViewModel {
             }
         });
 
-    }
-
-    public List<Syllabus> loadSyllabus(){
-
-        List<Syllabus> syllabusList = new ArrayList<>();
-        SyllabusService syllabusService = new SyllabusService(context);
-        syllabusService.getSyllabusByEducationalExperience(this.educationalExperience, new SyllabusService.SyllabusServiceCallback() {
-            @Override
-            public void onSuccess(Response response) {
-                int code = response.getCode();
-                if (code == HttpURLConnection.HTTP_FORBIDDEN) {
-                    Toast.makeText(context, R.string.expired_session_label, Toast.LENGTH_SHORT).show();
-                } else {
-                    syllabusList.addAll(response.getSyllabuses());
-                }
-            }
-            @Override
-            public void onFailure(Throwable throwable) {
-                Toast.makeText(context, R.string.service_not_available_label, Toast.LENGTH_SHORT).show();
-            }
-        });
-        return syllabusList;
     }
 
     public void onEducationalExperienceSelected(int position){
         this.professors.setValue(new ArrayList<>());
-        this.loadProfesssorsByEducationalExperience(this.educationalExperiences.getValue().get(position));
+        this.loadProfessorsByEducationalExperience(this.educationalExperiences.getValue().get(position));
     }
-    private void loadProfesssorsByEducationalExperience(EducationalExperience educationalExperience){
+    private void loadProfessorsByEducationalExperience(EducationalExperience educationalExperience){
         ProfessorService professorService = new ProfessorService(context);
         professorService.getProfessorsByEducationalExperience(educationalExperience, new ProfessorService.ProfessorServiceCallback() {
             @Override
