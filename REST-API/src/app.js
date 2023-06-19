@@ -1,5 +1,5 @@
 import express from "express";
-import academicOfferingRoutes from "./routes/academicoffering.routes.js";
+import academicOfferingRoutes from "./routes/academicOffering.routes.js";
 import educationalExperienceRoutes from "./routes/educationalExperience.routes.js";
 import educationalProgramRoutes from "./routes/educationalProgram.routes.js";
 import facultyRoutes from "./routes/faculty.routes.js";
