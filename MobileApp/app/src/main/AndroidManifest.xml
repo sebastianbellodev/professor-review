@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.QueryProfessorActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ModifyStudentActivity"
             android:exported="false" />
         <activity
@@ -42,8 +45,9 @@
         <activity
             android:name=".activity.ProfessorPerformanceManagementMenuActivity"
             android:exported="false" />
-        <activity android:name=".activity.UpdateReviewActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".activity.UpdateReviewActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.LogReviewActivity"
             android:exported="false" />

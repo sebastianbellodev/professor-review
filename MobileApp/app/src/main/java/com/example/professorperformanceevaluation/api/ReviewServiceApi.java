@@ -1,6 +1,7 @@
 package com.example.professorperformanceevaluation.api;
 
 import com.example.professorperformanceevaluation.model.EducationalExperience;
+import com.example.professorperformanceevaluation.model.Professor;
 import com.example.professorperformanceevaluation.model.Response;
 import com.example.professorperformanceevaluation.model.Review;
 
@@ -19,6 +20,9 @@ public interface ReviewServiceApi {
     @POST("reviews/educationalexperience")
     Call<Response> getReviewsByEducationalExperience(@Header("Authorization") String token, @Body EducationalExperience educationalExperience);
 
+    @POST("reviews/professor")
+    Call<Response> getReviewsByProfessor(@Header("Authorization") String token, @Body Professor professor);
+    
     @PATCH("reviews")
     Call<Response> patch(@Header("Authorization") String token, @Body Review review);
 

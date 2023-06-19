@@ -100,25 +100,25 @@ public class LogReviewViewModel extends AndroidViewModel {
 
     }
 
-    public void onAceptClicked(){
-        if(this.comment.getValue()==null){
-            Toast.makeText(context, "No se pueden dejar campos vacios", Toast.LENGTH_SHORT).show();
-        }else{
+    public void onAcceptClicked() {
+        if (this.comment.getValue() == null) {
+            Toast.makeText(context, R.string.empty_fields_label, Toast.LENGTH_SHORT).show();
+        } else {
             this.postReview();
         }
 
     }
 
-    public void goToMenu(){
+    public void goToMenu() {
         Intent intent = new Intent(context, ProfessorPerformanceManagementMenuActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.putExtra("student",DataManager.getInstance().getStudent());
+        intent.putExtra("student", DataManager.getInstance().getStudent());
         context.startActivity(intent);
 
 
     }
 
-    public void postReview(){
+    public void postReview() {
         Review review = new Review();
         review.setIdAcademicOffering(0);
         String newComment = this.comment.getValue();
@@ -137,10 +137,10 @@ public class LogReviewViewModel extends AndroidViewModel {
                 int code = response.getCode();
                 if (code == HttpURLConnection.HTTP_FORBIDDEN) {
                     Toast.makeText(context, R.string.expired_session_label, Toast.LENGTH_SHORT).show();
-                } else if(code == 456){
-                    Toast.makeText(context, "Ya se encuentra una reseña registrada con la misma información", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(context, "Se ha registrado correctamente en el sistema", Toast.LENGTH_SHORT).show();
+                } else if (code == 456) {
+                    Toast.makeText(context, R.string.review_already_post_label, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, R.string.review_post_label, Toast.LENGTH_SHORT).show();
                     goToMenu();
                 }
             }
@@ -153,11 +153,12 @@ public class LogReviewViewModel extends AndroidViewModel {
 
     }
 
-    public void onEducationalExperienceSelected(int position){
+    public void onEducationalExperienceSelected(int position) {
         this.professors.setValue(new ArrayList<>());
         this.loadProfessorsByEducationalExperience(this.educationalExperiences.getValue().get(position));
     }
-    private void loadProfessorsByEducationalExperience(EducationalExperience educationalExperience){
+
+    private void loadProfessorsByEducationalExperience(EducationalExperience educationalExperience) {
         ProfessorService professorService = new ProfessorService(context);
         professorService.getProfessorsByEducationalExperience(educationalExperience, new ProfessorService.ProfessorServiceCallback() {
             @Override
@@ -169,6 +170,7 @@ public class LogReviewViewModel extends AndroidViewModel {
                     professors.setValue(response.getProfessors());
                 }
             }
+
             @Override
             public void onFailure(Throwable throwable) {
                 Toast.makeText(context, R.string.service_not_available_label, Toast.LENGTH_SHORT).show();
@@ -177,7 +179,8 @@ public class LogReviewViewModel extends AndroidViewModel {
 
 
     }
-    private void loadEducationalExperiencesByEducationalProgram(){
+
+    private void loadEducationalExperiencesByEducationalProgram() {
         EducationalProgram educationalProgram = new EducationalProgram();
         educationalProgram.setIdEducationalProgram(DataManager.getInstance().getStudent().getIdEducationalProgram());
         EducationalExperienceService educationalExperienceService = new EducationalExperienceService(context);
@@ -191,6 +194,7 @@ public class LogReviewViewModel extends AndroidViewModel {
                     educationalExperiences.setValue(response.getEducationalExperiences());
                 }
             }
+
             @Override
             public void onFailure(Throwable throwable) {
                 Toast.makeText(context, R.string.service_not_available_label, Toast.LENGTH_SHORT).show();
@@ -198,7 +202,7 @@ public class LogReviewViewModel extends AndroidViewModel {
         });
     }
 
-    private void loadSchoolPeriods(){
+    private void loadSchoolPeriods() {
         SchoolPeriodService schoolPeriodService = new SchoolPeriodService(context);
         schoolPeriodService.getSchoolPeriods(new SchoolPeriodService.SchoolPeriodServiceCallback() {
             @Override
@@ -210,6 +214,7 @@ public class LogReviewViewModel extends AndroidViewModel {
                     schoolPeriods.setValue(response.getSchoolPeriods());
                 }
             }
+
             @Override
             public void onFailure(Throwable throwable) {
                 Toast.makeText(context, R.string.service_not_available_label, Toast.LENGTH_SHORT).show();

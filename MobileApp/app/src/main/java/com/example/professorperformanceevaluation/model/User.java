@@ -4,12 +4,16 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class User implements Serializable {
 
     @SerializedName("username")
     @Expose
     private String username;
+    @SerializedName("oldUsername")
+    @Expose
+    private String oldUsername;
     @SerializedName("password")
     @Expose
     private String password;
@@ -39,6 +43,14 @@ public class User implements Serializable {
         this.username = username;
     }
 
+    public String getOldUsername() {
+        return oldUsername;
+    }
+
+    public void setOldUsername(String oldUsername) {
+        this.oldUsername = oldUsername;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -55,4 +67,16 @@ public class User implements Serializable {
         this.registrationNumber = registrationNumber;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return getUsername().equals(user.getUsername());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUsername());
+    }
 }

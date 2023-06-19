@@ -25,9 +25,6 @@ public interface ProfessorServiceApi {
     @GET("professors")
     Call<Response> getProfessors(@Header("Authorization") String token);
 
-    @POST("professors/educationalprogram")
-    Call<Response> getProfessorsByEducationalProgram(@Header("Authorization") String token, @Body EducationalProgram educationalProgram);
-
     @POST("professors/educationalexperience")
     Call<Response> getProfessorsByEducationalExperience(@Header("Authorization") String token, @Body EducationalExperience educationalExperience);
     @POST("professors/faculty")
