@@ -19,10 +19,17 @@ import java.net.HttpURLConnection;
 
 public class QueryStudentProfileViewModel extends  AndroidViewModel{
 
+    private final MutableLiveData<String> username = new MutableLiveData<>();
+    private final MutableLiveData<String> lastName = new MutableLiveData<>();
+    private final MutableLiveData<String> name = new MutableLiveData<>();
+    private final MutableLiveData<String> phoneNumber = new MutableLiveData<>();
+    private final MutableLiveData<String> emailAddress = new MutableLiveData<>();
+    private final MutableLiveData<String> biography = new MutableLiveData<>();
     private  final Context context;
     private Student student;
     private Student actualStudent;
     private final StudentService studentService;
+
 
     public QueryStudentProfileViewModel(@NonNull Application application){
         super(application);
@@ -30,6 +37,29 @@ public class QueryStudentProfileViewModel extends  AndroidViewModel{
         studentService = new StudentService(context);
         loadStudent();
     }
+
+    public MutableLiveData<String> getUsername() {
+        return username;
+    }
+
+    public MutableLiveData<String> getLastName() {
+        return lastName;
+    }
+
+    public MutableLiveData<String> getName() {
+        return name;
+    }
+
+    public MutableLiveData<String> getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public MutableLiveData<String> getEmailAddress() {
+        return emailAddress;
+    }
+
+    public MutableLiveData<String> getBiography() {return biography;}
+
 
     public void setStudent(Student student) {this.student = student;}
 
