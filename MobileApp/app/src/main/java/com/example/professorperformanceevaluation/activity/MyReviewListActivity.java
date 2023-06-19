@@ -40,7 +40,6 @@ public class MyReviewListActivity extends AppCompatActivity{
             @Override
             public void onItemClick(int position) {
                 viewModel.setReviewUpdate(position);
-                Toast.makeText(MyReviewListActivity.this, "Se selecciono " + position, Toast.LENGTH_SHORT).show();
             }
         });
         /*

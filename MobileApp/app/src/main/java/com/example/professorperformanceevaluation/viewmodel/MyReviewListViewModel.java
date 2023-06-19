@@ -10,6 +10,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.professorperformanceevaluation.R;
+import com.example.professorperformanceevaluation.activity.ProfessorPerformanceManagementMenuActivity;
 import com.example.professorperformanceevaluation.activity.UpdateReviewActivity;
 import com.example.professorperformanceevaluation.adapter.ReviewAdapter;
 import com.example.professorperformanceevaluation.model.DataManager;
@@ -92,7 +93,12 @@ public class MyReviewListViewModel extends AndroidViewModel {
                 Toast.makeText(context, R.string.service_not_available_label, Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
-
+    public void goToMenu(){
+        Intent intent = new Intent(context, ProfessorPerformanceManagementMenuActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("student", DataManager.getInstance().getStudent());
+        context.startActivity(intent);
     }
 }

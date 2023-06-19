@@ -38,7 +38,6 @@ router.delete("/reviews", validateToken, async (request, response) => {
 
 router.patch("/reviews/update", validateToken, async (request, response) => {
   try {
-    console.log(request.body);
     const [row] = await getReview(request);
     if (row.length > 0 ) {
       if(row.idSchoolPeriod == request.body.idSchoolPeriod){
