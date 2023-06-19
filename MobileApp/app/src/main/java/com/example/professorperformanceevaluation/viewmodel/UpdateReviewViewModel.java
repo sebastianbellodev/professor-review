@@ -36,12 +36,6 @@ public class UpdateReviewViewModel extends AndroidViewModel {
         super(application);
         context = application.getApplicationContext();
         this.loadSchoolPeriods();
-        this.loadInformation();
-    }
-    private void loadInformation(){
-        comment.setValue(this.review.getComment());
-        educationalExperience.setValue(this.review.getEducationalExperience());
-        professor.setValue(this.review.getProfessor());
     }
 
     private void loadSchoolPeriods(){
@@ -128,7 +122,7 @@ public class UpdateReviewViewModel extends AndroidViewModel {
                 } else if(code == 456){
                     Toast.makeText(context, "Ya se encuentra una reseña registrada con la misma información", Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(context, "Se ha registrado correctamente en el sistema", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Se ha actualizado correctamente en el sistema", Toast.LENGTH_SHORT).show();
                     goToMenu();
                 }
             }
@@ -146,7 +140,5 @@ public class UpdateReviewViewModel extends AndroidViewModel {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra("student", DataManager.getInstance().getStudent());
         context.startActivity(intent);
-
-
     }
 }
