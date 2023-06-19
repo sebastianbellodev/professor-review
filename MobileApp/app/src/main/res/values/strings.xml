@@ -62,4 +62,8 @@
     <string name="school_period_label">Periodo escolar:</string>
     <string name="professor_label">Profesor:</string>
     <string name="student_label">Estudiante:</string>
+    <string name="information_put_label">Información actualizada correctamente.</string>
+    <string name="review_already_post_label">Ya se encuentra una reseña registrada con la misma información.</string>
+    <string name="review_post_label">Se ha registrado correctamente en el sistema.</string>
+    <string name="change_information_first_label">Realice cambios a la información primero.</string>
 </resources>

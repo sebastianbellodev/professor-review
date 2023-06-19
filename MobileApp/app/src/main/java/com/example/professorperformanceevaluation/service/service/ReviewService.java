@@ -81,6 +81,25 @@ public class ReviewService {
         });
     }
 
+    public void getReviewsByProfessor(Professor professor, ReviewServiceCallback callback) {
+        Call<Response> call = ReviewClient.getInstance().getApiService().getReviewsByProfessor("Bearer " + token, professor);
+        call.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onSuccess(new Response(response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Response> call, @NonNull Throwable throwable) {
+                callback.onFailure(throwable);
+            }
+        });
+    }
+
     public void patch(Review review, ReviewServiceCallback callback) {
         Call<Response> call = ReviewClient.getInstance().getApiService().patch("Bearer " + token, review);
         call.enqueue(new Callback<Response>() {

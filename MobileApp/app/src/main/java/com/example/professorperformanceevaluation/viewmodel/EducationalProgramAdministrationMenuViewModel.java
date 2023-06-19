@@ -9,6 +9,7 @@ import androidx.lifecycle.AndroidViewModel;
 
 import com.example.professorperformanceevaluation.activity.MainMenuActivity;
 import com.example.professorperformanceevaluation.activity.QueryEducationalExperienceActivity;
+import com.example.professorperformanceevaluation.activity.QueryProfessorActivity;
 import com.example.professorperformanceevaluation.model.Student;
 
 public class EducationalProgramAdministrationMenuViewModel extends AndroidViewModel {
@@ -33,6 +34,10 @@ public class EducationalProgramAdministrationMenuViewModel extends AndroidViewMo
     }
 
     public void onQueryProfessorButtonClicked() {
+        Intent intent = new Intent(context, QueryProfessorActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("student", student);
+        context.startActivity(intent);
     }
 
     public void onReturnButtonClicked() {

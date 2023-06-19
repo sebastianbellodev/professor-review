@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.professorperformanceevaluation.R;
 import com.example.professorperformanceevaluation.activity.LogStudentActivity;
 import com.example.professorperformanceevaluation.activity.LogStudentEmailAddressPhoneNumberActivity;
+import com.example.professorperformanceevaluation.model.DataManager;
 import com.example.professorperformanceevaluation.model.EducationalProgram;
 import com.example.professorperformanceevaluation.model.Faculty;
 import com.example.professorperformanceevaluation.model.Response;
@@ -99,6 +100,7 @@ public class LogStudentEducationalProgramViewModel extends AndroidViewModel {
         if (educationalProgram != null) {
             int idEducationalProgram = educationalProgram.getIdEducationalProgram();
             student.setIdEducationalProgram(idEducationalProgram);
+            DataManager.getInstance().setFaculty(faculty);
             goToLogStudent(student);
         } else {
             Toast.makeText(context, R.string.empty_fields_label, Toast.LENGTH_SHORT).show();

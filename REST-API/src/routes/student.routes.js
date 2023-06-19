@@ -88,7 +88,8 @@ router.patch("/students", validateToken, async (request, response) => {
     message(
       response,
       RESPONSE_CODE.INTERNAL_SERVER_ERROR,
-      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR
+      RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR,
+      exception.message
     );
   }
 });

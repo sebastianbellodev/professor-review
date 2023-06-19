@@ -56,16 +56,16 @@ export const login = (request) => {
 };
 
 export const patchUser = (request) => {
-  const { username, password } = request.body;
+  const { username, oldUsername } = request.body;
   return Promise.resolve(
     pool.query(
       "UPDATE\n" +
         "user\n" +
         "SET\n" +
-        "password = IFNULL(?, password)\n" +
+        "username = IFNULL(?, username)\n" +
         "WHERE\n" +
         "username = ?",
-      [password, username]
+      [username, oldUsername]
     )
   );
 };
