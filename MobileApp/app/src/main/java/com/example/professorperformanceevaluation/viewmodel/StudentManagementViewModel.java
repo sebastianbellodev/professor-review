@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
 import com.example.professorperformanceevaluation.activity.MainMenuActivity;
+import com.example.professorperformanceevaluation.activity.ModifyStudentActivity;
 import com.example.professorperformanceevaluation.activity.QueryStudentProfileActivity;
 import com.example.professorperformanceevaluation.model.Student;
 
@@ -33,6 +34,10 @@ public class StudentManagementViewModel extends AndroidViewModel {
     }
 
     public void onModifyStudentButtonClicked() {
+        Intent intent = new Intent(context, ModifyStudentActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("student", student);
+        context.startActivity(intent);
     }
 
     public void onReturnButtonClicked() {

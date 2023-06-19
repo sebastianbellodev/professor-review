@@ -18,8 +18,6 @@ public class ModifyStudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityModifyStudentBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_modify_student);
         ModifyStudentViewModel viewModel = new ViewModelProvider(this).get(ModifyStudentViewModel.class);
-        viewModel.setStudent(DataManager.getInstance().getStudent());
-        viewModel.setUser(DataManager.getInstance().getUser());
         binding.setLifecycleOwner(this);
         binding.setModifyStudentViewModel(viewModel);
     }
