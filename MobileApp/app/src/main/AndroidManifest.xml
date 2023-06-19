@@ -15,7 +15,11 @@
         android:theme="@style/Theme.ProfessorPerformanceEvaluation"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
+      <activity
+            android:name=".activity.MyReviewListActivity"
+            android:exported="false"
+            />
+      <activity
             android:name=".activity.QueryProfessorActivity"
             android:exported="false" />
         <activity

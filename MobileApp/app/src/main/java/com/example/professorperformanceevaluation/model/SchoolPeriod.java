@@ -1,5 +1,6 @@
 package com.example.professorperformanceevaluation.model;
 
+import com.example.professorperformanceevaluation.utilities.Utilities;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -51,7 +52,7 @@ public class SchoolPeriod implements Serializable {
 
     @Override
     public String toString() {
-        return getStartDate() + " - " + getEndDate();
+        return Utilities.formatterDate(getStartDate()) + " - " + Utilities.formatterDate(getEndDate());
     }
 
 }

@@ -45,19 +45,33 @@
             android:entries="@{updateReviewViewModel.schoolPeriods}"
             android:layout_marginTop="16dp" />
         <TextView
+            android:id="@+id/educational_experience_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Experiencia Educativa:"
+            android:layout_below="@id/spinnerPeriods"
+            android:minHeight="48dp"
+            />
+        <TextView
             android:id="@+id/educational_experience_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text = "@={updateReviewViewModel.educationalExperience}"
-            android:layout_below="@id/spinnerPeriods"
+            android:layout_below="@id/educational_experience_text"
+            android:minHeight="48dp"
+            />
+        <TextView
+            android:id="@+id/professor_text"
+            android:text="Profesor:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/educational_experience_text_view"
             android:minHeight="48dp"
             />
         <TextView
             android:id="@+id/professor_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text = "@={updateReviewViewModel.professor}"
-            android:layout_below="@id/educational_experience_text_view"
+            android:layout_below="@id/professor_text"
             android:minHeight="48dp"
             />
         <RatingBar
@@ -79,7 +93,6 @@
             android:inputType="text"
             android:hint="Ingrese un comentario"
             android:text="@={updateReviewViewModel.comment}"
-            android:minHeight="48dp"
-            android:textSize="16sp" />
+            android:minHeight="48dp" />
     </RelativeLayout>
 </layout>

@@ -1,11 +1,18 @@
 package com.example.professorperformanceevaluation.adapter;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.GestureDetectorCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.professorperformanceevaluation.R;
@@ -14,9 +21,24 @@ import com.example.professorperformanceevaluation.model.Review;
 import java.util.List;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder> {
-
+    private OnItemClickListener listener;
     private List<Review> reviews;
 
+    public int getSelectedItem() {
+        return selectedItem;
+    }
+
+    public void setSelectedItem(int selectedItem) {
+        this.selectedItem = selectedItem;
+    }
+
+    private int selectedItem = RecyclerView.NO_POSITION;
+
+    private GestureDetectorCompat gestureDetector;
+
+    public void setGestureDetector(GestureDetectorCompat gestureDetector) {
+        this.gestureDetector = gestureDetector;
+    }
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
@@ -29,9 +51,49 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ReviewViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ReviewViewHolder holder,int position) {
         Review review = reviews.get(position);
         holder.bind(review);
+        if (selectedItem == position) {
+            holder.itemView.setBackgroundColor(Color.LTGRAY);
+        } else {
+            holder.itemView.setBackgroundColor(Color.TRANSPARENT);
+        }
+        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int previousSelectedItem = selectedItem;
+                selectedItem = position;
+                notifyItemChanged(previousSelectedItem);
+                notifyItemChanged(selectedItem);
+                if (listener != null) {
+                    listener.onItemClick(position);
+                }
+            }
+
+        });*/
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    int previousSelectedItem = selectedItem;
+                    selectedItem = position;
+                    notifyItemChanged(previousSelectedItem);
+                    notifyItemChanged(selectedItem);
+                    if (listener != null) {
+                        listener.onItemClick(position);
+                    }
+                }
+            }
+        });
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
     }
 
     @Override

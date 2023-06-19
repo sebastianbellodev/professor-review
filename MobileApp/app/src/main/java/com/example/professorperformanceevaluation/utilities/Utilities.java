@@ -3,6 +3,10 @@ package com.example.professorperformanceevaluation.utilities;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Utilities {
 
@@ -19,6 +23,13 @@ public class Utilities {
         } catch (NoSuchAlgorithmException e) {
             return null;
         }
+    }
+
+    public static String formatterDate(Date fecha) {
+        DateFormat formatoFechaEntrada = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat formatoFechaSalida = new SimpleDateFormat("dd/MM/yyyy");
+
+            return formatoFechaSalida.format(fecha);
     }
 
 }

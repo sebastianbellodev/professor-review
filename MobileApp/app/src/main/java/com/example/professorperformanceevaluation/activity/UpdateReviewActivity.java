@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -43,6 +45,9 @@ public class UpdateReviewActivity extends AppCompatActivity {
         //Intent review
         Review review = (Review)getIntent().getSerializableExtra("review");
         viewModel.setReview(review);
-
+        TextView textViewProfessor = findViewById(R.id.professor_text_view);
+        textViewProfessor.setText(review.getProfessor());
+        TextView textViewEducationalExperience = findViewById(R.id.educational_experience_text_view);
+        textViewEducationalExperience.setText(review.getEducationalExperience());
     }
 }

@@ -38,6 +38,55 @@ export const getReview = (request) => {
   );
 };
 
+export const getReviewsOfStudent = (request) => {
+  const { registrationNumber } = request.body;
+  return Promise.resolve(
+    pool.query(
+      "SELECT\n" +
+      "review.stars, review.idReview,\n" +
+      "review.comment,\n" +
+      "CONCAT(schoolPeriod.startDate, \" - \", schoolperiod.endDate) AS schoolPeriod,\n" +
+      "educationalexperience.name AS educationalExperience,\n" +
+      "CONCAT(professor.name, \" \", professor.lastName) AS professor,\n" +
+      "CONCAT(student.name, \" \", student.lastName) AS student\n" +
+      "FROM\n" +
+      "review\n" +
+      "INNER JOIN\n" +
+      "schoolPeriod\n" +
+      "ON\n" +
+      "review.idSchoolPeriod = schoolPeriod.idSchoolPeriod\n" +
+      "INNER JOIN\n" +
+      "student\n" +
+      "ON\n" +
+      "review.registrationNumber = student.registrationNumber\n" +
+      "INNER JOIN\n" +
+      "academicOffering\n" +
+      "ON\n" +
+      "review.idAcademicOffering = academicOffering.idAcademicOffering\n" +
+      "INNER JOIN\n" +
+      "syllabus\n" +
+      "ON\n" +
+      "academicOffering.idSyllabus = syllabus.idSyllabus\n" +
+      "INNER JOIN\n" +
+      "educationalExperience\n" +
+      "ON\n" +
+      "educationalExperience.idEducationalExperience = syllabus.idEducationalExperience\n" +
+      "INNER JOIN\n" +
+      "professor\n" +
+      "ON\n" +
+      "academicOffering.idProfessor = professor.idProfessor\n" +
+      "WHERE\n" +
+      "review.registrationNumber = ?\n" +
+      "ORDER BY\n" +
+      "review.comment\n" +
+      "ASC",
+      [
+        registrationNumber
+      ]
+    )
+  );
+};
+
 export const getReviewsByEducationalExperience = (request) => {
   const idEducationalExperience = request.body.idEducationalExperience;
   return Promise.resolve(
@@ -115,7 +164,7 @@ export const patchReview = (request) => {
     idSchoolPeriod } = request.body;
   return Promise.resolve(
     pool.query(
-      "",
+      "UPDATE `review` SET `stars` = ?, `comment` = ?, `idSchoolPeriod` = ? WHERE (`idReview` = ?);",
       [
         stars,
         comment,
