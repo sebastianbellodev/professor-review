@@ -71,6 +71,8 @@ export const getStudentByRegistrationNumber = (request) => {
         "*\n" +
         "FROM\n" +
         "student\n" +
+        "INNER JOIN educationalprogram\n" +
+        "ON student.idEducationalProgram = educationalprogram.idEducationalProgram\n" +
         "WHERE\n" +
         "registrationNumber = ?",
       [registrationNumber]

@@ -81,25 +81,6 @@ public class ProfessorService {
         });
     }
 
-    public void getProfessorsByEducationalProgram(EducationalProgram educationalProgram, ProfessorServiceCallback callback) {
-        Call<Response> call = ProfessorClient.getInstance().getApiService().getProfessorsByEducationalProgram("Bearer " + token, educationalProgram);
-        call.enqueue(new Callback<Response>() {
-            @Override
-            public void onResponse(@NonNull Call<Response> call, @NonNull retrofit2.Response<Response> response) {
-                if (response.isSuccessful()) {
-                    callback.onSuccess(response.body());
-                } else {
-                    callback.onSuccess(new Response(response.code()));
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<Response> call, @NonNull Throwable throwable) {
-                callback.onFailure(throwable);
-            }
-        });
-    }
-
     public void getProfessorsByFaculty(Faculty faculty, ProfessorServiceCallback callback) {
         Call<Response> call = ProfessorClient.getInstance().getApiService().getProfessorsByFaculty("Bearer " + token, faculty);
         call.enqueue(new Callback<Response>() {

@@ -17,6 +17,10 @@ public class Faculty implements Serializable {
     public Faculty() {
     }
 
+    public Faculty(int idFaculty) {
+        this.idFaculty = idFaculty;
+    }
+
     public int getIdFaculty() {
         return idFaculty;
     }

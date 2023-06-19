@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 public class Student implements Serializable {
 
@@ -35,9 +36,15 @@ public class Student implements Serializable {
     @SerializedName("oneTimePassword")
     @Expose
     private String oneTimePassword;
+    @SerializedName("idFaculty")
+    @Expose
+    private int idFaculty;
     @SerializedName("idEducationalProgram")
     @Expose
     private int idEducationalProgram;
+    @SerializedName("user")
+    @Expose
+    private User user;
 
     public Student() {
     }
@@ -125,9 +132,18 @@ public class Student implements Serializable {
         return oneTimePassword;
     }
 
+    public int getIdFaculty() {
+        return idFaculty;
+    }
+
+    public void setIdFaculty(int idFaculty) {
+        this.idFaculty = idFaculty;
+    }
+
     public void setOneTimePassword(String oneTimePassword) {
         this.oneTimePassword = oneTimePassword;
     }
+
 
     public int getIdEducationalProgram() {
         return idEducationalProgram;
@@ -137,9 +153,39 @@ public class Student implements Serializable {
         this.idEducationalProgram = idEducationalProgram;
     }
 
+    public int getActive() {
+        return active;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return getName() + " " + getLastName();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student)) return false;
+        Student student = (Student) o;
+        return getRegistrationNumber().equals(student.getRegistrationNumber())
+                && getName().equals(student.getName())
+                && getLastName().equals(student.getLastName())
+                && getEmailAddress().equals(student.getEmailAddress())
+                && getPhoneNumber().equals(student.getPhoneNumber())
+                && getBiography().equals(student.getBiography());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getRegistrationNumber(), getName(), getLastName(), getEmailAddress(),
+                getPhoneNumber(), getBiography());
+    }
 }

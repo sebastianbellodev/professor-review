@@ -20,20 +20,7 @@ public class QueryStudentProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityQueryStudentProfileBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_query_student_profile);
         QueryStudentProfileViewModel  viewModel = new ViewModelProvider(this).get(QueryStudentProfileViewModel.class);
-        Student student = (Student) getIntent().getSerializableExtra("student");
-        viewModel.setStudent(student);
         binding.setLifecycleOwner(this);
         binding.setQueryStudentModelView(viewModel);
-        TextView textViewName = findViewById(R.id.username_text_view);
-        TextView textViewLastName = findViewById(R.id.last_name_text_view);
-        TextView textViewEmail = findViewById(R.id.email_adress_text_view);
-        TextView textViewPhoneNumber = findViewById(R.id.phone_number_text_view);
-        TextView textViewBiography = findViewById(R.id.student_biography_text_view);
-        Student usableStudent = DataManager.getInstance().getStudent();
-        textViewName.setText(usableStudent.getName());
-        textViewLastName.setText(usableStudent.getLastName());
-        textViewEmail.setText(usableStudent.getEmailAddress());
-        textViewPhoneNumber.setText(usableStudent.getPhoneNumber());
-        textViewBiography.setText(usableStudent.getBiography());
     }
 }

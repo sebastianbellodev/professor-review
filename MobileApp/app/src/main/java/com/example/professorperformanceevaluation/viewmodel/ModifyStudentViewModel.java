@@ -29,28 +29,33 @@ public class ModifyStudentViewModel extends AndroidViewModel {
     private MutableLiveData<String> name = new MutableLiveData<>();
     private MutableLiveData<String> lastName = new MutableLiveData<>();
     private MutableLiveData<String> phoneNumber = new MutableLiveData<>();
-    private MutableLiveData<String> emailAddress = new MutableLiveData<>();
     private final Context context;
     
     private final StudentService studentService;
 
     private Student student;
+    private Student oldStudent;
 
     private User user;
+    private User oldUser;
     
     
     public ModifyStudentViewModel(@NonNull Application application) {
         super(application);
         context = application.getApplicationContext();
         studentService = new StudentService(context);
-        student = DataManager.getInstance().getStudent();
-        user = DataManager.getInstance().getUser();
-        username.setValue(user.getUsername());
-        biography.setValue(student.getBiography());
-        name.setValue(student.getName());
-        lastName.setValue(student.getLastName());
-        phoneNumber.setValue(student.getPhoneNumber());
-        emailAddress.setValue(student.getEmailAddress());
+        oldStudent = DataManager.getInstance().getStudent();
+        student = new Student();
+        oldUser = DataManager.getInstance().getUser();
+        user = new User();
+        username.setValue(oldUser.getUsername());
+        biography.setValue(oldStudent.getBiography());
+        if (oldStudent.getBiography() == null) {
+            oldStudent.setBiography("");
+        }
+        name.setValue(oldStudent.getName());
+        lastName.setValue(oldStudent.getLastName());
+        phoneNumber.setValue(oldStudent.getPhoneNumber());
     }
 
     public MutableLiveData<String> getUsername() {
@@ -93,14 +98,6 @@ public class ModifyStudentViewModel extends AndroidViewModel {
         this.phoneNumber = phoneNumber;
     }
 
-    public MutableLiveData<String> getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(MutableLiveData<String> emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
     public Student getStudent() {
         return student;
     }
@@ -118,15 +115,40 @@ public class ModifyStudentViewModel extends AndroidViewModel {
     }
 
     public void onAcceptButtonClicked() {
-
+        System.out.println(phoneNumber.getValue().length());
     }
 
-    private void patch(User user) {
-
+    public boolean validateClearField() {
+        return (username.getValue().isEmpty())
+                && (name.getValue().isEmpty())
+                && (lastName.getValue().isEmpty())
+                && (phoneNumber.getValue().isEmpty());
     }
 
-    public void goToLogStudent(Student student) {
+    public boolean validateOverflowedField() {
+        return phoneNumber.getValue().length() != 10;
+    }
 
+    private void patch(Student student, User user) {
+        student.setUser(user);
+        studentService.patch(student, new StudentService.StudentServiceCallback() {
+            @Override
+            public void onSuccess(Response response) {
+                int code = response.getCode();
+                if (code == HttpURLConnection.HTTP_FORBIDDEN) {
+                    Toast.makeText(context, R.string.expired_session_label, Toast.LENGTH_SHORT).show();
+                } else if (code == HttpURLConnection.HTTP_NOT_FOUND || code == HttpURLConnection.HTTP_BAD_REQUEST) {
+                    Toast.makeText(context, R.string.invalid_data_label, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, R.string.information_put_label, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                Toast.makeText(context, R.string.service_not_available_label, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void onCancelButtonClicked() {

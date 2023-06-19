@@ -3,6 +3,7 @@ package com.example.professorperformanceevaluation.api;
 import com.example.professorperformanceevaluation.model.Faculty;
 import com.example.professorperformanceevaluation.model.Response;
 import com.example.professorperformanceevaluation.model.Student;
+import com.example.professorperformanceevaluation.model.User;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

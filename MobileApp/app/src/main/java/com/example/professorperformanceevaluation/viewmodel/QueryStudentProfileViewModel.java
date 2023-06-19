@@ -1,4 +1,5 @@
 package com.example.professorperformanceevaluation.viewmodel;
+
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
@@ -11,13 +12,16 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.professorperformanceevaluation.R;
 import com.example.professorperformanceevaluation.activity.MainMenuActivity;
+import com.example.professorperformanceevaluation.activity.StudentManagementMenuActivity;
+import com.example.professorperformanceevaluation.model.DataManager;
 import com.example.professorperformanceevaluation.model.Response;
 import com.example.professorperformanceevaluation.model.Student;
+import com.example.professorperformanceevaluation.model.User;
 import com.example.professorperformanceevaluation.service.service.StudentService;
 
 import java.net.HttpURLConnection;
 
-public class QueryStudentProfileViewModel extends  AndroidViewModel{
+public class QueryStudentProfileViewModel extends AndroidViewModel {
 
     private final MutableLiveData<String> username = new MutableLiveData<>();
     private final MutableLiveData<String> lastName = new MutableLiveData<>();
@@ -25,17 +29,25 @@ public class QueryStudentProfileViewModel extends  AndroidViewModel{
     private final MutableLiveData<String> phoneNumber = new MutableLiveData<>();
     private final MutableLiveData<String> emailAddress = new MutableLiveData<>();
     private final MutableLiveData<String> biography = new MutableLiveData<>();
-    private  final Context context;
+    private final Context context;
     private Student student;
+    private User user;
     private Student actualStudent;
     private final StudentService studentService;
 
 
-    public QueryStudentProfileViewModel(@NonNull Application application){
+    public QueryStudentProfileViewModel(@NonNull Application application) {
         super(application);
         context = application.getApplicationContext();
         studentService = new StudentService(context);
-        loadStudent();
+        student = DataManager.getInstance().getStudent();
+        user = DataManager.getInstance().getUser();
+        username.setValue(user.getUsername());
+        biography.setValue(student.getBiography());
+        name.setValue(student.getName());
+        lastName.setValue(student.getLastName());
+        phoneNumber.setValue(student.getPhoneNumber());
+        emailAddress.setValue(student.getEmailAddress());
     }
 
     public MutableLiveData<String> getUsername() {
@@ -58,38 +70,21 @@ public class QueryStudentProfileViewModel extends  AndroidViewModel{
         return emailAddress;
     }
 
-    public MutableLiveData<String> getBiography() {return biography;}
-
-
-    public void setStudent(Student student) {this.student = student;}
-
-    private void loadStudent(){
-        studentService.getStudentByRegistrationNumber(student, new StudentService.StudentServiceCallback() {
-            @Override
-            public void onSuccess(Response response) {
-                int code = response.getCode();
-                if (code == HttpURLConnection.HTTP_FORBIDDEN) {
-                    Toast.makeText(context, R.string.expired_session_label, Toast.LENGTH_SHORT).show();
-                } else if (code == HttpURLConnection.HTTP_NOT_FOUND) {
-                    Toast.makeText(context, R.string.invalid_data_label, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(context, R.string.welcome_label, Toast.LENGTH_SHORT).show();
-                    actualStudent = response.getStudents().get(0);
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable throwable) {
-                Toast.makeText(context, R.string.service_not_available_label, Toast.LENGTH_SHORT).show();
-            }
-        });
+    public MutableLiveData<String> getBiography() {
+        return biography;
     }
-    public Student getStudent(){
+
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Student getStudent() {
         return actualStudent;
     }
 
     public void onReturnButtonClicked() {
-        Intent intent = new Intent(context, MainMenuActivity.class);
+        Intent intent = new Intent(context, StudentManagementMenuActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra("student", student);
         context.startActivity(intent);
