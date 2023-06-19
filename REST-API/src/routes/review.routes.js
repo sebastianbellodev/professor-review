@@ -7,6 +7,7 @@ import {
   patchReview,
   postReview,
   getReviewsByProfessor,
+  getReviewsOfStudent,
 } from "../controllers/review.controllers.js";
 import { getSyllabusesByEducationalExperienceEducationalProgram } from "../controllers/syllabus.controllers.js";
 import { validateToken } from "../utilities/authentication/bearer/bearer.js";
@@ -35,15 +36,21 @@ router.delete("/reviews", validateToken, async (request, response) => {
   }
 });
 
-router.patch("/reviews", validateToken, async (request, response) => {
+router.patch("/reviews/update", validateToken, async (request, response) => {
   try {
+    console.log(request.body);
     const [row] = await getReview(request);
-    if (row.length > 0) {
-      message(
-        response,
-        RESPONSE_CODE.ALREADY_DATA,
-        RESPONSE_MESSAGE.REVIEW_ALREADY_REGISTERED
-      );
+    if (row.length > 0 ) {
+      if(row.idSchoolPeriod == request.body.idSchoolPeriod){
+        message(
+          response,
+          RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+          RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR
+        );
+      }else{
+        await patchReview(request);
+        message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.REVIEW_PUT);
+      }
     } else {
       await patchReview(request);
       message(response, RESPONSE_CODE.OK, RESPONSE_MESSAGE.REVIEW_PUT);
@@ -59,7 +66,6 @@ router.patch("/reviews", validateToken, async (request, response) => {
 
 router.post("/reviews", validateToken, async (request, response) => {
   try {
-    console.log(request.body);
     const [row3] = await getSyllabusesByEducationalExperienceEducationalProgram(
       request
     );
@@ -102,6 +108,23 @@ router.post(
   async (request, response) => {
     try {
       const [row] = await getReviewsByEducationalExperience(request);
+      message(response, RESPONSE_CODE.OK, null, { reviews: row });
+    } catch (exception) {
+      message(
+        response,
+        RESPONSE_CODE.INTERNAL_SERVER_ERROR,
+        RESPONSE_MESSAGE.INTERNAL_SERVER_ERROR
+      );
+    }
+  }
+);
+
+router.post(
+  "/reviews/student",
+  validateToken,
+  async (request, response) => {
+    try {
+      const [row] = await getReviewsOfStudent(request);//
       message(response, RESPONSE_CODE.OK, null, { reviews: row });
     } catch (exception) {
       message(
