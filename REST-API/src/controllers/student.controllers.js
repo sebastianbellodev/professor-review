@@ -32,7 +32,9 @@ export const deleteStudent = (request) => {
 };
 
 export const getStudentByEmailAddress = (request) => {
-  const emailAddress = request.body.emailAddress;
+  const emailAddress = request.body.emailAddress
+    ? request.body.emailAddress
+    : "";
   return Promise.resolve(
     pool.query(
       "SELECT\n" +
@@ -47,7 +49,7 @@ export const getStudentByEmailAddress = (request) => {
 };
 
 export const getStudentByPhoneNumber = (request) => {
-  const phoneNumber = request.body.phoneNumber;
+  const phoneNumber = request.body.phoneNumber ? request.body.phoneNumber : "";
   return Promise.resolve(
     pool.query(
       "SELECT\n" +

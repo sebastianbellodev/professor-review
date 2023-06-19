@@ -15,7 +15,7 @@ export const RESPONSE_CODE = {
   UNAUTHORIZED: 401,
   FORBIDDEN: 403,
   NOT_FOUND: 404,
-  ALREADY_DATA:456,
+  ALREADY_DATA: 456,
   INTERNAL_SERVER_ERROR: 500,
 };
 
@@ -24,13 +24,22 @@ export const RESPONSE_MESSAGE = {
   INTERNAL_SERVER_ERROR: "Something went wrong. Please try again later.",
   UNAUTHORIZED: "User not authorized.",
 
-  EDUCATIONAL_EXPERIENCE_ALREADY_REGISTERED: "Educational experience already registered in the system.",
+  INFORMATION_ALREADY_REGISTERED:
+    "Information already registered in the system.",
+  INFORMATION_DELETE: "Information deleted successfully.",
+  INFORMATION_NOT_FOUND: "Information not found.",
+  INFORMATION_POST: "Information posted successfully.",
+  INFORMATION_PUT: "Information updated successfully.",
+
+  EDUCATIONAL_EXPERIENCE_ALREADY_REGISTERED:
+    "Educational experience already registered in the system.",
   EDUCATIONAL_EXPERIENCE_DELETE: "Educational experience deleted successfully.",
   EDUCATIONAL_EXPERIENCE_NOT_FOUND: "Educational experience not found.",
   EDUCATIONAL_EXPERIENCE_POST: "Educational experience posted successfully.",
   EDUCATIONAL_EXPERIENCE_PUT: "Educational experience updated successfully.",
 
-  EDUCATIONAL_PROGRAM_ALREADY_REGISTERED: "Educational program already registered in the system.",
+  EDUCATIONAL_PROGRAM_ALREADY_REGISTERED:
+    "Educational program already registered in the system.",
   EDUCATIONAL_PROGRAM_DELETE: "Educational program deleted successfully.",
   EDUCATIONAL_PROGRAM_NOT_FOUND: "Educational program not found.",
   EDUCATIONAL_PROGRAM_POST: "Educational program posted successfully.",
@@ -68,7 +77,8 @@ export const RESPONSE_MESSAGE = {
   PROFESSOR_POST: "Professor posted successfully.",
   PROFESSOR_PUT: "Professor updated successfully.",
 
-  ACADEMIC_OFFERING_ALREADY_REGISTERED: "Academic offering already registered in the system.",
+  ACADEMIC_OFFERING_ALREADY_REGISTERED:
+    "Academic offering already registered in the system.",
   ACADEMIC_OFFERING_DELETE: "Academic offering deleted successfully.",
   ACADEMIC_OFFERING_NOT_FOUND: "Academic offering not found.",
   ACADEMIC_OFFERING_POST: "Academic offering posted successfully.",

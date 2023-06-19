@@ -72,6 +72,7 @@ public class LoginViewModel extends AndroidViewModel {
                     String token = response.getToken();
                     setToken(token);
                     getStudent(user);
+                    DataManager.getInstance().setUser(user);
                 }
             }
 

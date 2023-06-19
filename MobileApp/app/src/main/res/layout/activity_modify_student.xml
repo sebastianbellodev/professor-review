@@ -21,6 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:hint="@string/username_label"
+            android:minHeight="48dp"
+            android:text="@{modifyStudentViewModel.username}"
             android:textSize="16sp" />
 
         <EditText
@@ -30,6 +32,8 @@
             android:layout_below="@+id/username_edit_text"
             android:layout_marginBottom="16dp"
             android:hint="@string/student_biography"
+            android:text="@{modifyStudentViewModel.biography}"
+            android:minHeight="48dp"
             android:textSize="16sp" />
 
         <EditText
@@ -39,6 +43,8 @@
             android:layout_below="@+id/student_biography_edit_text"
             android:layout_marginBottom="16dp"
             android:hint="@string/name_label"
+            android:text="@{modifyStudentViewModel.name}"
+            android:minHeight="48dp"
             android:textSize="16sp" />
 
         <EditText
@@ -48,6 +54,8 @@
             android:layout_below="@+id/name_edit_text"
             android:layout_marginBottom="16dp"
             android:hint="@string/last_name_label"
+            android:text="@{modifyStudentViewModel.lastName}"
+            android:minHeight="48dp"
             android:textSize="16sp" />
 
         <EditText
@@ -57,6 +65,8 @@
             android:layout_below="@+id/last_name_edit_text"
             android:layout_marginBottom="16dp"
             android:hint="@string/phone_number_label"
+            android:text="@{modifyStudentViewModel.phoneNumber}"
+            android:minHeight="48dp"
             android:textSize="16sp" />
 
         <EditText
@@ -66,6 +76,8 @@
             android:layout_below="@+id/phone_number_edit_text"
             android:layout_marginBottom="16dp"
             android:hint="@string/email_address_label"
+            android:text="@{modifyStudentViewModel.emailAddress}"
+            android:minHeight="48dp"
             android:textSize="16sp" />
 
         <Button
