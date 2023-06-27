@@ -43,4 +43,7 @@ If you encounter any issues, have questions, or would like to provide feedback, 
 
 ## Authors.
 
-Jonatan Alarcón Alarcón, Sebastián Bello Trejo, Armando Omar Obando Muñóz and María José Torres Igartua.
+- María José Torres Igartua
+- Jonatan Alarcón Alarcón
+- Sebastián Bello Trejo
+- Armando Omar Obando Muñóz
