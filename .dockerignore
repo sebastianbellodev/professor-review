@@ -1,3 +1,7 @@
-REST-API/node_modules
-.env
-REST-API/npm-debug.log
+**/.vs/
+**/bin/
+**/obj/
+**/packages/
+**/node_modules/
+**/credentials.xml
+**/.env
