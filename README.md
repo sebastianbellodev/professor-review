@@ -41,7 +41,7 @@ Please ensure that any code contributions adhere to the repository's coding conv
 
 If you encounter any issues, have questions, or would like to provide feedback, please create an issue in the repository's issue tracker. The maintainers of this repository will actively review and respond to any inquiries, bug reports, or suggestions.
 
-## Authors.
+## Authors
 
 - María José Torres Igartua
 - Jonatan Alarcón Alarcón
