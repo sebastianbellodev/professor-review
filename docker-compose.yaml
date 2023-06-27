@@ -3,7 +3,7 @@ version: "3.8"
 services: 
   db:
     container_name: seed-mysql
-    image: sebastianbello/seed-mysql:1.0.0
+    # image: username/seed-mysql:1.0.0
     restart: always
     env_file: ./.env
     environment:
@@ -17,7 +17,7 @@ services:
     depends_on:
       - db
     container_name: seed-rest
-    image: sebastianbello/seed-rest:1.0.0
+    # image: username/seed-rest:1.0.0
     restart: always
     env_file: ./.env
     environment:
